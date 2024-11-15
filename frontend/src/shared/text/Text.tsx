@@ -58,10 +58,8 @@ export default function Text({children, style, size, weight, color}: ITextProps)
   }
 
   return (
-    <div className={`${openSans.className}`}>
-      <p className={`${getFontSize(size)} ${getFontWeight(weight)} ${getTexColor(color)} ${style}`}>
-        {children}
-      </p>
-    </div>
-  );
+    <p className={`${openSans.className} ${getFontSize(size)} ${getFontWeight(weight)} ${getTexColor(color)} ${style}`}>
+      {children}
+    </p>
+  )
 }
