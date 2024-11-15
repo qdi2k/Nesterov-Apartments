@@ -1,6 +1,25 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  --black: rgba(0, 0, 0, 1);
+  --white: rgba(255, 255, 255, 1);
+  --whiteLight:rgba(255, 249, 239, 1);
+  --grey: rgba(162, 162, 162, 1);
+  --orange:rgba(255, 153, 0, 1);
+  --brown: rgba(68, 29, 6, 1);
+  --brownDark: rgba(42, 16, 1, 1);
+
+  --regular: 400;
+  --medium: 500;
+  --semiBold: 600;
+  --bold: 700;
+
+  --xLarge: 72px;
+  --large: 64px;
+  --medium: 24px;
+  --small: 18px;
+  --xSmall: 16px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -15,6 +34,16 @@ body {
   max-width: 100vw;
   overflow-x: hidden;
 }
+
+
+*{
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+button{cursor: pointer;}
+button::-moz-focus-inner{padding: 0;border: 0;}
 
 body {
   color: var(--foreground);
