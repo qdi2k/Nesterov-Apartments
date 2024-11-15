@@ -1,0 +1,72 @@
+.black {
+  color: var(--black);
+}
+.white {
+  color: var(--white);
+}
+.whiteLight {
+  color: var(--whiteLight);
+}
+.grey {
+  color: var(--grey);
+}
+.orange {
+  color: var(--orange);
+}
+.brown {
+  color: var(--brown);
+}
+.brown {
+  color: var(--brownDark);
+}
+
+.blackBackground {
+  background-color: var(--black);
+}
+.whiteBackground {
+  background-color: var(--white);
+}
+.whiteLightBackground {
+  background-color: var(--whiteLight);
+}
+.greyBackground {
+  background-color: var(--grey);
+}
+.orangeBackground {
+  background-color: var(--orange);
+}
+.brownBackground {
+  background-color: var(--brown);
+}
+.brownDarkBackground {
+  background-color: var(--brownDark);
+}
+
+.regular {
+  font-weight: var(--regular);
+}
+.medium {
+  font-weight: var(--medium);
+}
+.semiBold {
+  font-weight: var(--semiBold);
+}
+.bold {
+  font-weight: var(--bold);
+}
+
+.xLarge {
+  font-size: var(--xLarge);
+}
+.large {
+  font-size: var(--large);
+}
+.medium {
+  font-size: var(--medium);
+}
+.small {
+  font-size: var(--small);
+}
+.xSmall {
+  font-size: var(--xSmall);
+}
