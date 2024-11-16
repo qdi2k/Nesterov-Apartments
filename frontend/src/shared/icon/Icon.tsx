@@ -5,6 +5,7 @@ import {default as mail} from './assets/mail.svg'
 import {default as map} from './assets/map.svg'
 import {default as phone} from './assets/phone.svg'
 import {default as train} from './assets/train.svg'
+import {default as logo} from './assets/logo.svg'
 
 const Icons = {
   address,
@@ -13,7 +14,8 @@ const Icons = {
   mail,
   map,
   phone,
-  train
+  train,
+  logo,
 }
 
 export type IconName = keyof typeof Icons

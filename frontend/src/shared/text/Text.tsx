@@ -4,10 +4,10 @@ import themeStyles from '@/shared/theme.module.css'
 
 const openSans = Open_Sans({
   subsets: ["latin"],
-  weight: ['400', '500', '600', '700']
+  weight: ['300', '400', '500', '600', '700']
 })
 
-declare const AvailableColors: ['white', 'brown', 'black']
+declare const AvailableColors: ['white', 'greyLight', 'brown', 'black']
 declare const AvailableSizes: ['xSmall', 'small', 'medium']
 declare const AvailableWeights: ['regular', 'medium', 'semiBold', 'bold']
 
@@ -17,17 +17,19 @@ export type Weights = typeof AvailableWeights[number] | undefined
 
 interface ITextProps {
   children: ReactNode
-  style?: string
+  className?: string
   size?: Sizes
   weight?: Weights
   color?: Colors
 }
 
-export default function Text({children, style, size, weight, color}: ITextProps) {
+export default function Text({children, className, size, weight, color}: ITextProps) {
   const getTexColor = (type: Colors) => {
     switch (type) {
       case 'white':
         return themeStyles.white
+      case 'greyLight':
+        return themeStyles.greyLight
       case 'brown': 
         return themeStyles.brown
       default:
@@ -58,7 +60,7 @@ export default function Text({children, style, size, weight, color}: ITextProps)
   }
 
   return (
-    <p className={`${openSans.className} ${getFontSize(size)} ${getFontWeight(weight)} ${getTexColor(color)} ${style}`}>
+    <p className={`${openSans.className} ${getFontSize(size)} ${getFontWeight(weight)} ${getTexColor(color)} ${className}`}>
       {children}
     </p>
   )

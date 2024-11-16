@@ -10,6 +10,9 @@
 .grey {
   color: var(--grey);
 }
+.greyLight {
+  color: var(--greyLight);
+}
 .orange {
   color: var(--orange);
 }
@@ -31,6 +34,9 @@
 }
 .greyBackground {
   background-color: var(--grey);
+}
+.greyLightBackground {
+  background-color: var(--greyLight);
 }
 .orangeBackground {
   background-color: var(--orange);
@@ -69,4 +75,10 @@
 }
 .xSmall {
   font-size: var(--xSmall);
+}
+
+.container {
+  max-width: 1580px;
+  width: 100%;
+  margin: 0 auto;
 }
