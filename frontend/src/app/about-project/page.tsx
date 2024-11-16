@@ -1,5 +1,5 @@
 
-export default function About() {
+export default function AboutProject() {
     return (
       <div>
         About page

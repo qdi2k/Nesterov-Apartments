@@ -1,0 +1,12 @@
+.contactText {
+  margin-top: 10px;
+  text-align: end;
+}
+
+.phone {
+  display: flex;
+}
+
+.phoneIcon {
+  margin-right: 6px;
+}
