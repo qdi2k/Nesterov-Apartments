@@ -11,7 +11,7 @@
 
 .logoContainer {
   display: flex;
-  flex: 0.9;
+  flex: 1.1;
   padding-left: 24px;
 }
 
@@ -21,7 +21,7 @@
 
 .contact {
   display: flex;
-  flex: 0.6;
+  flex: 0.8;
   justify-content: flex-end;
   padding-right: 24px;
 }
