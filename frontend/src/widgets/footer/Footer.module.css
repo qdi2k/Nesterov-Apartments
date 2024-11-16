@@ -1,0 +1,27 @@
+.footer {
+  height: 380px;
+}
+
+.footerContainer {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  gap: 40px;
+}
+
+.logoContainer {
+  display: flex;
+  flex: 0.9;
+  padding-left: 24px;
+}
+
+.logo {
+  height: 120px;
+}
+
+.contact {
+  display: flex;
+  flex: 0.6;
+  justify-content: flex-end;
+  padding-right: 24px;
+}
