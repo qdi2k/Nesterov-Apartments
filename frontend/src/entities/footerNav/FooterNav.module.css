@@ -1,0 +1,11 @@
+.footerNav {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.nav {
+  line-height: 40px;
+}
