@@ -1,3 +1,7 @@
+.contactButton {
+  min-width: 174px;
+}
+
 .contactText {
   margin-top: 10px;
   text-align: end;

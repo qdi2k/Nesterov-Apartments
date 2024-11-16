@@ -1,6 +1,7 @@
 .footerNav {
   display: flex;
   flex: 1;
+  min-width: 320px;
   flex-direction: row;
   justify-content: space-between;
   gap: 24px;

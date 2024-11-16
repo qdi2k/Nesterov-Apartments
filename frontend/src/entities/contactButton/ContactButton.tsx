@@ -8,7 +8,7 @@ interface IContactButtonProps {
 
 export default function ContactButton({className}: IContactButtonProps) {
   return (
-    <div className={className}>
+    <div className={`${styles.contactButton} ${className}`}>
       <div className={styles.phone}>
         <Icon name='phone' size={23} color='white' className={styles.phoneIcon} />
         <Text size='small' color='white'>+7 495 419-15-18</Text>
