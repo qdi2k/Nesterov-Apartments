@@ -1,5 +1,5 @@
 import styles from './FooterNav.module.css'
-import Text from '@/shared/text/Text'
+import Text from '@/entities/text/Text'
 import Link from 'next/link'
 
 export default function FooterNav() {

@@ -19,7 +19,7 @@
 .brown {
   color: var(--brown);
 }
-.brown {
+.brownDark {
   color: var(--brownDark);
 }
 
@@ -80,5 +80,7 @@
 .container {
   max-width: 1580px;
   width: 100%;
+  padding-left: 24px;
+  padding-right: 24px;
   margin: 0 auto;
 }

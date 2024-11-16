@@ -1,5 +1,7 @@
-import Text, {Colors} from '@/shared/text/Text'
-import themeStyles from '@/shared/theme.module.css'
+
+import Text from '@/entities/text/Text'
+import {type Colors} from '@/shared/constants/colors'
+import themeStyles from '@/shared/styles/theme.module.css'
 import styles from './Button.module.css'
 
 interface IButtonProps {
@@ -9,7 +11,7 @@ interface IButtonProps {
 export default function Button({textColor}: IButtonProps) {
   return (
     <button className={`${styles.backgroundButton} ${themeStyles.orangeBackground}`}>
-      <Text size='small' weight='semiBold' color={textColor} style={styles.text}>Отправить</Text>
+      <Text size='small' weight='semiBold' color={textColor} className={styles.text}>Отправить</Text>
     </button>
   );
 }

@@ -1,9 +1,9 @@
 import styles from './Footer.module.css'
-import themeStyles from '@/shared/theme.module.css'
-import ContactButton from '@/entities/contactButton/ContactButton'
-import Icon from '@/shared/icon/Icon'
+import themeStyles from '@/shared/styles/theme.module.css'
+import ContactButton from '@/features/contactButton/ContactButton'
+import FooterNav from '@/features/footerNav/FoooterNav'
+import Icon from '@/entities/icon/Icon'
 import Link from 'next/link'
-import FooterNav from '@/entities/footerNav/FoooterNav'
 
 export default function Footer() {
   return (

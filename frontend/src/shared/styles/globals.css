@@ -11,10 +11,10 @@
   --brown: rgba(68, 29, 6, 1);
   --brownDark: rgba(43, 16, 1, 1);
 
-  --regular: 300;
-  --medium: 400;
-  --semiBold: 500;
-  --bold: 600;
+  --regular: 400;
+  --medium: 500;
+  --semiBold: 600;
+  --bold: 700;
 
   --xLarge: 72px;
   --large: 64px;
