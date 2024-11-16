@@ -1,0 +1,33 @@
+.header {
+  height: 140px;
+}
+
+.headerContainer {
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+
+.left {
+  display: flex;
+  flex: 1;
+  gap: 160px;
+}
+
+.logo {
+  height: 130px;
+}
+
+.city {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.right {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 50px;
+}
