@@ -1,6 +1,6 @@
 import {ReactNode} from 'react'
 import localFont from "next/font/local"
-import themeStyles from '@/shared/theme.module.css'
+import themeStyles from '@/shared/styles/theme.module.css'
 
 const helio = localFont({
   src: "./../heliosextthin.otf",

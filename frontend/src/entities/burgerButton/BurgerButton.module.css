@@ -1,0 +1,22 @@
+.burgerButton {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.burgerLine {
+  border-bottom: 1.5px solid var(--brown);
+  border-radius: 1.5px;
+}
+
+.widthMenu1 {
+  width: 14px;
+}
+
+.widthMenu2 {
+  width: 22px;
+
+}
+.widthMenu3 {
+  width: 30px;
+}

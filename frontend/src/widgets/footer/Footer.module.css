@@ -12,7 +12,6 @@
 .logoContainer {
   display: flex;
   flex: 1.1;
-  padding-left: 24px;
 }
 
 .logo {
@@ -23,5 +22,4 @@
   display: flex;
   flex: 0.8;
   justify-content: flex-end;
-  padding-right: 24px;
 }
