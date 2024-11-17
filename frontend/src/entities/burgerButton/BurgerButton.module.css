@@ -7,10 +7,19 @@
 .burgerLine {
   border-bottom: 1.5px solid var(--brown);
   border-radius: 1.5px;
+  transition: 0.3s ease-in-out;
 }
 
 .widthMenu1 {
   width: 14px;
+}
+
+.burgerButton:hover .widthMenu1 {
+  width: 30px;
+}
+
+.burgerButton:hover .widthMenu2 {
+  width: 30px;
 }
 
 .widthMenu2 {

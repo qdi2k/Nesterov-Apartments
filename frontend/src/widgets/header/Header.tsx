@@ -16,10 +16,10 @@ export default function Header() {
               <Icon className={styles.logo} name='logoMain' size={368} />
             </Link>
           </div>
-          <div className={styles.city}>
+          <button className={styles.city}>
             <Icon name='address' size={27} color='brown'/>
             <Text>Новосибирск</Text>
-          </div>
+          </button>
         </div>
         <div className={styles.right}>
           <ContactButton color='brown' phoneColor='black' />

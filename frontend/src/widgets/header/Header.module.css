@@ -9,6 +9,7 @@
 }
 
 .left {
+  align-items: center;
   display: flex;
   flex: 1;
   gap: 160px;
@@ -22,6 +23,7 @@
   display: flex;
   align-items: center;
   gap: 4px;
+  height: max-content;
 }
 
 .right {
