@@ -1,0 +1,48 @@
+.main {
+  position: relative;
+  margin-bottom: 150px;
+}
+
+.backgroundImage {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: -1;
+}
+
+.mainContainer {
+  padding-left: 0;
+  padding-right: 0;
+  display: flex;
+}
+
+.bottomWrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.bottomContainer {
+  display: flex;
+  flex-direction: column;
+  width: 620px;
+  margin-right: 120px;
+  gap: 46px;
+}
+
+.backgroundBlur {
+  display: flex;
+  flex-direction: column;
+  height: 663px;
+  width: 1060px;
+  margin-top: 92px;
+  margin-left: -24px;
+  padding-left: 43px;
+  backdrop-filter: blur(4px);
+  background: linear-gradient(to right, rgba(255, 255, 255, 1),rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.5));
+}
+
+.mainTitle {
+  text-transform: uppercase;
+  margin-top: 80px;
+  margin-bottom: 50px
+}

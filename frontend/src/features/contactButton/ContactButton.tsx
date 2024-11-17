@@ -16,14 +16,15 @@ export default function ContactButton({className, color='white', phoneColor='whi
         <Icon name='phone' size={23} color={color} className={styles.phoneIcon} />
         <Text size='small' color={phoneColor}>+7 495 419-15-18</Text>
       </div>
-      <Text
-        size='small'
-        weight='semiBold'
-        color={color}
-        className={styles.contactText}
-      >
-        Заказать звонок
-      </Text>
+      <button className={styles.contactText}>
+        <Text
+          size='small'
+          weight='semiBold'
+          color={color}
+        >
+          Заказать звонок
+        </Text>
+      </button>
     </div>
   )
 }
