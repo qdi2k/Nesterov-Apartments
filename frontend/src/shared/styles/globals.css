@@ -45,6 +45,12 @@ nav,footer,header,aside{display: block;}
   display: none;
 }
 
+body {
+  max-width: 1920px;
+  margin: 0 auto;
+  position: relative;
+}
+
 html,body{
   -webkit-text-size-adjust: 100%;
 }

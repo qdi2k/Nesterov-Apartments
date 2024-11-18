@@ -6,7 +6,11 @@ import BurgerButton from '@/entities/burgerButton/BurgerButton'
 import styles from './Header.module.css'
 import themeStyles from '@/shared/styles/theme.module.css'
 
-export default function Header() {
+interface IHeaderProps {
+  openBurger: () => void
+}
+
+export default function Header({openBurger}: IHeaderProps) {
   return (
     <header className={styles.header}>
       <div className={`${themeStyles.container} ${styles.headerContainer}`}>
@@ -23,7 +27,9 @@ export default function Header() {
         </div>
         <div className={styles.right}>
           <ContactButton color='brown' phoneColor='black' />
-          <BurgerButton/>
+          <BurgerButton
+            onPress={openBurger}
+          />
         </div>
       </div>
     </header>

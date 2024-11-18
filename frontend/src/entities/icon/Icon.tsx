@@ -6,6 +6,7 @@ import {default as map} from '@/shared/assets/icons/map.svg'
 import {default as phone} from '@/shared/assets/icons/phone.svg'
 import {default as train} from '@/shared/assets/icons/train.svg'
 import {default as arrow} from '@/shared/assets/icons/arrow.svg'
+import {default as close} from '@/shared/assets/icons/close.svg'
 import {default as logo} from '@/shared/assets/icons/logo.svg'
 import {default as logoMain} from '@/shared/assets/icons/logo-main.svg'
 import {type Colors, getColor} from '@/shared/constants/colors'
@@ -19,6 +20,7 @@ const Icons = {
   phone,
   train,
   arrow,
+  close,
   logo,
   logoMain,
 }
