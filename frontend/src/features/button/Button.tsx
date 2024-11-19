@@ -1,4 +1,3 @@
-
 import {ReactNode} from 'react'
 import Text from '@/entities/text/Text'
 import {type Colors} from '@/shared/constants/colors'
@@ -14,11 +13,18 @@ interface IButtonProps {
 export default function Button({children, textColor}: IButtonProps) {
   return (
     <button className={styles.button}>
-      <div className={`${styles.backgroundButton} ${themeStyles.orangeBackground}`}/>
-      <Text size='small' weight='semiBold' color={textColor} className={styles.text}>
+      <div
+        className={`${styles.backgroundButton} ${themeStyles.orangeBackground}`}
+      />
+      <Text
+        size='small'
+        weight='semiBold'
+        color={textColor}
+        className={styles.text}
+      >
         {children}
       </Text>
       <Icon name='arrow' size={17} color='black'></Icon>
     </button>
-  );
+  )
 }
