@@ -19,7 +19,9 @@ function BurgerList({links, onPress}: IBurgerListProps) {
       {links.map((link) => (
         <li key={link.id}>
           <Link href={link.href} onClick={() => onPress()}>
-            <Text color='black' size='small'>{link.text}</Text>
+            <Text color='black' size='small'>
+              {link.text}
+            </Text>
           </Link>
         </li>
       ))}
@@ -27,4 +29,4 @@ function BurgerList({links, onPress}: IBurgerListProps) {
   )
 }
 
-export default BurgerList;
+export default BurgerList
