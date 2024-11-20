@@ -1,22 +1,24 @@
 import Image from 'next/image'
+import {MainTitle} from '@/shared/ui'
+import {Text} from '@/shared/ui/text/Text'
+import {Button} from '@/shared/ui/button/Buton'
 import styles from './Main.module.css'
-import themeStyles from '@/shared/styles/theme.module.css'
-import MainTitle from '@/entities/mainTitle/MainTitle'
-import Text from '@/entities/text/Text'
-import Button from '@/features/button/Button'
+import themeStyles from '@/shared/model/styles/theme.module.css'
 
-export default function Main() {
+export function Main() {
   return (
     <section className={styles.main}>
       <div className={`${themeStyles.container} ${styles.mainContainer}`}>
         <div className={styles.backgroundBlur}>
           <MainTitle className={styles.mainTitle}>
-            Квартиры, которые подстраиваются <br/> под ваш образ жизни
+            Квартиры, которые подстраиваются <br /> под ваш образ жизни
           </MainTitle>
           <div className={styles.bottomWrapper}>
             <div className={styles.bottomContainer}>
               <Text>
-                В нашем жилом комплексе ваша квартира станет пространством, где технологии, инфраструктура, дизайн и архитектура объединяются ради вашего комфорта.
+                В нашем жилом комплексе ваша квартира станет пространством, где
+                технологии, инфраструктура, дизайн и архитектура объединяются
+                ради вашего комфорта.
               </Text>
               <Button>Выбрать квартиру</Button>
             </div>
