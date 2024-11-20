@@ -1,16 +1,16 @@
-import ContactButton from '@/features/contactButton/ContactButton'
-import Icon from '@/entities/icon/Icon'
+import {ContactButton} from '@/entities/contactButton/ContactButton'
+import {BurgerButton} from '@/shared/ui'
+import {Icon} from '@/shared/ui/icon/Icon'
 import Link from 'next/link'
-import Text from '@/entities/text/Text'
-import BurgerButton from '@/entities/burgerButton/BurgerButton'
+import {Text} from '@/shared/ui/text/Text'
 import styles from './Header.module.css'
-import themeStyles from '@/shared/styles/theme.module.css'
+import themeStyles from '@/shared/model/styles/theme.module.css'
 
 interface IHeaderProps {
   openBurger: () => void
 }
 
-export default function Header({openBurger}: IHeaderProps) {
+export function Header({openBurger}: IHeaderProps) {
   return (
     <header className={styles.header}>
       <div className={`${themeStyles.container} ${styles.headerContainer}`}>
@@ -21,15 +21,13 @@ export default function Header({openBurger}: IHeaderProps) {
             </Link>
           </div>
           <button className={styles.city}>
-            <Icon name='address' size={27} color='brown'/>
+            <Icon name='address' size={27} color='brown' />
             <Text>Новосибирск</Text>
           </button>
         </div>
         <div className={styles.right}>
           <ContactButton color='brown' phoneColor='black' />
-          <BurgerButton
-            onPress={openBurger}
-          />
+          <BurgerButton onPress={openBurger} />
         </div>
       </div>
     </header>

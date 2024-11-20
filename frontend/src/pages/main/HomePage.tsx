@@ -1,10 +1,10 @@
-import Main from "@/widgets/main/Main"
-import styles from "./HomePage.module.css"
+import {Main} from '@/widgets/main/Main'
+import styles from './HomePage.module.css'
 
-export default function HomePage() {
+export function HomePage() {
   return (
     <div className={styles.home}>
-      <Main/>
+      <Main />
     </div>
   )
 }

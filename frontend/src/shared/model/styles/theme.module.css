@@ -1,0 +1,99 @@
+.black {
+  color: var(--black);
+  transition: all 0.3s;
+}
+.white {
+  color: var(--white);
+  transition: all 0.3s;
+}
+.whiteLight {
+  color: var(--whiteLight);
+  transition: all 0.3s;
+}
+.grey {
+  color: var(--grey);
+  transition: all 0.3s;
+}
+.greyLight {
+  color: var(--greyLight);
+  transition: all 0.3s;
+}
+.orange {
+  color: var(--orange);
+  transition: all 0.3s;
+}
+.brown {
+  color: var(--brown);
+  transition: all 0.3s;
+}
+.brownDark {
+  color: var(--brownDark);
+  transition: all 0.3s;
+}
+
+.blackBackground {
+  background-color: var(--black);
+}
+.whiteBackground {
+  background-color: var(--white);
+}
+.whiteLightBackground {
+  background-color: var(--whiteLight);
+}
+.greyBackground {
+  background-color: var(--grey);
+}
+.greyLightBackground {
+  background-color: var(--greyLight);
+}
+.orangeBackground {
+  background-color: var(--orange);
+}
+.brownBackground {
+  background-color: var(--brown);
+}
+.brownDarkBackground {
+  background-color: var(--brownDark);
+}
+
+.regular {
+  font-weight: var(--regular);
+}
+.medium {
+  font-weight: var(--medium);
+}
+.semiBold {
+  font-weight: var(--semiBold);
+}
+.bold {
+  font-weight: var(--bold);
+}
+
+.xLarge {
+  font-size: var(--xLarge);
+}
+.large {
+  font-size: var(--large);
+}
+.medium {
+  font-size: var(--medium);
+}
+.small {
+  font-size: var(--small);
+}
+.xSmall {
+  font-size: var(--xSmall);
+}
+
+.container {
+  max-width: 1580px;
+  width: 100%;
+  padding-left: 24px;
+  padding-right: 24px;
+  margin: 0 auto;
+}
+
+.textHover:hover {
+  color: var(--orange);
+  transition: all 0.3s;
+}

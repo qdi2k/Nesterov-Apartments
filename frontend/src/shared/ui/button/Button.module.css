@@ -1,0 +1,16 @@
+.button {
+  display: flex;
+  align-items: center;
+  width: max-content;
+}
+
+.backgroundButton {
+  height: 78px;
+  width: 78px;
+  border-radius: 50%;
+}
+
+.text {
+  margin-left: -40px;
+  margin-right: 10px;
+}
