@@ -1,0 +1,46 @@
+.wrapper {
+  display: flex;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  max-width: 1752px;
+  margin-left: auto;
+}
+
+.image {
+  background-image: url('../../shared/assets/images/map.png');
+  height: 1000px;
+  width: 772px;
+}
+
+.content {
+  flex: 1;
+  margin-top: 168px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.title {
+  margin-left: 36px;
+  margin-right: 36px;
+  width: max-content;
+}
+
+.description {
+  margin-top: 56px;
+  margin-left: 36px;
+  width: 406px;
+}
+
+.substrateButtonContainer {
+  height: 228px;
+  width: 100%;
+  padding-left: 44px;
+  padding-right: 80px;
+  position: absolute;
+  bottom: 0;
+}
