@@ -1,0 +1,17 @@
+.container {
+  background-color: var(--brown);
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  align-items: center;
+  height: 186px;
+}
+
+.text {
+  line-height: 35px;
+  text-transform: uppercase;
+}
+
+.buttonText {
+  margin-right: 24px;
+}

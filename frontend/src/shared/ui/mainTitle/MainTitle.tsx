@@ -13,7 +13,6 @@ interface IMainTitleProps {
 }
 
 export function MainTitle({children, className}: IMainTitleProps) {
-  console.log(theme.font.size.xLarge)
   return (
     <h1
       className={`

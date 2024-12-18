@@ -5,12 +5,13 @@
 }
 
 .backgroundButton {
-  height: 78px;
-  width: 78px;
+  min-height: 78px;
+  min-width: 78px;
   border-radius: 50%;
 }
 
 .text {
+  width: max-content;
   margin-left: -40px;
   margin-right: 10px;
 }

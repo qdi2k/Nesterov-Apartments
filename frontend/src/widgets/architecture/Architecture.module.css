@@ -1,0 +1,55 @@
+.contentContainer {
+  display: flex;
+  gap: 30px;
+}
+
+.listContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 70px;
+  margin-left: 20px;
+  margin-top: 66px;
+}
+
+.title {
+  width: max-content;
+}
+
+.image {
+  position: relative;
+  background-image: url('../../shared/assets/images/second.png');
+  height: 608px;
+  width: 942px;
+  margin-top: 170px;
+}
+
+.imageContainer {
+  position: absolute;
+  top: 58px;
+  right: 24px;
+  margin-left: 24px;
+  padding-top: 58px;
+  padding-bottom: 58px;
+  padding-left: 38px;
+  padding-right: 48px;
+  height: max-content;
+  max-width: 492px;
+  backdrop-filter: blur(4px);
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 0.6),
+    rgba(255, 255, 255, 0.5)
+  );
+}
+
+.imageTitle {
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.substrateButtonContainer {
+  max-width: 1498px;
+  padding-left: 188px;
+  padding-right: 78px;
+}
