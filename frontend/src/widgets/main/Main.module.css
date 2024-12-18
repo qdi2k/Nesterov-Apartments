@@ -1,6 +1,9 @@
 .main {
   position: relative;
   margin-bottom: 150px;
+  align-items: center;
+  justify-items: center;
+  height: 830px;
 }
 
 .backgroundImage {

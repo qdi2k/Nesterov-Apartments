@@ -8,9 +8,10 @@ import styles from './Button.module.css'
 interface IButtonProps {
   children: ReactNode
   textColor?: FontColors
+  textStyle?: string
 }
 
-export function Button({children, textColor}: IButtonProps) {
+export function Button({children, textStyle, textColor}: IButtonProps) {
   return (
     <button className={styles.button}>
       <div
@@ -20,11 +21,11 @@ export function Button({children, textColor}: IButtonProps) {
         size='small'
         weight='semiBold'
         color={textColor}
-        className={styles.text}
+        className={`${styles.text} ${textStyle}`}
       >
         {children}
       </Text>
-      <Icon name='arrow' size={17} />
+      <Icon name='arrow' size={17} color={textColor} />
     </button>
   )
 }

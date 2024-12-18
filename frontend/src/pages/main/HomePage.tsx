@@ -1,10 +1,11 @@
 import {Main} from '@/widgets/main/Main'
-import styles from './HomePage.module.css'
+import { Architecture } from '@/widgets/architecture/Architecture'
 
 export function HomePage() {
   return (
-    <div className={styles.home}>
+    <div>
       <Main />
+      <Architecture/>
     </div>
   )
 }
