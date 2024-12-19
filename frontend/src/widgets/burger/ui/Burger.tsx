@@ -21,7 +21,6 @@ const links = [
 ]
 
 export function Burger({isOpen, onPress}: IBurgerProps) {
-  console.log('Исправить')
   return (
     <div
       className={

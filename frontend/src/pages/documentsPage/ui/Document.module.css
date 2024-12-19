@@ -1,0 +1,23 @@
+.container {
+  display: grid;
+  grid-template-columns: 0.15fr 1fr 0.3fr 0fr;
+  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--whiteLight);
+  padding-left: 34px;
+  padding-right: 44px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.title {
+  text-transform: uppercase;
+}
+
+.downloadButton {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 20px;
+}
