@@ -4,8 +4,8 @@ import themeStyles from '@/shared/model/styles/theme.module.css'
 
 export function Advantages() {
   return (
-    <section className={`${styles.wrapper}`}>
-      <div className={`${themeStyles.container}`}>
+    <section className={styles.wrapper}>
+      <div className={themeStyles.container}>
         <Title className={styles.title}>
           Подарите себе <br /> жизнь в лучшем <br /> месте города
         </Title>

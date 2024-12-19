@@ -5,8 +5,8 @@ import {RecordForm} from '@/entities/recordForm'
 
 export function Record() {
   return (
-    <section className={`${themeStyles.container}`}>
-      <div className={`${styles.container}`}>
+    <section className={themeStyles.container}>
+      <div className={styles.container}>
         <Title>
           Будем рады ответить <br /> на все ваши вопросы
         </Title>

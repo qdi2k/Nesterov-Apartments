@@ -9,6 +9,9 @@ import {default as arrow} from '@/shared/assets/icons/arrow.svg'
 import {default as close} from '@/shared/assets/icons/close.svg'
 import {default as logo} from '@/shared/assets/icons/logo.svg'
 import {default as logoMain} from '@/shared/assets/icons/logo-main.svg'
+import {default as wordFile} from '@/shared/assets/icons/word-file.svg'
+import {default as pdfFile} from '@/shared/assets/icons/pdf-file.svg'
+import {default as download} from '@/shared/assets/icons/download.svg'
 import {type IconColors, theme} from '@/shared/model'
 
 const Icons = {
@@ -23,6 +26,9 @@ const Icons = {
   close,
   logo,
   logoMain,
+  wordFile,
+  pdfFile,
+  download,
 }
 
 export type IconName = keyof typeof Icons

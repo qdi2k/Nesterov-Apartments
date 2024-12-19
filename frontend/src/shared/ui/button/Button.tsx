@@ -18,7 +18,7 @@ export function Button({children, textStyle, textColor}: IButtonProps) {
       />
       <Text
         size='small'
-        weight='regular'
+        weight='semiBold'
         color={textColor}
         className={`${styles.text} ${textStyle}`}
       >
