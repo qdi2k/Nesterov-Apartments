@@ -12,6 +12,10 @@ import {default as logoMain} from '@/shared/assets/icons/logo-main.svg'
 import {default as wordFile} from '@/shared/assets/icons/word-file.svg'
 import {default as pdfFile} from '@/shared/assets/icons/pdf-file.svg'
 import {default as download} from '@/shared/assets/icons/download.svg'
+import {default as timeFill} from '@/shared/assets/icons/time-fill.svg'
+import {default as mapFill} from '@/shared/assets/icons/map-fill.svg'
+import {default as phoneFill} from '@/shared/assets/icons/phone-fill.svg'
+import {default as mailFill} from '@/shared/assets/icons/mail-fill.svg'
 import {type IconColors, theme} from '@/shared/model'
 
 const Icons = {
@@ -29,6 +33,10 @@ const Icons = {
   wordFile,
   pdfFile,
   download,
+  timeFill,
+  mapFill,
+  phoneFill,
+  mailFill,
 }
 
 export type IconName = keyof typeof Icons

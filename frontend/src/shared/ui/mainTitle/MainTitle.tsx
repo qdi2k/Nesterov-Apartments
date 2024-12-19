@@ -23,7 +23,7 @@ export function MainTitle({children, className}: IMainTitleProps) {
   const router = usePathname()
   const currentLink = router?.replace('/', '') as NavigationTitles
   return (
-    <>
+    <div>
       <h1
         className={`
         ${helio.className}
@@ -45,6 +45,6 @@ export function MainTitle({children, className}: IMainTitleProps) {
           <Text weight='light'>{navigationTitle?.[currentLink]}</Text>
         </div>
       )}
-    </>
+    </div>
   )
 }

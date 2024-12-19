@@ -1,0 +1,45 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.containerRoute {
+  display: flex;
+  flex-direction: column;
+  gap: 46px;
+  width: 1059px;
+}
+
+.image {
+  background-image: url('../../shared/assets/images/officeMap.png');
+  width: 100%;
+  height: 721px;
+}
+
+.title {
+  text-transform: uppercase;
+}
+
+.routeContainer {
+  display: flex;
+  gap: 94px;
+}
+
+.contactsMapContainer {
+  margin-top: 90px;
+}
+
+.listContent {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 46px;
+  margin-bottom: 144px;
+}
+
+.listItem {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
