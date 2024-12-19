@@ -1,9 +1,5 @@
+import {DocumentsPage} from '@/pages/documentsPage'
 
 export default function Documents() {
-    return (
-      <div>
-        Documents page
-      </div>
-    );
-  }
-  
+  return <DocumentsPage />
+}

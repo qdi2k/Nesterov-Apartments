@@ -1,6 +1,11 @@
 .header {
   height: 140px;
 }
+
+.headerMargin {
+  margin-bottom: 65px;
+}
+
 .headerContainer {
   display: flex;
   height: 100%;
