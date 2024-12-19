@@ -1,6 +1,5 @@
-import {ContactButton} from '@/entities/contactButton/ContactButton'
-import {Icon} from '@/shared/ui/icon/Icon'
-import {Divider} from '@/shared/ui/divider/Divider'
+import {ContactButton} from '@/entities/contactButton'
+import {Icon, Divider} from '@/shared/ui'
 import {BurgerList} from './BurgerList'
 import styles from './Burger.module.css'
 

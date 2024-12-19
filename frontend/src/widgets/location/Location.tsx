@@ -1,7 +1,5 @@
-import {Title} from '@/shared/ui'
-import {Text} from '@/shared/ui/text/Text'
+import {Title, Text, SubstrateButton} from '@/shared/ui'
 import styles from './Location.module.css'
-import {SubstrateButton} from '@/shared/ui/substrateButton'
 
 export function Location() {
   return (

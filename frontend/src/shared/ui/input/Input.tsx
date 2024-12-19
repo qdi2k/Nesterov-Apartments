@@ -1,5 +1,5 @@
 import {Open_Sans} from 'next/font/google'
-import {Divider} from '../divider'
+import {Divider} from '@/shared/ui'
 import styles from './Input.module.css'
 
 const openSans = Open_Sans({

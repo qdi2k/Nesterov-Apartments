@@ -1,6 +1,5 @@
 import {ReactNode} from 'react'
-import {Button} from '../button'
-import {Text} from '../text'
+import {Button, Text} from '@/shared/ui'
 import styles from './SubstrateButton.module.css'
 
 interface ISubstrateButtonProps {
@@ -16,7 +15,7 @@ export function SubstrateButton({
 }: ISubstrateButtonProps) {
   return (
     <div className={`${styles.container} ${className}`}>
-      <Text color='white' size='medium' className={styles.text}>
+      <Text color='white' size='xMedium' weight='light' className={styles.text}>
         {children}
       </Text>
       <Button textColor='white' textStyle={styles.buttonText}>

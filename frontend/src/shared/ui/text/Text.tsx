@@ -10,7 +10,7 @@ import themeStyles from '@/shared/model/styles/theme.module.css'
 
 const openSans = Open_Sans({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
+  weight: ['300', '400', '500', '600', '700'],
 })
 
 interface ITextProps {

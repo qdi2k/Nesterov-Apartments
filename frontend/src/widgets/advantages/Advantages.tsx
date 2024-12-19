@@ -1,7 +1,6 @@
-import {Title} from '@/shared/ui'
+import {Title, Advantage} from '@/shared/ui'
 import styles from './Advantages.module.css'
 import themeStyles from '@/shared/model/styles/theme.module.css'
-import {Advantage} from '@/shared/ui/advantage'
 
 export function Advantages() {
   return (

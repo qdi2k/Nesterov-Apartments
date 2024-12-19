@@ -1,4 +1,4 @@
-import {Text} from '@/shared/ui/text/Text'
+import {Text} from '@/shared/ui'
 import Link from 'next/link'
 import styles from './BurgerList.module.css'
 

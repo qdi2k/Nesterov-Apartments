@@ -1,7 +1,5 @@
 import Image from 'next/image'
-import {MainTitle} from '@/shared/ui'
-import {Text} from '@/shared/ui/text/Text'
-import {Button} from '@/shared/ui/button/Buton'
+import {MainTitle, Text, Button} from '@/shared/ui'
 import styles from './Main.module.css'
 import themeStyles from '@/shared/model/styles/theme.module.css'
 

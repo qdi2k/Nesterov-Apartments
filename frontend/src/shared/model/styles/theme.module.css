@@ -56,6 +56,9 @@
   background-color: var(--brownDark);
 }
 
+.light {
+  font-weight: var(--light);
+}
 .regular {
   font-weight: var(--regular);
 }
@@ -75,8 +78,8 @@
 .large {
   font-size: var(--large);
 }
-.medium {
-  font-size: var(--medium);
+.xMedium {
+  font-size: var(--xMedium);
 }
 .small {
   font-size: var(--small);

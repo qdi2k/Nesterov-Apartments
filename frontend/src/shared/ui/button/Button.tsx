@@ -1,6 +1,5 @@
 import {ReactNode} from 'react'
-import {Text} from '../text/Text'
-import {Icon} from '@/shared/ui/icon/Icon'
+import {Icon, Text} from '@/shared/ui'
 import {type FontColors} from '@/shared/model'
 import themeStyles from '@/shared/model/styles/theme.module.css'
 import styles from './Button.module.css'
@@ -19,7 +18,7 @@ export function Button({children, textStyle, textColor}: IButtonProps) {
       />
       <Text
         size='small'
-        weight='semiBold'
+        weight='regular'
         color={textColor}
         className={`${styles.text} ${textStyle}`}
       >

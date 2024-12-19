@@ -1,5 +1,4 @@
-import {Icon} from '@/shared/ui/icon/Icon'
-import {Text} from '@/shared/ui/text/Text'
+import {Icon, Text} from '@/shared/ui'
 import {type FontColors} from '@/shared/model'
 import styles from './ContactButton.module.css'
 
