@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  margin-top: 160px;
+  margin-bottom: 90px;
+  width: 100%;
+  max-width: 1460px;
+}
+
+.recordForm {
+  margin-left: auto;
+}

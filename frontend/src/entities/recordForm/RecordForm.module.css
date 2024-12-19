@@ -1,0 +1,27 @@
+.container {
+  width: max-content;
+  padding-right: 50px;
+}
+
+.title {
+  line-height: 35px;
+  text-transform: uppercase;
+}
+
+.fieldsContainer {
+  display: flex;
+  align-items: center;
+  gap: 137px;
+  margin-top: 50px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  width: 270px;
+  gap: 6px;
+}
+
+.test {
+  background-color: red;
+}
