@@ -4,6 +4,7 @@ export type FontColors = keyof typeof fontColors
 export type IconColors = keyof typeof iconColors
 export type FontSizes = keyof typeof fontSizes
 export type FontWeights = keyof typeof fontWeights
+export type NavigationTitles = keyof typeof navigationTitle
 
 const fontColors = {
   white: `${themeStyles.white}`,
@@ -33,6 +34,12 @@ export const fontSizes = {
   xMedium: themeStyles.xMedium, // 24px
   large: themeStyles.large, // 64px
   xLarge: themeStyles.xLarge, // 72px
+}
+
+export const navigationTitle = {
+  infrastructura: 'Инфраструктура',
+  contacts: 'Контакты',
+  documents: 'Документы',
 }
 
 const fontWeights = {
