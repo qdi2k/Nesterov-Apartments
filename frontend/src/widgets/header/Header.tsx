@@ -1,8 +1,6 @@
-import {ContactButton} from '@/entities/contactButton/ContactButton'
-import {BurgerButton} from '@/shared/ui'
-import {Icon} from '@/shared/ui/icon/Icon'
+import {ContactButton} from '@/entities/contactButton'
+import {BurgerButton, Icon, Text} from '@/shared/ui'
 import Link from 'next/link'
-import {Text} from '@/shared/ui/text/Text'
 import styles from './Header.module.css'
 import themeStyles from '@/shared/model/styles/theme.module.css'
 

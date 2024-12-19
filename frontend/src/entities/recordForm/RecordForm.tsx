@@ -1,7 +1,5 @@
-import {Button} from '@/shared/ui'
-import {Text} from '@/shared/ui/text/Text'
+import {Button, Text, Input} from '@/shared/ui'
 import styles from './RecordForm.module.css'
-import {Input} from '@/shared/ui/input'
 
 interface IRecordFormProps {
   className?: string
@@ -10,7 +8,7 @@ interface IRecordFormProps {
 export function RecordForm({className}: IRecordFormProps) {
   return (
     <div className={`${styles.container} ${className}`}>
-      <Text className={styles.title} size='medium'>
+      <Text className={styles.title} size='xMedium' weight='light'>
         Заполните форму и наш менеджер <br /> свяжется с вами в ближаейшее время
       </Text>
       <div className={styles.fieldsContainer}>

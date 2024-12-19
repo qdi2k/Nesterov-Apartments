@@ -1,5 +1,4 @@
-import {Icon} from '@/shared/ui'
-import {Text} from '@/shared/ui/text/Text'
+import {Icon, Text} from '@/shared/ui'
 import styles from './Advantage.module.css'
 import {type IconName} from '../icon/Icon'
 
@@ -13,7 +12,7 @@ export function Advantage({icon, title, description}: IAdvantageProps) {
   return (
     <div className={styles.container}>
       <Icon name={icon} size={223} />
-      <Text size='medium' color='brown' className={styles.title}>
+      <Text size='xMedium' color='brown' className={styles.title}>
         {title}
       </Text>
       <Text>{description}</Text>

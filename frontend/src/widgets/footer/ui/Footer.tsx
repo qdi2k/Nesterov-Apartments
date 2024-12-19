@@ -1,8 +1,8 @@
 import styles from './Footer.module.css'
 import themeStyles from '@/shared/model/styles/theme.module.css'
-import {ContactButton} from '@/entities/contactButton/ContactButton'
+import {ContactButton} from '@/entities/contactButton'
 import {FooterNav} from './FooterNav'
-import {Icon} from '@/shared/ui/icon/Icon'
+import {Icon} from '@/shared/ui'
 import Link from 'next/link'
 
 export function Footer() {

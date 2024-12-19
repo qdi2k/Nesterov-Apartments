@@ -1,7 +1,5 @@
-import {Title} from '@/shared/ui'
-import {Text} from '@/shared/ui/text/Text'
+import {Title, Text, SubstrateButton} from '@/shared/ui'
 import styles from './Architecture.module.css'
-import {SubstrateButton} from '@/shared/ui/substrateButton'
 
 export function Architecture() {
   return (
@@ -9,7 +7,7 @@ export function Architecture() {
       <div className={styles.contentContainer}>
         <div className={styles.image}>
           <div className={styles.imageContainer}>
-            <Text className={styles.imageTitle} size='medium'>
+            <Text className={styles.imageTitle} size='xMedium'>
               Архитектура
             </Text>
             <Text>
@@ -24,21 +22,21 @@ export function Architecture() {
           </Title>
           <ul className={styles.listContainer}>
             <li>
-              <Text size='medium' weight='bold' color='brown'>
+              <Text size='xMedium' weight='bold' color='brown'>
                 Современная архитектура
               </Text>
             </li>
             <li>
-              <Text size='medium'>Органичные планировки</Text>
+              <Text size='xMedium'>Органичные планировки</Text>
             </li>
             <li>
-              <Text size='medium'>Подземный паркинг</Text>
+              <Text size='xMedium'>Подземный паркинг</Text>
             </li>
             <li>
-              <Text size='medium'>Закрытый двор</Text>
+              <Text size='xMedium'>Закрытый двор</Text>
             </li>
             <li>
-              <Text size='medium'>Собственный сквер</Text>
+              <Text size='xMedium'>Собственный сквер</Text>
             </li>
           </ul>
         </div>
