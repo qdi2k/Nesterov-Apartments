@@ -1,4 +1,4 @@
-import {ContactsPage} from '@/pages/contactsPage'
+import {ContactsPage} from '@/pages/contacts-page'
 
 export default function Contacts() {
   return <ContactsPage />

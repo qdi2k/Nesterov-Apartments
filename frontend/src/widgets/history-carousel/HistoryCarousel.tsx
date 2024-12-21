@@ -1,5 +1,5 @@
 import {Carousel} from '@/entities/carousel'
-import {MainTitle} from '@/shared/ui'
+import {MainTitle, SubstrateButton} from '@/shared/ui'
 import themeStyles from '@/shared/model/styles/theme.module.css'
 import styles from './HistoryCarousel.module.css'
 
@@ -77,6 +77,12 @@ export function HistoryCarousel() {
         <MainTitle>Ход строительства</MainTitle>
       </div>
       <Carousel mockData={mockData} isArrow />
+      <SubstrateButton
+        className={styles.substrateButtonContainer}
+        textButton='Записаться на просмотр'
+      >
+        Увидеть готовность проекта своими глазами
+      </SubstrateButton>
     </>
   )
 }

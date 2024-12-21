@@ -1,4 +1,4 @@
-import {HistoryCarousel} from '@/widgets/historyCarousel'
+import {HistoryCarousel} from '@/widgets/history-carousel'
 import {Record} from '@/widgets/record'
 
 export function HistoryPage() {

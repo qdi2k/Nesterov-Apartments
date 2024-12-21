@@ -2,7 +2,7 @@
 import {useState} from 'react'
 import styles from './Carousel.module.css'
 import themeStyles from '@/shared/model/styles/theme.module.css'
-import {Icon, SubstrateButton, Text} from '@/shared/ui'
+import {Icon, Text} from '@/shared/ui'
 import {CarouselItem} from './ui'
 
 type CarouselTabData = {
@@ -115,12 +115,6 @@ export function Carousel({mockData, isArrow}: ICarouselProps) {
           />
         ))}
       </div>
-      <SubstrateButton
-        className={styles.substrateButtonContainer}
-        textButton='Записаться на просмотр'
-      >
-        Увидеть готовность проекта своими глазами
-      </SubstrateButton>
     </div>
   )
 }
