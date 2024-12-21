@@ -1,9 +1,5 @@
+import {HistoryPage} from '@/pages/historyPage'
 
 export default function History() {
-    return (
-      <div>
-        History page
-      </div>
-    );
-  }
-  
+  return <HistoryPage />
+}
