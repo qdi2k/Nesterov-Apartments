@@ -1,0 +1,39 @@
+.container {
+  margin-bottom: 240px;
+}
+
+.contentContainer {
+  margin-top: 62px;
+  gap: 30px;
+  display: flex;
+}
+
+.listContainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 80px;
+  margin-left: 25px;
+  gap: 34px;
+}
+
+.circle {
+  position: absolute;
+  z-index: -1;
+  top: 8px;
+  left: -25px;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: var(--whiteLight);
+}
+
+.listItem {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 34px;
+}
+
+.image {
+  z-index: -1;
+}

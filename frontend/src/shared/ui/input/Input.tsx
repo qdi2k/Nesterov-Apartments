@@ -9,17 +9,23 @@ const openSans = Open_Sans({
 
 interface IInputProps {
   placeholder?: string
+  dividerClassName?: string
+  inputClassName?: string
 }
 
-export function Input({placeholder}: IInputProps) {
+export function Input({
+  placeholder,
+  dividerClassName,
+  inputClassName,
+}: IInputProps) {
   return (
     <div className={styles.field}>
       <input
         type='text'
         placeholder={placeholder}
-        className={`${openSans.className} ${styles.input}`}
+        className={`${openSans.className} ${styles.input} ${inputClassName}`}
       />
-      <Divider />
+      <Divider className={dividerClassName} />
     </div>
   )
 }

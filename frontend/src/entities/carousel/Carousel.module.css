@@ -1,7 +1,7 @@
 .carouselTitleNavigation {
   display: flex;
-  max-width: 1130px;
-  width: max-content;
+  width: 100%;
+  max-width: 1200px;
   gap: 60px;
   margin-bottom: 62px;
   margin-left: auto;
@@ -14,7 +14,10 @@
 
 .titleContainer {
   display: flex;
-  gap: 140px;
+  width: 100%;
+  max-width: 1200px;
+  gap: 30px;
+  justify-content: space-between;
 }
 
 .title {

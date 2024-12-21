@@ -20,8 +20,19 @@ interface IMainTitleProps {
 }
 
 export function MainTitle({children, className}: IMainTitleProps) {
-  const router = usePathname()
-  const currentLink = router?.replace('/', '') as NavigationTitles
+  const router = usePathname() ?? ''
+
+  const getCurrentLink = () => {
+    const link = router.replace('/', '')
+    const firstLinkHalf = link.split('-')[0]
+    const secondLinkHalf = link.slice(link.indexOf('-') + 1)
+    const currentSecondLinkHalf =
+      secondLinkHalf.charAt(0).toUpperCase() + secondLinkHalf.slice(1)
+
+    if (link.includes('-')) return firstLinkHalf + currentSecondLinkHalf
+    return link
+  }
+
   return (
     <div>
       <h1
@@ -36,13 +47,15 @@ export function MainTitle({children, className}: IMainTitleProps) {
       >
         {children}
       </h1>
-      {currentLink && (
+      {getCurrentLink() && (
         <div className={styles.navigationContainer}>
           <Link href='/'>
             <Text weight='light'>Главная</Text>
           </Link>
           <Text weight='light'>&nbsp;-&nbsp;</Text>
-          <Text weight='light'>{navigationTitle?.[currentLink]}</Text>
+          <Text weight='light'>
+            {navigationTitle?.[getCurrentLink() as NavigationTitles]}
+          </Text>
         </div>
       )}
     </div>

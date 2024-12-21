@@ -42,7 +42,7 @@ export function CarouselItem({
     <div className={styles.container}>
       <Image
         src={require('../../../shared/assets/images/historyItemImage.png')}
-        alt='vtb'
+        alt='carousel-item'
         height={444}
         width={770}
       />

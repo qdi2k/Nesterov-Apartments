@@ -1,37 +1,51 @@
 import {Carousel} from '@/entities/carousel'
-import {MainTitle, SubstrateButton} from '@/shared/ui'
+import {SubstrateButton, Title} from '@/shared/ui'
 import themeStyles from '@/shared/model/styles/theme.module.css'
-import styles from './HistoryCarousel.module.css'
+import styles from './DesignCarousel.module.css'
 
 const mockData = [
   {
     id: 1,
-    title: 'Апрель 2021',
+    title: 'Фасады',
     tabData: [
       {
         id: 1,
-        title: 'Заголовок хода строительства за июнь 2021 года',
+        title: 'Вас встретит здание, в которое приятно заходить',
         description:
           'Модернизации позиций, занимаемых участниками. Таким образом рамки и место обучения кадров влечет за собой процесс внедрения и модернизации позиций, занимаемых участниками.',
         img: '/1',
       },
       {
         id: 2,
-        title: 'Заголовок хода строительства за июнь 2021 года',
+        title: 'Вас встретит здание, в которое приятно заходить',
         description:
           'Модернизации позиций, занимаемых участниками. Таким образом рамки и место обучения кадров влечет за собой процесс внедрения и модернизации позиций, занимаемых участниками.',
         img: '/1',
       },
       {
         id: 3,
-        title: 'Заголовок хода строительства за июнь 2021 года',
+        title: 'Вас встретит здание, в которое приятно заходить',
         description:
           'Модернизации позиций, занимаемых участниками. Таким образом рамки и место обучения кадров влечет за собой процесс внедрения и модернизации позиций, занимаемых участниками.',
         img: '/1',
       },
       {
         id: 4,
-        title: 'Заголовок хода строительства за июнь 2021 года',
+        title: 'Вас встретит здание, в которое приятно заходить',
+        description:
+          'Модернизации позиций, занимаемых участниками. Таким образом рамки и место обучения кадров влечет за собой процесс внедрения и модернизации позиций, занимаемых участниками.',
+        img: '/1',
+      },
+      {
+        id: 5,
+        title: 'Вас встретит здание, в которое приятно заходить',
+        description:
+          'Модернизации позиций, занимаемых участниками. Таким образом рамки и место обучения кадров влечет за собой процесс внедрения и модернизации позиций, занимаемых участниками.',
+        img: '/1',
+      },
+      {
+        id: 6,
+        title: 'Вас встретит здание, в которое приятно заходить',
         description:
           'Модернизации позиций, занимаемых участниками. Таким образом рамки и место обучения кадров влечет за собой процесс внедрения и модернизации позиций, занимаемых участниками.',
         img: '/1',
@@ -40,9 +54,9 @@ const mockData = [
   },
   {
     id: 2,
-    title: 'Май 2021',
+    title: 'Входные группы',
     tabData: [
-      {id: 1, title: 'Май', description: '213123', img: '/1'},
+      {id: 1, title: '213', description: '213123', img: '/1'},
       {id: 2, title: '213', description: '213123', img: '/1'},
       {id: 3, title: '213', description: '213123', img: '/1'},
       {id: 4, title: '213', description: '213123', img: '/1'},
@@ -50,7 +64,7 @@ const mockData = [
   },
   {
     id: 3,
-    title: 'Июнь 2021',
+    title: 'Отделка',
     tabData: [
       {id: 1, title: '213', description: '213123', img: '/1'},
       {id: 2, title: '213', description: '213123', img: '/1'},
@@ -60,7 +74,7 @@ const mockData = [
   },
   {
     id: 4,
-    title: 'Июль 2021',
+    title: 'Места общего пользования',
     tabData: [
       {id: 1, title: '213', description: '213123', img: '/1'},
       {id: 2, title: '213', description: '213123', img: '/1'},
@@ -70,19 +84,21 @@ const mockData = [
   },
 ]
 
-export function HistoryCarousel() {
+export function DesignCarousel() {
   return (
-    <section>
-      <div className={`${themeStyles.container} ${styles.container}`}>
-        <MainTitle>Ход строительства</MainTitle>
+    <section className={styles.container}>
+      <div className={`${themeStyles.container} ${styles.titleContainer}`}>
+        <Title>Разработали и воплотили в жизнь комфортный дизайн</Title>
       </div>
-      <Carousel mockData={mockData} isArrow />
+      <Carousel mockData={mockData} />
       <SubstrateButton
         className={styles.substrateButtonContainer}
-        textButton='Записаться на просмотр'
+        textButton='Получить'
+        inputPlaceholder='Email'
       >
-        Увидеть готовность проекта своими глазами
+        Получить подборку дизайнерских решений
       </SubstrateButton>
+      <div className={styles.backgroundColor} />
     </section>
   )
 }
