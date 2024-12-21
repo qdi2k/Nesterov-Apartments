@@ -1,0 +1,1 @@
+export {DesignCarousel} from './DesignCarousel'

@@ -1,4 +1,4 @@
-import {DocumentsPage} from '@/pages/documentsPage'
+import {DocumentsPage} from '@/pages/documents-page'
 
 export default function Documents() {
   return <DocumentsPage />

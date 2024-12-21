@@ -16,6 +16,10 @@ import {default as timeFill} from '@/shared/assets/icons/time-fill.svg'
 import {default as mapFill} from '@/shared/assets/icons/map-fill.svg'
 import {default as phoneFill} from '@/shared/assets/icons/phone-fill.svg'
 import {default as mailFill} from '@/shared/assets/icons/mail-fill.svg'
+import {default as architect} from '@/shared/assets/icons/architect.svg'
+import {default as cascade} from '@/shared/assets/icons/cascade.svg'
+import {default as floor} from '@/shared/assets/icons/floor.svg'
+import {default as parking} from '@/shared/assets/icons/parking.svg'
 import {type IconColors, theme} from '@/shared/model'
 
 const Icons = {
@@ -37,6 +41,10 @@ const Icons = {
   mapFill,
   phoneFill,
   mailFill,
+  architect,
+  cascade,
+  floor,
+  parking,
 }
 
 export type IconName = keyof typeof Icons

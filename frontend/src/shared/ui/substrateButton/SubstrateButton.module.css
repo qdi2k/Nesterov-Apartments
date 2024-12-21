@@ -15,3 +15,11 @@
 .buttonText {
   margin-right: 24px;
 }
+
+.divider {
+  border-bottom: 1px solid var(--white);
+}
+
+.input {
+  color: var(--white);
+}
