@@ -1,0 +1,33 @@
+.carouselTitleNavigation {
+  display: flex;
+  max-width: 1130px;
+  width: max-content;
+  gap: 60px;
+  margin-bottom: 62px;
+  margin-left: auto;
+  align-items: center;
+}
+
+.arrowLeft {
+  transform: rotate(180deg);
+}
+
+.titleContainer {
+  display: flex;
+  gap: 140px;
+}
+
+.title {
+  text-transform: uppercase;
+}
+
+.activeButton {
+  pointer-events: none;
+}
+
+.substrateButtonContainer {
+  max-width: 1352px;
+  padding-left: 58px;
+  padding-right: 160px;
+  margin-left: auto;
+}

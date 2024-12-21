@@ -1,0 +1,61 @@
+.container {
+  display: flex;
+  gap: 34px;
+}
+
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 44px;
+}
+
+.navigationContainer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 90px;
+  gap: 12px;
+}
+
+.circle {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--greyLight);
+  transition: all 0.4s;
+}
+
+.circle:hover {
+  background-color: var(--grey);
+  transition: all 0.4s;
+}
+
+.circleActive {
+  background-color: var(--brown);
+}
+
+.circleActive:hover {
+  background-color: var(--brown);
+}
+
+.arrowLeft {
+  transform: rotate(180deg);
+  margin-right: 6px;
+}
+
+.arrowRight {
+  margin-left: 6px;
+}
+
+.title {
+  max-width: 300px;
+}
+
+.description {
+  max-width: 400px;
+}

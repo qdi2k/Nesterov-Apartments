@@ -1,5 +1,6 @@
 import {ReactNode} from 'react'
-import {Button, Text} from '@/shared/ui'
+import {Text} from '@/shared/ui'
+import {Button} from '@/shared/ui/button'
 import styles from './SubstrateButton.module.css'
 
 interface ISubstrateButtonProps {

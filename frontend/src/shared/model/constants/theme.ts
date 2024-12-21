@@ -40,6 +40,7 @@ export const navigationTitle = {
   infrastructura: 'Инфраструктура',
   contacts: 'Контакты',
   documents: 'Документы',
+  history: 'Ход строительства',
 }
 
 const fontWeights = {
