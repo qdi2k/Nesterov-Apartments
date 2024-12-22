@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  gap: 30px;
+}
+
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.text {
+  margin-top: 62px;
+}
+
+.image {
+  background-image: url('../../shared/assets/images/builder.png');
+  width: 769px;
+  height: 538px;
+}

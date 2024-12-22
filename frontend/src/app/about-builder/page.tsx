@@ -1,7 +1,5 @@
+import {AboutBuilderPage} from '@/pages/about-builder-page'
+
 export default function AboutBuilder() {
-  return (
-    <div>
-      About page
-    </div>
-  );
+  return <AboutBuilderPage />
 }

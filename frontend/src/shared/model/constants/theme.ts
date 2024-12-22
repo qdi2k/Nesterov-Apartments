@@ -42,6 +42,7 @@ export const navigationTitle = {
   documents: 'Документы',
   aboutProject: 'О проекте',
   history: 'Ход строительства',
+  aboutBuilder: 'О застройщике',
 }
 
 const fontWeights = {
