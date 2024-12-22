@@ -24,12 +24,15 @@ export function MainTitle({children, className}: IMainTitleProps) {
 
   const getCurrentLink = () => {
     const link = router.replace('/', '')
-    const firstLinkHalf = link.split('-')[0]
-    const secondLinkHalf = link.slice(link.indexOf('-') + 1)
-    const currentSecondLinkHalf =
-      secondLinkHalf.charAt(0).toUpperCase() + secondLinkHalf.slice(1)
 
-    if (link.includes('-')) return firstLinkHalf + currentSecondLinkHalf
+    if (link.includes('-')) {
+      const firstLinkHalf = link.split('-')[0]
+      const secondLinkHalf = link.slice(link.indexOf('-') + 1)
+      const currentSecondLinkHalf =
+        secondLinkHalf.charAt(0).toUpperCase() + secondLinkHalf.slice(1)
+
+      return firstLinkHalf + currentSecondLinkHalf
+    }
     return link
   }
 

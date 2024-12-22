@@ -1,0 +1,26 @@
+.container {
+  margin-top: 150px;
+}
+
+.contentContainer {
+  width: 1580px;
+  overflow: hidden;
+  position: relative;
+}
+
+.listContainer {
+  display: flex;
+  max-height: 536px;
+}
+
+.navigationContainer {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 34px;
+  width: max-content;
+  margin-left: auto;
+}
+
+.arrowLeft {
+  transform: rotate(180deg);
+}
