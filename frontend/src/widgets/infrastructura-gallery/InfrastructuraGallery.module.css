@@ -1,0 +1,14 @@
+.container {
+  margin-top: 120px;
+}
+
+.title {
+  text-align: end;
+  margin-bottom: 80px;
+}
+
+.substrateButtonContainer {
+  padding-left: 160px;
+  padding-right: 212px;
+  max-width: 1352px;
+}

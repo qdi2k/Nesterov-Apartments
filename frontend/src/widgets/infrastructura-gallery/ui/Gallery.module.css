@@ -1,0 +1,66 @@
+.wrapper {
+  display: flex;
+  white-space: nowrap;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  max-height: 700px;
+  height: 700px;
+  width: 100%;
+}
+
+.galleryImage {
+  display: flex;
+  height: 350px;
+  transition: all 0.4s;
+}
+
+.galleryImage:hover > .galleryItem {
+  opacity: 1;
+}
+
+.galleryImage:hover {
+  height: 446px;
+  transition: all 0.4s;
+}
+
+.galleryItem {
+  opacity: 0;
+  height: 65px;
+  width: max-content;
+  align-self: flex-end;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  padding-left: 20px;
+  padding-right: 20px;
+  backdrop-filter: blur(1px);
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.5),
+    rgba(255, 255, 255, 0.5),
+    rgba(255, 255, 255, 0.5)
+  );
+  transition: all 0.4s;
+}
+
+.galleryItemTitle {
+  text-transform: uppercase;
+}
+
+.firstImage {
+  background-image: url('../../../shared/assets/images/park.png');
+}
+
+.secondImage {
+  background-image: url('../../../shared/assets/images/project.png');
+}
+
+.thirdImage {
+  background-image: url('../../../shared/assets/images/home.png');
+}
+
+.fourthImage {
+  background-image: url('../../../shared/assets/images/home2.png');
+}

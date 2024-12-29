@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  gap: 30px;
+}
+
+.description {
+  margin-top: 80px;
+  margin-bottom: 50px;
+}
+
+.image {
+  margin-top: 80px;
+  background-image: url('../../shared/assets/images/second.png');
+  background-repeat: no-repeat;
+  height: 608px;
+  width: 789px;
+}
+
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.listItem {
+  display: flex;
+  gap: 16px;
+  align-items: flex-end;
+}
+
+.listTitle {
+  line-height: 35px;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+}
