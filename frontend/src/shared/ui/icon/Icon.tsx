@@ -20,6 +20,12 @@ import {default as architect} from '@/shared/assets/icons/architect.svg'
 import {default as cascade} from '@/shared/assets/icons/cascade.svg'
 import {default as floor} from '@/shared/assets/icons/floor.svg'
 import {default as parking} from '@/shared/assets/icons/parking.svg'
+import {default as cafe} from '@/shared/assets/icons/cafe.svg'
+import {default as hospital} from '@/shared/assets/icons/hospital.svg'
+import {default as park} from '@/shared/assets/icons/park.svg'
+import {default as school} from '@/shared/assets/icons/school.svg'
+import {default as shop} from '@/shared/assets/icons/shop.svg'
+import {default as transport} from '@/shared/assets/icons/transport.svg'
 import {type IconColors, theme} from '@/shared/model'
 
 const Icons = {
@@ -45,6 +51,12 @@ const Icons = {
   cascade,
   floor,
   parking,
+  cafe,
+  hospital,
+  park,
+  school,
+  shop,
+  transport,
 }
 
 export type IconName = keyof typeof Icons

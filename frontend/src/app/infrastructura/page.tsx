@@ -1,9 +1,5 @@
+import {InfrastructuraPage} from '@/pages/infrastructura-page'
 
 export default function Infrastructura() {
-    return (
-      <div>
-        Infrastructura page
-      </div>
-    );
-  }
-  
+  return <InfrastructuraPage />
+}
