@@ -40,6 +40,7 @@ export const navigationTitle = {
   infrastructura: 'Инфраструктура',
   contacts: 'Контакты',
   documents: 'Документы',
+  rules: 'Условия продажи',
   aboutProject: 'О проекте',
   history: 'Ход строительства',
   aboutBuilder: 'О застройщике',

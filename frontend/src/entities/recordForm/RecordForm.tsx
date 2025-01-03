@@ -1,4 +1,4 @@
-import {Button, Text, Input} from '@/shared/ui'
+import {Text, Input, Button} from '@/shared/ui'
 import styles from './RecordForm.module.css'
 
 interface IRecordFormProps {

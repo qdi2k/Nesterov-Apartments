@@ -1,0 +1,20 @@
+.container {
+  margin-bottom: 54px;
+}
+
+.description {
+  margin-top: 60px;
+  margin-bottom: 40px;
+}
+
+.listContainer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 30px;
+}
+
+.substrateButtonContainer {
+  max-width: 1498px;
+  padding-left: 188px;
+  padding-right: 180px;
+}
