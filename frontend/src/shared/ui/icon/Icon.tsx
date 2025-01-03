@@ -26,6 +26,9 @@ import {default as park} from '@/shared/assets/icons/park.svg'
 import {default as school} from '@/shared/assets/icons/school.svg'
 import {default as shop} from '@/shared/assets/icons/shop.svg'
 import {default as transport} from '@/shared/assets/icons/transport.svg'
+import {default as calculator} from '@/shared/assets/icons/calculator.svg'
+import {default as department} from '@/shared/assets/icons/department.svg'
+import {default as payment} from '@/shared/assets/icons/payment.svg'
 import {type IconColors, theme} from '@/shared/model'
 
 const Icons = {
@@ -57,6 +60,9 @@ const Icons = {
   school,
   shop,
   transport,
+  calculator,
+  department,
+  payment,
 }
 
 export type IconName = keyof typeof Icons

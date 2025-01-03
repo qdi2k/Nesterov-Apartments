@@ -4,7 +4,7 @@ import styles from './Input.module.css'
 
 const openSans = Open_Sans({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
+  weight: ['300', '400', '500', '600', '700'],
 })
 
 interface IInputProps {

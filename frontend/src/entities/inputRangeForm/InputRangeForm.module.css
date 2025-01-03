@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 42px;
+  width: 100%;
+}
+
+.textContainer {
+  display: flex;
+  justify-content: space-between;
+  max-width: 538px;
+}
+
+.text {
+  text-transform: uppercase;
+}
