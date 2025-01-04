@@ -13,7 +13,7 @@ const mockData = [
     description:
       'Начало строительства — август 2015 года, окончание — I квартал 2017 г',
     homeInfo: '24 этажа, 3 корпуса',
-    img: '../../../shared/assets/images/historyItemImage.png',
+    img: 'ourProject1',
   },
   {
     id: 2,
@@ -21,6 +21,7 @@ const mockData = [
     description:
       'Начало строительства — август 2015 года, окончание — I квартал 2017 г',
     homeInfo: '24 этажа, 3 корпуса',
+    img: 'ourProject2',
   },
   {
     id: 3,
@@ -28,6 +29,7 @@ const mockData = [
     description:
       'Начало строительства — август 2015 года, окончание — I квартал 2017 г',
     homeInfo: '24 этажа, 3 корпуса',
+    img: 'ourProject3',
   },
   {
     id: 4,
@@ -35,6 +37,7 @@ const mockData = [
     description:
       'Начало строительства — август 2015 года, окончание — I квартал 2017 г',
     homeInfo: '24 этажа, 3 корпуса',
+    img: 'ourProject4',
   },
   {
     id: 5,
@@ -42,11 +45,21 @@ const mockData = [
     description:
       'Начало строительства — август 2015 года, окончание — I квартал 2017 г',
     homeInfo: '24 этажа, 3 корпуса',
+    img: 'historyItemImage',
+  },
+  {
+    id: 6,
+    title: 'ЖК «ТИХИЕ ЗОРИ» 6',
+    description:
+      'Начало строительства — август 2015 года, окончание — I квартал 2017 г',
+    homeInfo: '24 этажа, 3 корпуса',
+    img: 'ourProject1',
   },
 ]
 
 export function ProjectGallery() {
   const [selectedItemId, setSelectedItemId] = useState(3)
+  const [itemPosition, setItemPosition] = useState(3)
   const previewContainer = useRef<HTMLUListElement>(null)
 
   const isItemRight = selectedItemId !== mockData.length
@@ -55,12 +68,18 @@ export function ProjectGallery() {
   const nextHandler = () => {
     if (isItemRight) {
       setSelectedItemId(selectedItemId + 1)
+      if (itemPosition !== 4) {
+        setItemPosition((prev) => prev + 1)
+      }
     }
   }
 
   const prevHandler = () => {
     if (isItemLeft) {
       setSelectedItemId(selectedItemId - 1)
+      if (itemPosition !== 1) {
+        setItemPosition((prev) => prev - 1)
+      }
     }
   }
 
@@ -68,13 +87,21 @@ export function ProjectGallery() {
     if (!previewContainer.current) {
       return
     }
-    if (selectedItemId > 4) {
-      previewContainer.current.style.transform = `translate3d(-397px, 0, 0)`
+
+    if (itemPosition === 1) {
+      previewContainer.current.style.transform = `translate3d(-${selectedItemId * 397 - 397}px, 0, 0)`
+      return
     }
-    if (selectedItemId === 1) {
-      previewContainer.current.style.transform = `translate3d(0, 0, 0)`
+
+    if (itemPosition === 3 || itemPosition === 2) {
+      return
     }
-  }, [selectedItemId])
+
+    if (itemPosition === 4) {
+      previewContainer.current.style.transform = `translate3d(-${(selectedItemId - 4) * 397}px, 0, 0)`
+      return
+    }
+  }, [itemPosition, selectedItemId])
 
   return (
     <section className={`${themeStyles.container} ${styles.container}`}>
@@ -101,6 +128,7 @@ export function ProjectGallery() {
               description={data.description}
               homeInfo={data.homeInfo}
               isSelectedItem={data.id === selectedItemId}
+              img={data.img}
             />
           ))}
         </ul>

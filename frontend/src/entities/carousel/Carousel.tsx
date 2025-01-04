@@ -82,9 +82,9 @@ export function Carousel({mockData, isArrow}: ICarouselProps) {
                 }
               >
                 <Text
-                  className={styles.title}
                   size='xMedium'
                   weight='light'
+                  isUppercase
                   color={data.id === carouselDataId ? 'brown' : 'grey'}
                 >
                   {data.title}

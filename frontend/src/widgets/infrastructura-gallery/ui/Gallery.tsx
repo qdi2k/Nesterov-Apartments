@@ -2,7 +2,6 @@ import styles from './Gallery.module.css'
 import {GalleryItem} from './GalleryItem'
 
 export function Gallery() {
-  // Исправить отображение при hover
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>

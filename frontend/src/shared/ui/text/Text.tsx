@@ -19,6 +19,7 @@ interface ITextProps {
   size?: FontSizes
   weight?: FontWeights
   color?: FontColors
+  isUppercase?: boolean
   isHover?: boolean
 }
 
@@ -28,6 +29,7 @@ export function Text({
   size = 'xSmall',
   weight = 'regular',
   color = 'black',
+  isUppercase,
   isHover,
 }: ITextProps) {
   return (
@@ -35,6 +37,7 @@ export function Text({
       className={`
         ${openSans.className}
         ${isHover && themeStyles.textHover}
+        ${isUppercase && themeStyles.uppercase}
         ${theme.font.size?.[size]}
         ${theme.font.weight?.[weight]}
         ${theme.font.colors?.[color]}

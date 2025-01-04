@@ -24,15 +24,10 @@ export function InputRangeForm({
   return (
     <div className={styles.container}>
       <div className={styles.textContainer}>
-        <Text size='xMedium' weight='light' className={styles.text}>
+        <Text size='xMedium' weight='light' isUppercase>
           {nameForm}
         </Text>
-        <Text
-          size='xMedium'
-          weight='semiBold'
-          color='brown'
-          className={styles.text}
-        >
+        <Text size='xMedium' weight='semiBold' color='brown' isUppercase>
           {formatedValue} {valueMark}
         </Text>
       </div>

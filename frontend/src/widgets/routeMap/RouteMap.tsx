@@ -6,7 +6,7 @@ export function RouteMap() {
     <div className={styles.containerRoute}>
       <div className={styles.image} />
       <div className={styles.routeContainer}>
-        <Text size='xMedium' weight='light' className={styles.title}>
+        <Text size='xMedium' weight='light' isUppercase>
           Проложить маршрут
         </Text>
         <Input placeholder='Ваше местоположение' />

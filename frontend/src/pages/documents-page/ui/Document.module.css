@@ -11,10 +11,6 @@
   padding-bottom: 30px;
 }
 
-.title {
-  text-transform: uppercase;
-}
-
 .downloadButton {
   display: flex;
   align-items: center;
