@@ -23,13 +23,6 @@
   height: 130px;
 }
 
-.city {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  height: max-content;
-}
-
 .right {
   display: flex;
   flex: 1;
