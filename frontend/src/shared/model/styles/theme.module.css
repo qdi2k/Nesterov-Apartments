@@ -100,3 +100,7 @@
   color: var(--orange);
   transition: all 0.3s;
 }
+
+.uppercase {
+  text-transform: uppercase;
+}

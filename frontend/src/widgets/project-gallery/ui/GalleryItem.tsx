@@ -3,6 +3,7 @@ import styles from './GalleryItem.module.css'
 import Image from 'next/image'
 
 interface IGalleryItemProps {
+  img: string
   title: string
   description: string
   homeInfo: string
@@ -10,6 +11,7 @@ interface IGalleryItemProps {
 }
 
 export function GalleryItem({
+  img,
   title,
   description,
   homeInfo,
@@ -20,7 +22,7 @@ export function GalleryItem({
       className={`${styles.container} ${isSelectedItem && styles.selectedItem}`}
     >
       <Image
-        src={require('../../../shared/assets/images/historyItemImage.png')}
+        src={require(`../../../shared/assets/images/${img}.png`)}
         alt='carousel-item'
         className={styles.image}
         height={401}

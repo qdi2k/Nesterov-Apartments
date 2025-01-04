@@ -1,6 +1,7 @@
 .wrapper {
   display: flex;
   white-space: nowrap;
+  position: relative;
 }
 
 .container {
@@ -14,16 +15,11 @@
 .galleryImage {
   display: flex;
   height: 350px;
-  transition: all 0.4s;
+  transition: all 0.6s;
 }
 
 .galleryImage:hover > .galleryItem {
   opacity: 1;
-}
-
-.galleryImage:hover {
-  height: 446px;
-  transition: all 0.4s;
 }
 
 .galleryItem {
@@ -45,22 +41,56 @@
   transition: all 0.4s;
 }
 
-.galleryItemTitle {
-  text-transform: uppercase;
-}
-
 .firstImage {
   background-image: url('../../../shared/assets/images/park.png');
+}
+
+.firstImage:hover {
+  height: 420px;
+}
+
+.firstImage:hover + .thirdImage {
+  height: 280px;
 }
 
 .secondImage {
   background-image: url('../../../shared/assets/images/project.png');
 }
 
+.secondImage:hover {
+  height: 420px;
+}
+
+.secondImage:hover + .fourthImage {
+  height: 280px;
+}
+
 .thirdImage {
   background-image: url('../../../shared/assets/images/home.png');
+  bottom: 0;
+  width: 50%;
+  position: absolute;
+}
+
+.thirdImage:hover {
+  height: 420px;
+}
+
+.thirdImage:hover + .firstImage {
+  height: 280px;
 }
 
 .fourthImage {
   background-image: url('../../../shared/assets/images/home2.png');
+  bottom: 0;
+  width: 50%;
+  position: absolute;
+}
+
+.fourthImage:hover {
+  height: 420px;
+}
+
+.fourthImage:hover + .secondImage {
+  height: 280px;
 }

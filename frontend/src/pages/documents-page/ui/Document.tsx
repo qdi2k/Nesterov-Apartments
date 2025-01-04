@@ -11,7 +11,7 @@ export function Document({file, title, date}: IDocumentProps) {
   return (
     <li className={styles.container}>
       <Icon name={file} size={60} />
-      <Text size='xMedium' weight='light' className={styles.title}>
+      <Text size='xMedium' weight='light' isUppercase>
         {title}
       </Text>
       <Text size='xMedium' weight='light'>
