@@ -1,17 +1,25 @@
 'use client'
 
 import {ContactButton} from '@/entities/contactButton'
-import {BurgerButton, Icon, Text} from '@/shared/ui'
+import {BurgerButton, DropdownMenu, Icon} from '@/shared/ui'
 import Link from 'next/link'
 import styles from './Header.module.css'
 import themeStyles from '@/shared/model/styles/theme.module.css'
 import {usePathname} from 'next/navigation'
+import {useState} from 'react'
 
 interface IHeaderProps {
   openBurger: () => void
 }
 
+const mockData = [
+  {id: 1, city: 'Новосибирск'},
+  {id: 2, city: 'Нижний Новгород'},
+  {id: 3, city: 'Краснодар'},
+]
+
 export function Header({openBurger}: IHeaderProps) {
+  const [city, setCity] = useState(mockData[0].city)
   const router = usePathname()
   return (
     <header
@@ -24,10 +32,12 @@ export function Header({openBurger}: IHeaderProps) {
               <Icon className={styles.logo} name='logoMain' size={368} />
             </Link>
           </div>
-          <button className={styles.city}>
-            <Icon name='address' size={27} color='brown' />
-            <Text>Новосибирск</Text>
-          </button>
+          <DropdownMenu
+            title={city}
+            changeTitle={setCity}
+            icon='address'
+            data={mockData}
+          />
         </div>
         <div className={styles.right}>
           <ContactButton color='brown' phoneColor='black' />
