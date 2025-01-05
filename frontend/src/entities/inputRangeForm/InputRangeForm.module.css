@@ -8,5 +8,8 @@
 .textContainer {
   display: flex;
   justify-content: space-between;
-  max-width: 538px;
+}
+
+.textFormValue {
+  min-width: 46%;
 }

@@ -4,6 +4,7 @@ import {IInputRangeProps} from '@/shared/ui/input-range/InputRange'
 
 interface IInputRangeFormProps extends IInputRangeProps {
   nameForm: string
+  valueText?: string
 }
 
 export function InputRangeForm({
@@ -15,6 +16,7 @@ export function InputRangeForm({
   step,
   value,
   valueMark,
+  valueText,
   changeValue,
 }: IInputRangeFormProps) {
   const formatedValue = value
@@ -27,9 +29,11 @@ export function InputRangeForm({
         <Text size='xMedium' weight='light' isUppercase>
           {nameForm}
         </Text>
-        <Text size='xMedium' weight='semiBold' color='brown' isUppercase>
-          {formatedValue} {valueMark}
-        </Text>
+        <div className={styles.textFormValue}>
+          <Text size='xMedium' weight='semiBold' color='brown' isUppercase>
+            {formatedValue} {valueMark} {valueText}
+          </Text>
+        </div>
       </div>
       <InputRange
         tooltipId={tooltipId}
