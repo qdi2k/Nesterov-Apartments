@@ -1,0 +1,58 @@
+.textContainer {
+  display: flex;
+  gap: 50px;
+}
+
+.titleInfo {
+  margin-top: 46px;
+}
+
+.contentInfo {
+  margin-top: 26px;
+  display: flex;
+  gap: 32px;
+}
+
+.image {
+  width: 1183px;
+  height: 614px;
+  background-color: aquamarine;
+}
+
+.rightContent {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  flex: 1;
+}
+
+.listContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.listItem {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.listValueText {
+  width: 44%;
+}
+
+.countButton {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  gap: 20px;
+}
+
+.substrateButtonContainer {
+  margin-left: auto;
+  max-width: 1352px;
+  padding-left: 90px;
+  padding-right: 160px;
+  margin-top: 20px;
+}

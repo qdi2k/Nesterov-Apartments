@@ -29,6 +29,7 @@ import {default as transport} from '@/shared/assets/icons/transport.svg'
 import {default as calculator} from '@/shared/assets/icons/calculator.svg'
 import {default as department} from '@/shared/assets/icons/department.svg'
 import {default as payment} from '@/shared/assets/icons/payment.svg'
+import {default as calculatorSmall} from '@/shared/assets/icons/calculator-small.svg'
 import {type IconColors, theme} from '@/shared/model'
 
 const Icons = {
@@ -63,6 +64,7 @@ const Icons = {
   calculator,
   department,
   payment,
+  calculatorSmall,
 }
 
 export type IconName = keyof typeof Icons

@@ -19,6 +19,8 @@ interface IMainTitleProps {
   className?: string
 }
 
+// Исправить для многоуровневости
+
 export function MainTitle({children, className}: IMainTitleProps) {
   const router = usePathname() ?? ''
 
@@ -34,6 +36,15 @@ export function MainTitle({children, className}: IMainTitleProps) {
       return firstLinkHalf + currentSecondLinkHalf
     }
     return link
+  }
+
+  const getAttachedLink = () => {
+    if (getCurrentLink().includes('/')) {
+      const firstLinkHalf = getCurrentLink().split('/')[0]
+      const secondLinkHalf = getCurrentLink().split('/')[1]
+      return {firstLinkHalf, secondLinkHalf}
+    }
+    return
   }
 
   return (
@@ -56,9 +67,31 @@ export function MainTitle({children, className}: IMainTitleProps) {
             <Text weight='light'>Главная</Text>
           </Link>
           <Text weight='light'>&nbsp;-&nbsp;</Text>
-          <Text weight='light'>
-            {navigationTitle?.[getCurrentLink() as NavigationTitles]}
-          </Text>
+          {getCurrentLink().includes('/') ? (
+            <>
+              <Link href={`/${getAttachedLink()?.firstLinkHalf}`}>
+                <Text weight='light'>
+                  {
+                    navigationTitle?.[
+                      getAttachedLink()?.firstLinkHalf as NavigationTitles
+                    ]
+                  }
+                </Text>
+              </Link>
+              <Text weight='light'>&nbsp;-&nbsp;</Text>
+              <Text weight='light'>
+                {
+                  navigationTitle?.[
+                    getAttachedLink()?.secondLinkHalf as NavigationTitles
+                  ]
+                }
+              </Text>
+            </>
+          ) : (
+            <Text weight='light'>
+              {navigationTitle?.[getCurrentLink() as NavigationTitles]}
+            </Text>
+          )}
         </div>
       )}
     </div>
