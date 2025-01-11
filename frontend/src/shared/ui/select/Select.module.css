@@ -28,6 +28,7 @@
   max-width: 165px;
   margin-top: 10px;
   background-color: var(--white);
+  border-radius: 6px;
 
   transition:
     opacity 0.4s ease,

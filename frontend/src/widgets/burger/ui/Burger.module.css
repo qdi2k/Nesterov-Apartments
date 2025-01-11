@@ -7,13 +7,13 @@
   right: 0;
   top: 0;
   overflow-y: auto;
-  z-index: 2;
+  z-index: 100;
   transition: all 0.4s;
   visibility: visible;
   background-color: rgba(149, 149, 149, 0.4);
 }
 
-.menuClosed{
+.menuClosed {
   visibility: hidden;
   background-color: transparent;
 }
@@ -29,11 +29,11 @@
   transition: all 0.4s;
 }
 
-.contentClosed{
+.contentClosed {
   right: -466px;
 }
 
-.topButton{
+.topButton {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -58,7 +58,7 @@
     flex-direction: column;
     transition: all 0.4s;
   }
-  .contentClosed{
+  .contentClosed {
     right: -326px;
   }
 }

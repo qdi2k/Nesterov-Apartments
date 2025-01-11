@@ -102,7 +102,7 @@ export function SelectSection({
               changeValue={setValue1}
               max={100}
               min={0}
-              step={2}
+              step={1}
             />
             <InputRangeFilter
               title='Стоимость, тыс.р.'

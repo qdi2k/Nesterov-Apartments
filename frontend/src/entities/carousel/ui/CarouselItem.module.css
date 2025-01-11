@@ -29,18 +29,16 @@
   background-color: var(--greyLight);
   transition: all 0.4s;
 }
-
-.circle:hover {
-  background-color: var(--grey);
+.circleActive {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--brown);
   transition: all 0.4s;
 }
 
-.circleActive {
-  background-color: var(--brown);
-}
-
-.circleActive:hover {
-  background-color: var(--brown);
+.circle:hover {
+  background-color: var(--grey);
 }
 
 .arrowLeft {

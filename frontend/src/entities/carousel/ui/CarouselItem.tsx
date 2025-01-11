@@ -71,7 +71,7 @@ export function CarouselItem({
           </button>
           {itemData.map((item) => (
             <button
-              className={`${styles.circle} ${itemId === item.id && styles.circleActive}`}
+              className={`${itemId === item.id ? styles.circleActive : styles.circle}`}
               key={item.id}
               onClick={() => changeItem(item.id)}
             />

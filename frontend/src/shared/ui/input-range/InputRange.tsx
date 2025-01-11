@@ -49,7 +49,7 @@ export function InputRange({
     event.preventDefault()
     const newMinVal = Math.min(
       +event.target.value,
-      maxValue - (isMultiRange ? step : 0)
+      maxValue - (isMultiRange ? step * 10 : 0)
     )
     if (!value) setMinValue(newMinVal)
     changeValue({min: newMinVal, max: maxValue})
@@ -60,7 +60,7 @@ export function InputRange({
     target: {value: string | number}
   }) => {
     event.preventDefault()
-    const newMaxVal = Math.max(+event.target.value, minValue + step)
+    const newMaxVal = Math.max(+event.target.value, minValue + step * 10)
     if (!value) setMaxValue(newMaxVal)
     changeValue({min: minValue, max: newMaxVal})
   }
@@ -92,6 +92,7 @@ export function InputRange({
 
       <input
         className={styles.input}
+        style={{marginLeft: -8 - minPos * -0.16}}
         type='range'
         value={minValue}
         min={min}
@@ -102,6 +103,7 @@ export function InputRange({
       {isMultiRange && (
         <input
           className={styles.input}
+          style={{marginLeft: -8 - maxPos * -0.16}}
           type='range'
           value={maxValue}
           min={min}
