@@ -1,5 +1,5 @@
-import {AppartmentPage} from '@/pages/appartment-page'
+import {ApartmentPage} from '@/pages/apartment-page'
 
 export default function Apartment() {
-  return <AppartmentPage />
+  return <ApartmentPage />
 }

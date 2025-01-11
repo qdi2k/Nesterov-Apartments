@@ -3,7 +3,7 @@ import {ApartmentInfo} from '@/widgets/appartment-info'
 import {Calculator} from '@/widgets/calculator'
 import {Record} from '@/widgets/record'
 
-export function AppartmentPage() {
+export function ApartmentPage() {
   return (
     <div>
       <ApartmentInfo />

@@ -1,9 +1,5 @@
-import {MainTitle} from '@/shared/ui'
+import {ApartmentsPage} from '@/pages/apartments-page'
 
 export default function Apartments() {
-  return (
-    <div>
-      <MainTitle>Квартиры</MainTitle>
-    </div>
-  )
+  return <ApartmentsPage />
 }

@@ -12,7 +12,7 @@ const links = [
   {id: 1, text: 'Главная', href: '/'},
   {id: 2, text: 'О проекте', href: '/about-project'},
   {id: 3, text: 'Инфраструктура', href: '/infrastructura'},
-  {id: 4, text: 'Квартиры', href: '/apartments/apartment'},
+  {id: 4, text: 'Квартиры', href: '/apartments'},
   {id: 5, text: 'Документы', href: '/documents'},
   {id: 6, text: 'Условия продажи', href: '/rules'},
   {id: 7, text: 'Ход строительства', href: '/history'},
