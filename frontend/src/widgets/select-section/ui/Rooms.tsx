@@ -21,7 +21,9 @@ export function Rooms({selectId, setSection}: IRoomsProps) {
 
   const changeRoom = (id: number) => {
     setSelectRoom(id)
-    setSection(selectId + 1)
+    if (!selectRoom) {
+      setSection(selectId + 1)
+    }
   }
 
   return (

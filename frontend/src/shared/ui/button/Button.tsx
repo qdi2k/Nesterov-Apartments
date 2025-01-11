@@ -19,7 +19,7 @@ export function Button({
   href = '',
   textColor,
 }: IButtonProps) {
-  return (
+  return href ? (
     <Link href={href} className={styles.button}>
       <div
         className={`${styles.backgroundButton} ${themeStyles.orangeBackground}`}
@@ -34,5 +34,20 @@ export function Button({
       </Text>
       <Icon name='arrow' size={17} color={textColor} />
     </Link>
+  ) : (
+    <button className={styles.button}>
+      <div
+        className={`${styles.backgroundButton} ${themeStyles.orangeBackground}`}
+      />
+      <Text
+        size='small'
+        weight='semiBold'
+        color={textColor}
+        className={`${styles.text} ${textStyle}`}
+      >
+        {children}
+      </Text>
+      <Icon name='arrow' size={17} color={textColor} />
+    </button>
   )
 }

@@ -7,15 +7,17 @@ interface IButtonProps {
   children: ReactNode
   className?: string
   color?: FontColors
+  onClick: () => void
 }
 
 export function TextButton({
   children,
   className,
   color = 'brown',
+  onClick,
 }: IButtonProps) {
   return (
-    <button className={`${styles.textButton} ${className}`}>
+    <button className={`${styles.textButton} ${className}`} onClick={onClick}>
       <Text size='small' weight='semiBold' color={color}>
         {children}
       </Text>
