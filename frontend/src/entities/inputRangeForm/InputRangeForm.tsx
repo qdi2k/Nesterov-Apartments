@@ -8,18 +8,16 @@ interface IInputRangeFormProps extends IInputRangeProps {
 }
 
 export function InputRangeForm({
-  tooltipId,
-  inputId,
   nameForm,
-  maxValue,
-  minValue,
+  max,
+  min,
   step,
   value,
   valueMark,
   valueText,
   changeValue,
 }: IInputRangeFormProps) {
-  const formatedValue = value
+  const formatedValue = String(value.min)
     .replace(/[^0-9]/g, '')
     .replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
 
@@ -36,10 +34,8 @@ export function InputRangeForm({
         </div>
       </div>
       <InputRange
-        tooltipId={tooltipId}
-        inputId={inputId}
-        maxValue={maxValue}
-        minValue={minValue}
+        max={max}
+        min={min}
         step={step}
         value={value}
         formatedValue={formatedValue}

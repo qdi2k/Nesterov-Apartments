@@ -1,75 +1,132 @@
 'use client'
 import {Open_Sans} from 'next/font/google'
 import styles from './InputRange.module.css'
-import {ChangeEvent, useEffect} from 'react'
+import {useEffect, useState} from 'react'
 
 const openSans = Open_Sans({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700'],
 })
 
+type Value = {
+  min: number
+  max: number
+}
+
 export interface IInputRangeProps {
   tooltipId?: string
   inputId?: string
-  maxValue: number
-  minValue: number
+  max: number
+  min: number
   step: number
-  value: string
+  value: Value
   formatedValue?: string
-  valueMark: string
-  changeValue: (event: string) => void
-  className?: string
+  valueMark?: string
+  changeValue: (event: Value) => void
+  isMultiRange?: boolean
 }
 
 export function InputRange({
-  tooltipId = 'tooltip',
-  inputId = 'inputRange',
-  maxValue = 100,
-  minValue = 1,
-  step = 1,
-  value = '30',
+  step,
+  max,
+  min,
+  value,
   formatedValue,
   valueMark,
   changeValue,
-  className,
+  isMultiRange,
 }: IInputRangeProps) {
-  const changeWidth = (event: ChangeEvent<HTMLInputElement>) => {
-    changeValue(event.target.value)
+  const [minValue, setMinValue] = useState(value ? value.min : min)
+  const [maxValue, setMaxValue] = useState(value ? value.max : max)
+
+  const minPos = ((minValue - min) / (max - min)) * 100
+  const maxPos = ((maxValue - min) / (max - min)) * 100
+
+  const handleMinChange = (event: {
+    preventDefault: () => void
+    target: {value: string | number}
+  }) => {
+    event.preventDefault()
+    const newMinVal = Math.min(
+      +event.target.value,
+      maxValue - (isMultiRange ? step : 0)
+    )
+    if (!value) setMinValue(newMinVal)
+    changeValue({min: newMinVal, max: maxValue})
+  }
+
+  const handleMaxChange = (event: {
+    preventDefault: () => void
+    target: {value: string | number}
+  }) => {
+    event.preventDefault()
+    const newMaxVal = Math.max(+event.target.value, minValue + step)
+    if (!value) setMaxValue(newMaxVal)
+    changeValue({min: minValue, max: newMaxVal})
   }
 
   useEffect(() => {
-    const range = document.getElementById(inputId) as HTMLInputElement
-    const tooltip = document.getElementById(tooltipId) as HTMLDivElement
-    const thumbSize = 8
-    const ratio =
-      (Number(range.value) - Number(range.min)) /
-      (Number(range.max) - Number(range.min))
-    const amountToMove = ratio * (range.offsetWidth - thumbSize - thumbSize) - 6
-    tooltip.style.left = amountToMove + 'px'
+    if (value) {
+      setMinValue(value.min)
+      setMaxValue(value.max)
+    }
   }, [value])
 
   return (
-    <div className={`${styles.inputContainer} ${className}`}>
+    <div className={styles.container}>
       <span
-        id={tooltipId}
         className={`${openSans.className} ${styles.textRange}`}
+        style={{left: `${minPos - 1}%`}}
       >
         {formatedValue} {valueMark}
       </span>
-      <div className={styles.inputBackgroundLeft} />
-      <div className={styles.inputVerticalLineLeft} />
+
+      {isMultiRange && (
+        <span
+          className={`${openSans.className} ${styles.textRange}`}
+          style={{left: `${maxPos}%`}}
+        >
+          {value.max} {valueMark}
+        </span>
+      )}
+
       <input
+        className={styles.input}
         type='range'
-        id={inputId}
-        min={minValue}
-        max={maxValue}
+        value={minValue}
+        min={min}
+        max={max}
         step={step}
-        value={value}
-        onChange={changeWidth}
+        onChange={handleMinChange}
       />
-      <div className={styles.inputLine} />
-      <div className={styles.inputVerticalLineRight} />
-      <div className={styles.inputBackgroundRight} />
+      {isMultiRange && (
+        <input
+          className={styles.input}
+          type='range'
+          value={maxValue}
+          min={min}
+          max={max}
+          step={step}
+          onChange={handleMaxChange}
+        />
+      )}
+
+      <div className={styles.controlContainer}>
+        <div className={styles.inputVerticalLineLeft} />
+        <div className={styles.control} style={{left: `${minPos}%`}} />
+        <div className={styles.rail}>
+          {isMultiRange && (
+            <div
+              className={styles.innerRail}
+              style={{left: `${minPos}%`, right: `${100 - maxPos}%`}}
+            />
+          )}
+        </div>
+        {isMultiRange && (
+          <div className={styles.control} style={{left: `${maxPos}%`}} />
+        )}
+        <div className={styles.inputVerticalLineRight} />
+      </div>
     </div>
   )
 }
