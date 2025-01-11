@@ -1,12 +1,27 @@
+from pathlib import Path
+
 from dotenv import load_dotenv
 from pydantic import Field
 from pydantic_settings import BaseSettings
 
 load_dotenv()
+BASE_DIR = Path(__file__).resolve().parent.parent
+API_TITLE = """Nesterov apartments"""
+API_VERSION = "0.0.1"
+API_DESCRIPTION = """
+    API сайта для демонстрации новых жилищных комплексов от застройщика,
+    с возможностью записаться на просмотр квартир
+""".strip()
 
 
 class Settings(BaseSettings):
+    """
+    Базовые настройки проекта. Выполняет инициализацию параметров из
+    переменных окружения для подключения к базам данных.
+    """
+
     SCHEME: str = 'postgresql+asyncpg'
+
 
     DB_USER: str = Field(description='Database username')
     DB_PASSWORD: str = Field(description='Database password')
