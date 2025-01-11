@@ -1,0 +1,30 @@
+.container {
+  margin-top: 44px;
+}
+
+.content1 {
+  background-image: url('../../shared/assets/images/bigBuilder.png');
+  height: 755px;
+  width: 100%;
+  display: flex;
+}
+
+.content2 {
+  background-image: url('../../shared/assets/images/buildingLayout.png');
+  height: 755px;
+  width: 100%;
+  display: flex;
+}
+
+.content3 {
+  background-image: url('../../shared/assets/images/apartments.png');
+  height: 755px;
+  width: 100%;
+  display: flex;
+}
+
+.listContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 90px;
+}
