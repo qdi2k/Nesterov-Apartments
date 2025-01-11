@@ -6,15 +6,25 @@ import themeStyles from '@/shared/model/styles/theme.module.css'
 import {Text, Title} from '@/shared/ui'
 import {useState} from 'react'
 
-export function Calculator() {
-  const [value1, setValue1] = useState('3906000')
-  const [value2, setValue2] = useState('15')
-  const [value3, setValue3] = useState('945000')
-  const [value4, setValue4] = useState('9')
+const minValue1 = 3906000
+const minValue2 = 15
+const minValue3 = 945000
+const minValue4 = 9
 
-  const creditAmount = Number(value1) - Number(value3)
-  const monthlyRate = Number(value4) / 100 / 12
-  const payments = Number(value2) * 12
+const maxValue1 = 20000000
+const maxValue2 = 40
+const maxValue3 = 4000000
+const maxValue4 = 40
+
+export function Calculator() {
+  const [value1, setValue1] = useState({min: minValue1, max: maxValue1})
+  const [value2, setValue2] = useState({min: minValue2, max: maxValue2})
+  const [value3, setValue3] = useState({min: minValue3, max: maxValue3})
+  const [value4, setValue4] = useState({min: minValue4, max: maxValue4})
+
+  const creditAmount = value1.min - value3.min
+  const monthlyRate = value4.min / 100 / 12
+  const payments = value2.min * 12
 
   const monthlyPayment =
     (creditAmount * (monthlyRate * (1 + monthlyRate) ** payments)) /
@@ -36,50 +46,42 @@ export function Calculator() {
       <div className={styles.inputContainer}>
         <InputRangeForm
           nameForm='Стоимость недвижимости'
-          maxValue={20000000}
-          minValue={1000000}
+          max={maxValue1}
+          min={1000000}
           step={1000}
           value={value1}
           valueMark='₽'
           changeValue={setValue1}
-          tooltipId='tooltipId1'
-          inputId='inputRange1'
         />
         <InputRangeForm
           nameForm='Срок ипотеки'
-          maxValue={40}
-          minValue={1}
+          max={maxValue2}
+          min={1}
           step={1}
           value={value2}
           valueMark='Лет'
           changeValue={setValue2}
-          tooltipId='tooltipId2'
-          inputId='inputRange2'
         />
       </div>
       <div className={styles.inputContainer}>
         <InputRangeForm
           nameForm='Первоначальный взнос'
-          maxValue={4000000}
-          minValue={1000}
+          max={maxValue3}
+          min={100000}
           step={1000}
           value={value3}
           valueMark='₽'
           changeValue={setValue3}
-          tooltipId='tooltipId3'
-          inputId='inputRange3'
         />
         <InputRangeForm
           nameForm='Процентная ставка'
-          maxValue={40}
-          minValue={1}
+          max={maxValue4}
+          min={1}
           step={1}
           value={value4}
           valueMark='%'
           valueText='Годовых'
           changeValue={setValue4}
-          tooltipId='tooltipId4'
-          inputId='inputRange4'
         />
       </div>
       <div className={styles.textWrapper}>
@@ -116,7 +118,7 @@ export function Calculator() {
             color='brown'
             className={`${styles.value} ${styles.value}`}
           >
-            {value4} %
+            {value4.min} %
           </Text>
         </div>
       </div>

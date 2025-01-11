@@ -1,43 +1,68 @@
-.inputContainer {
+.container {
+  position: relative;
   display: flex;
   align-items: center;
-  position: relative;
+  margin-top: 20px;
+}
+
+.controlContainer {
   width: 100%;
-  margin-bottom: 8px;
+  position: absolute;
+}
+
+.input {
+  position: absolute;
+  width: 100%;
+  pointer-events: none;
+  appearance: none;
+  height: 100%;
+  opacity: 0;
+  z-index: 3;
+  padding: 0;
+}
+
+.rail {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  height: 1px;
+  background: var(--black);
+}
+
+.innerRail {
+  position: absolute;
+  height: 100%;
+  background: var(--orange);
+}
+
+.control {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  position: absolute;
+  background: var(--orange);
+  top: 50%;
+  margin-left: calc(16px / -2);
+  transform: translate3d(0, -50%, 0);
+  z-index: 2;
 }
 
 .inputVerticalLineLeft {
   position: absolute;
-  left: 4px;
+  left: 0px;
+  top: -5px;
   width: 1px;
   height: 11px;
   background-color: var(--black);
-}
-
-.inputBackgroundLeft {
-  position: absolute;
-  z-index: 1;
-  left: 0px;
-  width: 4px;
-  height: 11px;
-  background-color: var(--white);
 }
 
 .inputVerticalLineRight {
   position: absolute;
-  right: 4px;
+  right: 0;
+  top: -5px;
   width: 1px;
   height: 11px;
   background-color: var(--black);
-}
-
-.inputBackgroundRight {
-  position: absolute;
-  z-index: 1;
-  right: 0px;
-  width: 4px;
-  height: 11px;
-  background-color: var(--white);
 }
 
 .textRange {
@@ -46,11 +71,4 @@
   width: max-content;
   position: absolute;
   bottom: 14px;
-}
-
-.inputLine {
-  position: absolute;
-  height: 1px;
-  background-color: var(--black);
-  width: 100%;
 }
