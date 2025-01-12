@@ -107,8 +107,6 @@ export function Carousel({mockData, isArrow}: ICarouselProps) {
     }
   }, [itemPosition, carouselDataId])
 
-  console.log(itemPosition)
-
   return (
     <div>
       <div className={themeStyles.container}>

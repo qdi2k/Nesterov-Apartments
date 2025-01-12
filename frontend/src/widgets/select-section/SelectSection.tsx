@@ -1,40 +1,60 @@
-'use client'
-
 import {Select, Text} from '@/shared/ui'
 import styles from './SelectSection.module.css'
-import {useState} from 'react'
 import {InputRangeFilter, Rooms} from './ui'
+
+type Section = {
+  id: number
+  value: number
+}
+
+type Floor = {
+  id: number
+  value: number
+}
+
+type Square = {
+  min: number
+  max: number
+}
+
+type Price = {
+  min: number
+  max: number
+}
 
 interface ISelectSectionProps {
   activeSelect: number
   changeSelect: (select: number) => void
+  dataSection: Section[]
+  dataFloor: Floor[]
+  section: number | null
+  changeSection: (section: number) => void
+  floor: number | null
+  changeFloor: (floor: number) => void
+  room: number | null
+  changeRoom: (room: number) => void
+  square: Square
+  changeSquare: (square: Square) => void
+  price: Price
+  changePrice: (price: Price) => void
 }
-
-const dataSection = [
-  {id: 1, value: 'Секция 1'},
-  {id: 2, value: 'Секция 2'},
-  {id: 3, value: 'Секция 3'},
-  {id: 4, value: 'Секция 4'},
-]
-
-const dataFloor = [
-  {id: 1, value: 'Этаж 1'},
-  {id: 2, value: 'Этаж 2'},
-  {id: 3, value: 'Этаж 3'},
-  {id: 4, value: 'Этаж 4'},
-  {id: 5, value: 'Этаж 5'},
-  {id: 6, value: 'Этаж 6'},
-  {id: 7, value: 'Этаж 7'},
-  {id: 8, value: 'Этаж 8'},
-]
 
 export function SelectSection({
   activeSelect,
   changeSelect,
+  dataSection,
+  dataFloor,
+  section,
+  changeSection,
+  floor,
+  changeFloor,
+  room,
+  changeRoom,
+  square,
+  changeSquare,
+  price,
+  changePrice,
 }: ISelectSectionProps) {
-  const [value1, setValue1] = useState({min: 0, max: 100})
-  const [value2, setValue2] = useState({min: 0, max: 10000})
-
   return (
     <ul className={styles.container}>
       <li className={styles.contentContainer}>
@@ -49,8 +69,10 @@ export function SelectSection({
         <Select
           data={dataSection}
           placeholder='Секция'
-          setSection={changeSelect}
+          changeSelect={changeSelect}
           selectId={activeSelect}
+          value={section}
+          changeValue={changeSection}
         />
       </li>
       <li className={styles.contentContainer}>
@@ -66,8 +88,10 @@ export function SelectSection({
           <Select
             data={dataFloor}
             placeholder='Этаж'
-            setSection={changeSelect}
+            changeSelect={changeSelect}
             selectId={activeSelect}
+            value={floor}
+            changeValue={changeFloor}
           />
         )}
       </li>
@@ -81,7 +105,12 @@ export function SelectSection({
           Выбор квартиры на этаже
         </Text>
         {activeSelect >= 3 && (
-          <Rooms setSection={changeSelect} selectId={activeSelect} />
+          <Rooms
+            room={room}
+            changeRoom={changeRoom}
+            changeSelect={changeSelect}
+            selectId={activeSelect}
+          />
         )}
       </li>
       <li className={`${styles.contentContainer} ${styles.lastContentItem}`}>
@@ -98,16 +127,16 @@ export function SelectSection({
           <div className={styles.inputRangeFilterWrapper}>
             <InputRangeFilter
               title='Площадь, кв.м.'
-              value={value1}
-              changeValue={setValue1}
+              value={square}
+              changeValue={changeSquare}
               max={100}
               min={0}
               step={1}
             />
             <InputRangeFilter
               title='Стоимость, тыс.р.'
-              value={value2}
-              changeValue={setValue2}
+              value={price}
+              changeValue={changePrice}
               max={10000}
               min={0}
               step={100}

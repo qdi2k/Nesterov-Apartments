@@ -2,7 +2,24 @@ import Image from 'next/image'
 import styles from './ApartmentCard.module.css'
 import {Button, Text} from '@/shared/ui'
 
-export function ApartmentCard() {
+interface IApartmentCardProps {
+  rooms: number
+  square: number
+  floor: number
+  section: number
+  price: number
+}
+
+export function ApartmentCard({
+  rooms,
+  square,
+  floor,
+  section,
+  price,
+}: IApartmentCardProps) {
+  const formatedPrice = String(price)
+    .replace(/[^0-9]/g, '')
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
   return (
     <div className={styles.container}>
       <Image
@@ -20,7 +37,7 @@ export function ApartmentCard() {
               комнат
             </Text>
             <Text size='xMedium' className={styles.listValueText}>
-              2
+              {rooms}
             </Text>
           </li>
           <li className={styles.listItem}>
@@ -28,7 +45,7 @@ export function ApartmentCard() {
               Площадь
             </Text>
             <Text size='xMedium' className={styles.listValueText}>
-              72 кв.м.
+              {square} кв.м.
             </Text>
           </li>
           <li className={styles.listItem}>
@@ -36,7 +53,7 @@ export function ApartmentCard() {
               Этаж
             </Text>
             <Text size='xMedium' className={styles.listValueText}>
-              4
+              {floor}
             </Text>
           </li>
           <li className={styles.listItem}>
@@ -44,7 +61,7 @@ export function ApartmentCard() {
               Секция
             </Text>
             <Text size='xMedium' className={styles.listValueText}>
-              1
+              {section}
             </Text>
           </li>
           <li className={styles.listItem}>
@@ -52,7 +69,7 @@ export function ApartmentCard() {
               Стоимость
             </Text>
             <Text size='xMedium' className={styles.listValueText}>
-              7 500 000 р.
+              {formatedPrice} р.
             </Text>
           </li>
         </ul>

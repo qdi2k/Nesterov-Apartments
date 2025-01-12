@@ -1,12 +1,11 @@
-'use client'
-
 import {Text} from '@/shared/ui'
 import styles from './Item.module.css'
-import {useState} from 'react'
 
 interface IRoomsProps {
   selectId: number
-  setSection: (id: number) => void
+  changeSelect: (id: number) => void
+  room: number | null
+  changeRoom: (room: number) => void
 }
 
 const data = [
@@ -16,13 +15,11 @@ const data = [
   {id: 4, count: '4'},
 ]
 
-export function Rooms({selectId, setSection}: IRoomsProps) {
-  const [selectRoom, setSelectRoom] = useState<number | null>(null)
-
-  const changeRoom = (id: number) => {
-    setSelectRoom(id)
-    if (!selectRoom) {
-      setSection(selectId + 1)
+export function Rooms({selectId, changeSelect, room, changeRoom}: IRoomsProps) {
+  const changeSelectRoom = (id: number) => {
+    changeRoom(id)
+    if (!room) {
+      changeSelect(selectId + 1)
     }
   }
 
@@ -30,13 +27,13 @@ export function Rooms({selectId, setSection}: IRoomsProps) {
     <div className={styles.roomsContainer}>
       <Text size='small'>Комнаты</Text>
       <ul className={styles.roomsListContainer}>
-        {data.map((room) => (
-          <button key={room.id} onClick={() => changeRoom(room.id)}>
+        {data.map((item) => (
+          <button key={item.id} onClick={() => changeSelectRoom(item.id)}>
             <Text
               size='small'
-              className={`${styles.roomCount} ${selectRoom === room.id && styles.roomSelected}`}
+              className={`${styles.roomCount} ${room === item.id && styles.roomSelected}`}
             >
-              {room.count}
+              {item.count}
             </Text>
           </button>
         ))}
