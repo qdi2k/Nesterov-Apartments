@@ -6,30 +6,34 @@ import {useEffect, useRef, useState} from 'react'
 
 type Data = {
   id: number
-  value: string
+  value: number
 }
 
 interface ISelectProps {
   data: Data[]
   placeholder: string
-  setSection: (id: number) => void
+  changeSelect: (id: number) => void
   selectId: number
+  value: number | null
+  changeValue: (id: number) => void
 }
 
 export function Select({
   data,
   placeholder,
-  setSection,
+  changeSelect,
   selectId,
+  value,
+  changeValue,
 }: ISelectProps) {
   const [isOpen, setIsOpen] = useState(false)
-  const [selectValue, setSelectValue] = useState<string | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
+  const currentText = value ? `${placeholder} ${value}` : placeholder
 
-  const onClick = (value: string) => {
-    setSelectValue(value)
-    if (!selectValue && selectId < 4) {
-      setSection(selectId + 1)
+  const onClick = (currentValue: number) => {
+    changeValue(currentValue)
+    if (!value && selectId < 4) {
+      changeSelect(selectId + 1)
     }
     setIsOpen(false)
   }
@@ -53,8 +57,8 @@ export function Select({
   return (
     <div ref={containerRef}>
       <button className={styles.container} onClick={() => setIsOpen(!isOpen)}>
-        <Text size='small' color={!selectValue ? 'grey' : 'brown'}>
-          {selectValue ?? placeholder}
+        <Text size='small' color={!value ? 'grey' : 'brown'}>
+          {currentText}
         </Text>
         <Icon
           name='selectArrow'
@@ -70,7 +74,7 @@ export function Select({
             onClick={() => onClick(item.value)}
           >
             <Text size='small' color='brown'>
-              {item.value}
+              {`${placeholder} ${item.value}`}
             </Text>
           </button>
         ))}

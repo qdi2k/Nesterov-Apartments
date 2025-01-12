@@ -1,13 +1,21 @@
 import {ApartmentCard} from '../apartment-card'
 import styles from './SelectContent.module.css'
 
-interface ISelectContentProps {
-  activeSelect: number
+type Apartment = {
+  id: number
+  section: number
+  floor: number
+  rooms: number
+  square: number
+  price: number
 }
 
-const mockData = [{id: 1}, {id: 2}, {id: 3}]
+interface ISelectContentProps {
+  activeSelect: number
+  apartments: Apartment[]
+}
 
-export function SelectContent({activeSelect}: ISelectContentProps) {
+export function SelectContent({activeSelect, apartments}: ISelectContentProps) {
   const getStyles = () => {
     if (activeSelect === 1) {
       return styles.content1
@@ -20,13 +28,21 @@ export function SelectContent({activeSelect}: ISelectContentProps) {
     }
     return
   }
+
   return (
     <section className={styles.container}>
       <div className={getStyles()} />
       {activeSelect === 4 && (
         <ul className={styles.listContainer}>
-          {mockData.map((item) => (
-            <ApartmentCard key={item.id} />
+          {apartments.map((item) => (
+            <ApartmentCard
+              key={item.id}
+              rooms={item.rooms}
+              square={item.square}
+              floor={item.floor}
+              section={item.section}
+              price={item.price}
+            />
           ))}
         </ul>
       )}
