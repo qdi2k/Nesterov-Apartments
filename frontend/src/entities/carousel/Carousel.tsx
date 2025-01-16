@@ -87,6 +87,11 @@ export function Carousel({mockData, isArrow}: ICarouselProps) {
     }
   }
 
+  const onClickTitle = (id: number) => {
+    setItemDataId(1)
+    setCarouselDataId(id)
+  }
+
   useEffect(() => {
     if (!previewContainer.current) {
       return
@@ -135,7 +140,7 @@ export function Carousel({mockData, isArrow}: ICarouselProps) {
               {mockData.map((data) => (
                 <button
                   key={data.id}
-                  onClick={() => setCarouselDataId(data.id)}
+                  onClick={() => onClickTitle(data.id)}
                   className={`${data.id === carouselDataId ? styles.activeButton : ''} ${styles.title}`}
                 >
                   <Text

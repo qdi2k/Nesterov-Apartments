@@ -1,3 +1,4 @@
+import {Text} from '@/shared/ui'
 import {ApartmentCard} from '../apartment-card'
 import styles from './SelectContent.module.css'
 
@@ -32,7 +33,7 @@ export function SelectContent({activeSelect, apartments}: ISelectContentProps) {
   return (
     <section className={styles.container}>
       <div className={getStyles()} />
-      {activeSelect === 4 && (
+      {activeSelect === 4 && apartments.length > 0 && (
         <ul className={styles.listContainer}>
           {apartments.map((item) => (
             <ApartmentCard
@@ -45,6 +46,11 @@ export function SelectContent({activeSelect, apartments}: ISelectContentProps) {
             />
           ))}
         </ul>
+      )}
+      {activeSelect === 4 && apartments.length === 0 && (
+        <Text size='xMedium' weight='light' color='grey'>
+          Свободных квартир нет. Попробуйте изменить параметры поиска
+        </Text>
       )}
     </section>
   )
