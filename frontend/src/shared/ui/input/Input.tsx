@@ -1,6 +1,7 @@
 import {Open_Sans} from 'next/font/google'
 import {Divider} from '@/shared/ui'
 import styles from './Input.module.css'
+import {ChangeEvent} from 'react'
 
 const openSans = Open_Sans({
   subsets: ['latin'],
@@ -8,12 +9,16 @@ const openSans = Open_Sans({
 })
 
 interface IInputProps {
+  value?: string
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void
   placeholder?: string
   dividerClassName?: string
   inputClassName?: string
 }
 
 export function Input({
+  value,
+  onChange,
   placeholder,
   dividerClassName,
   inputClassName,
@@ -22,6 +27,8 @@ export function Input({
     <div className={styles.field}>
       <input
         type='text'
+        value={value}
+        onChange={onChange}
         placeholder={placeholder}
         className={`${openSans.className} ${styles.input} ${inputClassName}`}
       />

@@ -7,7 +7,7 @@ interface IButtonProps {
   children: ReactNode
   className?: string
   color?: FontColors
-  onClick: () => void
+  onClick?: () => void
 }
 
 export function TextButton({

@@ -25,6 +25,7 @@ export default function RootLayout({
     document.body.style.overflow = 'visible'
     setIsOpenBurger(false)
   }
+
   return (
     <html lang='en'>
       <body>
