@@ -18,7 +18,7 @@ export function Main() {
                 технологии, инфраструктура, дизайн и архитектура объединяются
                 ради вашего комфорта.
               </Text>
-              <Button>Выбрать квартиру</Button>
+              <Button href='/apartments'>Выбрать квартиру</Button>
             </div>
           </div>
         </div>

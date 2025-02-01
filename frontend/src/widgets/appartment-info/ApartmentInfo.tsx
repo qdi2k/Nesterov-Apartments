@@ -6,6 +6,13 @@ import themeStyles from '@/shared/model/styles/theme.module.css'
 import Image from 'next/image'
 
 export function ApartmentInfo() {
+  const handleScroll = () => {
+    const targetBlock = document.getElementById('calculator')
+    if (targetBlock) {
+      targetBlock.scrollIntoView({behavior: 'smooth'})
+    }
+  }
+
   return (
     <section>
       <div className={themeStyles.container}>
@@ -72,7 +79,7 @@ export function ApartmentInfo() {
                 </Text>
               </li>
             </ul>
-            <button className={styles.countButton}>
+            <button className={styles.countButton} onClick={handleScroll}>
               <Icon name='calculatorSmall' size={30} />
               <Text size='small' weight='bold'>
                 Рассчитать ипотеку
