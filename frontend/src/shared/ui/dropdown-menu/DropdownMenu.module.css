@@ -1,7 +1,7 @@
 .container {
   position: relative;
   width: max-content;
-  z-index: 100;
+  z-index: 90;
 }
 
 .buttonContainer {

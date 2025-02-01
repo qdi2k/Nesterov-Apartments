@@ -14,11 +14,10 @@
 }
 
 .backgroundColor {
-  top: -350px;
+  top: -96px;
   z-index: -1;
   position: absolute;
-  height: 934px;
-  max-width: 1650px;
+  height: 958px;
   width: 100%;
   background-color: var(--whiteLight);
 }

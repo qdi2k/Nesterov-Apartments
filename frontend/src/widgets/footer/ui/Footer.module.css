@@ -1,8 +1,9 @@
 .footer {
-  height: 380px;
+  padding-top: 80px;
+  padding-bottom: 60px;
 }
 
-.footerContainer {
+.topContentContainer {
   display: flex;
   height: 100%;
   align-items: center;
@@ -22,4 +23,41 @@
   display: flex;
   flex: 0.8;
   justify-content: flex-end;
+}
+
+.border {
+  border-bottom: 1px solid var(--greyLight) !important;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  background-color: red;
+}
+
+.bottomContentContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.contactList {
+  display: flex;
+  gap: 30px;
+}
+
+.contactLink {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  border: 1px solid var(--greyLight);
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.contactLinkTelegram {
+  padding-right: 2px;
+}
+
+.link {
+  cursor: pointer;
 }

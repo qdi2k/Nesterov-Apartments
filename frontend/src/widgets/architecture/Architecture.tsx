@@ -1,7 +1,15 @@
+'use client'
+
 import {Title, Text, SubstrateButton} from '@/shared/ui'
 import styles from './Architecture.module.css'
+import {useRouter} from 'next/navigation'
 
 export function Architecture() {
+  const router = useRouter()
+
+  const navigateToSection = (sectionId: string) => {
+    router.push(`/rules?section=${sectionId}`)
+  }
   return (
     <section>
       <div className={styles.contentContainer}>
@@ -43,6 +51,7 @@ export function Architecture() {
       </div>
       <SubstrateButton
         className={styles.substrateButtonContainer}
+        onClick={() => navigateToSection('calculator')}
         textButton='А с ремонтом'
       >
         Стоимость квартиры легко рассчитать с помощью <br /> нашего калькулятора

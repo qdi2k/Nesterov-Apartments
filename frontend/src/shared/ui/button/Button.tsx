@@ -7,6 +7,7 @@ import Link from 'next/link'
 import {Url} from 'next/dist/shared/lib/router/router'
 
 interface IButtonProps {
+  onClick?: () => void
   children: ReactNode
   textColor?: FontColors
   textStyle?: string
@@ -14,6 +15,7 @@ interface IButtonProps {
 }
 
 export function Button({
+  onClick,
   children,
   textStyle,
   href = '',
@@ -35,7 +37,7 @@ export function Button({
       <Icon name='arrow' size={17} color={textColor} />
     </Link>
   ) : (
-    <button className={styles.button}>
+    <button className={styles.button} onClick={onClick}>
       <div
         className={`${styles.backgroundButton} ${themeStyles.orangeBackground}`}
       />

@@ -33,7 +33,7 @@ export function InfrastructuraMap() {
             <Text>Парк, детская площадка</Text>
           </li>
         </ul>
-        <Button>Выбрать квартиру</Button>
+        <Button href='/apartments'>Выбрать квартиру</Button>
       </div>
       <div className={styles.image} />
     </section>

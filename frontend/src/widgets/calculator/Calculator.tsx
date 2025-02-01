@@ -4,7 +4,8 @@ import {InputRangeForm} from '@/entities/inputRangeForm'
 import styles from './Calculator.module.css'
 import themeStyles from '@/shared/model/styles/theme.module.css'
 import {Text, Title} from '@/shared/ui'
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
+import {useSearchParams} from 'next/navigation'
 
 const minValue1 = 3906000
 const minValue2 = 15
@@ -21,6 +22,9 @@ export function Calculator() {
   const [value2, setValue2] = useState({min: minValue2, max: maxValue2})
   const [value3, setValue3] = useState({min: minValue3, max: maxValue3})
   const [value4, setValue4] = useState({min: minValue4, max: maxValue4})
+
+  const searchParams = useSearchParams() ?? new URLSearchParams()
+  const section = searchParams.get('section')
 
   const creditAmount = value1.min - value3.min
   const monthlyRate = value4.min / 100 / 12
@@ -40,8 +44,21 @@ export function Calculator() {
     .replace(/[^0-9]/g, '')
     .replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
 
+  useEffect(() => {
+    if (section) {
+      const element = document.getElementById(section)
+      if (element) {
+        element.scrollIntoView({behavior: 'smooth'})
+        window.history.replaceState(null, '', window.location.pathname)
+      }
+    }
+  }, [section])
+
   return (
-    <div className={`${styles.container} ${themeStyles.container}`}>
+    <div
+      className={`${styles.container} ${themeStyles.container}`}
+      id='calculator'
+    >
       <Title>Калькулятор Ипотеки</Title>
       <div className={styles.inputContainer}>
         <InputRangeForm

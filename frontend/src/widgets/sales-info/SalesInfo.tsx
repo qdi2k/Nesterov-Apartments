@@ -40,6 +40,7 @@ export function SalesInfo() {
       </div>
       <SubstrateButton
         className={styles.substrateButtonContainer}
+        href='/apartments'
         textButton='Выбрать квартиру'
       >
         Наши менеджеры помогут подобрать для вас
