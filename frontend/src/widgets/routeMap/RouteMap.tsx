@@ -150,7 +150,7 @@ const MapContent = ({
         )}
       </Map>
       <div className={styles.routeContainer}>
-        <Text size='xMedium' weight='light' isUppercase>
+        <Text size='sMedium' weight='light' isUppercase>
           Проложить маршрут
         </Text>
         <Input

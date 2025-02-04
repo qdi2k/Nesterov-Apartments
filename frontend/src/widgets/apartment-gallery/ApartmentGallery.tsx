@@ -15,7 +15,7 @@ export function ApartmentGallery() {
           <div className={styles.galleryContainer}>
             <div className={styles.galleryImage1}>
               <Text
-                size='xMedium'
+                size='sMedium'
                 weight='light'
                 isUppercase
                 className={styles.galleryText}
@@ -25,7 +25,7 @@ export function ApartmentGallery() {
             </div>
             <div className={styles.galleryImage2}>
               <Text
-                size='xMedium'
+                size='sMedium'
                 weight='light'
                 isUppercase
                 className={styles.galleryText}
@@ -37,7 +37,7 @@ export function ApartmentGallery() {
           <div className={styles.galleryContainer}>
             <div className={styles.galleryImage3}>
               <Text
-                size='xMedium'
+                size='sMedium'
                 weight='light'
                 isUppercase
                 className={styles.galleryText}
@@ -47,7 +47,7 @@ export function ApartmentGallery() {
             </div>
             <div className={styles.galleryImage4}>
               <Text
-                size='xMedium'
+                size='sMedium'
                 weight='light'
                 isUppercase
                 className={styles.galleryText}

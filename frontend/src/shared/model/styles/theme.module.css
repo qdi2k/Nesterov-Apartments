@@ -78,8 +78,14 @@
 .large {
   font-size: var(--large);
 }
+.sLarge {
+  font-size: var(--sLarge);
+}
 .xMedium {
   font-size: var(--xMedium);
+}
+.sMedium {
+  font-size: var(--sMedium);
 }
 .small {
   font-size: var(--small);
@@ -89,10 +95,9 @@
 }
 
 .container {
+  transition: all 0.4s;
   max-width: 1580px;
   width: 100%;
-  padding-left: 24px;
-  padding-right: 24px;
   margin: 0 auto;
 }
 
@@ -103,4 +108,29 @@
 
 .uppercase {
   text-transform: uppercase;
+}
+
+@media (max-width: 1628px) {
+  .container {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+@media (max-width: 922px) {
+  .xLarge {
+    font-size: var(--large);
+  }
+}
+
+@media (max-width: 736px) {
+  .xLarge {
+    font-size: var(--sLarge);
+  }
+}
+
+@media (max-width: 564px) {
+  .xLarge {
+    font-size: var(--xMedium);
+  }
 }

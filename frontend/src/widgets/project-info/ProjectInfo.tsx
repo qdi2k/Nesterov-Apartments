@@ -20,22 +20,22 @@ export function ProjectInfo() {
           <ul className={styles.listContainer}>
             <li className={styles.listItem}>
               <Icon name='architect' size={54} />
-              <Text size='xMedium'>Современная архитектура</Text>
+              <Text size='sMedium'>Современная архитектура</Text>
               <div className={styles.circle} />
             </li>
             <li className={styles.listItem}>
               <Icon name='floor' size={54} />
-              <Text size='xMedium'>Органичные планировки</Text>
+              <Text size='sMedium'>Органичные планировки</Text>
               <div className={styles.circle} />
             </li>
             <li className={styles.listItem}>
               <Icon name='parking' size={54} />
-              <Text size='xMedium'>Подземный паркинг</Text>
+              <Text size='sMedium'>Подземный паркинг</Text>
               <div className={styles.circle} />
             </li>
             <li className={styles.listItem}>
               <Icon name='cascade' size={54} />
-              <Text size='xMedium'>Закрытый двор</Text>
+              <Text size='sMedium'>Закрытый двор</Text>
               <div className={styles.circle} />
             </li>
           </ul>

@@ -8,7 +8,7 @@ interface IGalleryItemProps {
 export function GalleryItem({title}: IGalleryItemProps) {
   return (
     <div className={styles.galleryItem}>
-      <Text size='xMedium' weight='light' isUppercase>
+      <Text size='sMedium' weight='light' isUppercase>
         {title}
       </Text>
     </div>

@@ -27,20 +27,23 @@ export function Header({openBurger}: IHeaderProps) {
     >
       <div className={`${themeStyles.container} ${styles.headerContainer}`}>
         <div className={styles.left}>
-          <div className={styles.logo}>
-            <Link href='/'>
-              <Icon className={styles.logo} name='logoMain' size={368} />
-            </Link>
-          </div>
+          <Link href='/'>
+            <Icon className={styles.logo} name='logoMain' />
+          </Link>
           <DropdownMenu
             title={city}
             changeTitle={setCity}
             icon='address'
             data={mockData}
+            className={styles.dropdown}
           />
         </div>
         <div className={styles.right}>
-          <ContactButton color='brown' phoneColor='black' />
+          <ContactButton
+            className={styles.contactButton}
+            color='brown'
+            phoneColor='black'
+          />
           <BurgerButton onPress={openBurger} />
         </div>
       </div>

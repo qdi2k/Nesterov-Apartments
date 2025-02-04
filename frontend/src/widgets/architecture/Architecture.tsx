@@ -3,25 +3,87 @@
 import {Title, Text, SubstrateButton} from '@/shared/ui'
 import styles from './Architecture.module.css'
 import {useRouter} from 'next/navigation'
+import {useEffect, useState} from 'react'
+import Image from 'next/image'
+
+const ARCHITECTURE_LIST = [
+  {
+    id: 1,
+    title: 'Современная архитектура',
+    imageTitle: 'Архитектура',
+    imageDescription:
+      'Таким образом рамки и место обучения кадров влечет за собой процесс внедрения и модернизации позиций, занимаемых участниками.',
+    imageUrl: '../../shared/assets/images/second.png',
+  },
+  {
+    id: 2,
+    title: 'Органичные планировки',
+    imageTitle: 'Планировка',
+    imageDescription: 'Мы предоставляем органичную планировку квартиры',
+    imageUrl: '../../shared/assets/images/second.png',
+  },
+  {
+    id: 3,
+    title: 'Подземный паркинг',
+    imageTitle: 'Паркинг',
+    imageDescription:
+      'Мы предоставляем органичную планировку квартиры Мы предоставляем органичную планировку квартиры',
+    imageUrl: '../../shared/assets/images/second.png',
+  },
+  {
+    id: 4,
+    title: 'Закрытый двор',
+    imageTitle: 'Двор',
+    imageDescription:
+      'Таким образом рамки и место обучения кадров влечет за собой процесс внедрения и модернизации позиций, занимаемых участниками.',
+    imageUrl: '../../shared/assets/images/second.png',
+  },
+  {
+    id: 5,
+    title: 'Собственный сквер',
+    imageTitle: 'Сквер',
+    imageDescription:
+      'Таким образом рамки и место обучения кадров влечет за собой процесс внедрения и модернизации позиций, занимаемых участниками.',
+    imageUrl: '../../shared/assets/images/second.png',
+  },
+]
 
 export function Architecture() {
+  const [activeId, setActiveId] = useState(1)
   const router = useRouter()
+
+  const handleListClick = (id: number) => {
+    setActiveId(id)
+  }
 
   const navigateToSection = (sectionId: string) => {
     router.push(`/rules?section=${sectionId}`)
   }
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (activeId !== ARCHITECTURE_LIST.length) setActiveId((prev) => prev + 1)
+      if (activeId === ARCHITECTURE_LIST.length) setActiveId(1)
+    }, 5000)
+
+    return () => clearInterval(interval)
+  }, [activeId])
+
   return (
     <section>
       <div className={styles.contentContainer}>
         <div className={styles.image}>
+          <Image
+            src={require('../../shared/assets/images/second.png')}
+            alt='architecture-image'
+            height={608}
+            width={942}
+          />
           <div className={styles.imageContainer}>
-            <Text className={styles.imageTitle} size='xMedium'>
-              Архитектура
+            <Text className={styles.imageTitle} size='sMedium'>
+              {ARCHITECTURE_LIST[activeId - 1].imageTitle}
             </Text>
-            <Text>
-              Таким образом рамки и место обучения кадров влечет за собой
-              процесс внедрения и модернизации позиций, занимаемых участниками.
-            </Text>
+            <Text>{ARCHITECTURE_LIST[activeId - 1].imageDescription}</Text>
           </div>
         </div>
         <div>
@@ -29,23 +91,18 @@ export function Architecture() {
             Почему <br /> ЖК Nesterov?
           </Title>
           <ul className={styles.listContainer}>
-            <li>
-              <Text size='xMedium' weight='bold' color='brown'>
-                Современная архитектура
-              </Text>
-            </li>
-            <li>
-              <Text size='xMedium'>Органичные планировки</Text>
-            </li>
-            <li>
-              <Text size='xMedium'>Подземный паркинг</Text>
-            </li>
-            <li>
-              <Text size='xMedium'>Закрытый двор</Text>
-            </li>
-            <li>
-              <Text size='xMedium'>Собственный сквер</Text>
-            </li>
+            {ARCHITECTURE_LIST.map((item) => (
+              <li key={item.id} onClick={() => handleListClick(item.id)}>
+                <Text
+                  size='sMedium'
+                  className={styles.listText}
+                  weight={activeId === item.id ? 'bold' : 'regular'}
+                  color={activeId === item.id ? 'brown' : 'black'}
+                >
+                  {item.title}
+                </Text>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

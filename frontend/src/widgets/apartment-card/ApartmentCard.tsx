@@ -31,44 +31,44 @@ export function ApartmentCard({
       <div className={styles.rightContent}>
         <ul className={styles.listContainer}>
           <li className={styles.listItem}>
-            <Text size='xMedium' color='brown'>
+            <Text size='sMedium' color='brown'>
               Количество
               <br />
               комнат
             </Text>
-            <Text size='xMedium' className={styles.listValueText}>
+            <Text size='sMedium' className={styles.listValueText}>
               {rooms}
             </Text>
           </li>
           <li className={styles.listItem}>
-            <Text size='xMedium' color='brown'>
+            <Text size='sMedium' color='brown'>
               Площадь
             </Text>
-            <Text size='xMedium' className={styles.listValueText}>
+            <Text size='sMedium' className={styles.listValueText}>
               {square} кв.м.
             </Text>
           </li>
           <li className={styles.listItem}>
-            <Text size='xMedium' color='brown'>
+            <Text size='sMedium' color='brown'>
               Этаж
             </Text>
-            <Text size='xMedium' className={styles.listValueText}>
+            <Text size='sMedium' className={styles.listValueText}>
               {floor}
             </Text>
           </li>
           <li className={styles.listItem}>
-            <Text size='xMedium' color='brown'>
+            <Text size='sMedium' color='brown'>
               Секция
             </Text>
-            <Text size='xMedium' className={styles.listValueText}>
+            <Text size='sMedium' className={styles.listValueText}>
               {section}
             </Text>
           </li>
           <li className={styles.listItem}>
-            <Text size='xMedium' color='brown'>
+            <Text size='sMedium' color='brown'>
               Стоимость
             </Text>
-            <Text size='xMedium' className={styles.listValueText}>
+            <Text size='sMedium' className={styles.listValueText}>
               {formatedPrice} р.
             </Text>
           </li>

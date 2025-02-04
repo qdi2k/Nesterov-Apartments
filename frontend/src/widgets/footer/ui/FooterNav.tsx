@@ -1,10 +1,10 @@
 import {Text} from '@/shared/ui'
 import Link from 'next/link'
-import styles from './FooterNav.module.css'
+import styles from './Footer.module.css'
 
 export function FooterNav() {
   return (
-    <div className={styles.footerNav}>
+    <>
       <nav className={styles.nav}>
         <Link href='/about-project'>
           <Text size='small' color='greyLight'>
@@ -49,6 +49,6 @@ export function FooterNav() {
           </Text>
         </Link>
       </nav>
-    </div>
+    </>
   )
 }

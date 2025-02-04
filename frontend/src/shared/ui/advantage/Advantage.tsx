@@ -12,7 +12,7 @@ export function Advantage({icon, title, description}: IAdvantageProps) {
   return (
     <div className={styles.container}>
       <Icon name={icon} size={223} />
-      <Text size='xMedium' color='brown' className={styles.title}>
+      <Text size='sMedium' color='brown' className={styles.title}>
         {title}
       </Text>
       <Text>{description}</Text>

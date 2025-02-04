@@ -23,7 +23,7 @@ export function SubstrateButton({
 }: ISubstrateButtonProps) {
   return (
     <div className={`${styles.container} ${className}`}>
-      <Text color='white' size='xMedium' weight='light' className={styles.text}>
+      <Text color='white' size='sMedium' weight='light' className={styles.text}>
         {children}
       </Text>
       {inputPlaceholder && (

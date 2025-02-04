@@ -17,7 +17,6 @@
 
 .image {
   position: relative;
-  background-image: url('../../shared/assets/images/second.png');
   height: 608px;
   width: 942px;
   margin-top: 170px;
@@ -52,4 +51,9 @@
   max-width: 1498px;
   padding-left: 188px;
   padding-right: 180px;
+}
+
+.listText {
+  transition: all 0.2s ease;
+  cursor: pointer;
 }

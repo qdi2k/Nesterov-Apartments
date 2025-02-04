@@ -48,7 +48,7 @@ export function SelectContent({activeSelect, apartments}: ISelectContentProps) {
         </ul>
       )}
       {activeSelect === 4 && apartments.length === 0 && (
-        <Text size='xMedium' weight='light' color='grey'>
+        <Text size='sMedium' weight='light' color='grey'>
           Свободных квартир нет. Попробуйте изменить параметры поиска
         </Text>
       )}

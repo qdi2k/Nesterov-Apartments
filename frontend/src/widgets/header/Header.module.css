@@ -1,5 +1,5 @@
 .header {
-  height: 140px;
+  margin-top: 10px;
 }
 
 .headerMargin {
@@ -16,11 +16,13 @@
   align-items: center;
   display: flex;
   flex: 1;
-  gap: 160px;
+  gap: 100px;
+  justify-content: space-between;
 }
 
 .logo {
   height: 130px;
+  width: 368px;
 }
 
 .right {
@@ -29,4 +31,29 @@
   justify-content: flex-end;
   align-items: center;
   gap: 50px;
+}
+
+@media (max-width: 1020px) {
+  .left {
+    gap: 70px;
+  }
+}
+
+@media (max-width: 960px) {
+  .contactButton {
+    display: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .dropdown {
+    display: none;
+  }
+}
+
+@media (max-width: 500px) {
+  .logo {
+    height: 66px;
+    width: 200px;
+  }
 }

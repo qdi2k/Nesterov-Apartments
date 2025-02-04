@@ -1,35 +1,40 @@
 .footer {
-  padding-top: 80px;
+  padding-top: 60px;
   padding-bottom: 60px;
+  position: relative;
 }
 
 .topContentContainer {
-  display: flex;
-  height: 100%;
+  display: grid;
+  grid-template-columns: 2fr 0.9fr 0.9fr 1.4fr;
+  column-gap: 60px;
   align-items: center;
-  gap: 40px;
 }
 
 .logoContainer {
   display: flex;
-  flex: 1.1;
+  margin-right: 80px;
 }
 
 .logo {
   height: 120px;
+  width: 368px;
 }
 
 .contact {
   display: flex;
-  flex: 0.8;
   justify-content: flex-end;
 }
 
-.border {
+.nav {
+  line-height: 40px;
+  white-space: nowrap;
+}
+
+.footerDivider {
   border-bottom: 1px solid var(--greyLight) !important;
   margin-top: 50px;
   margin-bottom: 50px;
-  background-color: red;
 }
 
 .bottomContentContainer {
@@ -60,4 +65,104 @@
 
 .link {
   cursor: pointer;
+}
+
+@media (max-width: 1200px) {
+  .logoContainer {
+    margin-right: 20px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .topContentContainer {
+    grid-template-columns: 2fr 0.6fr 0.6fr;
+    align-items: start;
+  }
+  .contact {
+    position: absolute;
+    top: 196px;
+  }
+  .logoContainer {
+    margin-right: 0;
+  }
+  .nav {
+    line-height: 50px;
+    align-items: end;
+  }
+}
+
+@media (max-width: 900px) {
+  .topContentContainer {
+    grid-template-columns: 2fr 0.6fr 0.6fr;
+    column-gap: 40px;
+  }
+  .bottomContentContainer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .contactList {
+    align-self: flex-end;
+    bottom: 62px;
+    position: absolute;
+  }
+}
+
+@media (max-width: 810px) {
+  .logo {
+    height: 58px;
+    width: 220px;
+  }
+}
+
+@media (max-width: 670px) {
+  .topContentContainer {
+    grid-template-columns: 1fr;
+    margin-bottom: 148px;
+    gap: 20px;
+  }
+  .nav {
+    grid-row: 2;
+  }
+  .contact {
+    top: 380px;
+  }
+}
+
+@media (max-width: 610px) {
+  .bottomContentContainer {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .contactList {
+    align-self: auto;
+    position: static;
+    margin-top: 20px;
+    order: 3;
+  }
+}
+
+@media (max-width: 440px) {
+  .topContentContainer {
+    grid-template-columns: 1fr;
+    margin-bottom: 0;
+    gap: 20px;
+  }
+
+  .nav:nth-child(2) {
+    grid-row: 2;
+    margin-top: 16px;
+  }
+
+  .nav:nth-child(3) {
+    grid-row: 3;
+    margin-bottom: 16px;
+  }
+  .contact {
+    justify-content: flex-start;
+    position: static;
+  }
 }

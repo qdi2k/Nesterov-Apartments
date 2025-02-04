@@ -8,10 +8,10 @@ export function HomePage() {
   return (
     <div>
       <Main />
-      <Architecture />
+      {/* <Architecture />
       <Advantages />
       <Location />
-      <Record />
+      <Record /> */}
     </div>
   )
 }
