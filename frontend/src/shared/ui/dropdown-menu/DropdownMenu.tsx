@@ -15,6 +15,7 @@ interface IDropdownMenuProps {
   changeTitle: (item: string) => void
   icon: IconName
   data: Data[]
+  className?: string
 }
 
 export function DropdownMenu({
@@ -22,6 +23,7 @@ export function DropdownMenu({
   changeTitle,
   icon,
   data,
+  className,
 }: IDropdownMenuProps) {
   const [isVisible, setIsVisible] = useState(false)
 
@@ -30,7 +32,7 @@ export function DropdownMenu({
     setIsVisible(false)
   }
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${className}`}>
       <button
         className={`${styles.button} ${styles.buttonContainer}`}
         onMouseEnter={() => setIsVisible(true)}

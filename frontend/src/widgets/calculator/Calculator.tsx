@@ -103,7 +103,7 @@ export function Calculator() {
       </div>
       <div className={styles.textWrapper}>
         <div className={styles.textContainer}>
-          <Text size='xMedium' weight='light' color='brown' isUppercase>
+          <Text size='sMedium' weight='light' color='brown' isUppercase>
             Сумма кредита
           </Text>
           <Text
@@ -115,7 +115,7 @@ export function Calculator() {
           </Text>
         </div>
         <div className={styles.textContainer}>
-          <Text size='xMedium' weight='light' color='brown' isUppercase>
+          <Text size='sMedium' weight='light' color='brown' isUppercase>
             Ежемесячный платеж
           </Text>
           <Text
@@ -127,7 +127,7 @@ export function Calculator() {
           </Text>
         </div>
         <div className={styles.textContainer}>
-          <Text size='xMedium' weight='light' color='brown' isUppercase>
+          <Text size='sMedium' weight='light' color='brown' isUppercase>
             Процентная ставка
           </Text>
           <Text

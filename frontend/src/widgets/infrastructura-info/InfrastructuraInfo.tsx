@@ -16,19 +16,19 @@ export function InfrastructuraInfo() {
         <ul>
           <li className={styles.listItem}>
             <Icon name='map' size={150} />
-            <Text className={styles.listTitle} size='xMedium' weight='light'>
+            <Text className={styles.listTitle} size='sMedium' weight='light'>
               Месторасположение
             </Text>
           </li>
           <li className={styles.listItem}>
             <Icon name='train' size={150} />
-            <Text className={styles.listTitle} size='xMedium' weight='light'>
+            <Text className={styles.listTitle} size='sMedium' weight='light'>
               Удобная транспортная развязка
             </Text>
           </li>
           <li className={styles.listItem}>
             <Icon name='appartment' size={150} />
-            <Text className={styles.listTitle} size='xMedium' weight='light'>
+            <Text className={styles.listTitle} size='sMedium' weight='light'>
               Развитая инфраструктура
             </Text>
           </li>

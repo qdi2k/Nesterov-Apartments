@@ -11,10 +11,10 @@ export function Document({file, title, date}: IDocumentProps) {
   return (
     <li className={styles.container}>
       <Icon name={file} size={60} />
-      <Text size='xMedium' weight='light' isUppercase>
+      <Text size='sMedium' weight='light' isUppercase>
         {title}
       </Text>
-      <Text size='xMedium' weight='light'>
+      <Text size='sMedium' weight='light'>
         {date}
       </Text>
       <div className={styles.downloadButton}>

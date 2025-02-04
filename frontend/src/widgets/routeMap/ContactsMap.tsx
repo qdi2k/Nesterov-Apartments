@@ -9,7 +9,7 @@ export function ContactsMap() {
       <div>
         <MainTitle>Контакты</MainTitle>
         <div className={styles.contactsMapContainer}>
-          <Text size='xMedium' weight='light' color='brown' isUppercase>
+          <Text size='sMedium' weight='light' color='brown' isUppercase>
             Офис продаж
           </Text>
           <ul className={styles.listContent}>

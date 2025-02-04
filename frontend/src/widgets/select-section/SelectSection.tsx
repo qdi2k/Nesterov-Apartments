@@ -59,7 +59,7 @@ export function SelectSection({
     <ul className={styles.container}>
       <li className={styles.contentContainer}>
         <Text
-          size='xMedium'
+          size='sMedium'
           weight='light'
           color={activeSelect === 1 ? 'brown' : 'grey'}
           isUppercase
@@ -77,7 +77,7 @@ export function SelectSection({
       </li>
       <li className={styles.contentContainer}>
         <Text
-          size='xMedium'
+          size='sMedium'
           weight='light'
           color={activeSelect === 2 ? 'brown' : 'grey'}
           isUppercase
@@ -97,7 +97,7 @@ export function SelectSection({
       </li>
       <li className={`${styles.contentContainer} ${styles.contentItem}`}>
         <Text
-          size='xMedium'
+          size='sMedium'
           weight='light'
           color={activeSelect === 3 ? 'brown' : 'grey'}
           isUppercase
@@ -115,7 +115,7 @@ export function SelectSection({
       </li>
       <li className={`${styles.contentContainer} ${styles.lastContentItem}`}>
         <Text
-          size='xMedium'
+          size='sMedium'
           weight='light'
           color={activeSelect === 4 ? 'brown' : 'grey'}
           isUppercase

@@ -12,12 +12,7 @@ export function Footer() {
         <div className={`${styles.topContentContainer}`}>
           <div className={styles.logoContainer}>
             <Link href='/'>
-              <Icon
-                className={styles.logo}
-                name='logo'
-                color='white'
-                size={368}
-              />
+              <Icon className={styles.logo} name='logo' color='white' />
             </Link>
           </div>
           <FooterNav />
@@ -25,7 +20,7 @@ export function Footer() {
             <ContactButton />
           </div>
         </div>
-        <Divider className={styles.border} />
+        <Divider className={styles.footerDivider} />
         <div className={styles.bottomContentContainer}>
           <Text size='small' color='greyLight'>
             © 2024 Все права защищены

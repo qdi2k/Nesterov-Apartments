@@ -19,7 +19,7 @@ export function ApartmentInfo() {
         <div className={styles.textContainer}>
           <MainTitle>Квартира</MainTitle>
           <Text
-            size='xMedium'
+            size='sMedium'
             weight='light'
             isUppercase
             className={styles.titleInfo}
@@ -37,44 +37,44 @@ export function ApartmentInfo() {
           <div className={styles.rightContent}>
             <ul className={styles.listContainer}>
               <li className={styles.listItem}>
-                <Text size='xMedium' color='brown'>
+                <Text size='sMedium' color='brown'>
                   Количество
                   <br />
                   комнат
                 </Text>
-                <Text size='xMedium' className={styles.listValueText}>
+                <Text size='sMedium' className={styles.listValueText}>
                   2
                 </Text>
               </li>
               <li className={styles.listItem}>
-                <Text size='xMedium' color='brown'>
+                <Text size='sMedium' color='brown'>
                   Площадь
                 </Text>
-                <Text size='xMedium' className={styles.listValueText}>
+                <Text size='sMedium' className={styles.listValueText}>
                   72 кв.м.
                 </Text>
               </li>
               <li className={styles.listItem}>
-                <Text size='xMedium' color='brown'>
+                <Text size='sMedium' color='brown'>
                   Этаж
                 </Text>
-                <Text size='xMedium' className={styles.listValueText}>
+                <Text size='sMedium' className={styles.listValueText}>
                   4
                 </Text>
               </li>
               <li className={styles.listItem}>
-                <Text size='xMedium' color='brown'>
+                <Text size='sMedium' color='brown'>
                   Секция
                 </Text>
-                <Text size='xMedium' className={styles.listValueText}>
+                <Text size='sMedium' className={styles.listValueText}>
                   1
                 </Text>
               </li>
               <li className={styles.listItem}>
-                <Text size='xMedium' color='brown'>
+                <Text size='sMedium' color='brown'>
                   Стоимость
                 </Text>
-                <Text size='xMedium' className={styles.listValueText}>
+                <Text size='sMedium' className={styles.listValueText}>
                   7 500 000 р.
                 </Text>
               </li>

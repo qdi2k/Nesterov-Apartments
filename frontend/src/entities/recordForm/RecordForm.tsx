@@ -8,7 +8,7 @@ interface IRecordFormProps {
 export function RecordForm({className}: IRecordFormProps) {
   return (
     <div className={`${styles.container} ${className}`}>
-      <Text className={styles.title} size='xMedium' weight='light'>
+      <Text className={styles.title} size='sMedium' weight='light'>
         Заполните форму и наш менеджер <br /> свяжется с вами в ближаейшее время
       </Text>
       <div className={styles.fieldsContainer}>
