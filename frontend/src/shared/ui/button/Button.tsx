@@ -11,18 +11,20 @@ interface IButtonProps {
   children: ReactNode
   textColor?: FontColors
   textStyle?: string
+  className?: string
   href?: Url
 }
 
 export function Button({
   onClick,
   children,
+  className,
   textStyle,
   href = '',
   textColor,
 }: IButtonProps) {
   return href ? (
-    <Link href={href} className={styles.button}>
+    <Link href={href} className={`${styles.button} ${className}`}>
       <div
         className={`${styles.backgroundButton} ${themeStyles.orangeBackground}`}
       />
@@ -37,7 +39,7 @@ export function Button({
       <Icon name='arrow' size={17} color={textColor} />
     </Link>
   ) : (
-    <button className={styles.button} onClick={onClick}>
+    <button className={`${styles.button} ${className}`} onClick={onClick}>
       <div
         className={`${styles.backgroundButton} ${themeStyles.orangeBackground}`}
       />

@@ -87,11 +87,14 @@
 .sMedium {
   font-size: var(--sMedium);
 }
+.xSmall {
+  font-size: var(--xSmall);
+}
 .small {
   font-size: var(--small);
 }
-.xSmall {
-  font-size: var(--xSmall);
+.sSmall {
+  font-size: var(--sSmall);
 }
 
 .container {
@@ -121,16 +124,25 @@
   .xLarge {
     font-size: var(--large);
   }
+  .large {
+    font-size: var(--sLarge);
+  }
 }
 
 @media (max-width: 736px) {
   .xLarge {
     font-size: var(--sLarge);
   }
+  .large {
+    font-size: var(--xMedium);
+  }
 }
 
 @media (max-width: 564px) {
   .xLarge {
     font-size: var(--xMedium);
+  }
+  .sMedium {
+    font-size: var(--xSmall);
   }
 }

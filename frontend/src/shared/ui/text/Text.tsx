@@ -26,7 +26,7 @@ interface ITextProps {
 export function Text({
   children,
   className,
-  size = 'xSmall',
+  size = 'sSmall',
   weight = 'regular',
   color = 'black',
   isUppercase,

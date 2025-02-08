@@ -1,6 +1,8 @@
 import {MainTitle, Text, Button} from '@/shared/ui'
 import styles from './Main.module.css'
 import themeStyles from '@/shared/model/styles/theme.module.css'
+import Image from 'next/image'
+import mainImage from '@/shared/assets/images/main.png'
 
 export function Main() {
   return (
@@ -22,7 +24,14 @@ export function Main() {
           </div>
         </div>
       </div>
-      <img alt='main-img' className={styles.backgroundImage} />
+      <div className={styles.backgroundImage}>
+        <Image
+          src={mainImage}
+          alt='main-img'
+          className={styles.backgroundImage}
+          fill
+        />
+      </div>
     </section>
   )
 }

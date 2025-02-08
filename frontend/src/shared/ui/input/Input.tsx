@@ -13,6 +13,7 @@ interface IInputProps {
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void
   placeholder?: string
   dividerClassName?: string
+  className?: string
   inputClassName?: string
 }
 
@@ -21,10 +22,11 @@ export function Input({
   onChange,
   placeholder,
   dividerClassName,
+  className,
   inputClassName,
 }: IInputProps) {
   return (
-    <div className={styles.field}>
+    <div className={`${styles.field} ${className}`}>
       <input
         type='text'
         value={value}

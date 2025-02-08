@@ -1,12 +1,18 @@
-.contentContainer {
+.container {
   display: flex;
-  gap: 30px;
+  gap: 24px;
+}
+
+.leftContent {
+  display: flex;
+  overflow: hidden;
 }
 
 .listContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 70px;
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 70px;
+  column-gap: 36px;
   margin-left: 20px;
   margin-top: 66px;
 }
@@ -15,24 +21,47 @@
   width: max-content;
 }
 
-.image {
-  position: relative;
+.imageContainer {
+  display: flex;
+  justify-content: flex-end;
   height: 608px;
   width: 942px;
   margin-top: 170px;
+  background-image: url('../../shared/assets/images/second.png');
+  background-size: cover;
+  background-position: center;
 }
 
-.imageContainer {
-  position: absolute;
-  top: 58px;
-  right: 24px;
+.textContainer {
   margin-left: 24px;
+  margin-right: 24px;
+  margin-top: 60px;
   padding-top: 58px;
   padding-bottom: 58px;
   padding-left: 38px;
   padding-right: 48px;
   height: max-content;
   max-width: 492px;
+  width: 100%;
+  backdrop-filter: blur(4px);
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 0.6),
+    rgba(255, 255, 255, 0.5)
+  );
+}
+.textContainer {
+  margin-left: 24px;
+  margin-right: 24px;
+  margin-top: 60px;
+  padding-top: 58px;
+  padding-bottom: 58px;
+  padding-left: 38px;
+  padding-right: 48px;
+  height: max-content;
+  max-width: 492px;
+  width: 100%;
   backdrop-filter: blur(4px);
   background: linear-gradient(
     to right,
@@ -47,13 +76,73 @@
   margin-bottom: 14px;
 }
 
-.substrateButtonContainer {
+.contentContainer {
+  padding-right: 24px;
+}
+
+.substrateButtonBackground {
   max-width: 1498px;
-  padding-left: 188px;
-  padding-right: 180px;
+}
+
+.substrateButtonContent {
+  max-width: 1198px;
+}
+
+.substrateButtonTitle {
+  max-width: 670px;
 }
 
 .listText {
   transition: all 0.2s ease;
+  white-space: nowrap;
   cursor: pointer;
+}
+
+@media (max-width: 1136px) {
+  .container {
+    flex-direction: column;
+    gap: 50px;
+  }
+  .imageContainer {
+    width: 1120px;
+    margin-top: 0;
+  }
+  .contentContainer {
+    order: -1;
+  }
+  .title {
+    margin-left: 24px;
+  }
+  .listContainer {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+@media (max-width: 736px) {
+  .listContainer {
+    grid-template-columns: 1fr;
+    row-gap: 56px;
+    column-gap: 36px;
+    margin-left: 20px;
+    margin-top: 50px;
+  }
+  .container {
+    gap: 60px;
+  }
+  .imageContainer {
+    height: 500px;
+  }
+}
+
+@media (max-width: 564px) {
+  .textContainer {
+    padding-top: 36px;
+    padding-bottom: 36px;
+    padding-left: 36px;
+    padding-right: 40px;
+  }
+
+  .imageContainer {
+    height: 460px;
+  }
 }

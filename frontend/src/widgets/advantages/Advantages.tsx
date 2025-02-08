@@ -7,7 +7,7 @@ export function Advantages() {
     <section className={styles.wrapper}>
       <div className={themeStyles.container}>
         <Title className={styles.title}>
-          Подарите себе <br /> жизнь в лучшем <br /> месте города
+          Подарите себе жизнь в лучшем месте города
         </Title>
         <ul className={styles.listContainer}>
           <li>
