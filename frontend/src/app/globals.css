@@ -19,8 +19,9 @@
   --sLarge: 48px;
   --xMedium: 36px;
   --sMedium: 24px;
+  --xSmall: 20px;
   --small: 18px;
-  --xSmall: 16px;
+  --sSmall: 16px;
 }
 
 * {

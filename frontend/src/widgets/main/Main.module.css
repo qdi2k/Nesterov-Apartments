@@ -4,11 +4,11 @@
   align-items: center;
   justify-items: center;
   height: 830px;
+  overflow: hidden
 }
 
 .backgroundImage {
   transition: all 0.4s;
-  background-image: url('../../shared/assets/images/main.png');
   position: absolute;
   top: 0;
   right: 0;

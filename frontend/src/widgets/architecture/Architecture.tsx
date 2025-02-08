@@ -4,7 +4,6 @@ import {Title, Text, SubstrateButton} from '@/shared/ui'
 import styles from './Architecture.module.css'
 import {useRouter} from 'next/navigation'
 import {useEffect, useState} from 'react'
-import Image from 'next/image'
 
 const ARCHITECTURE_LIST = [
   {
@@ -71,22 +70,18 @@ export function Architecture() {
 
   return (
     <section>
-      <div className={styles.contentContainer}>
-        <div className={styles.image}>
-          <Image
-            src={require('../../shared/assets/images/second.png')}
-            alt='architecture-image'
-            height={608}
-            width={942}
-          />
+      <div className={styles.container}>
+        <div className={styles.leftContent}>
           <div className={styles.imageContainer}>
-            <Text className={styles.imageTitle} size='sMedium'>
-              {ARCHITECTURE_LIST[activeId - 1].imageTitle}
-            </Text>
-            <Text>{ARCHITECTURE_LIST[activeId - 1].imageDescription}</Text>
+            <div className={styles.textContainer}>
+              <Text className={styles.imageTitle} size='sMedium'>
+                {ARCHITECTURE_LIST[activeId - 1].imageTitle}
+              </Text>
+              <Text>{ARCHITECTURE_LIST[activeId - 1].imageDescription}</Text>
+            </div>
           </div>
         </div>
-        <div>
+        <div className={styles.contentContainer}>
           <Title className={styles.title}>
             Почему <br /> ЖК Nesterov?
           </Title>
@@ -107,11 +102,13 @@ export function Architecture() {
         </div>
       </div>
       <SubstrateButton
-        className={styles.substrateButtonContainer}
+        classNameBackground={styles.substrateButtonBackground}
+        classNameContent={styles.substrateButtonContent}
+        classNameTitle={styles.substrateButtonTitle}
         onClick={() => navigateToSection('calculator')}
         textButton='А с ремонтом'
       >
-        Стоимость квартиры легко рассчитать с помощью <br /> нашего калькулятора
+        Стоимость квартиры легко рассчитать с помощью нашего калькулятора
       </SubstrateButton>
     </section>
   )

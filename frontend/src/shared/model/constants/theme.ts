@@ -29,8 +29,9 @@ const iconColors = {
 }
 
 export const fontSizes = {
-  xSmall: themeStyles.xSmall, // 16px
+  sSmall: themeStyles.sSmall, // 16px
   small: themeStyles.small, // 18px
+  xSmall: themeStyles.xSmall, // 20px
   sMedium: themeStyles.sMedium, // 24px
   xMedium: themeStyles.xMedium, // 36px
   sLarge: themeStyles.sLarge, // 48px

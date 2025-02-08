@@ -1,6 +1,6 @@
 .container {
-  width: max-content;
-  padding-right: 50px;
+  max-width: 1000px;
+  width: 100%;
 }
 
 .title {
@@ -11,13 +11,34 @@
 .fieldsContainer {
   display: flex;
   align-items: center;
-  gap: 137px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  column-gap: 90.5px;
+  row-gap: 36px;
   margin-top: 50px;
+  transition: all 0.4s;
 }
 
-.field {
-  display: flex;
-  flex-direction: column;
-  width: 270px;
-  gap: 6px;
+@media (max-width: 922px) {
+  .fieldsContainer {
+    justify-content:flex-start;
+  }
+  .formButton {
+    margin-left: auto;
+  }
 }
+
+@media (max-width: 680px) {
+  .fieldsContainer {
+    justify-content:flex-start;
+    column-gap: 40px;
+  }
+}
+
+@media (max-width: 400px) {
+  .inputField {
+    transition: all 0.4s;
+    width: 400px !important;
+  }
+}
+
