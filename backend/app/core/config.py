@@ -20,9 +20,13 @@ class Settings(BaseSettings):
     Базовые настройки проекта. Выполняет инициализацию параметров из
     переменных окружения для подключения к базам данных.
     """
+    # Настройки FastAPI
+    DEBUG: bool = Field(default=False, description="True or False")
+    ALLOWED_HOSTS: str = Field(default="localhost 127.0.0.1")
+
     # Подключение к БД
     DB_USER: str = Field(description='Database username')
-    DB_PASSWORD: str = Field(description='Database password')
+    DB_PASS: str = Field(description='Database password')
     DB_HOST: str = Field(description='Database host')
     DB_PORT: int = Field(description='Database port')
     DB_NAME: str = Field(description='Database name')
