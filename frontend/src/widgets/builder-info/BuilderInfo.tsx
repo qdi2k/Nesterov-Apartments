@@ -6,9 +6,9 @@ import styles from './BuilderInfo.module.css'
 
 export function BuilderInfo() {
   return (
-    <section className={`${themeStyles.container} ${styles.container}`}>
+    <section className={`${themeStyles.container}`}>
+      <MainTitle className={styles.title}>О застройщике</MainTitle>
       <div className={styles.contentContainer}>
-        <MainTitle>О застройщике</MainTitle>
         <Text weight='light' className={styles.text}>
           Таким образом рамки и место обучения кадров влечет за собой процесс
           внедрения и модернизации позиций, занимаемых участниками. Таким
@@ -29,8 +29,8 @@ export function BuilderInfo() {
           образом рамки и место обучения кадров влечет за собой процесс
           внедрения и модернизации позиций, занимаемых участниками.
         </Text>
+        <div className={styles.image}></div>
       </div>
-      <div className={styles.image}></div>
     </section>
   )
 }

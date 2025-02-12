@@ -1,9 +1,9 @@
 import {Text} from '@/shared/ui'
 import styles from './GalleryItem.module.css'
-import Image from 'next/image'
+import Image, {type StaticImageData} from 'next/image'
 
 interface IGalleryItemProps {
-  img: string
+  img: StaticImageData
   title: string
   description: string
   homeInfo: string
@@ -21,13 +21,9 @@ export function GalleryItem({
     <li
       className={`${styles.container} ${isSelectedItem && styles.selectedItem}`}
     >
-      <Image
-        src={require(`../../../shared/assets/images/${img}.png`)}
-        alt='carousel-item'
-        className={styles.image}
-        height={401}
-        width={397}
-      />
+      <div className={styles.image}>
+        <Image src={img} className={styles.image} alt='carousel-item' fill />
+      </div>
       <div
         className={`${styles.textContainer} ${isSelectedItem && styles.selectedTextContainer}`}
       >
