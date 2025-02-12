@@ -22,14 +22,14 @@ export function ContactsMap() {
               <Text weight='light'>пн-пт 9:00 - 18:00</Text>
             </li>
             <li className={styles.listItem}>
-              <Icon name='phoneFill' color='orange' size={24} />
+              <Icon name='phoneFill' color='orange' size={24} className={styles.iconPhone}/>
               <Text weight='light'>
                 +7 495 419-15-18 — Менеджер по продажам
               </Text>
             </li>
             <li className={styles.listItem}>
-              <Icon name='phoneFill' color='orange' size={24} />
-              <Text weight='light'>+7 495 419-15-18 — Запись на эксукрсию</Text>
+              <Icon name='phoneFill' color='orange' size={24} className={styles.iconPhone}/>
+              <Text weight='light'>+7 495 419-15-18 — Запись на экскурсию</Text>
             </li>
             <li className={styles.listItem}>
               <Icon name='mailFill' color='orange' size={24} />

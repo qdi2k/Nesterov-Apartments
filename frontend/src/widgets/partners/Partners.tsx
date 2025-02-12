@@ -4,52 +4,43 @@ import {Text, Title} from '@/shared/ui'
 import styles from './Partners.module.css'
 import themeStyles from '@/shared/model/styles/theme.module.css'
 import Image from 'next/image'
+import vtbImage from '@/shared/assets/images/vtbLogo.png'
+import sberImage from '@/shared/assets/images/sberLogo.png'
+import alfaImage from '@/shared/assets/images/alfaLogo.png'
+import discoveryImage from '@/shared/assets/images/discoveryLogo.png'
+import gazpromImage from '@/shared/assets/images/gazpromLogo.png'
+import homeRfImage from '@/shared/assets/images/homeRfLogo.png'
+
+const LOGO_DATA = {
+  data: [
+    vtbImage,
+    sberImage,
+    alfaImage,
+    discoveryImage,
+    gazpromImage,
+    homeRfImage,
+  ],
+}
 
 export function Partners() {
   return (
     <section className={`${themeStyles.container} ${styles.container}`}>
       <Title className={styles.title}>Наши партнеры</Title>
       <div className={styles.logoList}>
-        <Image
-          src={require('../../shared/assets/images/vtbLogo.png')}
-          alt='vtb'
-          height={142}
-          width={250}
-        />
-        <Image
-          src={require('../../shared/assets/images/sberLogo.png')}
-          alt='vtb'
-          height={142}
-          width={250}
-        />
-        <Image
-          src={require('../../shared/assets/images/alfaLogo.png')}
-          alt='vtb'
-          height={142}
-          width={250}
-        />
-        <Image
-          src={require('../../shared/assets/images/discoveryLogo.png')}
-          alt='vtb'
-          height={142}
-          width={250}
-        />
-        <Image
-          src={require('../../shared/assets/images/gazpromLogo.png')}
-          alt='vtb'
-          height={142}
-          width={250}
-        />
-        <Image
-          src={require('../../shared/assets/images/homeRfLogo.png')}
-          alt='vtb'
-          height={142}
-          width={250}
-        />
+        {LOGO_DATA.data.map((logo, index) => (
+          <div className={styles.logo} key={index}>
+            <Image className={styles.logo} src={logo} alt='partner-logo' fill />
+          </div>
+        ))}
       </div>
-      <Text className={styles.text} weight='light' color='grey'>
-        И другие банки. Подробности можно уточнить у менеджера
-      </Text>
+      <div className={styles.textContainer}>
+        <Text className={styles.text} weight='light' color='grey'>
+          И другие банки.&nbsp;
+        </Text>
+        <Text className={styles.text} weight='light' color='grey'>
+          Подробности можно уточнить у менеджера
+        </Text>
+      </div>
     </section>
   )
 }

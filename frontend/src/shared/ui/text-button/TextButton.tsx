@@ -21,7 +21,7 @@ export function TextButton({
       <Text size='small' weight='semiBold' color={color}>
         {children}
       </Text>
-      <Icon name='arrow' size={17} color={color} />
+      <Icon name='arrow' size={17} color={color} className={styles.icon} />
     </button>
   )
 }
