@@ -1,14 +1,28 @@
 .container {
-  display: grid;
-  grid-template-columns: 0.15fr 1fr 0.3fr 0fr;
-  gap: 20px;
+  display: flex;
+  gap: 30px;
   align-items: center;
   justify-content: space-between;
   background-color: var(--whiteLight);
   padding-left: 34px;
-  padding-right: 44px;
+  padding-right: 34px;
   padding-top: 30px;
   padding-bottom: 30px;
+}
+
+.leftContent {
+  display: grid;
+  grid-template-columns: 0.15fr 1fr;
+  align-items: center;
+  justify-content: space-between;
+  flex: 2;
+  gap: 20px;
+}
+.rightContent {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  flex: 1;
 }
 
 .downloadButton {
@@ -16,4 +30,31 @@
   align-items: center;
   cursor: pointer;
   gap: 20px;
+}
+
+@media (max-width: 736px) {
+  .container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .iconFile {
+    width: 40px;
+    height: 40px;
+  }
+  .leftContent {
+    align-items: flex-start;
+    grid-template-columns: auto 1fr;
+    gap: 12px;
+  }
+  .rightContent {
+    width: 100%;
+  }
+  .downloadButton {
+    gap: 16px;
+  }
 }

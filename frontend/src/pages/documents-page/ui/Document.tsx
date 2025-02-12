@@ -10,18 +10,22 @@ export interface IDocumentProps {
 export function Document({file, title, date}: IDocumentProps) {
   return (
     <li className={styles.container}>
-      <Icon name={file} size={60} />
-      <Text size='sMedium' weight='light' isUppercase>
-        {title}
-      </Text>
-      <Text size='sMedium' weight='light'>
-        {date}
-      </Text>
-      <div className={styles.downloadButton}>
-        <Icon name='download' size={28} />
-        <Text size='small' weight='semiBold' color='brown'>
-          Скачать
+      <div className={styles.leftContent}>
+        <Icon name={file} size={60} className={styles.iconFile} />
+        <Text size='sMedium' weight='light' isUppercase>
+          {title}
         </Text>
+      </div>
+      <div className={styles.rightContent}>
+        <Text size='sMedium' weight='light'>
+          {date}
+        </Text>
+        <div className={styles.downloadButton}>
+          <Icon name='download' size={28} />
+          <Text size='small' weight='semiBold' color='brown'>
+            Скачать
+          </Text>
+        </div>
       </div>
     </li>
   )

@@ -144,7 +144,7 @@ const MapContent = ({
         )}
         <ZoomControl options={{position: {left: 20, top: 100}}} />
         {distance && (
-          <div className={styles.test}>
+          <div className={styles.distance}>
             <Text>Расстояние: {(distance / 1000).toFixed(2)} км</Text>
           </div>
         )}
@@ -153,14 +153,21 @@ const MapContent = ({
         <Text size='sMedium' weight='light' isUppercase>
           Проложить маршрут
         </Text>
-        <Input
-          placeholder='Ваше местоположение'
-          value={destination}
-          onChange={handleInputChange}
-        />
-        <TextButton onClick={handleRouteButtonClick} color='black'>
-          Показать маршрут
-        </TextButton>
+        <div className={styles.routeInput}>
+          <Input
+            placeholder='Ваше местоположение'
+            value={destination}
+            onChange={handleInputChange}
+            className={styles.input}
+          />
+          <TextButton
+            onClick={handleRouteButtonClick}
+            color='black'
+            className={styles.button}
+          >
+            Показать маршрут
+          </TextButton>
+        </div>
       </div>
     </div>
   )
