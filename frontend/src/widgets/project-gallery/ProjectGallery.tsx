@@ -5,6 +5,12 @@ import styles from './ProjectGallery.module.css'
 import themeStyles from '@/shared/model/styles/theme.module.css'
 import {GalleryItem} from './ui'
 import {useEffect, useRef, useState} from 'react'
+import ourProject1Image from '@/shared/assets/images/ourProject1.png'
+import ourProject2Image from '@/shared/assets/images/ourProject2.png'
+import ourProject3Image from '@/shared/assets/images/ourProject3.png'
+import ourProject4Image from '@/shared/assets/images/ourProject4.png'
+import ourProject5Image from '@/shared/assets/images/ourProject5.png'
+import ourProject6Image from '@/shared/assets/images/ourProject6.png'
 
 const mockData = [
   {
@@ -13,7 +19,7 @@ const mockData = [
     description:
       'Начало строительства — август 2015 года, окончание — I квартал 2017 г',
     homeInfo: '24 этажа, 3 корпуса',
-    img: 'ourProject1',
+    img: ourProject1Image,
   },
   {
     id: 2,
@@ -21,7 +27,7 @@ const mockData = [
     description:
       'Начало строительства — август 2015 года, окончание — I квартал 2017 г',
     homeInfo: '24 этажа, 3 корпуса',
-    img: 'ourProject2',
+    img: ourProject2Image,
   },
   {
     id: 3,
@@ -29,7 +35,7 @@ const mockData = [
     description:
       'Начало строительства — август 2015 года, окончание — I квартал 2017 г',
     homeInfo: '24 этажа, 3 корпуса',
-    img: 'ourProject3',
+    img: ourProject3Image,
   },
   {
     id: 4,
@@ -37,7 +43,7 @@ const mockData = [
     description:
       'Начало строительства — август 2015 года, окончание — I квартал 2017 г',
     homeInfo: '24 этажа, 3 корпуса',
-    img: 'ourProject4',
+    img: ourProject4Image,
   },
   {
     id: 5,
@@ -45,7 +51,7 @@ const mockData = [
     description:
       'Начало строительства — август 2015 года, окончание — I квартал 2017 г',
     homeInfo: '24 этажа, 3 корпуса',
-    img: 'historyItemImage',
+    img: ourProject5Image,
   },
   {
     id: 6,
@@ -53,22 +59,41 @@ const mockData = [
     description:
       'Начало строительства — август 2015 года, окончание — I квартал 2017 г',
     homeInfo: '24 этажа, 3 корпуса',
-    img: 'ourProject1',
+    img: ourProject6Image,
   },
 ]
 
+const MAX_POSITION = () => {
+  if (innerWidth <= 720) {
+    return 1
+  }
+  if (innerWidth <= 922) {
+    return 2
+  }
+  if (innerWidth <= 1240) {
+    return 3
+  }
+  return 4
+}
+
+const INITIAL_POSITION = MAX_POSITION() - 1 < 2 ? 1 : MAX_POSITION() - 1
+
+const MAX_INNER_WIDTH = innerWidth > 1628 ? 1628 : innerWidth
+
 export function ProjectGallery() {
-  const [selectedItemId, setSelectedItemId] = useState(3)
-  const [itemPosition, setItemPosition] = useState(3)
+  const [selectedItemId, setSelectedItemId] = useState(INITIAL_POSITION)
+  const [itemPosition, setItemPosition] = useState(INITIAL_POSITION)
   const previewContainer = useRef<HTMLUListElement>(null)
 
   const isItemRight = selectedItemId !== mockData.length
   const isItemLeft = selectedItemId > 1
 
+  const cardWidth = (MAX_INNER_WIDTH - 48) / MAX_POSITION()
+
   const nextHandler = () => {
     if (isItemRight) {
       setSelectedItemId(selectedItemId + 1)
-      if (itemPosition !== 4) {
+      if (itemPosition !== MAX_POSITION()) {
         setItemPosition((prev) => prev + 1)
       }
     }
@@ -89,19 +114,15 @@ export function ProjectGallery() {
     }
 
     if (itemPosition === 1) {
-      previewContainer.current.style.transform = `translate3d(-${selectedItemId * 397 - 397}px, 0, 0)`
+      previewContainer.current.style.transform = `translate3d(-${selectedItemId * cardWidth - cardWidth}px, 0, 0)`
       return
     }
 
-    if (itemPosition === 3 || itemPosition === 2) {
+    if (itemPosition === MAX_POSITION()) {
+      previewContainer.current.style.transform = `translate3d(-${(selectedItemId - MAX_POSITION()) * cardWidth}px, 0, 0)`
       return
     }
-
-    if (itemPosition === 4) {
-      previewContainer.current.style.transform = `translate3d(-${(selectedItemId - 4) * 397}px, 0, 0)`
-      return
-    }
-  }, [itemPosition, selectedItemId])
+  }, [itemPosition, selectedItemId, cardWidth])
 
   return (
     <section className={`${themeStyles.container} ${styles.container}`}>

@@ -3,14 +3,14 @@
 }
 
 .contentContainer {
-  width: 1580px;
-  overflow: hidden;
+  overflow-y: hidden;
   position: relative;
+  scroll-snap-type: x mandatory;
 }
 
 .listContainer {
   display: flex;
-  max-height: 536px;
+  height: 660px;
   transition: transform 0.5s ease-out;
 }
 
