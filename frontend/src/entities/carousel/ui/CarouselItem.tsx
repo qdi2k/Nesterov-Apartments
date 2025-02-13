@@ -1,6 +1,7 @@
 import styles from './CarouselItem.module.css'
 import {Icon, Text} from '@/shared/ui'
 import Image from 'next/image'
+import carImage from '@/shared/assets/images/historyItemImage.png'
 
 type CarouselItemData = {
   id: number
@@ -40,12 +41,14 @@ export function CarouselItem({
   const isItemLeft = itemId > 1
   return (
     <div className={styles.container}>
-      <Image
-        src={require('../../../shared/assets/images/historyItemImage.png')}
-        alt='carousel-item'
-        height={444}
-        width={770}
-      />
+      <div className={styles.image}>
+        <Image
+          src={carImage}
+          alt='carousel-item'
+          fill
+          className={styles.image}
+        />
+      </div>
       <div className={styles.contentContainer}>
         <div className={styles.textContainer}>
           <Text

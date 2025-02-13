@@ -15,7 +15,7 @@ const helio = localFont({
 })
 
 interface IMainTitleProps {
-  children: ReactNode
+  children?: ReactNode
   className?: string
 }
 

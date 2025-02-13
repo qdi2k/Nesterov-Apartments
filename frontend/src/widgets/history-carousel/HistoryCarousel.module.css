@@ -2,9 +2,42 @@
   margin-bottom: 36px;
 }
 
-.substrateButtonContainer {
-  max-width: 1352px;
-  padding-left: 58px;
-  padding-right: 160px;
+.substrateButtonBackground {
+  max-width: 1297px;
   margin-left: auto;
+  justify-content: start;
+}
+
+.substrateButtonContent {
+  max-width: 1121px;
+  margin-left: 48px;
+}
+
+.textTransfer {
+  word-break: normal;
+}
+
+.title {
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+
+.title::before {
+  content: 'Ход строительства';
+}
+
+@media (max-width: 1340px) {
+  .substrateButtonBackground {
+    justify-content: center;
+  }
+  .substrateButtonContent {
+    margin-left: 24px;
+  }
+}
+
+@media (max-width: 400px) {
+  .title::before {
+    content: 'Ход\Aстроитель\Aства';
+    white-space: pre;
+  }
 }
