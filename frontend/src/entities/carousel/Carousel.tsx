@@ -20,7 +20,6 @@ type CarouselData = {
 
 interface ICarouselProps {
   mockData: CarouselData[]
-  isArrow?: boolean
 }
 
 const nextItemHandler = (
@@ -60,7 +59,7 @@ const MAX_INNER_WIDTH = innerWidth >= 1198 ? 1198 : innerWidth
 
 const CARD_WIDTH = (MAX_INNER_WIDTH - 128) / MAX_POSITION()
 
-export function Carousel({mockData, isArrow}: ICarouselProps) {
+export function Carousel({mockData}: ICarouselProps) {
   const [carouselDataId, setCarouselDataId] = useState(1)
   const [itemDataId, setItemDataId] = useState(1)
   const [itemPosition, setItemPosition] = useState(3)
@@ -73,8 +72,6 @@ export function Carousel({mockData, isArrow}: ICarouselProps) {
 
   const isItemRight = carouselDataId !== mockData.length
   const isItemLeft = carouselDataId > 1
-
-  console.log(CARD_WIDTH)
 
   const nextTitleHandler = (
     isItem: boolean,
@@ -128,76 +125,71 @@ export function Carousel({mockData, isArrow}: ICarouselProps) {
   }, [itemPosition, carouselDataId])
 
   return (
-    <div>
-      <div className={themeStyles.container}>
-        <div className={styles.carouselTitleNavigation}>
-          {isArrow && (
-            <button
-              onClick={() =>
-                prevTitleHandler(
-                  isItemLeft,
-                  setCarouselDataId,
-                  setItemDataId,
-                  carouselDataId
-                )
-              }
-            >
-              <Icon
-                name='arrow'
-                size={24}
-                className={styles.arrowLeft}
-                color='brown'
-              />
-            </button>
-          )}
-          <div className={styles.titleWrapper}>
-            <ul className={styles.listContainer} ref={previewContainer}>
-              {mockData.map((data) => (
-                <button
-                  key={data.id}
-                  onClick={() => onClickTitle(data.id)}
-                  className={`${data.id === carouselDataId ? styles.activeButton : ''} ${styles.buttonListItem}`}
-                >
-                  <Text
-                    size='sMedium'
-                    weight='regular'
-                    isUppercase
-                    color={data.id === carouselDataId ? 'brown' : 'grey'}
-                  >
-                    {data.title}
-                  </Text>
-                </button>
-              ))}
-            </ul>
-          </div>
-          {isArrow && (
-            <button
-              onClick={() =>
-                nextTitleHandler(
-                  isItemRight,
-                  setCarouselDataId,
-                  setItemDataId,
-                  carouselDataId
-                )
-              }
-            >
-              <Icon name='arrow' size={24} color='brown' />
-            </button>
-          )}
-        </div>
-        {itemDataFilter?.map((item) => (
-          <CarouselItem
-            key={item.id}
-            title={item.title}
-            description={item.description}
-            itemData={itemData[0].tabData}
-            itemId={itemDataId}
-            changeItem={setItemDataId}
-            nextHandler={nextItemHandler}
-            prevHandler={prevItemHandler}
+    <div className={themeStyles.container}>
+      <div className={`${styles.carouselTitleNavigation}`}>
+        <button
+          onClick={() =>
+            prevTitleHandler(
+              isItemLeft,
+              setCarouselDataId,
+              setItemDataId,
+              carouselDataId
+            )
+          }
+        >
+          <Icon
+            name='arrow'
+            size={24}
+            className={styles.arrowLeft}
+            color='brown'
           />
-        ))}
+        </button>
+        <div className={styles.titleWrapper}>
+          <ul className={styles.listContainer} ref={previewContainer}>
+            {mockData.map((data) => (
+              <button
+                key={data.id}
+                onClick={() => onClickTitle(data.id)}
+                className={`${data.id === carouselDataId ? styles.activeButton : ''} ${styles.buttonListItem}`}
+              >
+                <Text
+                  size='sMedium'
+                  weight='regular'
+                  isUppercase
+                  className={styles.carouselNavigationTitle}
+                  color={data.id === carouselDataId ? 'brown' : 'grey'}
+                >
+                  {data.title}
+                </Text>
+              </button>
+            ))}
+          </ul>
+        </div>
+        <button
+          onClick={() =>
+            nextTitleHandler(
+              isItemRight,
+              setCarouselDataId,
+              setItemDataId,
+              carouselDataId
+            )
+          }
+        >
+          <Icon name='arrow' size={24} color='brown' />
+        </button>
       </div>
+      {itemDataFilter?.map((item) => (
+        <CarouselItem
+          key={item.id}
+          title={item.title}
+          description={item.description}
+          itemData={itemData[0].tabData}
+          itemId={itemDataId}
+          changeItem={setItemDataId}
+          nextHandler={nextItemHandler}
+          prevHandler={prevItemHandler}
+        />
+      ))}
     </div>
   )
 }

@@ -4,13 +4,14 @@ import {Icon, MainTitle, Text} from '@/shared/ui'
 import themeStyles from '@/shared/model/styles/theme.module.css'
 import styles from './ProjectInfo.module.css'
 import Image from 'next/image'
+import projectInfoImage from '@/shared/assets/images/project.png'
 
 export function ProjectInfo() {
   return (
     <section className={`${themeStyles.container} ${styles.container}`}>
       <MainTitle>О проекте</MainTitle>
       <div className={styles.contentContainer}>
-        <div>
+        <div className={styles.leftContent}>
           <Text weight='light'>
             Таким образом рамки и место обучения кадров влечет за собой процесс
             внедрения и модернизации позиций, занимаемых участниками. Таким
@@ -40,13 +41,14 @@ export function ProjectInfo() {
             </li>
           </ul>
         </div>
-        <Image
-          className={styles.image}
-          src={require('../../shared/assets/images/project.png')}
-          alt='vtb'
-          height={597}
-          width={789}
-        />
+        <div className={styles.image}>
+          <Image
+            className={styles.image}
+            src={projectInfoImage}
+            alt='project-image'
+            fill
+          />
+        </div>
       </div>
     </section>
   )
