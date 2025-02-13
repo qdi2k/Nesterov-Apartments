@@ -23,7 +23,7 @@ interface ICarouselProps {
   isArrow?: boolean
 }
 
-const nextHandler = (
+const nextItemHandler = (
   isItem: boolean,
   changeId: (id: number) => void,
   id: number
@@ -33,7 +33,7 @@ const nextHandler = (
   }
 }
 
-const prevHandler = (
+const prevItemHandler = (
   isItem: boolean,
   changeId: (id: number) => void,
   id: number
@@ -43,11 +43,28 @@ const prevHandler = (
   }
 }
 
+const MAX_POSITION = () => {
+  if (innerWidth <= 460) {
+    return 1
+  }
+  if (innerWidth <= 736) {
+    return 2
+  }
+  if (innerWidth <= 1020) {
+    return 3
+  }
+  return 4
+}
+
+const MAX_INNER_WIDTH = innerWidth >= 1198 ? 1198 : innerWidth
+
+const CARD_WIDTH = (MAX_INNER_WIDTH - 128) / MAX_POSITION()
+
 export function Carousel({mockData, isArrow}: ICarouselProps) {
   const [carouselDataId, setCarouselDataId] = useState(1)
   const [itemDataId, setItemDataId] = useState(1)
   const [itemPosition, setItemPosition] = useState(3)
-  const previewContainer = useRef<HTMLDivElement>(null)
+  const previewContainer = useRef<HTMLUListElement>(null)
 
   const itemData = mockData?.filter((item) => item?.id === carouselDataId)
   const itemDataFilter = itemData[0]?.tabData?.filter(
@@ -57,7 +74,9 @@ export function Carousel({mockData, isArrow}: ICarouselProps) {
   const isItemRight = carouselDataId !== mockData.length
   const isItemLeft = carouselDataId > 1
 
-  const nextHandler1 = (
+  console.log(CARD_WIDTH)
+
+  const nextTitleHandler = (
     isItem: boolean,
     changeId: (id: number) => void,
     setItemDataId: (id: number) => void,
@@ -72,7 +91,7 @@ export function Carousel({mockData, isArrow}: ICarouselProps) {
     }
   }
 
-  const prevHandler1 = (
+  const prevTitleHandler = (
     isItem: boolean,
     changeId: (id: number) => void,
     setItemDataId: (id: number) => void,
@@ -98,16 +117,12 @@ export function Carousel({mockData, isArrow}: ICarouselProps) {
     }
 
     if (itemPosition === 1) {
-      previewContainer.current.style.transform = `translate3d(-${carouselDataId * 258 - 258}px, 0, 0)`
-      return
-    }
-
-    if (itemPosition === 3 || itemPosition === 2) {
+      previewContainer.current.style.transform = `translate3d(-${carouselDataId * CARD_WIDTH - CARD_WIDTH}px, 0, 0)`
       return
     }
 
     if (itemPosition === 4) {
-      previewContainer.current.style.transform = `translate3d(-${(carouselDataId - 4) * 258}px, 0, 0)`
+      previewContainer.current.style.transform = `translate3d(-${(carouselDataId - MAX_POSITION()) * CARD_WIDTH}px, 0, 0)`
       return
     }
   }, [itemPosition, carouselDataId])
@@ -119,7 +134,7 @@ export function Carousel({mockData, isArrow}: ICarouselProps) {
           {isArrow && (
             <button
               onClick={() =>
-                prevHandler1(
+                prevTitleHandler(
                   isItemLeft,
                   setCarouselDataId,
                   setItemDataId,
@@ -136,16 +151,16 @@ export function Carousel({mockData, isArrow}: ICarouselProps) {
             </button>
           )}
           <div className={styles.titleWrapper}>
-            <div className={styles.titleContainer} ref={previewContainer}>
+            <ul className={styles.listContainer} ref={previewContainer}>
               {mockData.map((data) => (
                 <button
                   key={data.id}
                   onClick={() => onClickTitle(data.id)}
-                  className={`${data.id === carouselDataId ? styles.activeButton : ''} ${styles.title}`}
+                  className={`${data.id === carouselDataId ? styles.activeButton : ''} ${styles.buttonListItem}`}
                 >
                   <Text
                     size='sMedium'
-                    weight='light'
+                    weight='regular'
                     isUppercase
                     color={data.id === carouselDataId ? 'brown' : 'grey'}
                   >
@@ -153,12 +168,12 @@ export function Carousel({mockData, isArrow}: ICarouselProps) {
                   </Text>
                 </button>
               ))}
-            </div>
+            </ul>
           </div>
           {isArrow && (
             <button
               onClick={() =>
-                nextHandler1(
+                nextTitleHandler(
                   isItemRight,
                   setCarouselDataId,
                   setItemDataId,
@@ -178,8 +193,8 @@ export function Carousel({mockData, isArrow}: ICarouselProps) {
             itemData={itemData[0].tabData}
             itemId={itemDataId}
             changeItem={setItemDataId}
-            nextHandler={nextHandler}
-            prevHandler={prevHandler}
+            nextHandler={nextItemHandler}
+            prevHandler={prevItemHandler}
           />
         ))}
       </div>

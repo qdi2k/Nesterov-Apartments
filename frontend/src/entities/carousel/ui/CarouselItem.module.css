@@ -7,6 +7,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  min-width: 400px;
 }
 
 .textContainer {
@@ -20,6 +21,15 @@
   align-items: center;
   margin-bottom: 90px;
   gap: 12px;
+}
+
+.image {
+  display: flex;
+  height: 444px;
+  width: 100%;
+  max-width: 770px;
+  position: relative;
+  object-fit: cover;
 }
 
 .circle {
@@ -56,4 +66,40 @@
 
 .description {
   max-width: 400px;
+}
+
+@media (max-width: 880px) {
+  .container {
+    gap: 24px;
+  }
+  .contentContainer {
+    min-width: 330px;
+  }
+}
+
+@media (max-width: 736px) {
+  .contentContainer {
+    min-width: 280px;
+  }
+}
+
+@media (max-width: 660px) {
+  .container {
+    flex-direction: column;
+  }
+  .contentContainer {
+    gap: 24px;
+  }
+  .textContainer {
+    gap: 16px;
+  }
+  .title {
+    max-width: 100%;
+  }
+  .description {
+    max-width: 100%;
+  }
+  .image {
+    height: 360px;
+  }
 }

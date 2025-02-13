@@ -160,21 +160,21 @@ const mockData = [
     tabData: [
       {
         id: 1,
-        title: 'Заголовок хода строительства за Август 2021 года 1',
+        title: 'Заголовок хода строительства за Сентрябрь 2021 года 1',
         description:
           'Модернизации позиций, занимаемых участниками. Таким образом рамки и место обучения кадров влечет за собой процесс внедрения и модернизации позиций, занимаемых участниками.',
         img: '/1',
       },
       {
         id: 2,
-        title: 'Заголовок хода строительства за Август 2021 года 2',
+        title: 'Заголовок хода строительства за Сентрябрь 2021 года 2',
         description:
           'Модернизации позиций, занимаемых участниками. Таким образом рамки и место обучения кадров влечет за собой процесс внедрения и модернизации позиций, занимаемых участниками.',
         img: '/1',
       },
       {
         id: 3,
-        title: 'Заголовок хода строительства за Август 2021 года 3',
+        title: 'Заголовок хода строительства за Сентрябрь 2021 года 3',
         description:
           'Модернизации позиций, занимаемых участниками. Таким образом рамки и место обучения кадров влечет за собой процесс внедрения и модернизации позиций, занимаемых участниками.',
         img: '/1',
@@ -187,11 +187,12 @@ export function HistoryCarousel() {
   return (
     <section>
       <div className={`${themeStyles.container} ${styles.container}`}>
-        <MainTitle>Ход строительства</MainTitle>
+        <MainTitle className={styles.title}></MainTitle>
       </div>
       <Carousel mockData={mockData} isArrow />
       <SubstrateButton
-        className={styles.substrateButtonContainer}
+        classNameBackground={styles.substrateButtonBackground}
+        classNameContent={styles.substrateButtonContent}
         textButton='Записаться на просмотр'
       >
         Увидеть готовность проекта своими глазами
