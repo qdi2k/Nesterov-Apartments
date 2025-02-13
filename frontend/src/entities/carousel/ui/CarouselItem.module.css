@@ -8,6 +8,7 @@
   flex-direction: column;
   justify-content: space-between;
   min-width: 400px;
+  transition: all 0.4s;
 }
 
 .textContainer {
@@ -19,8 +20,15 @@
 .navigationContainer {
   display: flex;
   align-items: center;
-  margin-bottom: 90px;
+  margin-bottom: 70px;
   gap: 12px;
+  transition: all 0.4s;
+}
+
+.listContainer {
+  display: flex;
+  gap: 12px;
+  transition: all 0.4s;
 }
 
 .image {
@@ -74,6 +82,12 @@
   }
   .contentContainer {
     min-width: 330px;
+  }
+  .navigationContainer {
+    justify-content: space-between;
+  }
+  .listContainer {
+    gap: 20px;
   }
 }
 

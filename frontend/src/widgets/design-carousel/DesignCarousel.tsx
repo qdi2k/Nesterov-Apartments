@@ -74,7 +74,7 @@ const mockData = [
   },
   {
     id: 4,
-    title: 'Места общего пользования',
+    title: 'Покрытия',
     tabData: [
       {id: 1, title: '213', description: '213123', img: '/1'},
       {id: 2, title: '213', description: '213123', img: '/1'},
@@ -92,7 +92,8 @@ export function DesignCarousel() {
       </div>
       <Carousel mockData={mockData} />
       <SubstrateButton
-        className={styles.substrateButtonContainer}
+        classNameBackground={styles.substrateButtonBackground}
+        classNameContent={styles.substrateButtonContent}
         textButton='Получить'
         inputPlaceholder='Email'
       >

@@ -6,11 +6,14 @@
   margin-bottom: 100px;
 }
 
-.substrateButtonContainer {
-  max-width: 1352px;
-  padding-left: 58px;
-  padding-right: 160px;
+.substrateButtonBackground {
+  max-width: 1297px;
+  justify-content: start;
   margin-left: auto;
+}
+
+.substrateButtonContent {
+  max-width: 1125px;
 }
 
 .backgroundColor {

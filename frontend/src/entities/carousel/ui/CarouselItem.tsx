@@ -72,13 +72,15 @@ export function CarouselItem({
               className={styles.arrowLeft}
             />
           </button>
-          {itemData.map((item) => (
-            <button
-              className={`${itemId === item.id ? styles.circleActive : styles.circle}`}
-              key={item.id}
-              onClick={() => changeItem(item.id)}
-            />
-          ))}
+          <ul className={styles.listContainer}>
+            {itemData.map((item) => (
+              <button
+                className={`${itemId === item.id ? styles.circleActive : styles.circle}`}
+                key={item.id}
+                onClick={() => changeItem(item.id)}
+              />
+            ))}
+          </ul>
           <button onClick={() => nextHandler(isItemRight, changeItem, itemId)}>
             <Icon
               name='arrow'

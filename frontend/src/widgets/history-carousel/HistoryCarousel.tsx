@@ -189,7 +189,7 @@ export function HistoryCarousel() {
       <div className={`${themeStyles.container} ${styles.container}`}>
         <MainTitle className={styles.title}></MainTitle>
       </div>
-      <Carousel mockData={mockData} isArrow />
+      <Carousel mockData={mockData} />
       <SubstrateButton
         classNameBackground={styles.substrateButtonBackground}
         classNameContent={styles.substrateButtonContent}

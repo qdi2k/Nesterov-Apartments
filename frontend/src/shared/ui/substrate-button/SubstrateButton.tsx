@@ -27,7 +27,9 @@ export function SubstrateButton({
 }: ISubstrateButtonProps) {
   return (
     <div className={`${styles.backgroundContainer} ${classNameBackground}`}>
-      <div className={`${styles.container} ${classNameContent}`}>
+      <div
+        className={`${inputPlaceholder ? styles.containerPlaceholder : styles.container} ${classNameContent}`}
+      >
         <Text
           color='white'
           size='sMedium'
@@ -36,22 +38,25 @@ export function SubstrateButton({
         >
           {children}
         </Text>
-        {inputPlaceholder && (
-          <Input
-            placeholder={inputPlaceholder}
-            dividerClassName={styles.divider}
-            inputClassName={styles.input}
-          />
-        )}
-        <Button
-          textColor='white'
-          className={styles.buttonSubmit}
-          textStyle={styles.buttonText}
-          href={href}
-          onClick={onClick}
-        >
-          {textButton}
-        </Button>
+        <div className={styles.inputContent}>
+          {inputPlaceholder && (
+            <Input
+              placeholder={inputPlaceholder}
+              dividerClassName={styles.divider}
+              inputClassName={styles.input}
+              className={styles.inputContainer}
+            />
+          )}
+          <Button
+            textColor='white'
+            className={styles.buttonSubmit}
+            textStyle={styles.buttonText}
+            href={href}
+            onClick={onClick}
+          >
+            {textButton}
+          </Button>
+        </div>
       </div>
     </div>
   )
