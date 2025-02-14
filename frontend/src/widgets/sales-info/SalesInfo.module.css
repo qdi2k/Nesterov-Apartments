@@ -13,8 +13,10 @@
   gap: 30px;
 }
 
-.substrateButtonContainer {
-  max-width: 1498px;
-  padding-left: 188px;
-  padding-right: 180px;
+.substrateButtonBackground {
+  max-width: 1200px;
+}
+
+.substrateButtonContent {
+  max-width: 920px;
 }

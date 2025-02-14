@@ -14,7 +14,8 @@ export function InfrastructuraGallery() {
         <Gallery />
       </div>
       <SubstrateButton
-        className={styles.substrateButtonContainer}
+        classNameBackground={styles.substrateButtonBackground}
+        classNameContent={styles.substrateButtonContent}
         textButton='Записаться на просмотр'
       >
         Оцените удобство расположения

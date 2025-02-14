@@ -71,7 +71,7 @@ export function Calculator() {
           changeValue={setValue1}
         />
         <InputRangeForm
-          nameForm='Срок ипотеки'
+          nameForm='Период ипотеки'
           max={maxValue2}
           min={1}
           step={1}
@@ -103,38 +103,44 @@ export function Calculator() {
       </div>
       <div className={styles.textWrapper}>
         <div className={styles.textContainer}>
-          <Text size='sMedium' weight='light' color='brown' isUppercase>
+          <Text
+            size='sMedium'
+            weight='light'
+            color='brown'
+            isUppercase
+            className={styles.text}
+          >
             Сумма кредита
           </Text>
-          <Text
-            weight='bold'
-            color='brown'
-            className={`${styles.value} ${styles.value}`}
-          >
+          <Text weight='bold' color='brown' className={styles.value}>
             {formattedTotalCreditAmount} {'₽'}
           </Text>
         </div>
         <div className={styles.textContainer}>
-          <Text size='sMedium' weight='light' color='brown' isUppercase>
+          <Text
+            size='sMedium'
+            weight='light'
+            color='brown'
+            isUppercase
+            className={styles.text}
+          >
             Ежемесячный платеж
           </Text>
-          <Text
-            weight='bold'
-            color='brown'
-            className={`${styles.value} ${styles.value}`}
-          >
+          <Text weight='bold' color='brown' className={styles.value}>
             {formattedMonthlyPayment} {'₽'}
           </Text>
         </div>
         <div className={styles.textContainer}>
-          <Text size='sMedium' weight='light' color='brown' isUppercase>
+          <Text
+            size='sMedium'
+            weight='light'
+            color='brown'
+            isUppercase
+            className={styles.text}
+          >
             Процентная ставка
           </Text>
-          <Text
-            weight='bold'
-            color='brown'
-            className={`${styles.value} ${styles.value}`}
-          >
+          <Text weight='bold' color='brown' className={styles.value}>
             {value4.min} %
           </Text>
         </div>

@@ -1,6 +1,31 @@
 import {Advantage, MainTitle, SubstrateButton, Text} from '@/shared/ui'
 import styles from './SalesInfo.module.css'
 import themeStyles from '@/shared/model/styles/theme.module.css'
+import {type IconName} from '@/shared/ui/icon/Icon'
+
+const ADVANTAGE_DATA = [
+  {
+    id: 1,
+    icon: 'payment' as IconName,
+    title: '100 % оплата',
+    description:
+      'Таким образом рамки и место обучения кадров влечет за собой процесс внедрения и модернизации позиций, занимаемых участниками.',
+  },
+  {
+    id: 2,
+    icon: 'calculator' as IconName,
+    title: 'Беспроцентная рассрочка на 3 месяца',
+    description:
+      'Таким образом рамки и место обучения кадров влечет за собой процесс внедрения и модернизации позиций, занимаемых участниками.',
+  },
+  {
+    id: 3,
+    icon: 'department' as IconName,
+    title: 'Ипотека',
+    description:
+      'Таким образом рамки и место обучения кадров влечет за собой процесс внедрения и модернизации позиций, занимаемых участниками.',
+  },
+]
 
 export function SalesInfo() {
   return (
@@ -14,32 +39,11 @@ export function SalesInfo() {
           Их очевидным преимуществом является то, что все они предусматривают
           покупку жилья напрямую у застройщика, минуя посредников!
         </Text>
-        <ul className={styles.listContainer}>
-          <li>
-            <Advantage
-              icon='payment'
-              title='100 % оплата'
-              description='Таким образом рамки и место обучения кадров влечет за собой процесс внедрения и модернизации позиций, занимаемых участниками.'
-            />
-          </li>
-          <li>
-            <Advantage
-              icon='calculator'
-              title='Беспроцентная рассрочка от застройщика на 3 месяца'
-              description='Таким образом рамки и место обучения кадров влечет за собой процесс внедрения и модернизации позиций, занимаемых участниками.'
-            />
-          </li>
-          <li>
-            <Advantage
-              icon='department'
-              title='Ипотека'
-              description='Таким образом рамки и место обучения кадров влечет за собой процесс внедрения и модернизации позиций, занимаемых участниками.'
-            />
-          </li>
-        </ul>
+        <Advantage data={ADVANTAGE_DATA} />
       </div>
       <SubstrateButton
-        className={styles.substrateButtonContainer}
+        classNameBackground={styles.substrateButtonBackground}
+        classNameContent={styles.substrateButtonContent}
         href='/apartments'
         textButton='Выбрать квартиру'
       >
