@@ -1,21 +1,29 @@
-import {Icon, Text} from '@/shared/ui'
+import {AdvantageItem} from './ui'
 import styles from './Advantage.module.css'
 import {type IconName} from '../icon/Icon'
 
-interface IAdvantageProps {
+type Data = {
+  id: number
   icon: IconName
   title: string
   description: string
 }
+interface AdvantageProps {
+  data: Data[]
+}
 
-export function Advantage({icon, title, description}: IAdvantageProps) {
+export function Advantage({data}: AdvantageProps) {
   return (
-    <div className={styles.container}>
-      <Icon name={icon} size={223} />
-      <Text size='sMedium' color='brown' className={styles.title}>
-        {title}
-      </Text>
-      <Text>{description}</Text>
-    </div>
+    <ul className={styles.listContainer}>
+      {data.map((item) => (
+        <li key={item.id}>
+          <AdvantageItem
+            icon={item.icon}
+            title={item.title}
+            description={item.description}
+          />
+        </li>
+      ))}
+    </ul>
   )
 }

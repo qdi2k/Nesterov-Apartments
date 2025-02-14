@@ -23,15 +23,13 @@ export function InputRangeForm({
 
   return (
     <div className={styles.container}>
-      <div className={styles.textContainer}>
+      <div className={styles.valueTextContainer}>
         <Text size='sMedium' weight='light' isUppercase>
           {nameForm}
         </Text>
-        <div className={styles.textFormValue}>
-          <Text size='sMedium' weight='semiBold' color='brown' isUppercase>
-            {formatedValue} {valueMark} {valueText}
-          </Text>
-        </div>
+        <Text size='sMedium' weight='semiBold' color='brown' isUppercase>
+          {formatedValue} {valueMark} {valueText}
+        </Text>
       </div>
       <InputRange
         max={max}
