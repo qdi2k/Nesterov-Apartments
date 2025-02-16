@@ -59,7 +59,8 @@ export function ApartmentGallery() {
         </div>
       </div>
       <SubstrateButton
-        className={styles.substrateButtonContainer}
+        classNameBackground={styles.substrateButtonBackground}
+        classNameContent={styles.substrateButtonContent}
         textButton='Получить'
         inputPlaceholder='Email'
       >
