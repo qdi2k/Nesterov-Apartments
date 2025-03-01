@@ -1,12 +1,14 @@
 :root {
   --black: rgba(0, 0, 0, 1);
   --white: rgba(255, 255, 255, 1);
-  --whiteLight: rgba(255, 249, 239, 1);
-  --grey: rgba(162, 162, 162, 1);
-  --greyLight: rgba(189, 181, 176, 1);
-  --orange: rgba(255, 153, 0, 1);
-  --brown: rgba(68, 29, 6, 1);
-  --brownDark: rgba(43, 16, 1, 1);
+  --grey: rgba(116, 119, 130, 1);
+  --greyDark: rgba(39, 46, 68, 1);
+  --greyLight: rgba(238, 241, 246, 1);
+  --greyWhite: rgba(225, 229, 240, 1);
+  --orange: rgba(255, 77, 0, 1);
+  --orangeLight: rgba(255, 96, 27, 1);
+  --orangeWhite: rgba(255, 228, 217, 1);
+  --blueLight: rgba(129, 145, 170, 1);
 
   --light: 300;
   --regular: 400;
@@ -14,14 +16,13 @@
   --semiBold: 600;
   --bold: 700;
 
-  --xLarge: 72px;
-  --large: 64px;
-  --sLarge: 48px;
-  --xMedium: 36px;
+  --xLarge: 56px;
+  --large: 48px;
+  --sLarge: 32px;
+  --xMedium: 28px;
   --sMedium: 24px;
-  --xSmall: 20px;
-  --small: 18px;
-  --sSmall: 16px;
+  --xSmall: 18px;
+  --small: 16px;
 }
 
 * {
@@ -60,9 +61,15 @@ aside {
 }
 
 body {
-  max-width: 1920px;
   margin: 0 auto;
+  padding-top: 76px;
   position: relative;
+}
+
+@media (max-width: 720px) {
+  body {
+    padding-top: 64px;
+  }
 }
 
 html,

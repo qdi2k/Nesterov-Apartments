@@ -1,0 +1,10 @@
+.container {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.newsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

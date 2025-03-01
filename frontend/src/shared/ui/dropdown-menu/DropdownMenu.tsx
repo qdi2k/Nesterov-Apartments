@@ -38,8 +38,8 @@ export function DropdownMenu({
         onMouseEnter={() => setIsVisible(true)}
         onMouseLeave={() => setIsVisible(false)}
       >
-        {icon && <Icon name={icon} size={27} color='brown' />}
-        <Text>{title}</Text>
+        {icon && <Icon name={icon} size={20} color='white' />}
+        <Text color='white'>{title}</Text>
       </button>
       <ul
         className={`${styles.dropdown} ${isVisible && styles.open}`}
@@ -52,8 +52,8 @@ export function DropdownMenu({
             onClick={() => onClick(item.city)}
             key={item.id}
           >
-            {icon && <Icon name={icon} size={27} color='brown' />}
-            <Text>{item.city}</Text>
+            {icon && <Icon name={icon} size={24} color='greyDark' />}
+            <Text color='greyDark'>{item.city}</Text>
           </button>
         ))}
       </ul>

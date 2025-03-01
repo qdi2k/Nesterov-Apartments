@@ -1,11 +1,14 @@
 'use client'
 
-import {MainTitle, TextButton} from '@/shared/ui'
+import {Button, Title} from '@/shared/ui'
 import themeStyles from '@/shared/model/styles/theme.module.css'
 import styles from './DocumentsPage.module.css'
+import {motion} from 'framer-motion'
 import {Document} from './ui'
+import {theme} from '@/shared/model'
 import {IDocumentProps} from './ui/Document'
 import {useEffect, useState} from 'react'
+import useGetMoreItem from '@/shared/model/useGetMoreItem'
 
 type DocumentData = {
   id: number
@@ -87,49 +90,51 @@ const documentMock = [
 ]
 
 export function DocumentsPage() {
-  const [postsToShow, setPostsToShow] = useState<DocumentData[]>([])
-  const [documentsCount, setDocumentsCount] = useState(5)
-
-  const loopWithSlice = (start: number, end: number) => {
-    const slicedPosts = documentMock.slice(start, end)
-    const arrayForHoldingPosts = [...postsToShow, ...slicedPosts]
-    setPostsToShow(arrayForHoldingPosts)
-  }
-
-  const handleShowMoreDocuments = () => {
-    const remainingDocuments =
-      documentMock.length - postsToShow.length >= 5
-        ? 5
-        : documentMock.length - postsToShow.length
-    loopWithSlice(documentsCount, documentsCount + remainingDocuments)
-    setDocumentsCount((prev) => prev + remainingDocuments)
-  }
-
-  useEffect(() => {
-    loopWithSlice(0, 5)
-  }, [])
+  const {handleShowMoreDocuments, getDelay, postsToShow} =
+    useGetMoreItem(documentMock)
 
   return (
-    <div className={themeStyles.container}>
-      <MainTitle>Документы</MainTitle>
+    <motion.div
+      className={`${themeStyles.container} ${styles.container}`}
+      initial='hidden'
+      animate='visible'
+    >
+      <Title className={styles.title} animation={theme.animations.opacity}>
+        Документы
+      </Title>
       <ul className={styles.listContainer}>
         {postsToShow.map((document) => (
           <Document
             file={(document as IDocumentProps).file}
             title={document.title}
             date={document.date}
+            delay={getDelay(document.id)}
             key={document.id}
           />
         ))}
       </ul>
       {documentMock.length > postsToShow.length && (
-        <TextButton
-          className={styles.textButton}
+        <Button
+          className={styles.button}
+          animation={{
+            hidden: {
+              y: 50,
+              opacity: 0,
+            },
+            visible: {
+              y: 0,
+              opacity: 1,
+              transition: {
+                duration: 0.3,
+                delay: 0.6,
+              },
+            },
+          }}
           onClick={handleShowMoreDocuments}
         >
-          Показать еще
-        </TextButton>
+          Показать ещё
+        </Button>
       )}
-    </div>
+    </motion.div>
   )
 }

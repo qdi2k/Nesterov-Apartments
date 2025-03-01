@@ -1,3 +1,5 @@
+'use client'
+
 import {ReactNode} from 'react'
 import {Open_Sans} from 'next/font/google'
 import {
@@ -7,6 +9,7 @@ import {
   type FontColors,
 } from '@/shared/model'
 import themeStyles from '@/shared/model/styles/theme.module.css'
+import {motion, type Variants} from 'framer-motion'
 
 const openSans = Open_Sans({
   subsets: ['latin'],
@@ -21,19 +24,27 @@ interface ITextProps {
   color?: FontColors
   isUppercase?: boolean
   isHover?: boolean
+  animation?: Variants
+  initialAnimation?: any
+  animate?: any
+  exit?: any
 }
 
 export function Text({
   children,
   className,
-  size = 'sSmall',
+  size = 'small',
   weight = 'regular',
-  color = 'black',
+  color = 'greyDark',
   isUppercase,
   isHover,
+  initialAnimation,
+  animation,
+  animate,
+  exit,
 }: ITextProps) {
   return (
-    <p
+    <motion.p
       className={`
         ${openSans.className}
         ${isHover && themeStyles.textHover}
@@ -43,8 +54,12 @@ export function Text({
         ${theme.font.colors?.[color]}
         ${className}
       `}
+      initial={initialAnimation}
+      animate={animate}
+      exit={exit}
+      variants={animation}
     >
       {children}
-    </p>
+    </motion.p>
   )
 }

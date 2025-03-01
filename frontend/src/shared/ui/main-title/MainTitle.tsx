@@ -1,27 +1,29 @@
 'use client'
 
 import {ReactNode} from 'react'
-import localFont from 'next/font/local'
+import {Open_Sans} from 'next/font/google'
 import styles from './MainTitle.module.css'
 import {theme} from '@/shared/model'
 import {Text} from '@/shared/ui'
 import {navigationTitle, NavigationTitles} from '@/shared/model/constants/theme'
 import {usePathname} from 'next/navigation'
 import Link from 'next/link'
+import {motion, type Variants} from 'framer-motion'
 
-const helio = localFont({
-  src: './../../assets/fonts/heliosextthin.otf',
-  weight: '400',
+const openSans = Open_Sans({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
 })
 
 interface IMainTitleProps {
   children?: ReactNode
   className?: string
+  animation?: Variants
 }
 
 // Исправить для многоуровневости
 
-export function MainTitle({children, className}: IMainTitleProps) {
+export function MainTitle({children, className, animation}: IMainTitleProps) {
   const router = usePathname() ?? ''
 
   const getCurrentLink = () => {
@@ -49,18 +51,18 @@ export function MainTitle({children, className}: IMainTitleProps) {
 
   return (
     <div>
-      <h1
+      <motion.h1
         className={`
-        ${helio.className}
-        ${styles.mainTitle}
+        ${openSans.className}
         ${theme.font.size.xLarge}
-        ${theme.font.weight.regular}
-        ${theme.font.colors.brown}
+        ${theme.font.weight.bold}
+        ${theme.font.colors.white}
         ${className}
       `}
+        variants={animation}
       >
         {children}
-      </h1>
+      </motion.h1>
       {getCurrentLink() && (
         <div className={styles.navigationContainer}>
           <Link href='/'>
@@ -88,7 +90,7 @@ export function MainTitle({children, className}: IMainTitleProps) {
               </Text>
             </>
           ) : (
-            <Text weight='light'>
+            <Text weight='bold'>
               {navigationTitle?.[getCurrentLink() as NavigationTitles]}
             </Text>
           )}

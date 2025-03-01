@@ -8,6 +8,7 @@ import {default as train} from '@/shared/assets/icons/train.svg'
 import {default as arrow} from '@/shared/assets/icons/arrow.svg'
 import {default as close} from '@/shared/assets/icons/close.svg'
 import {default as logo} from '@/shared/assets/icons/logo.svg'
+import {default as logoNew} from '@/shared/assets/icons/logo-new.svg'
 import {default as logoMain} from '@/shared/assets/icons/logo-main.svg'
 import {default as wordFile} from '@/shared/assets/icons/word-file.svg'
 import {default as pdfFile} from '@/shared/assets/icons/pdf-file.svg'
@@ -47,6 +48,7 @@ const Icons = {
   arrow,
   close,
   logo,
+  logoNew,
   logoMain,
   wordFile,
   pdfFile,
@@ -97,9 +99,11 @@ export function Icon(props: IIconProps) {
   return (
     <IconComponent
       className={className}
-      style={{color: theme.icon.colors?.[color]}}
-      width={width ?? size}
-      height={height ?? size}
+      style={{
+        color: theme.icon.colors?.[color],
+        minWidth: width ?? size,
+        minHeight: height ?? size,
+      }}
     />
   )
 }

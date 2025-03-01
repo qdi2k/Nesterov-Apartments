@@ -1,3 +1,5 @@
+'use client'
+
 import {ReactNode} from 'react'
 import {Icon, Text} from '@/shared/ui'
 import {type FontColors} from '@/shared/model'
@@ -5,14 +7,17 @@ import themeStyles from '@/shared/model/styles/theme.module.css'
 import styles from './Button.module.css'
 import Link from 'next/link'
 import {Url} from 'next/dist/shared/lib/router/router'
+import {motion, type Variants} from 'framer-motion'
 
 interface IButtonProps {
   onClick?: () => void
   children: ReactNode
   textColor?: FontColors
   textStyle?: string
+  isArrow?: boolean
   className?: string
   href?: Url
+  animation?: Variants
 }
 
 export function Button({
@@ -21,37 +26,43 @@ export function Button({
   className,
   textStyle,
   href = '',
-  textColor,
+  textColor = 'white',
+  isArrow,
+  animation,
 }: IButtonProps) {
   return href ? (
-    <Link href={href} className={`${styles.button} ${className}`}>
-      <div
-        className={`${styles.backgroundButton} ${themeStyles.orangeBackground}`}
-      />
-      <Text
-        size='small'
-        weight='semiBold'
-        color={textColor}
-        className={`${styles.text} ${textStyle}`}
+    <Link href={href}>
+      <motion.button
+        className={`${styles.button} ${className}`}
+        onClick={onClick}
+        variants={animation}
       >
-        {children}
-      </Text>
-      <Icon name='arrow' size={17} color={textColor} />
+        <Text
+          size='small'
+          weight='semiBold'
+          color={textColor}
+          className={textStyle}
+        >
+          {children}
+        </Text>
+        {isArrow && <Icon name='arrow' size={17} color={textColor} />}
+      </motion.button>
     </Link>
   ) : (
-    <button className={`${styles.button} ${className}`} onClick={onClick}>
-      <div
-        className={`${styles.backgroundButton} ${themeStyles.orangeBackground}`}
-      />
+    <motion.button
+      className={`${styles.button} ${className}`}
+      onClick={onClick}
+      variants={animation}
+    >
       <Text
         size='small'
         weight='semiBold'
         color={textColor}
-        className={`${styles.text} ${textStyle}`}
+        className={textStyle}
       >
         {children}
       </Text>
-      <Icon name='arrow' size={17} color={textColor} />
-    </button>
+      {isArrow && <Icon name='arrow' size={17} color={textColor} />}
+    </motion.button>
   )
 }

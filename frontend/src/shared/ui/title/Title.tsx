@@ -1,31 +1,41 @@
+'use client'
+
 import {ReactNode} from 'react'
-import localFont from 'next/font/local'
+import {Open_Sans} from 'next/font/google'
+import {FontColors, theme} from '@/shared/model'
 import styles from './Title.module.css'
-import {theme} from '@/shared/model'
+import {motion, type Variants} from 'framer-motion'
 
-const helio = localFont({
-  src: './../../assets/fonts/heliosextthin.otf',
-  weight: '400',
+const openSans = Open_Sans({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
 })
-
 interface ITitleProps {
   children: ReactNode
   className?: string
+  color?: FontColors
+  animation?: Variants
 }
 
-export function Title({children, className}: ITitleProps) {
+export function Title({
+  children,
+  className,
+  color = 'greyDark',
+  animation,
+}: ITitleProps) {
   return (
-    <h2
+    <motion.h2
       className={`
-        ${helio.className}
+        ${openSans.className}
+        ${theme.font.size.sLarge}
+        ${theme.font.weight.bold}
+        ${theme.font.colors?.[color]}
         ${styles.title}
-        ${theme.font.size.large}
-        ${theme.font.weight.regular}
-        ${theme.font.colors.brown}
         ${className}
       `}
+      variants={animation}
     >
       {children}
-    </h2>
+    </motion.h2>
   )
 }
