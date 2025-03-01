@@ -4,7 +4,7 @@ from fastapi_storages.integrations.sqlalchemy import FileType
 
 from app.db.database import Base
 from app.core.config import APARTMENTS_IMAGE
-from core.enums import CountRooms
+from app.core.enums import CountRooms
 
 
 class Apartment(Base):
