@@ -1,5 +1,6 @@
-from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine, AsyncSession
-from sqlalchemy.orm import DeclarativeBase
+from sqlalchemy.ext.asyncio import (async_sessionmaker, create_async_engine,
+                                    AsyncSession)
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 from app.core.config import settings
 
@@ -8,4 +9,4 @@ async_session_maker = async_sessionmaker(engine, class_=AsyncSession)
 
 
 class Base(DeclarativeBase):
-    pass
+    id: Mapped[int] = mapped_column(autoincrement=True, primary_key=True)

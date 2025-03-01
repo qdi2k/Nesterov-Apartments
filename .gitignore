@@ -162,4 +162,5 @@ cython_debug/
 .idea/
 
 backend/temp/
+frontend/
 test_main.py

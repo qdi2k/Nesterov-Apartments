@@ -1,36 +1,26 @@
-from sqlalchemy import Integer, String, DateTime, func, Enum, UniqueConstraint
-from sqlalchemy.orm import mapped_column
+from sqlalchemy import Integer, String, Float
+from sqlalchemy.orm import mapped_column, Mapped
+from fastapi_storages.integrations.sqlalchemy import FileType
 
-from core.enums import CallStatusEnum
 from app.db.database import Base
+from app.core.config import APARTMENTS_IMAGE
 
 
-class CityArea(Base):
-    __tablename__ = 'city_area'
+class Apartment(Base):
+    __tablename__ = 'apartments'
 
-    id = mapped_column(Integer, primary_key=True, autoincrement=True)
-    city = mapped_column(String, nullable=False)
-    area = mapped_column(String, nullable=False)
+    name: Mapped[str] = mapped_column(String, nullable=False)
+    project: Mapped[str] = mapped_column(String, nullable=False)
 
-    __table_args__ = (
-        UniqueConstraint('city', 'area', name='uq_city_area'),
+    address: Mapped[str] = mapped_column(String, nullable=False)
+    section: Mapped[str] = mapped_column(String, nullable=False)
+    floor: Mapped[int] = mapped_column(Integer, nullable=False)
+    area: Mapped[float] = mapped_column(Float, nullable=False)
+    image: Mapped[str] = mapped_column(
+        FileType(storage=APARTMENTS_IMAGE), nullable=True
     )
 
-    def __repr__(self):
-        return f"<CityArea(id={self.id}, city={self.city}, area={self.area})>"
+    price: Mapped[float] = mapped_column(Float, nullable=False)
+    discounted_price: Mapped[float] = mapped_column(Float, nullable=False)
 
-class CallUser(Base):
-    __tablename__ = 'calls'
 
-    id = mapped_column(Integer, primary_key=True, autoincrement=True)
-    created_at = mapped_column(DateTime, default=func.now())
-    status_completed = mapped_column(
-        Enum(CallStatusEnum, create_constraint=False),
-        default=CallStatusEnum.AWAIT
-    )
-    name = mapped_column(String(255), nullable=False)
-    phone = mapped_column(String(20))
-    email = mapped_column(String(255))
-
-    def __repr__(self):
-        return f"<CallUser(id={self.id}, name={self.name}, phone={self.phone}, email={self.email})>"
