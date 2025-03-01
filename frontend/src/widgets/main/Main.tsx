@@ -1,37 +1,64 @@
-import {MainTitle, Text, Button} from '@/shared/ui'
+'use client'
+
+import {motion} from 'framer-motion'
+import {Button, MainTitle} from '@/shared/ui'
 import styles from './Main.module.css'
-import themeStyles from '@/shared/model/styles/theme.module.css'
-import Image from 'next/image'
-import mainImage from '@/shared/assets/images/main.png'
+import {theme} from '@/shared/model'
+import objectImage from '@/shared/assets/images/objects/9bfc46453fa2661e9489550ebef3c5472e643e20.jpeg'
+import objectImage2 from '@/shared/assets/images/objects/dvor01_01_fin_1080__1jfuy9e.jpg'
+import objectImage3 from '@/shared/assets/images/objects/i.webp'
+import objectImage4 from '@/shared/assets/images/objects/optimize.webp'
+import {Gallery} from '../gallery/Gallery'
+
+const MOCK_IMAGES = [
+  {
+    id: 1,
+    title: 'Shagal',
+    description: 'бизнес-квартал у реки',
+    src: objectImage,
+  },
+  {
+    id: 2,
+    title: 'Mariinn',
+    description: 'квартиры на садовом',
+    src: objectImage2,
+  },
+  {
+    id: 3,
+    title: 'Rauta',
+    description: 'камерный проект премиум-класса',
+    src: objectImage3,
+  },
+  {
+    id: 4,
+    title: 'Voxhall',
+    description: 'квартиры на Садовом',
+    src: objectImage4,
+  },
+]
 
 export function Main() {
   return (
-    <section className={styles.main}>
-      <div className={`${themeStyles.container} ${styles.mainContainer}`}>
-        <div className={styles.backgroundBlur}>
-          <MainTitle className={styles.mainTitle}>
-            Квартиры, которые{' '}
-            <span className={styles.textTransfer}>подстраиваются </span>
-            <br /> под ваш образ жизни
-          </MainTitle>
-          <div className={styles.bottomContainer}>
-            <Text className={styles.description}>
-              В нашем жилом комплексе ваша квартира станет пространством, где
-              технологии, инфраструктура, дизайн и архитектура объединяются ради
-              вашего комфорта.
-            </Text>
-            <Button href='/apartments'>Выбрать квартиру</Button>
-          </div>
-        </div>
+    <motion.section
+      className={`${styles.container}`}
+      initial='hidden'
+      whileInView='visible'
+      viewport={{once: true}}
+    >
+      <Gallery images={MOCK_IMAGES} />
+      <div className={styles.rightContainer}>
+        <MainTitle animation={theme.animations.opacityAndMoveX}>
+          Уют и удобство в каждом квадратном метре
+        </MainTitle>
+        <Button
+          href='/apartments2'
+          textColor='white'
+          animation={theme.animations.opacityAndMoveX}
+          className={styles.button}
+        >
+          Выбрать квартиру
+        </Button>
       </div>
-      <div className={styles.backgroundImage}>
-        <Image
-          src={mainImage}
-          alt='main-img'
-          className={styles.backgroundImage}
-          fill
-        />
-      </div>
-    </section>
+    </motion.section>
   )
 }

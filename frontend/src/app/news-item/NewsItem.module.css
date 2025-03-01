@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.moreNewsContainer {
+  padding-top: 80px;
+  padding-bottom: 80px;
+  background-color: var(--greyLight);
+}
+
+.newsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.image {
+  height: 400px;
+  width: 100%;
+  border-radius: 24px;
+  position: relative;
+  object-fit: cover;
+}
+
+.news {
+  background-color: white !important;
+}
+
+.title {
+  margin-bottom: 0 !important;
+}

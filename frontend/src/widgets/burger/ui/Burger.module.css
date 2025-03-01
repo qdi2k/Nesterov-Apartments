@@ -7,7 +7,7 @@
   right: 0;
   top: 0;
   overflow-y: auto;
-  z-index: 100;
+  z-index: 2000;
   transition: all 0.4s;
   visibility: visible;
   background-color: rgba(149, 149, 149, 0.4);
@@ -20,27 +20,33 @@
 
 .menuContent {
   width: 466px;
-  height: 100%;
+  margin-top: 24px;
+  margin-right: 24px;
+  height: calc(100% - 48px);
+  border-radius: 24px;
   position: fixed;
   right: 0;
-  background-color: white;
+  background-color: var(--greyDark);
   display: flex;
   flex-direction: column;
   transition: all 0.4s;
 }
 
 .contentClosed {
-  right: -466px;
+  right: -490px;
 }
 
 .topButton {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-right: 38px;
-  margin-left: 38px;
-  margin-top: 40px;
-  margin-bottom: 42px;
+  padding: 32px;
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .divider {
@@ -58,7 +64,8 @@
 
 @media (max-width: 500px) {
   .menuContent {
-    width: 100%;
+    width: calc(100% - 48px);
+    margin-left: 24px;
   }
   .contentClosed {
     right: -100%;

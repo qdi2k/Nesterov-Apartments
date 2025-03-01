@@ -1,5 +1,5 @@
 import {ContactButton} from '@/entities/contactButton'
-import {Icon, Divider} from '@/shared/ui'
+import {Icon, Divider, Text, DropdownMenu} from '@/shared/ui'
 import {BurgerList} from './BurgerList'
 import styles from './Burger.module.css'
 
@@ -20,6 +20,12 @@ const links = [
   {id: 9, text: 'О застройщике', href: '/about-builder'},
 ]
 
+const mockData = [
+  {id: 1, city: 'Новосибирск'},
+  {id: 2, city: 'Нижний Новгород'},
+  {id: 3, city: 'Краснодар'},
+]
+
 export function Burger({isOpen, onPress}: IBurgerProps) {
   return (
     <div
@@ -37,9 +43,14 @@ export function Burger({isOpen, onPress}: IBurgerProps) {
         onClick={(e) => e.stopPropagation()}
       >
         <div className={styles.topButton}>
-          <ContactButton color='brown' phoneColor='black' />
+          <div className={styles.textContainer}>
+            <Text size='small' color='white' className={styles.phone}>
+              +7 (495) 419-15-18
+            </Text>
+            <DropdownMenu title='Новосибирск' icon='address' data={mockData} />
+          </div>
           <button onClick={() => onPress()}>
-            <Icon name='close' size={24} color='brown' />
+            <Icon name='close' size={24} color='white' />
           </button>
         </div>
         <Divider className={styles.divider} />

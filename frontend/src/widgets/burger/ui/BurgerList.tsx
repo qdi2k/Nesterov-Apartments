@@ -19,7 +19,7 @@ export function BurgerList({links, onPress}: IBurgerListProps) {
       {links.map((link) => (
         <li key={link.id}>
           <Link href={link.href} onClick={() => onPress()}>
-            <Text size='small' isHover>
+            <Text size='small' color='white' isHover>
               {link.text}{' '}
             </Text>
           </Link>

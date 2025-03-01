@@ -1,32 +1,45 @@
-import {Icon, Text} from '@/shared/ui'
+import {Button, Icon, Text} from '@/shared/ui'
+import {motion} from 'framer-motion'
 import styles from './Document.module.css'
 
 export interface IDocumentProps {
   file: 'wordFile' | 'pdfFile'
   title: string
   date: string
+  delay: number
 }
 
-export function Document({file, title, date}: IDocumentProps) {
+export function Document({file, title, date, delay}: IDocumentProps) {
   return (
-    <li className={styles.container}>
+    <motion.li
+      className={styles.container}
+      variants={{
+        hidden: {
+          y: 50,
+          opacity: 0,
+        },
+        visible: {
+          y: 0,
+          opacity: 1,
+          transition: {
+            duration: 0.4,
+            delay: delay,
+          },
+        },
+      }}
+    >
       <div className={styles.leftContent}>
-        <Icon name={file} size={60} className={styles.iconFile} />
-        <Text size='sMedium' weight='light' isUppercase>
+        <Icon name={file} size={38} className={styles.iconFile} />
+        <Text size='sMedium' weight='semiBold' className={styles.fileName}>
           {title}
         </Text>
       </div>
       <div className={styles.rightContent}>
-        <Text size='sMedium' weight='light'>
+        <Text size='xSmall' className={styles.date}>
           {date}
         </Text>
-        <div className={styles.downloadButton}>
-          <Icon name='download' size={28} />
-          <Text size='small' weight='semiBold' color='brown'>
-            Скачать
-          </Text>
-        </div>
+        <Button className={styles.downloadButton}>Скачать</Button>
       </div>
-    </li>
+    </motion.li>
   )
 }

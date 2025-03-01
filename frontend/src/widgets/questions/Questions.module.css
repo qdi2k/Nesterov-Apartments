@@ -1,0 +1,42 @@
+.container {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.questionsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.questionItemContainer {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  cursor: pointer;
+  background-color: var(--greyLight);
+  border-radius: 12px;
+}
+
+.questionTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+}
+
+.answer {
+  max-width: 800px;
+  padding-left: 16px;
+}
+
+.icon {
+  transition: all 0.4s;
+  transform: rotate(45deg);
+}
+
+.iconRotate {
+  transition: all 0.4s;
+  transform: rotate(0);
+}

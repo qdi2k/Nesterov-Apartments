@@ -1,17 +1,21 @@
 .button {
   display: flex;
   align-items: center;
+  gap: 12px;
+  padding: 20px;
+  border-radius: 16px;
   width: max-content;
+  background-color: var(--orange);
+  transition: background-color 0.4s;
 }
 
-.backgroundButton {
-  min-height: 78px;
-  min-width: 78px;
-  border-radius: 50%;
+.button:hover {
+  background-color: var(--orangeLight);
+  transition: background-color 0.4s;
 }
 
-.text {
-  width: max-content;
-  margin-left: -40px;
-  margin-right: 10px;
+@media (max-width: 500px) {
+  .button {
+    padding: 16px;
+  }
 }
