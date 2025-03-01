@@ -4,7 +4,7 @@ import os
 
 from uvicorn import logging as uvicorn_logging
 
-from core.config import BASE_DIR, settings
+from app.core.config import BASE_DIR, settings
 
 LOG_LEVEL: str = "DEBUG" if settings.DEBUG else "INFO"
 FORMAT_UVICORN: str = (
