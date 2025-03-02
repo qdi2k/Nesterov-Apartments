@@ -1,6 +1,7 @@
 from sqlalchemy import Integer, String, Float, Enum, ForeignKey
 from sqlalchemy.orm import mapped_column, Mapped, relationship
 from fastapi_storages.integrations.sqlalchemy import FileType
+from starlette.requests import Request
 
 from app.db.database import Base
 from app.core.config import APARTMENTS_IMAGE
@@ -19,8 +20,8 @@ class Zone(Base):
         argument="Apartment", back_populates="zone"
     )
 
-    def __str__(self):
-        return f"{self.city}, {self.district}"
+    def __admin_repr__(self, request: Request):
+        return f'{self.city}, {self.district}'
 
 
 class Apartment(Base):
@@ -32,7 +33,10 @@ class Apartment(Base):
     address: Mapped[str] = mapped_column(String, nullable=False)
 
     rooms_count: Mapped[CountRooms] = mapped_column(
-        Enum(CountRooms), nullable=False
+        Enum(
+            CountRooms,
+             values_callable=lambda x: [e.value for e in CountRooms]
+        )
     )
     section: Mapped[str] = mapped_column(String, nullable=False)
     floor: Mapped[int] = mapped_column(Integer, nullable=False)
