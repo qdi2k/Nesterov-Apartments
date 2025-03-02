@@ -1,5 +1,7 @@
 from sqladmin import ModelView
+from wtforms import validators
 
+from app.core.enums import CountRooms
 from app.db.models import Apartment, Zone
 
 
@@ -14,8 +16,8 @@ class ApartmentAdmin(ModelView, model=Apartment):
     column_list = [
         Apartment.id, Apartment.name, Apartment.project, Apartment.address,
         Apartment.section, Apartment.floor, Apartment.area,
-        Apartment.image, Apartment.price, Apartment.discounted_price,
-        Apartment.zone
+        Apartment.rooms_count, Apartment.image, Apartment.price,
+        Apartment.discounted_price, Apartment.zone
     ]
     column_searchable_list = [
         Apartment.name, Apartment.project, Apartment.address
@@ -27,12 +29,18 @@ class ApartmentAdmin(ModelView, model=Apartment):
         Apartment.name, Apartment.project, Apartment.address,
         Apartment.section, Apartment.floor, Apartment.area,
         Apartment.price, Apartment.discounted_price, Apartment.image,
-        Apartment.zone
+        Apartment.zone, Apartment.rooms_count,
     ]
-
     form_ajax_refs = {
         'zone': {
             'fields': ('id', 'city', 'district'),
             'order_by': 'city',
+        }
+    }
+
+    form_args = {
+        'rooms_count': {
+            'validators': [validators.InputRequired()],
+            'choices': [room.value for room in CountRooms]
         }
     }
