@@ -4,7 +4,9 @@ from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 from app.core.config import settings
 
-engine = create_async_engine(settings.get_async_database_url)
+engine = create_async_engine(
+    settings.get_async_database_url, echo=settings.DEBUG
+)
 async_session_maker = async_sessionmaker(engine, class_=AsyncSession)
 
 
