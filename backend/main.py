@@ -7,7 +7,8 @@ from fastapi.openapi.utils import get_openapi
 from sqladmin import Admin
 from starlette.middleware.trustedhost import TrustedHostMiddleware
 
-from app.admin.models import ApartmentAdmin
+from app.api.routes.apartments import apartment_router
+from app.admin.models import ApartmentAdmin, ZoneAdmin
 from app.core.config import settings, API_TITLE, API_VERSION, API_DESCRIPTION
 from app.core.log_config import init_loggers
 from app.core.middleware import ExceptionHandlerMiddleware
@@ -58,7 +59,7 @@ class FastAPIApp:
         """
         ### Подключает роутеры к приложению `FastAPI`.
         """
-        ...
+        self.app.include_router(router=apartment_router, prefix="/api")
 
 
     def include_openapi(self) -> None:
@@ -77,6 +78,7 @@ class FastAPIApp:
 
     def add_view_admin(self) -> None:
         self.admin.add_view(ApartmentAdmin)
+        self.admin.add_view(ZoneAdmin)
 
 
 def create_app() -> FastAPI:
