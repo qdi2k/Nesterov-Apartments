@@ -11,7 +11,7 @@ from alembic import op
 import sqlalchemy as sa
 import fastapi_storages
 
-from core.config import APARTMENTS_IMAGE
+from app.core.config import APARTMENTS_IMAGE
 
 # revision identifiers, used by Alembic.
 revision: str = '62a3314fc63c'
