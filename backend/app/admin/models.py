@@ -1,46 +1,49 @@
-from sqladmin import ModelView
-from wtforms import validators
+from starlette_admin.contrib.sqla import ModelView
 
-from app.core.enums import CountRooms
-from app.db.models import Apartment, Zone
+from app.db.models import Zone, Apartment
 
 
-class ZoneAdmin(ModelView, model=Zone):
-    column_list = [Zone.id, Zone.city, Zone.district]
-    column_searchable_list = [Zone.city, Zone.district]
-    column_sortable_list = [Zone.city, Zone.district]
-    form_columns = [Zone.city, Zone.district]
-
-
-class ApartmentAdmin(ModelView, model=Apartment):
-    column_list = [
-        Apartment.id, Apartment.name, Apartment.project, Apartment.address,
-        Apartment.section, Apartment.floor, Apartment.area,
-        Apartment.rooms_count, Apartment.image, Apartment.price,
-        Apartment.discounted_price, Apartment.zone
+class ZoneView(ModelView):
+    fields = [
+        Zone.id,
+        Zone.city,
+        Zone.district,
     ]
-    column_searchable_list = [
-        Apartment.name, Apartment.project, Apartment.address
-    ]
-    column_sortable_list = [
-        Apartment.price, Apartment.discounted_price, Apartment.floor
-    ]
-    form_columns = [
-        Apartment.name, Apartment.project, Apartment.address,
-        Apartment.section, Apartment.floor, Apartment.area,
-        Apartment.price, Apartment.discounted_price, Apartment.image,
-        Apartment.zone, Apartment.rooms_count,
-    ]
-    form_ajax_refs = {
-        'zone': {
-            'fields': ('id', 'city', 'district'),
-            'order_by': 'city',
-        }
-    }
 
-    form_args = {
-        'rooms_count': {
-            'validators': [validators.InputRequired()],
-            'choices': [room.value for room in CountRooms]
-        }
-    }
+    sortable_fields = [
+        Zone.id,
+        Zone.city,
+        Zone.district,
+    ]
+    searchable_fields = [
+        Zone.id,
+        Zone.city,
+        Zone.district,
+    ]
+
+    column_visibility = False
+    search_builder = True
+    responsive_table = False
+    save_state = True
+
+
+class ApartmentView(ModelView):
+    pass
+
+    # TODO: Удалить после настройки
+    # fields = [
+    #     Apartment.id,
+    #     Apartment.name,
+    #     Apartment.project,
+    #     Apartment.address,
+    #     EnumField("rooms_count", enum=CountRooms),
+    #     Apartment.section,
+    #     Apartment.floor,
+    #     Apartment.area,
+    #     ImageField("image"),
+    #     Apartment.price,
+    #     Apartment.discounted_price,
+    #     Apartment.zone,
+    # ]
+    #
+    # exclude_fields_from_list = [Apartment.image,]
