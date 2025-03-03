@@ -1,6 +1,7 @@
 from sqlalchemy.ext.asyncio import (async_sessionmaker, create_async_engine,
                                     AsyncSession)
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+from sqlalchemy.orm import (DeclarativeBase, Mapped, mapped_column,
+                            declared_attr)
 
 from app.core.config import settings
 
@@ -11,4 +12,19 @@ async_session_maker = async_sessionmaker(engine, class_=AsyncSession)
 
 
 class Base(DeclarativeBase):
+    """
+    Абстрактный базовый класс, предоставляющий общую функциональность,
+    для всех наследованных моделей.
+    """
+
+    __abstract__ = True
+
     id: Mapped[int] = mapped_column(autoincrement=True, primary_key=True)
+
+    @declared_attr.directive
+    def __tablename__(cls) -> str:
+        """
+        Автоматически генерирует имя таблицы на основе имени класса в
+        нижнем регистре.
+        """
+        return f"{cls.__name__.lower()}s"
