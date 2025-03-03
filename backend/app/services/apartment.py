@@ -1,10 +1,10 @@
-from typing import List, Sequence
+from typing import List
 
 from fastapi import HTTPException
 from starlette import status
 
-from app.api.schema.apartment import RequestSearchApartment, ResponseSearchApartment
-from app.db.models import Apartment
+from app.api.schema.apartment import (RequestSearchApartment,
+                                      ResponseSearchApartment)
 from app.utils.unitofwork import IUnitOfWork
 
 
@@ -24,13 +24,9 @@ class ApartmentService:
         zone_id = await self._get_zone_id_or_404(
             city=data.city, district=data.district
         )
-        apartments = await self._get_apartments_or_404(
+        return await self._get_apartments_or_404(
             zone_id=zone_id, data=data
         )
-        return [
-            ResponseSearchApartment.model_validate(apartment)
-            for apartment in apartments
-        ]
 
     async def _get_zone_id_or_404(
             self, city: str, district: str
@@ -47,7 +43,7 @@ class ApartmentService:
 
     async def _get_apartments_or_404(
             self, zone_id: int, data: RequestSearchApartment
-    ) -> Sequence[Apartment]:
+    ) -> List[ResponseSearchApartment]:
         """Проверка существования зоны в БД."""
         async with self.uow:
             apartments = await self.uow.apartment.find_by_filters(
@@ -65,4 +61,7 @@ class ApartmentService:
                     status_code=status.HTTP_404_NOT_FOUND,
                     detail=f"Квартиры по вашему запросу не найдены!"
                 )
-            return apartments
+            return [
+                ResponseSearchApartment.model_validate(apartment)
+                for apartment in apartments
+            ]
