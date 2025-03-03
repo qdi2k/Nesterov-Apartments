@@ -1,5 +1,7 @@
+from starlette_admin import EnumField, ImageField
 from starlette_admin.contrib.sqla import ModelView
 
+from app.core.enums import CountRooms
 from app.db.models import Zone, Apartment
 
 
@@ -28,22 +30,19 @@ class ZoneView(ModelView):
 
 
 class ApartmentView(ModelView):
-    pass
+    fields = [
+        Apartment.id,
+        Apartment.name,
+        Apartment.project,
+        Apartment.address,
+        EnumField("rooms_count", enum=CountRooms),
+        Apartment.section,
+        Apartment.floor,
+        Apartment.area,
+        ImageField("image"),
+        Apartment.price,
+        Apartment.discounted_price,
+        Apartment.zone,
+    ]
 
-    # TODO: Удалить после настройки
-    # fields = [
-    #     Apartment.id,
-    #     Apartment.name,
-    #     Apartment.project,
-    #     Apartment.address,
-    #     EnumField("rooms_count", enum=CountRooms),
-    #     Apartment.section,
-    #     Apartment.floor,
-    #     Apartment.area,
-    #     ImageField("image"),
-    #     Apartment.price,
-    #     Apartment.discounted_price,
-    #     Apartment.zone,
-    # ]
-    #
-    # exclude_fields_from_list = [Apartment.image,]
+    exclude_fields_from_list = [Apartment.image,]
