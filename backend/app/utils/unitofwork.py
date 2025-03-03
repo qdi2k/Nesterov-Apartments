@@ -1,6 +1,8 @@
 from abc import ABC, abstractmethod
 
 from app.db.database import async_session_maker
+from app.repositories.apartment_repository import ApartmentRepository
+from app.repositories.zone_repository import ZoneRepository
 
 
 class IUnitOfWork(ABC):
@@ -17,8 +19,8 @@ class IUnitOfWork(ABC):
     После реализации нового репозитория необходимо его добавить здесь.
     """
 
-    # TODO: Добавить репозиторий в таком формате
-    # user = UserRepository
+    apartment = ApartmentRepository
+    zone = ZoneRepository
 
     @abstractmethod
     def __init__(self):
@@ -73,8 +75,8 @@ class UnitOfWork(IUnitOfWork):
         """
         self.session = self.session_factory()
 
-        # TODO: Добавить репозиторий в таком формате
-        # self.user = UserRepository(self.session)
+        self.apartment = ApartmentRepository(self.session)
+        self.zone = ZoneRepository(self.session)
 
     async def __aexit__(self, *args):
         """Асинхронный выход из контекста UoW. Выполняет откат изменений и
