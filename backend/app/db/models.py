@@ -1,7 +1,9 @@
 from sqlalchemy import Integer, String, Float, Enum, ForeignKey
 from sqlalchemy.orm import mapped_column, Mapped, relationship
+from fastapi_storages.integrations.sqlalchemy import FileType
 from starlette.requests import Request
 
+from app.core.config import APARTMENTS_IMAGE
 from app.db.database import Base
 from app.core.enums import CountRooms
 
@@ -37,7 +39,6 @@ class Apartment(Base):
     section: Mapped[str] = mapped_column(String(50), nullable=False)
     floor: Mapped[int] = mapped_column(Integer, nullable=False)
     area: Mapped[float] = mapped_column(Float, nullable=False)
-    image: Mapped[str] = mapped_column(String(500))
     price: Mapped[float] = mapped_column(Float, nullable=False)
     discounted_price: Mapped[float] = mapped_column(Float, nullable=False)
 
@@ -47,3 +48,8 @@ class Apartment(Base):
     zone: Mapped["Zone"] = relationship(
         argument="Zone", back_populates="apartments"
     )
+
+    image: Mapped[str] = mapped_column(
+        FileType(storage=APARTMENTS_IMAGE), nullable=True
+    )
+    image_url: Mapped[str] = mapped_column(String(500))
