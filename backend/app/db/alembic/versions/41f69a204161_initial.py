@@ -1,18 +1,20 @@
 """initial
 
-Revision ID: 265bc39aca19
+Revision ID: 41f69a204161
 Revises: 
-Create Date: 2025-03-04 02:15:48.713079
+Create Date: 2025-03-04 03:39:13.375691
 
 """
 from typing import Sequence, Union
 
+import fastapi_storages
 from alembic import op
 import sqlalchemy as sa
 
+from app.core.config import APARTMENTS_IMAGE
 
 # revision identifiers, used by Alembic.
-revision: str = '265bc39aca19'
+revision: str = '41f69a204161'
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -34,10 +36,11 @@ def upgrade() -> None:
     sa.Column('section', sa.String(length=50), nullable=False),
     sa.Column('floor', sa.Integer(), nullable=False),
     sa.Column('area', sa.Float(), nullable=False),
-    sa.Column('image', sa.String(length=500), nullable=False),
     sa.Column('price', sa.Float(), nullable=False),
     sa.Column('discounted_price', sa.Float(), nullable=False),
     sa.Column('zone_id', sa.Integer(), nullable=False),
+    sa.Column('image', fastapi_storages.integrations.sqlalchemy.FileType(storage=APARTMENTS_IMAGE), nullable=True),
+    sa.Column('image_url', sa.String(length=500), nullable=False),
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
     sa.ForeignKeyConstraint(['zone_id'], ['zones.id'], ),
     sa.PrimaryKeyConstraint('id')
