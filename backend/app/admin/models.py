@@ -1,6 +1,5 @@
 from fastapi import UploadFile
 from sqladmin import ModelView
-from sqladmin.fields import FileField
 
 from app.db.models import Zone, Apartment
 from app.utils.functools import generate_unique_filename
@@ -21,26 +20,23 @@ class ApartmentAdmin(ModelView, model=Apartment):
         Apartment.section,
         Apartment.floor,
         Apartment.area,
-        Apartment.image_url,
+        Apartment.image,
         Apartment.price,
         Apartment.discounted_price,
         Apartment.zone,
     ]
 
-    form_overrides = {
-        "image": FileField
-    }
-
-    form_excluded_columns = {
-        Apartment.image_url
+    column_formatters = {
+        Apartment.image: lambda m, a: m.image.name
     }
 
     async def on_model_change(self, data, model, is_created, request):
-        """Перед созданием или обновлением модели меняет имя файла"""
+        """Перед созданием или обновлением модели меняет имя файла."""
 
         image: UploadFile = data.get('image')
-        if image:
+        if image and isinstance(image, UploadFile):
             unique_filename = generate_unique_filename(file=image)
             image.filename = unique_filename
-            data['image_url'] = f'/apartment/{unique_filename}'
+            data['image'] = image
+
         await super().on_model_change(data, model, is_created, request)
