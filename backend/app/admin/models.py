@@ -1,48 +1,48 @@
-from starlette_admin import EnumField, ImageField
-from starlette_admin.contrib.sqla import ModelView
+from fastapi import UploadFile
+from sqladmin import ModelView
+from sqladmin.fields import FileField
 
-from app.core.enums import CountRooms
 from app.db.models import Zone, Apartment
 
 
-class ZoneView(ModelView):
-    fields = [
-        Zone.id,
-        Zone.city,
-        Zone.district,
-    ]
-
-    sortable_fields = [
-        Zone.id,
-        Zone.city,
-        Zone.district,
-    ]
-    searchable_fields = [
-        Zone.id,
-        Zone.city,
-        Zone.district,
-    ]
-
-    column_visibility = False
-    search_builder = True
-    responsive_table = False
-    save_state = True
+class ZoneAdmin(ModelView, model=Zone):
+    column_list = [Zone.id, Zone.city, Zone.district]
+    form_excluded_columns = [Zone.apartments]
 
 
-class ApartmentView(ModelView):
-    fields = [
+class ApartmentAdmin(ModelView, model=Apartment):
+    column_list = [
         Apartment.id,
         Apartment.name,
         Apartment.project,
         Apartment.address,
-        EnumField("rooms_count", enum=CountRooms),
+        Apartment.rooms_count,
         Apartment.section,
         Apartment.floor,
         Apartment.area,
-        ImageField("image"),
+        Apartment.image_url,
         Apartment.price,
         Apartment.discounted_price,
         Apartment.zone,
     ]
 
-    exclude_fields_from_list = [Apartment.image,]
+    # TODO: Разобраться как подставить url в начало
+    # column_formatters = {
+    #     Apartment.image_url: lambda m, a: m.image_url[:10]
+    # }
+
+    form_overrides = {
+        "image": FileField
+    }
+
+    form_excluded_columns = {
+        Apartment.image_url
+    }
+
+    async def on_model_change(self, data, model, is_created, request):
+        image: UploadFile = data.get('image')
+        filename = image.filename
+
+        image.filename = filename.replace(' ', '_')
+        data['image_url'] = f'/apartment/{image.filename}'
+        await super().on_model_change(data, model, is_created, request)

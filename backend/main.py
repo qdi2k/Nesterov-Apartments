@@ -4,16 +4,15 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.openapi.utils import get_openapi
-from starlette_admin.contrib.sqla import Admin
+from sqladmin import Admin
 from starlette.middleware.trustedhost import TrustedHostMiddleware
 
-from app.admin.models import ZoneView, ApartmentView
+from app.admin.models import ApartmentAdmin, ZoneAdmin
 from app.api.routes.apartments import apartment_router
 from app.core.config import settings, API_TITLE, API_VERSION, API_DESCRIPTION
 from app.core.log_config import init_loggers
 from app.core.middleware import ExceptionHandlerMiddleware
 from app.db.database import engine
-from app.db.models import Zone, Apartment
 
 
 class FastAPIApp:
@@ -28,7 +27,7 @@ class FastAPIApp:
         init_loggers()
 
         self.app: FastAPI = FastAPI()
-        self.admin = Admin(engine, debug=True)
+        self.admin = Admin(app=self.app, engine=engine, debug=True)
         self.add_view_admin()
         self.include_middlewares()
         self.include_routers()
@@ -78,11 +77,8 @@ class FastAPIApp:
             )
 
     def add_view_admin(self) -> None:
-        self.admin.add_view(ZoneView(Zone))
-        self.admin.add_view(ApartmentView(Apartment))
-
-        self.admin.mount_to(self.app)
-
+        self.admin.add_view(ApartmentAdmin)
+        self.admin.add_view(ZoneAdmin)
 
 
 def create_app() -> FastAPI:
