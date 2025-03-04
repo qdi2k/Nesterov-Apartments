@@ -52,4 +52,3 @@ class Apartment(Base):
     image: Mapped[str] = mapped_column(
         FileType(storage=APARTMENTS_IMAGE), nullable=True
     )
-    image_url: Mapped[str] = mapped_column(String(500))
