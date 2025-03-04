@@ -3,6 +3,7 @@ from sqladmin import ModelView
 from sqladmin.fields import FileField
 
 from app.db.models import Zone, Apartment
+from app.utils.functools import generate_unique_filename
 
 
 class ZoneAdmin(ModelView, model=Zone):
@@ -26,11 +27,6 @@ class ApartmentAdmin(ModelView, model=Apartment):
         Apartment.zone,
     ]
 
-    # TODO: Разобраться как подставить url в начало
-    # column_formatters = {
-    #     Apartment.image_url: lambda m, a: m.image_url[:10]
-    # }
-
     form_overrides = {
         "image": FileField
     }
@@ -40,9 +36,11 @@ class ApartmentAdmin(ModelView, model=Apartment):
     }
 
     async def on_model_change(self, data, model, is_created, request):
-        image: UploadFile = data.get('image')
-        filename = image.filename
+        """Перед созданием или обновлением модели меняет имя файла"""
 
-        image.filename = filename.replace(' ', '_')
-        data['image_url'] = f'/apartment/{image.filename}'
+        image: UploadFile = data.get('image')
+        if image:
+            unique_filename = generate_unique_filename(file=image)
+            image.filename = unique_filename
+            data['image_url'] = f'/apartment/{unique_filename}'
         await super().on_model_change(data, model, is_created, request)
