@@ -87,6 +87,7 @@
   width: 100%;
   overflow: hidden;
   position: relative;
+  user-select: none;
 }
 
 .listContent {
@@ -143,6 +144,7 @@
 
 .arrow {
   transform: rotate(180deg);
+  user-select: none;
 }
 
 .arrowRight {

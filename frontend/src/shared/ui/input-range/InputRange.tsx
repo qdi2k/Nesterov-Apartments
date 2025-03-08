@@ -1,133 +1,108 @@
 'use client'
+
 import {Open_Sans} from 'next/font/google'
 import styles from './InputRange.module.css'
-import {useEffect, useState} from 'react'
+import {Text} from '../text'
+import {useState} from 'react'
 
 const openSans = Open_Sans({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700'],
 })
 
-type Value = {
-  min: number
-  max: number
-}
-
 export interface IInputRangeProps {
-  tooltipId?: string
-  inputId?: string
+  title: string
   max: number
   min: number
   step: number
-  value: Value
+  value: number
   formatedValue?: string
-  valueMark?: string
-  changeValue: (event: Value) => void
-  isMultiRange?: boolean
+  changeValue: (event: number) => void
 }
 
 export function InputRange({
+  title,
   step,
   max,
   min,
   value,
-  formatedValue,
-  valueMark,
   changeValue,
-  isMultiRange,
 }: IInputRangeProps) {
-  const [minValue, setMinValue] = useState(value ? value.min : min)
-  const [maxValue, setMaxValue] = useState(value ? value.max : max)
+  const [stringValue, setStringValue] = useState(
+    value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
+  )
+  const controlPos = ((value - min) / (max - min)) * 100
 
-  const minPos = ((minValue - min) / (max - min)) * 100
-  const maxPos = ((maxValue - min) / (max - min)) * 100
-
-  const handleMinChange = (event: {
-    preventDefault: () => void
-    target: {value: string | number}
-  }) => {
-    event.preventDefault()
-    const newMinVal = Math.min(
-      +event.target.value,
-      maxValue - (isMultiRange ? step * 10 : 0)
-    )
-    if (!value) setMinValue(newMinVal)
-    changeValue({min: newMinVal, max: maxValue})
+  const formatNumber = (number: number) => {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
   }
 
-  const handleMaxChange = (event: {
-    preventDefault: () => void
-    target: {value: string | number}
-  }) => {
-    event.preventDefault()
-    const newMaxVal = Math.max(+event.target.value, minValue + step * 10)
-    if (!value) setMaxValue(newMaxVal)
-    changeValue({min: minValue, max: newMaxVal})
+  const parseNumber = (formattedValue: any) => {
+    console.log(typeof formattedValue)
+    return formattedValue.replace(/\s/g, '')
   }
 
-  useEffect(() => {
-    if (value) {
-      setMinValue(value.min)
-      setMaxValue(value.max)
+  const handleChangeRangeValue = (event: {
+    target: {value: string | number}
+  }) => {
+    const inputValue = event.target.value
+    const parsedValue = parseNumber(inputValue)
+    const formattedValue = formatNumber(parsedValue)
+    changeValue(event.target.value)
+    setStringValue(formattedValue)
+  }
+
+  const handleChangeInputValue = (event: {
+    target: {value: string | number}
+  }) => {
+    const inputValue = event.target.value.toString().replace(/\D/g, '')
+    const numberValue = parseNumber(inputValue)
+    const formattedValue = formatNumber(numberValue)
+
+    if (numberValue < min) {
+      const formattedValue2 = formatNumber(min)
+      changeValue(min)
+      setStringValue(formattedValue2)
+      return
     }
-  }, [value])
+
+    if (numberValue > max) {
+      const formattedValue2 = formatNumber(max)
+      changeValue(max)
+      setStringValue(formattedValue2)
+      return
+    }
+    changeValue(numberValue)
+    setStringValue(formattedValue)
+  }
 
   return (
     <div className={styles.container}>
-      <span
-        className={`${openSans.className} ${styles.textRange}`}
-        style={{left: `${minPos - 1}%`}}
-      >
-        {formatedValue} {valueMark}
-      </span>
-
-      {isMultiRange && (
-        <span
-          className={`${openSans.className} ${styles.textRange}`}
-          style={{left: `${maxPos}%`}}
-        >
-          {value.max} {valueMark}
-        </span>
-      )}
-
+      <Text color='blueLight'>{title}</Text>
       <input
-        className={styles.input}
-        style={{marginLeft: -8 - minPos * -0.16}}
-        type='range'
-        value={minValue}
+        className={`${styles.inputFiled} ${openSans.className}`}
+        value={stringValue}
+        onChange={handleChangeInputValue}
         min={min}
         max={max}
-        step={step}
-        onChange={handleMinChange}
       />
-      {isMultiRange && (
+      <div className={styles.inputContainer}>
         <input
-          className={styles.input}
-          style={{marginLeft: -8 - maxPos * -0.16}}
+          className={styles.inputRange}
+          style={{marginLeft: -8 - controlPos * -0.16}}
           type='range'
-          value={maxValue}
+          value={value}
           min={min}
           max={max}
           step={step}
-          onChange={handleMaxChange}
+          onChange={handleChangeRangeValue}
         />
-      )}
-
-      <div className={styles.controlContainer}>
-        <div className={styles.inputVerticalLineLeft} />
-        <div className={styles.control} style={{left: `${minPos}%`}} />
-        <div className={styles.rail}>
-          {isMultiRange && (
-            <div
-              className={styles.innerRail}
-              style={{left: `${minPos}%`, right: `${100 - maxPos}%`}}
-            />
-          )}
+        <div className={styles.controlContainer}>
+          <div className={styles.inputVerticalLineLeft} />
+          <div className={styles.control} style={{left: `${controlPos}%`}} />
+          <div className={styles.rail} />
+          <div className={styles.inputVerticalLineRight} />
         </div>
-        {isMultiRange && (
-          <div className={styles.control} style={{left: `${maxPos}%`}} />
-        )}
-        <div className={styles.inputVerticalLineRight} />
       </div>
     </div>
   )

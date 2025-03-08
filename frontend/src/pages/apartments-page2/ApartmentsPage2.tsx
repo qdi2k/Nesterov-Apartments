@@ -59,6 +59,32 @@ const MOCK_APARTMENTS = [
     square: '22.9',
     floor: 11,
   },
+  {
+    id: 7,
+    price: '21 000 000',
+    src: apartmentImage1,
+    rooms: 'Двухкомнатная',
+    square: '28.2',
+    floor: 7,
+  },
+  {
+    id: 8,
+    price: '16 086 100',
+    src: apartmentImage2,
+    discountPrice: '13 673 185',
+    discount: '15',
+    rooms: 'Однокомнатная',
+    square: '21.7',
+    floor: 12,
+  },
+  {
+    id: 9,
+    price: '14 800 000',
+    src: apartmentImage3,
+    rooms: 'Студия',
+    square: '15',
+    floor: 8,
+  },
 ]
 
 export function ApartmentsPage2() {

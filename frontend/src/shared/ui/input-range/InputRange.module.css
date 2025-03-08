@@ -1,8 +1,17 @@
 .container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.inputContainer {
   position: relative;
   display: flex;
+  justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 14px;
+  margin-left: 12px;
+  width: 94%;
 }
 
 .controlContainer {
@@ -10,7 +19,7 @@
   position: absolute;
 }
 
-.input {
+.inputRange {
   position: absolute;
   width: 100%;
   pointer-events: none;
@@ -26,7 +35,7 @@
   width: 100%;
   top: 50%;
   height: 1px;
-  background: var(--black);
+  background: var(--greyDark);
 }
 
 .innerRail {
@@ -35,14 +44,29 @@
   background: var(--orange);
 }
 
+.inputFiled {
+  background-color: var(--greyLight);
+  padding: 16px;
+  border-radius: 10px;
+  width: 100%;
+  border: 1px solid transparent;
+  font-size: var(--small);
+  margin-top: 8px;
+  transition: 0.4s;
+}
+
+.inputFiled:focus {
+  border: 1px solid var(--greyDark);
+}
+
 .control {
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
   position: absolute;
-  background: var(--orange);
+  background: var(--greyDark);
   top: 50%;
-  margin-left: calc(16px / -2);
+  margin-left: calc(14px / -2);
   transform: translate3d(0, -50%, 0);
   z-index: 2;
 }
@@ -53,7 +77,7 @@
   top: -5px;
   width: 1px;
   height: 11px;
-  background-color: var(--black);
+  background-color: var(--greyDark);
 }
 
 .inputVerticalLineRight {
@@ -62,7 +86,7 @@
   top: -5px;
   width: 1px;
   height: 11px;
-  background-color: var(--black);
+  background-color: var(--greyDark);
 }
 
 .textRange {

@@ -75,8 +75,6 @@ const MapContent = ({
 }: IMapContentProps) => {
   const ymaps = useYMaps(['geocode', 'route'])
 
-  console.log(distance)
-
   const handleRouteButtonClick = async () => {
     if (!ymaps) {
       console.error('Yandex Maps API еще не загружен')
@@ -149,7 +147,7 @@ const MapContent = ({
           </div>
         )}
       </Map>
-      <div className={styles.routeContainer}>
+      {/* <div className={styles.routeContainer}>
         <Text size='sMedium' weight='light' isUppercase>
           Проложить маршрут
         </Text>
@@ -168,7 +166,7 @@ const MapContent = ({
             Показать маршрут
           </TextButton>
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }

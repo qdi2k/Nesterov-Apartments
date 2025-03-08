@@ -22,6 +22,8 @@ interface ITextProps {
   size?: FontSizes
   weight?: FontWeights
   color?: FontColors
+  onClick?: () => void
+  ref?: any
   isUppercase?: boolean
   isHover?: boolean
   animation?: Variants
@@ -36,6 +38,8 @@ export function Text({
   size = 'small',
   weight = 'regular',
   color = 'greyDark',
+  onClick,
+  ref,
   isUppercase,
   isHover,
   initialAnimation,
@@ -58,6 +62,8 @@ export function Text({
       animate={animate}
       exit={exit}
       variants={animation}
+      onClick={onClick}
+      ref={ref}
     >
       {children}
     </motion.p>

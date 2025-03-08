@@ -1,0 +1,87 @@
+.container {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  gap: 86px;
+  transition: all 0.4s;
+}
+
+.inputsContainer {
+  display: flex;
+  gap: 24px;
+  width: 60%;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 16px;
+}
+
+.infoContainer {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  width: 50%;
+  min-width: 477px;
+  padding: 50px 40px;
+  border-radius: 24px;
+  background-color: var(--greyDark);
+}
+
+.multiInputContainer {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  transition: all 0.4s;
+}
+
+.active {
+  color: var(--orangeLight);
+}
+
+.columnContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.infoText {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+@media (max-width: 1400px) {
+  .content {
+    gap: 24px;
+  }
+}
+
+@media (max-width: 970px) {
+  .inputsContainer {
+    width: 100%;
+  }
+  .infoContainer {
+    width: 100%;
+  }
+  .columnContainer {
+    gap: 24px;
+  }
+  .content {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 520px) {
+  .infoContainer {
+    flex-direction: column;
+    min-width: auto;
+    gap: 24px;
+    padding: 40px 30px;
+  }
+  .multiInputContainer {
+    flex-direction: column;
+  }
+}

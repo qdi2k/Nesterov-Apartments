@@ -15,6 +15,12 @@ import apartmentImage3 from '@/shared/assets/images/apartments/app_large.webp'
 import apartmentImage4 from '@/shared/assets/images/apartments/fe0de264fc1403e149d5ee439a9bf335e4391cdc.jpg'
 import apartmentImage5 from '@/shared/assets/images/apartments/i.webp'
 import apartmentImage6 from '@/shared/assets/images/apartments/large.webp'
+import {Peculiarity} from '@/widgets/peculiarity'
+import {ProgressBuild} from '@/widgets/progress-build'
+import {RouteMap} from '@/widgets/routeMap'
+import {MortgageCalculator} from '@/widgets/mortgage-calculator'
+import {Location} from '@/widgets/location'
+import {PriceChart} from '@/widgets/price-chart'
 
 const MOCK_IMAGES = [
   {
@@ -88,7 +94,82 @@ const MOCK_APARTMENTS = [
     square: '22.9',
     floor: 11,
   },
+  {
+    id: 7,
+    price: '21 000 000',
+    src: apartmentImage1,
+    rooms: 'Двухкомнатная',
+    square: '28.2',
+    floor: 7,
+  },
+  {
+    id: 8,
+    price: '16 086 100',
+    src: apartmentImage2,
+    discountPrice: '13 673 185',
+    discount: '15',
+    rooms: 'Однокомнатная',
+    square: '21.7',
+    floor: 12,
+  },
+  {
+    id: 9,
+    price: '14 800 000',
+    src: apartmentImage3,
+    rooms: 'Студия',
+    square: '15',
+    floor: 8,
+  },
 ]
+
+const data = {
+  labels: [
+    '01.01.2024',
+    '01.02.2024',
+    '01.03.2024',
+    '01.04.2024',
+    '01.05.2024',
+    '01.06.2024',
+    '01.07.2024',
+    '01.08.2024',
+    '01.09.2024',
+    '01.10.2024',
+    '01.11.2024',
+    '01.12.2024',
+  ],
+  prices: [
+    5000000, 5200000, 5100000, 5300000, 5400000, 5300000, 5250000, 5100000,
+    5100000, 5150000, 5190000, 5120000,
+  ],
+}
+
+const totalData = {
+  labels: [
+    '01.07.2023',
+    '01.08.2023',
+    '01.09.2023',
+    '01.10.2023',
+    '01.11.2023',
+    '01.12.2023',
+    '01.01.2024',
+    '01.02.2024',
+    '01.03.2024',
+    '01.04.2024',
+    '01.05.2024',
+    '01.06.2024',
+    '01.07.2024',
+    '01.08.2024',
+    '01.09.2024',
+    '01.10.2024',
+    '01.11.2024',
+    '01.12.2024',
+  ],
+  prices: [
+    5600000, 5650000, 5500000, 5400000, 5300000, 5200000, 5000000, 5200000,
+    5100000, 5300000, 5400000, 5300000, 5250000, 5100000, 5100000, 5150000,
+    5190000, 5120000,
+  ],
+}
 
 export function ObjectPage() {
   return (
@@ -109,18 +190,17 @@ export function ObjectPage() {
           </Text>
         </div>
       </div>
+      <Peculiarity />
       <Apartments
         apartments={MOCK_APARTMENTS}
         title='Квартиры в Shagal'
         buttonTitle='Показать ещё'
       />
-      <div className={`${themeStyles.container} ${styles.container1}`}>
-        <Title>Ход строительства</Title>
-      </div>
+      <MortgageCalculator />
+      <ProgressBuild />
+      <PriceChart data={data} totalData={totalData} />
       <Objects title='Другие объекты' />
-      <div className={`${themeStyles.container} ${styles.container1}`}>
-        <Title>Расположение</Title>
-      </div>
+      <Location title='Расположение' />
       <Record />
     </div>
   )
