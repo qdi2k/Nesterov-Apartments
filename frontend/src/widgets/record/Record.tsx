@@ -53,6 +53,7 @@ export function Record() {
             src={recordImage}
             alt='record'
             fill
+            sizes='100%'
           ></Image>
         </div>
       </div>

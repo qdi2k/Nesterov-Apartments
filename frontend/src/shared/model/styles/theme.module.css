@@ -13,9 +13,6 @@
 .white {
   color: var(--white);
 }
-.whiteLight {
-  color: var(--whiteLight);
-}
 .grey {
   color: var(--grey);
 }
@@ -36,12 +33,6 @@
 }
 .orangeWhite {
   color: var(--orangeWhite);
-}
-.brown {
-  color: var(--brown);
-}
-.brownDark {
-  color: var(--brownDark);
 }
 
 .light {

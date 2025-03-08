@@ -1,1 +1,0 @@
-export {InfrastructuraGallery} from './infrastructuraGallery'

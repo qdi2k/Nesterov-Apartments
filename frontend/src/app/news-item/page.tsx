@@ -54,6 +54,7 @@ export default function NewsItem() {
             src={newsImage}
             alt='news-image'
             fill
+            sizes='100%'
           />
         </div>
         <Text>

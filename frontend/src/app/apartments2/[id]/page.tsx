@@ -1,6 +1,6 @@
-import {ApartmentPage2} from '@/pages/apartment-page2'
+import {ApartmentPage} from '@/pages/apartment-page'
 
-export default function Apartment2() {
+export default function Apartment() {
   // const params = useParams()
-  return <ApartmentPage2 />
+  return <ApartmentPage />
 }

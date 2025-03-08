@@ -76,6 +76,7 @@ export function Gallery({images, isMax}) {
               alt='main-image'
               src={item.src}
               fill
+              sizes='100%'
             />
             {!isMax && (
               <div className={styles.titleContainer}>

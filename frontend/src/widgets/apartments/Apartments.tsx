@@ -54,7 +54,13 @@ const Apartment = ({
       }}
     >
       <div className={styles.image}>
-        <Image src={src} className={styles.image} alt='apartment-image' fill />
+        <Image
+          src={src}
+          className={styles.image}
+          alt='apartment-image'
+          fill
+          sizes='100%'
+        />
       </div>
       <div className={styles.textContainer}>
         <Text

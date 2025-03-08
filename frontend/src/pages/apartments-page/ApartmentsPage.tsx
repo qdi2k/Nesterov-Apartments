@@ -1,86 +1,100 @@
-'use client'
+import {Apartments} from '@/widgets/apartments'
+import apartmentImage1 from '@/shared/assets/images/apartments/6cedd80b436f266361756f174388a854c1451d8f.jpg'
+import apartmentImage2 from '@/shared/assets/images/apartments/6f4dae2fcd0fcbe264fd1d4e840485b9.jpg'
+import apartmentImage3 from '@/shared/assets/images/apartments/app_large.webp'
+import apartmentImage4 from '@/shared/assets/images/apartments/fe0de264fc1403e149d5ee439a9bf335e4391cdc.jpg'
+import apartmentImage5 from '@/shared/assets/images/apartments/i.webp'
+import apartmentImage6 from '@/shared/assets/images/apartments/large.webp'
 
-import {MainTitle} from '@/shared/ui'
-import {Record} from '@/widgets/record'
-import {SelectSection} from '@/widgets/select-section'
-import themeStyles from '@/shared/model/styles/theme.module.css'
-import {useState} from 'react'
-import {SelectContent} from '@/widgets/select-content'
-
-const mockApartmentData = [
-  {id: 1, section: 1, floor: 1, rooms: 1, square: 60, price: 7500000},
-  {id: 2, section: 1, floor: 1, rooms: 1, square: 40, price: 5500000},
-  {id: 3, section: 1, floor: 1, rooms: 4, square: 50, price: 6590000},
-  {id: 4, section: 1, floor: 2, rooms: 2, square: 50, price: 6200000},
-  {id: 5, section: 1, floor: 2, rooms: 2, square: 57, price: 6400000},
-  {id: 6, section: 1, floor: 2, rooms: 3, square: 41, price: 5500000},
-  {id: 7, section: 1, floor: 3, rooms: 2, square: 81, price: 8700000},
-  {id: 8, section: 1, floor: 3, rooms: 2, square: 41, price: 4200000},
-  {id: 9, section: 3, floor: 8, rooms: 2, square: 80, price: 9000000},
-  {id: 10, section: 3, floor: 8, rooms: 2, square: 70, price: 9000000},
-]
-
-const dataSection = [
-  {id: 1, value: 1},
-  {id: 2, value: 2},
-  {id: 3, value: 3},
-  {id: 4, value: 4},
-]
-
-const dataFloor = [
-  {id: 1, value: 1},
-  {id: 2, value: 2},
-  {id: 3, value: 3},
-  {id: 4, value: 4},
-  {id: 5, value: 5},
-  {id: 6, value: 6},
-  {id: 7, value: 7},
-  {id: 8, value: 8},
+const MOCK_APARTMENTS = [
+  {
+    id: 1,
+    price: '21 000 000',
+    src: apartmentImage1,
+    rooms: 'Двухкомнатная',
+    square: '28.2',
+    floor: 7,
+  },
+  {
+    id: 2,
+    price: '16 086 100',
+    src: apartmentImage2,
+    discountPrice: '13 673 185',
+    discount: '15',
+    rooms: 'Однокомнатная',
+    square: '21.7',
+    floor: 12,
+  },
+  {
+    id: 3,
+    price: '14 800 000',
+    src: apartmentImage3,
+    rooms: 'Студия',
+    square: '15',
+    floor: 8,
+  },
+  {
+    id: 4,
+    price: '16 500 000',
+    src: apartmentImage4,
+    rooms: 'Однокомнатная',
+    square: '19.1',
+    floor: 2,
+  },
+  {
+    id: 5,
+    price: '12 430 000',
+    src: apartmentImage5,
+    rooms: 'Трехкомнатная',
+    square: '34.2',
+    floor: 14,
+  },
+  {
+    id: 6,
+    price: '21 200 000',
+    src: apartmentImage6,
+    discountPrice: '18 020 000',
+    discount: '15',
+    rooms: 'Двухкомнатная',
+    square: '22.9',
+    floor: 11,
+  },
+  {
+    id: 7,
+    price: '21 000 000',
+    src: apartmentImage1,
+    rooms: 'Двухкомнатная',
+    square: '28.2',
+    floor: 7,
+  },
+  {
+    id: 8,
+    price: '16 086 100',
+    src: apartmentImage2,
+    discountPrice: '13 673 185',
+    discount: '15',
+    rooms: 'Однокомнатная',
+    square: '21.7',
+    floor: 12,
+  },
+  {
+    id: 9,
+    price: '14 800 000',
+    src: apartmentImage3,
+    rooms: 'Студия',
+    square: '15',
+    floor: 8,
+  },
 ]
 
 export function ApartmentsPage() {
-  const [activeSelect, setActiveSelect] = useState(1)
-  const [section, setSection] = useState<number | null>(null)
-  const [floor, setFloor] = useState<number | null>(null)
-  const [room, setRoom] = useState<number | null>(null)
-  const [square, setSquare] = useState({min: 0, max: 100})
-  const [price, setPrice] = useState({min: 0, max: 10000})
-
-  const filtredApartments = mockApartmentData.filter(
-    (apartment) =>
-      apartment.section === section &&
-      apartment.floor === floor &&
-      apartment.rooms === room &&
-      apartment.square >= square.min &&
-      apartment.square <= square.max &&
-      apartment.price >= price.min * 1000 &&
-      apartment.price <= price.max * 1000
-  )
-
   return (
-    <div className={themeStyles.container}>
-      <MainTitle>Квартиры</MainTitle>
-      <SelectSection
-        activeSelect={activeSelect}
-        changeSelect={setActiveSelect}
-        dataSection={dataSection}
-        dataFloor={dataFloor}
-        section={section}
-        changeSection={setSection}
-        floor={floor}
-        changeFloor={setFloor}
-        room={room}
-        changeRoom={setRoom}
-        square={square}
-        changeSquare={setSquare}
-        price={price}
-        changePrice={setPrice}
+    <div>
+      <Apartments
+        apartments={MOCK_APARTMENTS}
+        title='Квартиры'
+        buttonTitle='Показать ещё'
       />
-      <SelectContent
-        activeSelect={activeSelect}
-        apartments={filtredApartments}
-      />
-      <Record />
     </div>
   )
 }

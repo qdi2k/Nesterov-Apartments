@@ -1,6 +1,5 @@
 import styles from './Footer.module.css'
 import themeStyles from '@/shared/model/styles/theme.module.css'
-import {ContactButton} from '@/entities/contactButton'
 import {FooterNav} from './FooterNav'
 import {Divider, Icon, Text} from '@/shared/ui'
 import Link from 'next/link'
@@ -16,9 +15,6 @@ export function Footer() {
             </Link>
           </div>
           <FooterNav />
-          <div className={styles.contact}>
-            <ContactButton />
-          </div>
         </div>
         <Divider className={styles.footerDivider} />
         <div className={styles.bottomContentContainer}>

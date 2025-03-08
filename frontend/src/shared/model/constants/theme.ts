@@ -31,26 +31,20 @@ const opacity = {
 
 const fontColors = {
   white: `${themeStyles.white}`,
-  // whiteLight: `${themeStyles.whiteLight}`,
   grey: `${themeStyles.grey}`,
   greyDark: `${themeStyles.greyDark}`,
-  // greyLight: `${themeStyles.greyLight}`,
+  greyLight: `${themeStyles.greyLight}`,
   orange: `${themeStyles.orange}`,
-  // brown: `${themeStyles.brown}`,
-  // brownDark: `${themeStyles.brownDark}`,
   blueLight: `${themeStyles.blueLight}`,
   black: `${themeStyles.black}`,
 }
 
 const iconColors = {
   white: 'rgba(255, 255, 255, 1)',
-  // whiteLight: 'rgba(255, 249, 239, 1)',
   grey: 'rgba(162, 162, 162, 1)',
   greyDark: 'rgba(39, 46, 68, 1)',
-  // greyLight: 'rgba(189, 181, 176, 1)',
+  greyLight: 'rgba(238, 241, 246, 1)',
   orange: 'rgba(255, 77, 0, 1)',
-  // brown: 'rgba(68, 29, 6, 1)',
-  // brownDark: 'rgba(43, 16, 1, 1)',
   black: 'rgba(0, 0, 0, 1)',
 }
 
@@ -65,14 +59,10 @@ export const fontSizes = {
 }
 
 export const navigationTitle = {
-  infrastructura: 'Инфраструктура',
   contacts: 'Контакты',
   documents: 'Документы',
   apartments: 'Квартиры',
   apartment: 'Квартира',
-  rules: 'Условия продажи',
-  aboutProject: 'О проекте',
-  history: 'Ход строительства',
   aboutBuilder: 'О застройщике',
 }
 

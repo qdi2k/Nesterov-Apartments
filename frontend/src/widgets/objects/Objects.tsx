@@ -148,7 +148,13 @@ const ObjectItem = ({
             </div>
           ))}
         </div>
-        <Image className={styles.image} src={src} alt='object-image' fill />
+        <Image
+          className={styles.image}
+          src={src}
+          alt='object-image'
+          fill
+          sizes='100%'
+        />
       </div>
       <div className={styles.objectInfo}>
         <Text className={styles.titleObject} weight='bold'>

@@ -1,4 +1,3 @@
-import {ContactButton} from '@/entities/contactButton'
 import {Icon, Divider, Text, DropdownMenu} from '@/shared/ui'
 import {BurgerList} from './BurgerList'
 import styles from './Burger.module.css'
@@ -10,12 +9,8 @@ interface IBurgerProps {
 
 const links = [
   {id: 1, text: 'Главная', href: '/'},
-  {id: 2, text: 'О проекте', href: '/about-project'},
-  {id: 3, text: 'Инфраструктура', href: '/infrastructura'},
-  {id: 4, text: 'Квартиры', href: '/apartments'},
+  {id: 4, text: 'Квартиры', href: '/apartments2'},
   {id: 5, text: 'Документы', href: '/documents'},
-  {id: 6, text: 'Условия продажи', href: '/rules'},
-  {id: 7, text: 'Ход строительства', href: '/history'},
   {id: 8, text: 'Контакты', href: '/contacts'},
   {id: 9, text: 'О застройщике', href: '/about-builder'},
 ]

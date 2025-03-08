@@ -88,6 +88,7 @@ export function AboutUs() {
             src={aboutImage}
             alt='about-image'
             fill
+            sizes='100%'
           />
         </div>
         <div className={styles.textContainer}>
