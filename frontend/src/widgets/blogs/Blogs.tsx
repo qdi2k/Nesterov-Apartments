@@ -51,7 +51,13 @@ const Blog = ({title, description, src}: BlogProps) => {
   return (
     <div className={styles.blogContainer}>
       <div className={styles.image}>
-        <Image className={styles.image} src={src} alt='blog-image' fill />
+        <Image
+          className={styles.image}
+          src={src}
+          alt='blog-image'
+          fill
+          sizes='100%'
+        />
       </div>
       <div className={styles.textContainer}>
         <Text weight='semiBold' size='xSmall'>

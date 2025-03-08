@@ -1,1 +1,0 @@
-export {InfrastructuraMap} from './InfrastructuraMap'

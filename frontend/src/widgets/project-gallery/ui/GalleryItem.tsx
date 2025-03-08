@@ -22,7 +22,13 @@ export function GalleryItem({
       className={`${styles.container} ${isSelectedItem && styles.selectedItem}`}
     >
       <div className={styles.image}>
-        <Image src={img} className={styles.image} alt='carousel-item' fill />
+        <Image
+          src={img}
+          className={styles.image}
+          alt='carousel-item'
+          fill
+          sizes='100%'
+        />
       </div>
       <div
         className={`${styles.textContainer} ${isSelectedItem && styles.selectedTextContainer}`}

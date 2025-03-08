@@ -49,11 +49,6 @@ export function Header({openBurger}: IHeaderProps) {
                 Контакты
               </Text>
             </li>
-            <li className={styles.navText}>
-              <Text size='small' color='white' isHover>
-                Условия продажи
-              </Text>
-            </li>
           </ul>
         </div>
         <div className={styles.right}>

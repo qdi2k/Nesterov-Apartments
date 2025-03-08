@@ -6,17 +6,7 @@ export function FooterNav() {
   return (
     <>
       <nav className={styles.nav}>
-        <Link href='/about-project'>
-          <Text size='small' color='white'>
-            О проекте
-          </Text>
-        </Link>
-        <Link href='/infrastructura'>
-          <Text size='small' color='white'>
-            Инфраструктура
-          </Text>
-        </Link>
-        <Link href='/apartments'>
+        <Link href='/apartments2'>
           <Text size='small' color='white'>
             Квартиры
           </Text>
@@ -31,11 +21,6 @@ export function FooterNav() {
         <Link href='/rules'>
           <Text size='small' color='white'>
             Условия продаж
-          </Text>
-        </Link>
-        <Link href='/history'>
-          <Text size='small' color='white'>
-            Ход строительства
           </Text>
         </Link>
         <Link href='/contacts'>

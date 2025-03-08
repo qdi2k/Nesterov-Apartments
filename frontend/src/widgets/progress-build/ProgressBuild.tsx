@@ -46,6 +46,7 @@ export function ProgressBuild() {
               className={styles.image}
               alt='progress-image'
               fill
+              sizes='100%'
             />
           </div>
         ))}

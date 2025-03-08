@@ -114,6 +114,7 @@ const PeculiarityGallery = ({
             className={styles.image}
             alt='gallery-image'
             fill
+            sizes='100%'
           />
         </div>
         {/* <div className={styles.imagesContainer}>
@@ -150,6 +151,7 @@ const PeculiarityGallery = ({
             className={styles.image}
             alt='gallery-image'
             fill
+            sizes='100%'
           />
         </div>
         <div className={styles.image}>
@@ -158,6 +160,7 @@ const PeculiarityGallery = ({
             className={styles.image}
             alt='gallery-image'
             fill
+            sizes='100%'
           />
         </div>
       </div>

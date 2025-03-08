@@ -29,7 +29,13 @@ export function Partners() {
       <div className={styles.logoList}>
         {LOGO_DATA.data.map((logo, index) => (
           <div className={styles.logo} key={index}>
-            <Image className={styles.logo} src={logo} alt='partner-logo' fill />
+            <Image
+              className={styles.logo}
+              src={logo}
+              alt='partner-logo'
+              fill
+              sizes='100%'
+            />
           </div>
         ))}
       </div>
