@@ -18,7 +18,7 @@ const maxValue3 = 4000000
 const maxValue4 = 40
 
 export function Calculator() {
-  const [value1, setValue1] = useState({min: minValue1, max: maxValue1})
+  const [value1, setValue1] = useState(minValue1)
   const [value2, setValue2] = useState({min: minValue2, max: maxValue2})
   const [value3, setValue3] = useState({min: minValue3, max: maxValue3})
   const [value4, setValue4] = useState({min: minValue4, max: maxValue4})
@@ -26,7 +26,7 @@ export function Calculator() {
   const searchParams = useSearchParams() ?? new URLSearchParams()
   const section = searchParams.get('section')
 
-  const creditAmount = value1.min - value3.min
+  const creditAmount = minValue1 - value3.min
   const monthlyRate = value4.min / 100 / 12
   const payments = value2.min * 12
 
@@ -70,7 +70,7 @@ export function Calculator() {
           valueMark='₽'
           changeValue={setValue1}
         />
-        <InputRangeForm
+        {/* <InputRangeForm
           nameForm='Период ипотеки'
           max={maxValue2}
           min={1}
@@ -78,9 +78,9 @@ export function Calculator() {
           value={value2}
           valueMark='Лет'
           changeValue={setValue2}
-        />
+        /> */}
       </div>
-      <div className={styles.inputContainer}>
+      {/* <div className={styles.inputContainer}>
         <InputRangeForm
           nameForm='Первоначальный взнос'
           max={maxValue3}
@@ -100,7 +100,7 @@ export function Calculator() {
           valueText='Годовых'
           changeValue={setValue4}
         />
-      </div>
+      </div> */}
       <div className={styles.textWrapper}>
         <div className={styles.textContainer}>
           <Text

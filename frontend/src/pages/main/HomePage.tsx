@@ -14,6 +14,7 @@ import apartmentImage3 from '@/shared/assets/images/apartments/app_large.webp'
 import apartmentImage4 from '@/shared/assets/images/apartments/fe0de264fc1403e149d5ee439a9bf335e4391cdc.jpg'
 import apartmentImage5 from '@/shared/assets/images/apartments/i.webp'
 import apartmentImage6 from '@/shared/assets/images/apartments/large.webp'
+import {MortgageCalculator} from '@/widgets/mortgage-calculator'
 
 const MOCK_APARTMENTS = [
   {
@@ -68,6 +69,32 @@ const MOCK_APARTMENTS = [
     square: '22.9',
     floor: 11,
   },
+  {
+    id: 7,
+    price: '21 000 000',
+    src: apartmentImage1,
+    rooms: 'Двухкомнатная',
+    square: '28.2',
+    floor: 7,
+  },
+  {
+    id: 8,
+    price: '16 086 100',
+    src: apartmentImage2,
+    discountPrice: '13 673 185',
+    discount: '15',
+    rooms: 'Однокомнатная',
+    square: '21.7',
+    floor: 12,
+  },
+  {
+    id: 9,
+    price: '14 800 000',
+    src: apartmentImage3,
+    rooms: 'Студия',
+    square: '15',
+    floor: 8,
+  },
 ]
 
 export function HomePage() {
@@ -75,14 +102,12 @@ export function HomePage() {
     <div>
       <Main />
       <AboutUs />
-      {/* <Architecture /> */}
-      {/* <Advantages />
-      <Location /> */}
       <Objects />
       <Apartments apartments={MOCK_APARTMENTS} />
-      {/* <Apartments /> */}
+      <MortgageCalculator />
       <Questions />
       <Blogs />
+      <Location title='Офис продаж' />
       <Record />
     </div>
   )

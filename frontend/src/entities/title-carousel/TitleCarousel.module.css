@@ -1,0 +1,65 @@
+.titleCarouselContainer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.arrow {
+  transition: all 0.4s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 48px;
+  min-height: 48px;
+  background-color: var(--white);
+  border-radius: 50%;
+  cursor: pointer;
+  user-select: none;
+}
+
+.arrowLeft {
+  transform: rotate(180deg);
+}
+
+.arrowDisabled {
+  transition: all 0.4s;
+  opacity: 0.6;
+  cursor: auto;
+}
+
+.listTitleContainer {
+  display: flex;
+  background-color: var(--white);
+  border-radius: 24px;
+  overflow: hidden;
+  user-select: none;
+}
+
+.greyColor {
+  background-color: var(--greyLight);
+}
+
+.listTitle {
+  text-wrap: nowrap;
+  transition: all 0.3s;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  height: 48px;
+  padding: 0 24px;
+  border-radius: 24px;
+  cursor: pointer;
+}
+
+.listTitleActive {
+  background-color: var(--greyDark);
+}
+
+@media (max-width: 400px) {
+  .listTitle {
+    min-width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+}

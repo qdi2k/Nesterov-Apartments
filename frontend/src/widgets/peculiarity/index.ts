@@ -1,0 +1,1 @@
+export {Peculiarity} from './Peculiarity'

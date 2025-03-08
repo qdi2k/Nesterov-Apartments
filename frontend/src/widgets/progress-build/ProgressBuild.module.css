@@ -1,0 +1,87 @@
+.container {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.imageContainer {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas:
+    'image1 image1 image1'
+    'image2 image3 image4';
+}
+
+.imageContainer > div:nth-child(1) {
+  grid-area: image1;
+}
+
+.image {
+  position: relative;
+  object-fit: cover;
+  height: 400px;
+  width: 100%;
+  border-radius: 24px;
+}
+
+.fieldInput {
+  padding: 16px 24px;
+  border-radius: 36px;
+  background-color: var(--greyLight);
+  width: max-content;
+  margin-bottom: 20px;
+}
+
+.topGallery {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.arrow {
+  transition: all 0.4s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 48px;
+  min-height: 48px;
+  background-color: var(--white);
+  border-radius: 50%;
+  cursor: pointer;
+  user-select: none;
+}
+
+.arrowLeft {
+  transform: rotate(180deg);
+}
+
+.arrowDisabled {
+  transition: all 0.4s;
+  opacity: 0.5;
+  cursor: auto;
+}
+
+.listTitleContainer {
+  display: flex;
+  background-color: var(--white);
+  border-radius: 24px;
+  overflow: hidden;
+  user-select: none;
+}
+
+.listTitle {
+  text-wrap: nowrap;
+  transition: all 0.3s;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  height: 48px;
+  padding: 0 24px;
+  border-radius: 24px;
+  cursor: pointer;
+}
+
+.listTitleActive {
+  background-color: var(--greyDark);
+}

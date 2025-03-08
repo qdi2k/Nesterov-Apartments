@@ -1,0 +1,38 @@
+.container {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+.canvasContainer {
+  height: 400px;
+  max-height: 400px;
+}
+
+.toogleContainer {
+  display: flex;
+  background-color: var(--greyLight);
+  border-radius: 24px;
+  width: max-content;
+  margin-bottom: 24px;
+}
+.toogle {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  border-radius: 24px;
+  padding: 0 24px;
+  background-color: var(--greyLight);
+  cursor: pointer;
+  transition: background-color 0.4s;
+}
+
+.activeToogle {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  background-color: var(--greyDark);
+  height: 48px;
+  padding: 0 24px;
+  border-radius: 24px;
+  color: var(--white);
+  transition: background-color 0.4s;
+}
