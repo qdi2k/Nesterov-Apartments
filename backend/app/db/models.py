@@ -37,6 +37,9 @@ class Apartment(Base):
         "Project", back_populates="apartments"
     )
 
+    def __str__(self):
+        return f'id={self.id}, name={self.name}'
+
 
 class ApartmentDetail(Base):
     """Модель подробности квартир."""
