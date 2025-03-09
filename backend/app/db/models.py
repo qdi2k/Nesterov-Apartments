@@ -19,16 +19,15 @@ class Apartment(Base):
         FileType(storage=APARTMENTS_IMAGE), nullable=True
     )
 
-    details: Mapped["ApartmentDetail"] = relationship(
-        back_populates="apartments"
+    rooms_count: Mapped[CountRooms] = mapped_column(
+        Enum(
+            CountRooms,
+            values_callable=lambda x: [e.value for e in CountRooms]
+        )
     )
-
-    zone_id: Mapped[int] = mapped_column(
-        ForeignKey("zones.id"), nullable=False
-    )
-    zone: Mapped["Zone"] = relationship(
-        argument="Zone", back_populates="apartments"
-    )
+    section: Mapped[str] = mapped_column(String(50), nullable=False)
+    floor: Mapped[int] = mapped_column(Integer, nullable=False)
+    area: Mapped[float] = mapped_column(Float, nullable=False)
 
     project_id: Mapped[int] = mapped_column(
         ForeignKey("projects.id"), nullable=False
@@ -41,38 +40,15 @@ class Apartment(Base):
         return f'id={self.id}, name={self.name}'
 
 
-class ApartmentDetail(Base):
-    """Модель подробности квартир."""
-
-    __tablename__ = "apartment_details"
-
-    rooms_count: Mapped[CountRooms] = mapped_column(
-        Enum(
-            CountRooms,
-            values_callable=lambda x: [e.value for e in CountRooms]
-        )
-    )
-    section: Mapped[str] = mapped_column(String(50), nullable=False)
-    floor: Mapped[int] = mapped_column(Integer, nullable=False)
-    area: Mapped[float] = mapped_column(Float, nullable=False)
-
-    # "one-to-one" with Apartment
-    apartment_id: Mapped[int] = mapped_column(
-        ForeignKey("apartments.id"), nullable=False, unique=True
-    )
-    apartments: Mapped["Apartment"] = relationship(back_populates="details")
-
-
 class Project(Base):
     """Модель проектов."""
 
     name: Mapped[str] = mapped_column(String(200), nullable=False)
     description: Mapped[str] = mapped_column(String(500), nullable=True)
+    city: Mapped[str] = mapped_column(String(100), nullable=False)
+    district: Mapped[str] = mapped_column(String(100), nullable=False)
+    address: Mapped[str] = mapped_column(String(300), nullable=False)
 
-    # "one to many" with Zone
-    zones: Mapped[List["Zone"]] = relationship(
-        argument="Zone", back_populates="project"
-    )
     # "one to many" with Apartment
     apartments: Mapped[List["Apartment"]] = relationship(
         argument="Apartment", back_populates="project"
@@ -80,26 +56,3 @@ class Project(Base):
 
     def __str__(self):
         return f'{self.name}'
-
-
-class Zone(Base):
-    """Модель зоны."""
-
-    city: Mapped[str] = mapped_column(String(100), nullable=False)
-    district: Mapped[str] = mapped_column(String(100), nullable=False)
-    address: Mapped[str] = mapped_column(String(300), nullable=False)
-
-    # "many to one" with Project
-    project_id: Mapped[int] = mapped_column(
-        ForeignKey("projects.id"), nullable=False
-    )
-    project: Mapped["Project"] = relationship(
-        argument="Project", back_populates="zones"
-    )
-    # "one to many" with Apartment
-    apartments: Mapped[list["Apartment"]] = relationship(
-        argument="Apartment", back_populates="zone"
-    )
-
-    def __str__(self):
-        return f'{self.city}, {self.district}, {self.address}'
