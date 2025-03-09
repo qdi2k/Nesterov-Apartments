@@ -7,7 +7,7 @@ from fastapi.openapi.utils import get_openapi
 from sqladmin import Admin
 from starlette.middleware.trustedhost import TrustedHostMiddleware
 
-from app.admin.models import ApartmentAdmin, ZoneAdmin
+from app.admin.models import ZoneAdmin, ProjectAdmin
 from app.api.routes.apartments import apartment_router
 from app.core.config import settings, API_TITLE, API_VERSION, API_DESCRIPTION
 from app.core.log_config import init_loggers
@@ -77,7 +77,7 @@ class FastAPIApp:
             )
 
     def add_view_admin(self) -> None:
-        self.admin.add_view(ApartmentAdmin)
+        self.admin.add_view(ProjectAdmin)
         self.admin.add_view(ZoneAdmin)
 
 
