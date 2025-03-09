@@ -24,13 +24,7 @@ class Base(DeclarativeBase):
     @declared_attr.directive
     def __tablename__(cls) -> str:
         """
-        Автоматически генерирует имя таблицы на основе имени класса в стиле
-        snake_case. Приведение к нижнему регистру, а также если символ
-        заглавный и это не первый символ, то добавляем `_`.
+        Автоматически генерирует имя таблицы на основе имени класса в
+        нижнем регистре.
         """
-        snake_case = ""
-        for i, char in enumerate(cls.__name__):
-            if char.isupper() and i != 0:
-                snake_case += "_"
-            snake_case += char.lower()
-        return snake_case
+        return f"{cls.__name__.lower()}s"
