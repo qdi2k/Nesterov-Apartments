@@ -1,0 +1,81 @@
+.galleryOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0); /* Начальный прозрачный фон */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0; /* Начальная прозрачность */
+  visibility: hidden; /* Скрываем элемент */
+  transition: all 0.4s;
+}
+
+.galleryOverlay.open {
+  opacity: 1; /* Полная видимость */
+  visibility: visible; /* Показываем элемент */
+  background-color: rgba(0, 0, 0, 0.6); /* Затемненный фон */
+}
+
+.galleryContent {
+  position: relative;
+  width: 84%;
+  height: 90%;
+  opacity: 0; /* Начальная прозрачность */
+  transform: scale(0.9); /* Начальный масштаб */
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease; /* Плавное изменение */
+}
+
+.galleryOverlay.open .galleryContent {
+  opacity: 1; /* Полная видимость */
+  transform: scale(1); /* Нормальный масштаб */
+}
+
+.galleryImage {
+  width: auto;
+  height: 100%;
+  position: relative;
+  object-fit: contain;
+}
+
+.closeButton {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  right: -70px;
+  background: none;
+  background: var(--greyLight);
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+}
+
+.navButton {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 30px;
+  width: 30px;
+  background: var(--greyLight);
+  cursor: pointer;
+}
+
+.prev {
+  left: -70px;
+  transform: rotate(180deg);
+}
+
+.next {
+  right: -70px;
+}

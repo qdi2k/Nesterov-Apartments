@@ -40,7 +40,7 @@ const MOCK_IMAGES = [
 export function Main() {
   return (
     <motion.section
-      className={`${styles.container}`}
+      className={styles.container}
       initial='hidden'
       whileInView='visible'
       viewport={{once: true}}
@@ -51,7 +51,7 @@ export function Main() {
           Уют и удобство в каждом квадратном метре
         </MainTitle>
         <Button
-          href='/apartments2'
+          href='/apartments'
           textColor='white'
           animation={theme.animations.opacityAndMoveX}
           className={styles.button}

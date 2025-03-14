@@ -47,6 +47,7 @@ const Toogle = ({id, changeId}: ToogleProps) => {
 
 export function PriceChart({data, totalData}: PriceChartProps) {
   const [toogleId, setToogleId] = useState(0)
+  const [distanceSmall, setDistanceSmall] = useState(0)
   const chartRef = useRef<HTMLCanvasElement>(null)
   const chartInstance = useRef<Chart | null>(null)
 
@@ -156,11 +157,28 @@ export function PriceChart({data, totalData}: PriceChartProps) {
     }
   }, [currentData])
 
+  useEffect(() => {
+    if (chartRef.current) {
+      const chartWidth = chartRef.current.clientWidth
+      const numberOfPoints = currentData.labels.length
+      const distanceBetweenPoints = chartWidth / (numberOfPoints - 1)
+      setDistanceSmall(distanceBetweenPoints)
+    }
+  }, [currentData])
+
   return (
     <section className={`${themeStyles.container} ${styles.container}`}>
       <Title>Динамика изменения цены</Title>
       <Toogle id={toogleId} changeId={setToogleId} />
-      <canvas ref={chartRef} className={styles.canvasContainer} />
+      <div
+        className={`${styles.canvasContainer} ${distanceSmall < 60 && styles.canvasContainerScroll}`}
+      >
+        <div
+          className={`${styles.chartWrapper} ${distanceSmall < 60 && styles.chartWrapperrScroll}`}
+        >
+          <canvas ref={chartRef} />
+        </div>
+      </div>
     </section>
   )
 }

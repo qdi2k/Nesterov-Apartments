@@ -31,7 +31,14 @@ export function Header({openBurger}: IHeaderProps) {
           </Link>
           <ul className={styles.navList}>
             <li className={styles.navText}>
-              <Link href='/apartments2'>
+              <Link href='/objects/object'>
+                <Text size='small' color='white' isHover>
+                  Объекты
+                </Text>
+              </Link>
+            </li>
+            <li className={styles.navText}>
+              <Link href='/apartments'>
                 <Text size='small' color='white' isHover>
                   Квартиры
                 </Text>

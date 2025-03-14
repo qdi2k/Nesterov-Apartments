@@ -9,10 +9,14 @@ interface IBurgerProps {
 
 const links = [
   {id: 1, text: 'Главная', href: '/'},
-  {id: 4, text: 'Квартиры', href: '/apartments2'},
-  {id: 5, text: 'Документы', href: '/documents'},
+  {id: 2, text: 'Объекты', href: '/objects/object'},
+  {id: 3, text: 'Квартиры', href: '/apartments'},
+  {id: 4, text: 'Способы оплаты', href: '/payments'},
+  {id: 5, text: 'Акции', href: '/events'},
+  {id: 6, text: 'Новости', href: '/apartments'},
+  {id: 7, text: 'Документы', href: '/documents'},
   {id: 8, text: 'Контакты', href: '/contacts'},
-  {id: 9, text: 'О застройщике', href: '/about-builder'},
+  // {id: 9, text: 'О застройщике', href: '/about-builder'},
 ]
 
 const mockData = [

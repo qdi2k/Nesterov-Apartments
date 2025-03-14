@@ -25,6 +25,7 @@
 
 .downloadButton {
   padding: 16px 40px !important;
+  margin: 0 !important;
 }
 
 .date {

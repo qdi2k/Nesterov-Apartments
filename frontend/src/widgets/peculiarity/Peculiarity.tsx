@@ -12,6 +12,7 @@ import galleryImage4 from '@/shared/assets/images/ourProject2.png'
 import galleryImage5 from '@/shared/assets/images/historyItemImage.png'
 import galleryImage6 from '@/shared/assets/images/street.png'
 import {TitleCarousel} from '@/entities/title-carousel'
+import {Gallery} from '../gallery/Gallery'
 
 interface PeculiarityGalleryProps {
   title: string
@@ -26,7 +27,11 @@ const MOCK_PECULIARITY = [
     infoTitle: 'Социальная инфраструктура',
     infoDescription:
       'Двухуровневая 5-комнатная квартира с открытой террасой идеально подойдет большой семье, а также тем, кому нужен домашний офис или творческая студия — каждый уровень имеет отдельный вход. Единственная на этаже, такая квартира создает ощущение частного загородного дома.',
-    images: [galleryImage1, galleryImage2, galleryImage3],
+    images: [
+      {id: 1, src: galleryImage1},
+      {id: 2, src: galleryImage2},
+      {id: 3, src: galleryImage3},
+    ],
   },
   {
     id: 2,
@@ -34,7 +39,11 @@ const MOCK_PECULIARITY = [
     infoTitle: 'Квартиры с террасой',
     infoDescription:
       'Двухуровневая 5-комнатная квартира с открытой террасой идеально подойдет большой семье, а также тем, кому нужен домашний офис или творческая студия — каждый уровень имеет отдельный вход. Единственная на этаже, такая квартира создает ощущение частного загородного дома.',
-    images: [galleryImage4, galleryImage5, galleryImage6],
+    images: [
+      {id: 1, src: galleryImage4},
+      {id: 2, src: galleryImage5},
+      {id: 3, src: galleryImage6},
+    ],
   },
   {
     id: 3,
@@ -42,7 +51,11 @@ const MOCK_PECULIARITY = [
     infoTitle: 'Архитектура',
     infoDescription:
       'Высотные башни-доминанты с видовыми квартирами, дома пониже, растворяющиеся в спокойствии внутренних двориков, малоэтажные камерные таунхаусы и разноэтажные дома с лоджиями на первой береговой линии соединяются в одно эстетичное современное произведение. В результате создаётся насыщенное идентичное пространство, подчёркнутое плавностью природных форм, наполненное светом, воздухом и свободой.',
-    images: [galleryImage4, galleryImage5, galleryImage6],
+    images: [
+      {id: 1, src: galleryImage4},
+      {id: 2, src: galleryImage5},
+      {id: 3, src: galleryImage6},
+    ],
   },
   {
     id: 4,
@@ -50,7 +63,11 @@ const MOCK_PECULIARITY = [
     infoTitle: 'Квартиры с террасой',
     infoDescription:
       'Двухуровневая 5-комнатная квартира с открытой террасой идеально подойдет большой семье, а также тем, кому нужен домашний офис или творческая студия — каждый уровень имеет отдельный вход. Единственная на этаже, такая квартира создает ощущение частного загородного дома.',
-    images: [galleryImage1, galleryImage2, galleryImage3],
+    images: [
+      {id: 1, src: galleryImage1},
+      {id: 2, src: galleryImage2},
+      {id: 3, src: galleryImage3},
+    ],
   },
   {
     id: 5,
@@ -58,7 +75,11 @@ const MOCK_PECULIARITY = [
     infoTitle: 'Квартиры с террасой',
     infoDescription:
       'Двухуровневая 5-комнатная квартира с открытой террасой идеально подойдет большой семье, а также тем, кому нужен домашний офис или творческая студия — каждый уровень имеет отдельный вход. Единственная на этаже, такая квартира создает ощущение частного загородного дома.',
-    images: [galleryImage1, galleryImage2, galleryImage3],
+    images: [
+      {id: 1, src: galleryImage1},
+      {id: 2, src: galleryImage2},
+      {id: 3, src: galleryImage3},
+    ],
   },
   {
     id: 6,
@@ -66,7 +87,11 @@ const MOCK_PECULIARITY = [
     infoTitle: 'Квартиры с террасой',
     infoDescription:
       'Двухуровневая 5-комнатная квартира с открытой террасой идеально подойдет большой семье, а также тем, кому нужен домашний офис или творческая студия — каждый уровень имеет отдельный вход. Единственная на этаже, такая квартира создает ощущение частного загородного дома.',
-    images: [galleryImage1, galleryImage2, galleryImage3],
+    images: [
+      {id: 1, src: galleryImage1},
+      {id: 2, src: galleryImage2},
+      {id: 3, src: galleryImage3},
+    ],
   },
   {
     id: 7,
@@ -74,7 +99,11 @@ const MOCK_PECULIARITY = [
     infoTitle: 'Квартиры с террасой',
     infoDescription:
       'Двухуровневая 5-комнатная квартира с открытой террасой идеально подойдет большой семье, а также тем, кому нужен домашний офис или творческая студия — каждый уровень имеет отдельный вход. Единственная на этаже, такая квартира создает ощущение частного загородного дома.',
-    images: [galleryImage1, galleryImage2, galleryImage3],
+    images: [
+      {id: 1, src: galleryImage1},
+      {id: 2, src: galleryImage2},
+      {id: 3, src: galleryImage3},
+    ],
   },
   {
     id: 8,
@@ -82,7 +111,11 @@ const MOCK_PECULIARITY = [
     infoTitle: 'Квартиры с террасой',
     infoDescription:
       'Двухуровневая 5-комнатная квартира с открытой террасой идеально подойдет большой семье, а также тем, кому нужен домашний офис или творческая студия — каждый уровень имеет отдельный вход. Единственная на этаже, такая квартира создает ощущение частного загородного дома.',
-    images: [galleryImage1, galleryImage2, galleryImage3],
+    images: [
+      {id: 1, src: galleryImage1},
+      {id: 2, src: galleryImage2},
+      {id: 3, src: galleryImage3},
+    ],
   },
   {
     id: 9,
@@ -90,7 +123,11 @@ const MOCK_PECULIARITY = [
     infoTitle: 'Квартиры с террасой',
     infoDescription:
       'Двухуровневая 5-комнатная квартира с открытой террасой идеально подойдет большой семье, а также тем, кому нужен домашний офис или творческая студия — каждый уровень имеет отдельный вход. Единственная на этаже, такая квартира создает ощущение частного загородного дома.',
-    images: [galleryImage1, galleryImage2, galleryImage3],
+    images: [
+      {id: 1, src: galleryImage1},
+      {id: 2, src: galleryImage2},
+      {id: 3, src: galleryImage3},
+    ],
   },
 ]
 
@@ -110,44 +147,19 @@ const PeculiarityGallery = ({
         </div>
         <div className={styles.image}>
           <Image
-            src={images[0]}
+            src={images[0].src}
             className={styles.image}
             alt='gallery-image'
             fill
             sizes='100%'
           />
         </div>
-        {/* <div className={styles.imagesContainer}>
-          {images.map((image, index) => (
-            <div key={index} className={styles.galleryImage}>
-              <div
-                className={`${styles.galleryImageArrow} ${styles.arrowLeft}`}
-              >
-                <Icon name='arrow' />
-              </div>
-              <Image
-                src={image}
-                className={styles.galleryImage}
-                alt='gallery-image'
-                fill
-              />
-              <div
-                className={`${styles.galleryImageArrow} ${styles.galleryImageArrowRight}`}
-                onClick={(prev) => setActiveImage(prev + 1)}
-              >
-                <Icon name='arrow' />
-              </div>
-            </div>
-          ))}
-        </div> */}
-        {/* <div className={styles.test}>
-          <Gallery images={images} />
-        </div> */}
+        <Gallery images={images} className={styles.gallery} isPadding />
       </div>
       <div className={styles.bottomContent}>
         <div className={styles.image}>
           <Image
-            src={images[1]}
+            src={images[1].src}
             className={styles.image}
             alt='gallery-image'
             fill
@@ -156,7 +168,7 @@ const PeculiarityGallery = ({
         </div>
         <div className={styles.image}>
           <Image
-            src={images[2]}
+            src={images[2].src}
             className={styles.image}
             alt='gallery-image'
             fill

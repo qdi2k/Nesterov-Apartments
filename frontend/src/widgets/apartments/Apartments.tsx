@@ -7,9 +7,10 @@ import {motion} from 'framer-motion'
 import Image from 'next/image'
 import {theme} from '@/shared/model'
 import Link from 'next/link'
+import useGetMoreItem from '@/shared/model/useGetMoreItem'
+import {Filter} from '@/entities/filter'
 
 interface ApartmentProps {
-  id?: number
   price: string
   src: string
   discountPrice?: string
@@ -17,23 +18,26 @@ interface ApartmentProps {
   rooms: string
   square: string
   floor: number
+  delay: number
 }
 
 interface ApartmentsProps {
   apartments: ApartmentProps[]
   title?: string
   buttonTitle?: string
+  isMore?: boolean
+  isFilter?: boolean
 }
 
 const Apartment = ({
   price,
   src,
-  id,
   discountPrice,
   discount,
   rooms,
   square,
   floor,
+  delay,
 }: ApartmentProps) => {
   return (
     <motion.div
@@ -47,8 +51,8 @@ const Apartment = ({
           x: 0,
           opacity: 1,
           transition: {
-            duration: 0.3,
-            delay: id * 0.1,
+            duration: 0.4,
+            delay: delay,
           },
         },
       }}
@@ -93,54 +97,79 @@ const Apartment = ({
   )
 }
 
-export function Apartments({apartments, title, buttonTitle}: ApartmentsProps) {
+export function Apartments({
+  apartments,
+  title,
+  buttonTitle,
+  isMore,
+  isFilter,
+}: ApartmentsProps) {
+  const {handleShowMoreDocuments, getDelay, postsToShow} = useGetMoreItem(
+    apartments,
+    9
+  )
+
+  const currentData = isMore ? postsToShow : apartments
+  const getButtonStatus = () => {
+    if (!isMore) {
+      return true
+    }
+    if (isMore && apartments.length > postsToShow.length) {
+      return true
+    }
+    return false
+  }
   return (
     <motion.section
       className={styles.container}
       initial='hidden'
-      whileInView='visible'
-      viewport={{once: true}}
+      animate='visible'
+      viewport={!isMore && {once: true}}
     >
       <div className={themeStyles.container}>
         <Title animation={theme.animations.opacity}>
           {title ?? 'Наши квартиры'}
         </Title>
+        {isFilter && <Filter />}
         <div className={styles.apartmentsContainer}>
-          {apartments.map((item) => (
-            <Link href='/apartments2/apartment2' key={item.id}>
+          {currentData.map((item) => (
+            <Link href='/apartments/apartment' key={item.id}>
               <Apartment
                 price={item.price}
-                id={item.id}
                 src={item.src}
                 discountPrice={item.discountPrice}
                 discount={item.discount}
                 rooms={item.rooms}
                 square={item.square}
                 floor={item.floor}
+                delay={isMore ? getDelay(item.id) : item.id * 0.1}
               />
             </Link>
           ))}
         </div>
-        <Button
-          href='/apartments2'
-          className={`${styles.button} ${buttonTitle && styles.buttonGrey}`}
-          animation={{
-            hidden: {
-              y: 50,
-              opacity: 0,
-            },
-            visible: {
-              y: 0,
-              opacity: 1,
-              transition: {
-                duration: 0.3,
-                delay: apartments.length * 0.1 + 0.1,
+        {getButtonStatus() && (
+          <Button
+            href={isMore ? '' : '/apartments'}
+            onClick={isMore ? handleShowMoreDocuments : () => {}}
+            isMore={isMore}
+            animation={{
+              hidden: {
+                y: 50,
+                opacity: 0,
               },
-            },
-          }}
-        >
-          {buttonTitle ?? 'Посмотреть все'}
-        </Button>
+              visible: {
+                y: 0,
+                opacity: 1,
+                transition: {
+                  duration: 0.3,
+                  delay: isMore ? 0.6 : 1,
+                },
+              },
+            }}
+          >
+            {buttonTitle ?? 'Посмотреть все'}
+          </Button>
+        )}
       </div>
     </motion.section>
   )
