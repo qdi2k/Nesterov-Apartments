@@ -1,9 +1,8 @@
 'use client'
 
 import {ReactNode} from 'react'
-import {Icon, Text} from '@/shared/ui'
+import {Text} from '@/shared/ui'
 import {type FontColors} from '@/shared/model'
-import themeStyles from '@/shared/model/styles/theme.module.css'
 import styles from './Button.module.css'
 import Link from 'next/link'
 import {Url} from 'next/dist/shared/lib/router/router'
@@ -14,8 +13,8 @@ interface IButtonProps {
   children: ReactNode
   textColor?: FontColors
   textStyle?: string
-  isArrow?: boolean
   className?: string
+  isMore?: boolean
   href?: Url
   animation?: Variants
 }
@@ -27,11 +26,11 @@ export function Button({
   textStyle,
   href = '',
   textColor = 'white',
-  isArrow,
+  isMore,
   animation,
 }: IButtonProps) {
   return href ? (
-    <Link href={href}>
+    <Link href={href} className={styles.link}>
       <motion.button
         className={`${styles.button} ${className}`}
         onClick={onClick}
@@ -45,12 +44,11 @@ export function Button({
         >
           {children}
         </Text>
-        {isArrow && <Icon name='arrow' size={17} color={textColor} />}
       </motion.button>
     </Link>
   ) : (
     <motion.button
-      className={`${styles.button} ${className}`}
+      className={`${isMore ? styles.moreButton : styles.button} ${className}`}
       onClick={onClick}
       variants={animation}
     >
@@ -62,7 +60,6 @@ export function Button({
       >
         {children}
       </Text>
-      {isArrow && <Icon name='arrow' size={17} color={textColor} />}
     </motion.button>
   )
 }

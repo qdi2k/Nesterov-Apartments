@@ -17,9 +17,11 @@ const opacityAnimation = {
   },
 }
 
-export function Gallery({images, isMax}) {
+export function Gallery({images, isMax, className, isPadding}) {
   const previewContainer = useRef<HTMLUListElement>(null)
   const [activeId, setActiveId] = useState(1)
+
+  const paddingCount = isPadding ? (innerWidth >= 500 ? 40 : 32) : 0
 
   const MAX_WIDTH = () => {
     if (isMax) {
@@ -61,13 +63,13 @@ export function Gallery({images, isMax}) {
     }
 
     if (activeId > 1) {
-      previewContainer.current.style.transform = `translate3d(-${MAX_WIDTH() * (activeId - 1)}px, 0, 0)`
+      previewContainer.current.style.transform = `translate3d(-${(MAX_WIDTH() - paddingCount) * (activeId - 1) - 1}px, 0, 0)`
       return
     }
   }, [activeId])
 
   return (
-    <div className={styles.galleryContainer}>
+    <div className={`${styles.galleryContainer} ${className}`}>
       <ul className={styles.listContent} ref={previewContainer}>
         {images.map((item) => (
           <div className={styles.image} key={item.id}>

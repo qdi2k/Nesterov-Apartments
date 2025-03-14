@@ -2,9 +2,9 @@
 
 import {useEffect, useState} from 'react'
 
-export default function useGetMoreItem(mockData) {
+export default function useGetMoreItem(mockData, size) {
   const [postsToShow, setPostsToShow] = useState([])
-  const [documentsCount, setDocumentsCount] = useState(5)
+  const [documentsCount, setDocumentsCount] = useState(size)
 
   const loopWithSlice = (start: number, end: number) => {
     const slicedPosts = mockData.slice(start, end)
@@ -13,7 +13,7 @@ export default function useGetMoreItem(mockData) {
   }
 
   const getDelay = (id: number) => {
-    const round = id / 5
+    const round = id / (size === 5 ? 5 : 9)
     if (Number.isInteger(round)) {
       return 0.5
     }
@@ -23,15 +23,15 @@ export default function useGetMoreItem(mockData) {
 
   const handleShowMoreDocuments = () => {
     const remainingDocuments =
-      mockData.length - postsToShow.length >= 5
-        ? 5
+      mockData.length - postsToShow.length >= size
+        ? size
         : mockData.length - postsToShow.length
     loopWithSlice(documentsCount, documentsCount + remainingDocuments)
     setDocumentsCount((prev) => prev + remainingDocuments)
   }
 
   useEffect(() => {
-    loopWithSlice(0, 5)
+    loopWithSlice(0, size)
   }, [])
 
   return {

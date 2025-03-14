@@ -1,0 +1,44 @@
+.eventContent {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.title {
+  margin-bottom: 0 !important;
+}
+
+.image {
+  height: 400px;
+  width: 100%;
+  border-radius: 24px;
+  position: relative;
+  object-fit: cover;
+}
+
+.status {
+  padding: 4px 8px;
+  background-color: var(--blueLight);
+  border-radius: 6px;
+  width: max-content;
+}
+
+.button {
+  margin: 0 0 !important;
+  background-color: var(--greyDark);
+  padding: 20px 32px;
+}
+
+.moreEvents {
+  padding-top: 80px;
+  padding-bottom: 80px;
+  background-color: var(--greyLight);
+}
+
+.eventsContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}

@@ -85,6 +85,118 @@ const MOCK_APARTMENTS = [
     square: '15',
     floor: 8,
   },
+  {
+    id: 10,
+    price: '21 000 000',
+    src: apartmentImage1,
+    rooms: 'Двухкомнатная',
+    square: '28.2',
+    floor: 7,
+  },
+  {
+    id: 11,
+    price: '16 086 100',
+    src: apartmentImage2,
+    discountPrice: '13 673 185',
+    discount: '15',
+    rooms: 'Однокомнатная',
+    square: '21.7',
+    floor: 12,
+  },
+  {
+    id: 12,
+    price: '14 800 000',
+    src: apartmentImage3,
+    rooms: 'Студия',
+    square: '15',
+    floor: 8,
+  },
+  {
+    id: 13,
+    price: '16 500 000',
+    src: apartmentImage4,
+    rooms: 'Однокомнатная',
+    square: '19.1',
+    floor: 2,
+  },
+  {
+    id: 14,
+    price: '12 430 000',
+    src: apartmentImage5,
+    rooms: 'Трехкомнатная',
+    square: '34.2',
+    floor: 14,
+  },
+  {
+    id: 15,
+    price: '21 200 000',
+    src: apartmentImage6,
+    discountPrice: '18 020 000',
+    discount: '15',
+    rooms: 'Двухкомнатная',
+    square: '22.9',
+    floor: 11,
+  },
+  {
+    id: 16,
+    price: '21 000 000',
+    src: apartmentImage1,
+    rooms: 'Двухкомнатная',
+    square: '28.2',
+    floor: 7,
+  },
+  {
+    id: 17,
+    price: '16 086 100',
+    src: apartmentImage2,
+    discountPrice: '13 673 185',
+    discount: '15',
+    rooms: 'Однокомнатная',
+    square: '21.7',
+    floor: 12,
+  },
+  {
+    id: 18,
+    price: '14 800 000',
+    src: apartmentImage3,
+    rooms: 'Студия',
+    square: '15',
+    floor: 8,
+  },
+  {
+    id: 19,
+    price: '16 500 000',
+    src: apartmentImage4,
+    rooms: 'Однокомнатная',
+    square: '19.1',
+    floor: 2,
+  },
+  {
+    id: 20,
+    price: '12 430 000',
+    src: apartmentImage5,
+    rooms: 'Трехкомнатная',
+    square: '34.2',
+    floor: 14,
+  },
+  {
+    id: 21,
+    price: '21 200 000',
+    src: apartmentImage6,
+    discountPrice: '18 020 000',
+    discount: '15',
+    rooms: 'Двухкомнатная',
+    square: '22.9',
+    floor: 11,
+  },
+  {
+    id: 22,
+    price: '21 000 000',
+    src: apartmentImage1,
+    rooms: 'Двухкомнатная',
+    square: '28.2',
+    floor: 7,
+  },
 ]
 
 export function ApartmentsPage() {
@@ -94,6 +206,8 @@ export function ApartmentsPage() {
         apartments={MOCK_APARTMENTS}
         title='Квартиры'
         buttonTitle='Показать ещё'
+        isMore
+        isFilter
       />
     </div>
   )

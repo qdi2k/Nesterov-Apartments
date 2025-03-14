@@ -194,6 +194,7 @@ export function ObjectPage() {
         apartments={MOCK_APARTMENTS}
         title='Квартиры в Shagal'
         buttonTitle='Показать ещё'
+        isMore
       />
       <MortgageCalculator />
       <ProgressBuild />

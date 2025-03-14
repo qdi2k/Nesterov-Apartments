@@ -1,5 +1,6 @@
 import {default as address} from '@/shared/assets/icons/address.svg'
 import {default as arrow} from '@/shared/assets/icons/arrow.svg'
+import {default as arrowSmall} from '@/shared/assets/icons/arrow-small.svg'
 import {default as close} from '@/shared/assets/icons/close.svg'
 import {default as logo} from '@/shared/assets/icons/logo.svg'
 import {default as logoNew} from '@/shared/assets/icons/logo-new.svg'
@@ -12,12 +13,13 @@ import {default as mailFill} from '@/shared/assets/icons/mail-fill.svg'
 import {default as selectArrow} from '@/shared/assets/icons/select-arrow.svg'
 import {default as telegram} from '@/shared/assets/icons/telegram.svg'
 import {default as vkontakte} from '@/shared/assets/icons/vkontakte.svg'
-import {default as instagram2} from '@/shared/assets/icons/instagram2.svg'
+import {default as instagram} from '@/shared/assets/icons/instagram.svg'
 import {type IconColors, theme} from '@/shared/model'
 
 const Icons = {
   address,
   arrow,
+  arrowSmall,
   close,
   logo,
   logoNew,
@@ -30,7 +32,7 @@ const Icons = {
   selectArrow,
   telegram,
   vkontakte,
-  instagram2,
+  instagram,
 }
 
 export type IconName = keyof typeof Icons

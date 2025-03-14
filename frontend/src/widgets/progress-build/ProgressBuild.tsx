@@ -10,8 +10,16 @@ import image4 from '@/shared/assets/images/objects/optimize.webp'
 import Image from 'next/image'
 import {TitleCarousel} from '@/entities/title-carousel'
 import {useState} from 'react'
+import {Gallery} from '../gallery/Gallery'
+import {GalleryFull} from '../gallery-full'
 
-const MOCK_IMAGES = [image1, image2, image3, image4]
+const MOCK_IMAGES = [
+  {id: 1, src: image1},
+  {id: 2, src: image2},
+  {id: 3, src: image3},
+  {id: 4, src: image4},
+]
+
 const MOCK_PROGRESS = [
   {id: 1, title: 'Сентябрь 2024'},
   {id: 2, title: 'Октябрь 2024'},
@@ -29,6 +37,15 @@ const MOCK_PROGRESS = [
 
 export function ProgressBuild() {
   const [titleActive, setTitleActive] = useState(1)
+  const [isOpen, setIsOpen] = useState(false)
+  const [selectedIndex, setSelectedIndex] = useState(0)
+
+  const openGallery = (index) => {
+    setSelectedIndex(index)
+    document.body.style.overflow = 'hidden'
+    setIsOpen(true)
+  }
+
   return (
     <section className={`${themeStyles.container} ${styles.container}`}>
       <Title>Ход строительства</Title>
@@ -40,10 +57,11 @@ export function ProgressBuild() {
       />
       <div className={styles.imageContainer}>
         {MOCK_IMAGES.map((image, index) => (
-          <div className={styles.image} key={index}>
+          <div className={styles.image} key={image.id}>
             <Image
-              src={image}
+              src={image.src}
               className={styles.image}
+              onClick={() => openGallery(index)}
               alt='progress-image'
               fill
               sizes='100%'
@@ -51,6 +69,16 @@ export function ProgressBuild() {
           </div>
         ))}
       </div>
+      <Gallery images={MOCK_IMAGES} className={styles.gallery} isPadding />
+      {isOpen && (
+        <GalleryFull
+          images={MOCK_IMAGES}
+          selectedIndex={selectedIndex}
+          isOpen={isOpen}
+          handleChangeImage={setSelectedIndex}
+          handleOpenGallery={setIsOpen}
+        />
+      )}
     </section>
   )
 }

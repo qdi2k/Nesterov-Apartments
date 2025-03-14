@@ -7,15 +7,7 @@ import {motion} from 'framer-motion'
 import {Document} from './ui'
 import {theme} from '@/shared/model'
 import {IDocumentProps} from './ui/Document'
-import {useEffect, useState} from 'react'
 import useGetMoreItem from '@/shared/model/useGetMoreItem'
-
-type DocumentData = {
-  id: number
-  file: string
-  title: string
-  date: string
-}
 
 const documentMock = [
   {
@@ -90,8 +82,10 @@ const documentMock = [
 ]
 
 export function DocumentsPage() {
-  const {handleShowMoreDocuments, getDelay, postsToShow} =
-    useGetMoreItem(documentMock)
+  const {handleShowMoreDocuments, getDelay, postsToShow} = useGetMoreItem(
+    documentMock,
+    5
+  )
 
   return (
     <motion.div
@@ -115,7 +109,6 @@ export function DocumentsPage() {
       </ul>
       {documentMock.length > postsToShow.length && (
         <Button
-          className={styles.button}
           animation={{
             hidden: {
               y: 50,
@@ -130,6 +123,7 @@ export function DocumentsPage() {
               },
             },
           }}
+          isMore
           onClick={handleShowMoreDocuments}
         >
           Показать ещё

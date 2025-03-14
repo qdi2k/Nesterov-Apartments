@@ -16,21 +16,6 @@
   border-radius: 24px;
 }
 
-.button {
-  width: 240px;
-  justify-content: center;
-  margin: 0 auto;
-  margin-top: 20px;
-}
-
-.buttonGrey {
-  background-color: var(--greyDark);
-}
-
-.buttonGrey:hover {
-  background-color: rgba(58, 68, 101, 1);
-}
-
 .image {
   position: relative;
   object-fit: contain;

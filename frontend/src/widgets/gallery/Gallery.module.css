@@ -83,6 +83,7 @@
 }
 
 .galleryContainer {
+  display: block;
   height: 760px;
   width: 100%;
   overflow: hidden;

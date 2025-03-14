@@ -1,0 +1,11 @@
+.container {
+  background: var(--greyLight);
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.eventsContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}

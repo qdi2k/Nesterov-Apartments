@@ -201,14 +201,12 @@ export function ApartmentPage() {
     <div>
       <ApartmentInfo />
       <Peculiarity />
-      <div className={`${themeStyles.container} ${styles.container2}`}>
-        <Title>Так может выглядеть ваша квартира</Title>
-      </div>
       <MortgageCalculator />
       <Apartments
         apartments={MOCK_APARTMENTS}
         title='Похожие квартиры'
         buttonTitle='Показать ещё'
+        isMore
       />
       <Record />
     </div>

@@ -7,6 +7,21 @@
   max-height: 400px;
 }
 
+.canvasContainerScroll {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.chartWrapper {
+  height: 100%;
+  max-height: 400px;
+}
+
+.chartWrapperrScroll {
+  min-width: 800px;
+  overflow-x: auto;
+}
+
 .toogleContainer {
   display: flex;
   background-color: var(--greyLight);
