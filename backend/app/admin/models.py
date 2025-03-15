@@ -1,37 +1,88 @@
+from fastapi import UploadFile, HTTPException
 from sqladmin import ModelView
+from starlette import status
 
-from app.db.models import Zone, Project
+from app.db.models import Project, Apartment
+from app.utils.functools import generate_unique_filename
 
+IMAGE_EXTENSIONS = [
+    "bmp", "jpg", "jpeg", "png", "gif", "tiff", "tif", "webp", "ppm", "pgm",
+    "pbm", "xbm", "ico", "raw", "hdr", "exr", "dds", "psd"
+]
 
-class ZoneAdmin(ModelView, model=Zone):
-
-    column_list = [
-        Zone.id, Zone.city, Zone.district, Zone.address, Zone.project,
-    ]
-    column_searchable_list = [Zone.city, Zone.district, Zone.address,]
-    column_sortable_list = [Zone.city, Zone.district, Zone.address,]
-    column_default_sort = [(Zone.city, True), (Zone.district, True),]
-
-    form_excluded_columns = [Zone.apartments,]
-    form_ajax_refs = {
-        'project': {
-            'fields': ('name',),
-            'order_by': 'name',
-        }
-    }
 
 class ProjectAdmin(ModelView, model=Project):
-    column_list = [
-        Project.id, Project.name, Project.description, Project.zones,
-    ]
-    column_searchable_list = [Project.name, Project.description,]
-    column_sortable_list = [Project.name,]
-    column_default_sort = [(Project.name, True),]
+    """Админ модель проектов."""
 
-    form_excluded_columns = [Project.apartments,]
-    form_ajax_refs = {
-        'zones': {
-            'fields': ('city', 'district', 'address'),
-            'order_by': 'city',
-        }
+    name_plural = "Проекты"
+
+    column_list = [
+        Project.id, Project.name, Project.description,
+        Project.city, Project.district, Project.address,
+    ]
+    column_labels = {
+        "name": "Название проекта",
+        "description": "Описание",
+        "city": "Город",
+        "district": "Район",
+        "address": "Адрес"
     }
+    column_searchable_list = [Project.name, Project.description, ]
+    column_sortable_list = [Project.name, ]
+    column_default_sort = [(Project.name, True), ]
+
+    form_excluded_columns = [Project.apartments, ]
+
+
+class ApartmentAdmin(ModelView, model=Apartment):
+    """Админ модель проектов."""
+
+    name_plural = "Квартиры"
+
+    column_list = [
+        Apartment.id, Apartment.project, Apartment.name, Apartment.price,
+        Apartment.discounted_price, Apartment.image,
+    ]
+    column_labels = {
+        "name": "Имя квартиры",
+        "price": "Цена",
+        "discounted_price": "Цена со скидкой",
+        "project": "Проект",
+        "rooms_count": "Количество комнат",
+        "section": "Секция",
+        "floor": "Этаж",
+        "area": "Площадь",
+        "image": "Картинка",
+    }
+    column_formatters = {Apartment.image: lambda m, a: m.image.name}
+    column_formatters_detail = column_formatters
+
+    form_columns = [
+        Apartment.id, Apartment.name, Apartment.price,
+        Apartment.discounted_price, Apartment.project,
+        Apartment.rooms_count, Apartment.section,
+        Apartment.floor, Apartment.area, Apartment.image,
+    ]
+
+    async def on_model_change(self, data, model, is_created, request) -> None:
+        """Перед созданием или обновлением модели меняет имя файла."""
+        image: UploadFile = data.get('image')
+        if image:
+            self._check_image_extension(filename=image.filename)
+            unique_filename = generate_unique_filename(file=image)
+            image.filename = unique_filename
+            data['image'] = image
+        await super().on_model_change(data, model, is_created, request)
+
+    @staticmethod
+    def _check_image_extension(filename: str) -> None:
+        """Проверка расширения изображения."""
+        file_extension = filename.split('.')[-1].lower()
+        if file_extension not in IMAGE_EXTENSIONS:
+            raise HTTPException(
+                status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+                detail=(
+                    f"Неподдерживаемое расширение файла: {file_extension}. "
+                    + f"Разрешённые расширения: {', '.join(IMAGE_EXTENSIONS)}"
+                )
+            )
