@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 
 from app.db.database import async_session_maker
 from app.repositories.apartment_repository import ApartmentRepository
-from app.repositories.zone_repository import ZoneRepository
+from app.repositories.project_repository import ProjectRepository
 
 
 class IUnitOfWork(ABC):
@@ -20,7 +20,7 @@ class IUnitOfWork(ABC):
     """
 
     apartment = ApartmentRepository
-    zone = ZoneRepository
+    project = ProjectRepository
 
     @abstractmethod
     def __init__(self):
@@ -76,7 +76,7 @@ class UnitOfWork(IUnitOfWork):
         self.session = self.session_factory()
 
         self.apartment = ApartmentRepository(self.session)
-        self.zone = ZoneRepository(self.session)
+        self.project = ProjectRepository(self.session)
 
     async def __aexit__(self, *args):
         """Асинхронный выход из контекста UoW. Выполняет откат изменений и

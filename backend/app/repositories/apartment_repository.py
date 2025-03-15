@@ -9,7 +9,7 @@ from app.repositories.base_repository import Repository
 
 @dataclass
 class ApartmentFilters:
-    zone_id: int
+    project_id: int
     rooms_count: Optional[List[int]] = None
     min_area: Optional[float] = None
     max_area: Optional[float] = None
@@ -35,7 +35,7 @@ class ApartmentRepository(Repository):
 
     def _build_filters(self, filters: ApartmentFilters) -> List[Any]:
         """Создает фильтры для запроса."""
-        filter_conditions = [self.model.zone_id == filters.zone_id]
+        filter_conditions = [self.model.project_id == filters.project_id]
 
         if filters.rooms_count:
             filter_conditions.append(or_(

@@ -30,6 +30,7 @@ class ResponseSearchApartment(BaseModel):
     name: str
     price: float
     discounted_price: float
+    image: str
 
     class Config:
         from_attributes = True

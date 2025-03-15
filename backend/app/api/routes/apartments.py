@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Request
 from starlette import status
 
 from app.api.schema.apartment import RequestSearchApartment
@@ -22,11 +22,12 @@ async def get_apartment_service(
     status_code=status.HTTP_200_OK,
 )
 async def search(
-        data: RequestSearchApartment,
+        request: Request, data: RequestSearchApartment,
         service: ApartmentService = Depends(get_apartment_service)
 ):
     """
     ## Поиск квартир
     """
-    result = await service.search_apartments(data=data)
-    return result
+    return await service.search_apartments(
+        base_url=request.base_url, data=data
+    )
