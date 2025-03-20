@@ -3,7 +3,7 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 from fastapi_mail import ConnectionConfig
-from fastapi_storages import FileSystemStorage
+from fastapi_storages import FileSystemStorage, S3Storage
 from pydantic import Field, SecretStr, EmailStr
 from pydantic_settings import BaseSettings
 
@@ -52,6 +52,16 @@ class Settings(BaseSettings):
     MAIL_VALIDATE_CERTS: bool = True
     MAIL_CONF: ConnectionConfig | None = None
 
+    # Настройки S3-хранилища
+    S3_ACCESS_KEY: str
+    S3_SECRET_KEY: str
+    S3_ENDPOINT_URL: str
+    S3_AWS_DEFAULT_ACL: str = Field(default="public-read")
+    S3_AWS_USE_SSL: bool = Field(default=True)
+
+    S3_BUCKET_APARTMENTS: str
+    S3_CUSTOM_DOMAIN_APARTMENTS: str
+
     def __init__(self, **data):
         super().__init__(**data)
         self.MAIL_CONF = self.get_connect_email_sender()
@@ -60,8 +70,8 @@ class Settings(BaseSettings):
     def get_async_database_url(self) -> str:
         """Получение URL-адреса для асинхронного подключения к Postgres"""
         return (
-                f"postgresql+asyncpg://{self.DB_USER}:{self.DB_PASS}"
-                + f"@{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}"
+            f"postgresql+asyncpg://{self.DB_USER}:{self.DB_PASS}"
+            + f"@{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}"
         )
 
     def get_connect_email_sender(self):
@@ -88,3 +98,19 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
+
+
+class GlobalSettingsS3Storage(S3Storage):
+    AWS_ACCESS_KEY_ID = settings.S3_ACCESS_KEY
+    AWS_SECRET_ACCESS_KEY = settings.S3_SECRET_KEY
+    AWS_S3_ENDPOINT_URL = settings.S3_ENDPOINT_URL
+    AWS_DEFAULT_ACL = settings.S3_AWS_DEFAULT_ACL
+    AWS_S3_USE_SSL = settings.S3_AWS_USE_SSL
+
+
+class ApartmentsStorage(GlobalSettingsS3Storage):
+    AWS_S3_BUCKET_NAME = settings.S3_BUCKET_APARTMENTS
+    AWS_S3_CUSTOM_DOMAIN = settings.S3_CUSTOM_DOMAIN_APARTMENTS
+
+
+apartments_storage = ApartmentsStorage()

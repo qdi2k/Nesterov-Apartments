@@ -2,9 +2,7 @@ from typing import List
 
 from sqlalchemy import Integer, String, Float, Enum, ForeignKey
 from sqlalchemy.orm import mapped_column, Mapped, relationship
-from fastapi_storages.integrations.sqlalchemy import FileType
 
-from app.core.config import APARTMENTS_IMAGE
 from app.db.database import Base
 from app.core.enums import CountRooms
 
@@ -15,16 +13,13 @@ class Apartment(Base):
     name: Mapped[str] = mapped_column(String(200), nullable=False)
     price: Mapped[float] = mapped_column(Float, nullable=False)
     discounted_price: Mapped[float] = mapped_column(Float, nullable=False)
-    image: Mapped[str] = mapped_column(
-        FileType(storage=APARTMENTS_IMAGE), nullable=True
-    )
-
     rooms_count: Mapped[CountRooms] = mapped_column(
         Enum(
             CountRooms,
             values_callable=lambda x: [e.value for e in CountRooms]
         )
     )
+
     section: Mapped[str] = mapped_column(String(50), nullable=False)
     floor: Mapped[int] = mapped_column(Integer, nullable=False)
     area: Mapped[float] = mapped_column(Float, nullable=False)
@@ -33,8 +28,10 @@ class Apartment(Base):
         ForeignKey("projects.id"), nullable=False
     )
     project: Mapped["Project"] = relationship(
-        "Project", back_populates="apartments"
+        argument="Project", back_populates="apartments"
     )
+
+    image: Mapped[str] = mapped_column(String(200), nullable=False)
 
     def __str__(self):
         return f'id={self.id}, name={self.name}'
