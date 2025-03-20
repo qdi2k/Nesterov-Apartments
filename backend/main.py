@@ -9,7 +9,6 @@ from starlette.middleware.trustedhost import TrustedHostMiddleware
 
 from app.admin.models import ProjectAdmin, ApartmentAdmin
 from app.api.routes.apartments import apartment_router
-from app.api.routes.files import image_router
 from app.core.config import settings, API_TITLE, API_VERSION, API_DESCRIPTION
 from app.core.log_config import init_loggers
 from app.core.middleware import ExceptionHandlerMiddleware
@@ -29,9 +28,9 @@ class FastAPIApp:
 
         self.app: FastAPI = FastAPI()
         self.admin = Admin(app=self.app, engine=engine, debug=True)
-        self.add_view_admin()
         self.include_middlewares()
         self.include_routers()
+        self.include_view_admin()
         self.include_openapi()
 
     def include_middlewares(self) -> None:
@@ -61,7 +60,6 @@ class FastAPIApp:
         ### Подключает роутеры к приложению `FastAPI`.
         """
         self.app.include_router(router=apartment_router, prefix="/api")
-        self.app.include_router(router=image_router, prefix="/api")
 
 
     def include_openapi(self) -> None:
@@ -78,7 +76,10 @@ class FastAPIApp:
                 routes=self.app.routes,
             )
 
-    def add_view_admin(self) -> None:
+    def include_view_admin(self) -> None:
+        """
+        ### Добавление представлений админ-панели.
+        """
         self.admin.add_view(ProjectAdmin)
         self.admin.add_view(ApartmentAdmin)
 

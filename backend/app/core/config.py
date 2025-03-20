@@ -3,7 +3,7 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 from fastapi_mail import ConnectionConfig
-from fastapi_storages import FileSystemStorage, S3Storage
+from fastapi_storages import S3Storage
 from pydantic import Field, SecretStr, EmailStr
 from pydantic_settings import BaseSettings
 
@@ -11,9 +11,6 @@ load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 MEDIA_DIR = os.path.join(BASE_DIR, 'media')
-APARTMENTS_IMAGE = FileSystemStorage(
-    path=os.path.join(MEDIA_DIR, 'apartments')
-)
 
 API_TITLE = """Nesterov Apartments"""
 API_VERSION = "0.0.1"

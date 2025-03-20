@@ -7,6 +7,7 @@ from starlette.datastructures import URL
 
 from app.api.schema.apartment import (RequestSearchApartment,
                                       ResponseSearchApartment)
+from app.core.config import apartments_storage
 from app.utils.unitofwork import IUnitOfWork
 
 
@@ -20,14 +21,14 @@ class ApartmentService:
 
 
     async def search_apartments(
-            self, base_url: URL, data: RequestSearchApartment
+            self,  data: RequestSearchApartment
     ) -> List[ResponseSearchApartment]:
         """Поиск квартир."""
         project_id = await self._get_project_id_or_404(
             city=data.city, district=data.district
         )
         return await self._get_apartments_or_404(
-            base_url=base_url, project_id=project_id, data=data
+            project_id=project_id, data=data
         )
 
     async def _get_project_id_or_404(
@@ -44,7 +45,7 @@ class ApartmentService:
             return project.id
 
     async def _get_apartments_or_404(
-            self, base_url: URL, project_id: int, data: RequestSearchApartment
+            self, project_id: int, data: RequestSearchApartment
     ) -> List[ResponseSearchApartment]:
         """Проверка существования зоны в БД."""
         async with self.uow:
@@ -64,11 +65,7 @@ class ApartmentService:
                     detail=f"Квартиры по вашему запросу не найдены!"
                 )
             for apartment in apartments:
-                if apartment.image:
-                    apartment.image = (
-                        str(base_url) + 'api/files/apartment/'
-                        + os.path.basename(apartment.image)
-                    )
+                apartment.image = apartments_storage.get_path(apartment.image)
             return [
                 ResponseSearchApartment.model_validate(apartment)
                 for apartment in apartments
