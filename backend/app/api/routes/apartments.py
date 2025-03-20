@@ -22,12 +22,10 @@ async def get_apartment_service(
     status_code=status.HTTP_200_OK,
 )
 async def search(
-        request: Request, data: RequestSearchApartment,
+        data: RequestSearchApartment,
         service: ApartmentService = Depends(get_apartment_service)
 ):
     """
     ## Поиск квартир
     """
-    return await service.search_apartments(
-        base_url=request.base_url, data=data
-    )
+    return await service.search_apartments(data=data)
