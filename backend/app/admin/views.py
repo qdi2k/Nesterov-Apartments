@@ -5,9 +5,9 @@ from starlette.requests import Request
 from starlette_admin.contrib.sqla import ModelView
 from starlette_admin.helpers import extract_fields
 
-from app.admin.functools import prepare_image_field
-from app.core.config import apartments_storage
-from app.utils.functools import check_image_extension, generate_unique_filename
+from app.admin.functools import (
+    prepare_image_field, render_help_text_for_image, process_image_upload,
+)
 
 FIRST_ELEM_TUPLE_IMAGE = 0
 
@@ -33,10 +33,23 @@ class ApartmentImageView(ModelView):
     async def before_create(
             self, request: Request, data: Dict[str, Any], obj: Any
     ) -> None:
-        """Преобразует изображение"""
-        image = data.get('image')[FIRST_ELEM_TUPLE_IMAGE]
-        if image:
-            check_image_extension(filename=image.filename)
-            image.filename = generate_unique_filename(file=image)
-            apartments_storage.write(image.file, image.filename)
-            obj.image = image.filename
+        """Перед созданием записи сериализует изображение."""
+        await process_image_upload(data, obj)
+
+    async def before_edit(
+            self, request: Request, data: Dict[str, Any], obj: Any
+    ) -> None:
+        """Перед изменением записи сериализует изображение."""
+        await process_image_upload(data, obj)
+
+    async def serialize_field_value(
+            self, value: Any, field: BaseField, action: RequestAction,
+            request: Request
+    ) -> Any:
+        """Форматируем значение поля image для html рендера."""
+        serialized_value = await super().serialize_field_value(
+            value, field, action, request
+        )
+        if field.name == "image" and value and action == RequestAction.DETAIL:
+            return render_help_text_for_image(value)
+        return serialized_value
