@@ -53,3 +53,29 @@ class ApartmentImageView(ModelView):
         if field.name == "image" and value and action == RequestAction.DETAIL:
             return render_help_text_for_image(value)
         return serialized_value
+
+
+class ProjectView(ModelView):
+    fields = [
+        "id",
+        "name",
+        "description",
+        "city",
+        "address",
+    ]
+
+
+class ApartmentView(ModelView):
+    """Админка для квартир"""
+    fields = [
+        "id",
+        "name",
+        "price",
+        "discounted_price",
+        "rooms_count",
+        "section",
+        "floor",
+        "area",
+        "project",
+        "image",
+    ]
