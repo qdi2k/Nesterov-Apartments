@@ -13,6 +13,7 @@ from app.core.enums import CountRooms
 class Apartment(Base):
     """Модель квартир."""
 
+    id: Mapped[int] = mapped_column(autoincrement=True, primary_key=True)
     name: Mapped[str] = mapped_column(String(200), nullable=False)
     price: Mapped[float] = mapped_column(Float, nullable=False)
     discounted_price: Mapped[float] = mapped_column(Float, nullable=False)
@@ -34,15 +35,22 @@ class Apartment(Base):
         argument="Project", back_populates="apartments"
     )
 
-    image: Mapped[str] = mapped_column(String(200), nullable=False)
+    image_id: Mapped[int] = mapped_column(
+        ForeignKey("apartment_images.id"), nullable=True
+    )
+    image: Mapped["ApartmentImage"] = relationship(
+        argument="ApartmentImage", back_populates="apartments", lazy="select"
+    )
 
-    def __str__(self):
+
+def __str__(self):
         return f'id={self.id}, name={self.name}'
 
 
 class Project(Base):
     """Модель проектов."""
 
+    id: Mapped[int] = mapped_column(autoincrement=True, primary_key=True)
     name: Mapped[str] = mapped_column(String(200), nullable=False)
     description: Mapped[str] = mapped_column(String(500), nullable=True)
     city: Mapped[str] = mapped_column(String(100), nullable=False)
@@ -59,5 +67,12 @@ class Project(Base):
 
 
 class ApartmentImage(Base):
+    """Модель картинок квартир."""
+
+    id: Mapped[int] = mapped_column(autoincrement=True, primary_key=True)
     name: Mapped[str] = mapped_column(String(200), nullable=False)
     image: Mapped[str] = mapped_column(String(300), nullable=False)
+
+    apartments: Mapped[List["Apartment"]] = relationship(
+        argument="Apartment", back_populates="image", lazy="select"
+    )
