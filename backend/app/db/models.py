@@ -54,7 +54,6 @@ class Project(Base):
     name: Mapped[str] = mapped_column(String(200), nullable=False)
     description: Mapped[str] = mapped_column(String(500), nullable=True)
     city: Mapped[str] = mapped_column(String(100), nullable=False)
-    district: Mapped[str] = mapped_column(String(100), nullable=False)
     address: Mapped[str] = mapped_column(String(300), nullable=False)
 
     # "one to many" with Apartment
@@ -64,6 +63,9 @@ class Project(Base):
 
     def __str__(self):
         return f'{self.name}'
+
+    async def __admin_repr__(self, request: Request):
+        return f"{self.city} {self.name}"
 
 
 class ApartmentImage(Base):
@@ -76,3 +78,16 @@ class ApartmentImage(Base):
     apartments: Mapped[List["Apartment"]] = relationship(
         argument="Apartment", back_populates="image", lazy="select"
     )
+
+    async def __admin_repr__(self, request: Request):
+        return self.name
+
+    async def __admin_select2_repr__(self, request: Request) -> str:
+        url = apartments_storage.get_path(self.image)
+        template_str = (
+            '<div class="d-flex align-items-center"><span class="me-2 avatar'
+            ' avatar-xs"{% if url %} style="background-image:'
+            ' url({{url}});--tblr-avatar-size: 1.5rem;{%endif%}">{% if not url'
+            " %}obj.name[:2]{%endif%}</span>{{obj.name}} <div>"
+        )
+        return Template(template_str, autoescape=True).render(obj=self, url=url)
