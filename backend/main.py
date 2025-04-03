@@ -4,15 +4,16 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.openapi.utils import get_openapi
-from sqladmin import Admin
 from starlette.middleware.trustedhost import TrustedHostMiddleware
+from starlette_admin.contrib.sqla import Admin
 
-from app.admin.models import ProjectAdmin, ApartmentAdmin
+from app.admin.views import ApartmentImageView
 from app.api.routes.apartments import apartment_router
 from app.core.config import settings, API_TITLE, API_VERSION, API_DESCRIPTION
 from app.core.log_config import init_loggers
 from app.core.middleware import ExceptionHandlerMiddleware
-from app.db.database import engine
+from app.db.database import async_engine
+from app.db.models import ApartmentImage
 
 
 class FastAPIApp:
@@ -27,10 +28,9 @@ class FastAPIApp:
         init_loggers()
 
         self.app: FastAPI = FastAPI()
-        self.admin = Admin(app=self.app, engine=engine, debug=True)
         self.include_middlewares()
         self.include_routers()
-        self.include_view_admin()
+        self.setup_admin()
         self.include_openapi()
 
     def include_middlewares(self) -> None:
@@ -76,12 +76,13 @@ class FastAPIApp:
                 routes=self.app.routes,
             )
 
-    def include_view_admin(self) -> None:
+    def setup_admin(self) -> None:
         """
         ### Добавление представлений админ-панели.
         """
-        self.admin.add_view(ProjectAdmin)
-        self.admin.add_view(ApartmentAdmin)
+        admin = Admin(async_engine, title="My Admin Panel", debug=True)
+        admin.add_view(ApartmentImageView(ApartmentImage))
+        admin.mount_to(self.app)
 
 
 def create_app() -> FastAPI:

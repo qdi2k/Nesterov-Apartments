@@ -1,0 +1,17 @@
+<div class="d-flex align-items-center mt-3 p-2 bg-light rounded border">
+    <div class="mx-1 my-2">
+        <a href="{{ url }}" target="_blank" title="Открыть в полном размере">
+            <img src="{{ url }}"
+                 style="width: 5em; height: 5em; object-fit: cover"
+                 class="img-fluid rounded me-3 d-block"
+                 alt="{{ filename }}"
+                 onerror="this.style.display='none'"/>
+        </a>
+    </div>
+    <div class="ms-2">
+        <small class="text-muted d-block">Текущее изображение:</small>
+        <a href="{{ url }}" target="_blank" class="text-truncate d-block" style="max-width: 150px">
+            {{ filename }}
+        </a>
+    </div>
+</div>
