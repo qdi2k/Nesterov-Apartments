@@ -10,6 +10,7 @@ from pydantic_settings import BaseSettings
 load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 
 API_TITLE = """Nesterov Apartments"""
@@ -68,6 +69,14 @@ class Settings(BaseSettings):
         """Получение URL-адреса для асинхронного подключения к Postgres"""
         return (
             f"postgresql+asyncpg://{self.DB_USER}:{self.DB_PASS}"
+            + f"@{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}"
+        )
+
+    @property
+    def get_sync_database_url(self) -> str:
+        """Получение URL-адреса для асинхронного подключения к Postgres"""
+        return (
+            f"postgresql://{self.DB_USER}:{self.DB_PASS}"
             + f"@{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}"
         )
 

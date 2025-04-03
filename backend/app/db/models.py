@@ -1,8 +1,11 @@
 from typing import List
 
+from jinja2 import Template
 from sqlalchemy import Integer, String, Float, Enum, ForeignKey
 from sqlalchemy.orm import mapped_column, Mapped, relationship
+from starlette.requests import Request
 
+from app.core.config import apartments_storage
 from app.db.database import Base
 from app.core.enums import CountRooms
 
@@ -53,3 +56,8 @@ class Project(Base):
 
     def __str__(self):
         return f'{self.name}'
+
+
+class ApartmentImage(Base):
+    name: Mapped[str] = mapped_column(String(200), nullable=False)
+    image: Mapped[str] = mapped_column(String(300), nullable=False)
