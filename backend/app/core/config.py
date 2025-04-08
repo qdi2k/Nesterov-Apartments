@@ -4,6 +4,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 from fastapi_mail import ConnectionConfig
 from fastapi_storages import S3Storage
+from passlib.context import CryptContext
 from pydantic import Field, SecretStr, EmailStr
 from pydantic_settings import BaseSettings
 
@@ -28,6 +29,7 @@ class Settings(BaseSettings):
     # Настройки FastAPI
     DEBUG: bool = Field(default=False, description="True or False")
     ALLOWED_HOSTS: str = Field(default="localhost 127.0.0.1")
+    SECRET_KEY: str = Field(description="Secret key")
 
     # Подключение к БД
     DB_USER: str = Field(description='Database username')
@@ -119,3 +121,5 @@ class ApartmentsStorage(GlobalSettingsS3Storage):
 
 
 apartments_storage = ApartmentsStorage()
+
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
