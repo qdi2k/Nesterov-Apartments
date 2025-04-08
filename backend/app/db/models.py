@@ -1,7 +1,7 @@
 from typing import List
 
 from jinja2 import Template
-from sqlalchemy import Integer, String, Float, Enum, ForeignKey
+from sqlalchemy import Integer, String, Float, Enum, ForeignKey, Boolean
 from sqlalchemy.orm import mapped_column, Mapped, relationship
 from starlette.requests import Request
 
@@ -91,3 +91,17 @@ class ApartmentImage(Base):
             " %}obj.name[:2]{%endif%}</span>{{obj.name}} <div>"
         )
         return Template(template_str, autoescape=True).render(obj=self, url=url)
+
+
+class AdminUser(Base):
+    """Модель пользователей админки"""
+
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    username: Mapped[str] = mapped_column(String(50), unique=True, nullable=False)
+    email: Mapped[str] = mapped_column(String(100), unique=True, nullable=False)
+    password: Mapped[str] = mapped_column(String(100), nullable=False)
+    is_active: Mapped[bool] = mapped_column(Boolean, default=True)
+    is_superuser: Mapped[bool] = mapped_column(Boolean, default=False)
+
+    def __str__(self):
+        return self.username
