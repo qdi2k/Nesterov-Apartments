@@ -1,8 +1,9 @@
+from datetime import date
 from typing import List
 
 from jinja2 import Template
-from sqlalchemy import Integer, String, Float, Enum, ForeignKey, Boolean
-from sqlalchemy.orm import mapped_column, Mapped, relationship
+from sqlalchemy import Integer, String, Float, Enum, ForeignKey, Boolean, Date, Text
+from sqlalchemy.orm import mapped_column, Mapped, relationship, validates
 from starlette.requests import Request
 
 from app.core.config import apartments_storage
@@ -15,15 +16,17 @@ class Apartment(Base):
 
     id: Mapped[int] = mapped_column(autoincrement=True, primary_key=True)
     name: Mapped[str] = mapped_column(String(200), nullable=False)
+    on_sale: Mapped[bool] = mapped_column(Boolean, default=False)
     price: Mapped[float] = mapped_column(Float, nullable=False)
-    discounted_price: Mapped[float] = mapped_column(Float, nullable=False)
+    discount_percent: Mapped[float] = mapped_column(
+        Float, nullable=False, default=0.0,
+    )
     rooms_count: Mapped[CountRooms] = mapped_column(
         Enum(
             CountRooms,
             values_callable=lambda x: [e.value for e in CountRooms]
         )
     )
-
     section: Mapped[str] = mapped_column(String(50), nullable=False)
     floor: Mapped[int] = mapped_column(Integer, nullable=False)
     area: Mapped[float] = mapped_column(Float, nullable=False)
@@ -42,8 +45,14 @@ class Apartment(Base):
         argument="ApartmentImage", back_populates="apartments", lazy="select"
     )
 
+    @validates('discount_percent')
+    def validate_discount_percent(self, key, discount):
+        if not 0 <= discount <= 100:
+            raise ValueError("Discount must be between 0 and 100 percent")
+        return discount
 
-def __str__(self):
+
+    def __str__(self):
         return f'id={self.id}, name={self.name}'
 
 
@@ -52,11 +61,11 @@ class Project(Base):
 
     id: Mapped[int] = mapped_column(autoincrement=True, primary_key=True)
     name: Mapped[str] = mapped_column(String(200), nullable=False)
-    description: Mapped[str] = mapped_column(String(500), nullable=True)
+    description: Mapped[str] = mapped_column(Text, nullable=True)
     city: Mapped[str] = mapped_column(String(100), nullable=False)
     address: Mapped[str] = mapped_column(String(300), nullable=False)
+    construction_date: Mapped[date] = mapped_column(Date, nullable=True)
 
-    # "one to many" with Apartment
     apartments: Mapped[List["Apartment"]] = relationship(
         argument="Apartment", back_populates="project"
     )
@@ -65,7 +74,14 @@ class Project(Base):
         return f'{self.name}'
 
     async def __admin_repr__(self, request: Request):
-        return f"{self.city} {self.name}"
+        return f"{self.name} - {self.city}"
+
+    async def __admin_select2_repr__(self, request: Request) -> str:
+        template_str = (
+            '<div class="d-flex align-items-center"> '
+            '<strong>id: {{obj.id}}</strong>; {{obj.name}} - {{obj.city}}<div>'
+        )
+        return Template(template_str, autoescape=True).render(obj=self)
 
 
 class ApartmentImage(Base):
@@ -88,7 +104,8 @@ class ApartmentImage(Base):
             '<div class="d-flex align-items-center"><span class="me-2 avatar'
             ' avatar-xs"{% if url %} style="background-image:'
             ' url({{url}});--tblr-avatar-size: 1.5rem;{%endif%}">{% if not url'
-            " %}obj.name[:2]{%endif%}</span>{{obj.name}} <div>"
+            " %}obj.name[:2]{%endif%}</span>"
+            "<strong>id: {{obj.id}}</strong>; {{obj.name}} <div>"
         )
         return Template(template_str, autoescape=True).render(obj=self, url=url)
 
