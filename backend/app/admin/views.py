@@ -62,6 +62,7 @@ class ProjectView(ModelView):
         "description",
         "city",
         "address",
+        "construction_date",
     ]
 
 
@@ -71,7 +72,8 @@ class ApartmentView(ModelView):
         "id",
         "name",
         "price",
-        "discounted_price",
+        "discount_percent",
+        "on_sale",
         "rooms_count",
         "section",
         "floor",
