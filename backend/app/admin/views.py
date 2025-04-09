@@ -1,7 +1,6 @@
 from typing import Any, Dict
 
 from starlette.requests import Request
-from starlette_admin import BaseField, RequestAction
 from starlette_admin.contrib.sqla import ModelView
 from starlette_admin.exceptions import FormValidationError
 
@@ -12,11 +11,13 @@ FIRST_ELEM_TUPLE_IMAGE = 0
 
 class ApartmentImageView(ImageView):
     """Админка изображений квартир."""
+
     pass
 
 
 class ProjectImageView(ImageView):
     """Админка изображений проектов."""
+
     fields = [
         "id",
         "name",
@@ -27,6 +28,7 @@ class ProjectImageView(ImageView):
 
 class ProjectView(ModelView):
     """Админка проектов"""
+
     fields = [
         "id",
         "name",
@@ -40,6 +42,7 @@ class ProjectView(ModelView):
 
 class ApartmentView(ModelView):
     """Админка для квартир."""
+
     fields = [
         "id",
         "name",
