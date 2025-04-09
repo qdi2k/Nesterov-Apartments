@@ -49,7 +49,7 @@ class Apartment(Base):
     @validates('discount_percent')
     def validate_discount_percent(self, key, discount):
         if not 0 <= discount <= 100:
-            raise ValueError("Discount must be between 0 and 100 percent")
+            raise ValueError("Скидка должна быть от 0 до 100 процентов.")
         return discount
 
 
@@ -73,7 +73,6 @@ class Project(Base):
     images: Mapped[List["ProjectImage"]] = relationship(
         "ProjectImage",
         back_populates="project",
-        cascade="all, delete-orphan",
         lazy="selectin"
     )
 
@@ -125,8 +124,7 @@ class ProjectImage(Base):
     image: Mapped[str] = mapped_column(String(300), nullable=False)
 
     project_id: Mapped[int] = mapped_column(
-        ForeignKey("projects.id", ondelete="CASCADE"),
-        nullable=True
+        ForeignKey("projects.id"), nullable=True
     )
     project: Mapped["Project"] = relationship(
         "Project",

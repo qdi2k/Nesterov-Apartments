@@ -92,7 +92,8 @@ class ImageView(ModelView, ABC):
             )
             if obj_id:
                 image_name = self._get_image_by_pk(int(obj_id))
-                return render_help_text_for_image(self.storage, image_name)
+                if image_name:
+                    return render_help_text_for_image(self.storage, image_name)
         return None
 
     def _get_image_by_pk(self, pk: int) -> str:
