@@ -2,11 +2,12 @@ from datetime import date
 from typing import List
 
 from jinja2 import Template
+from markupsafe import Markup
 from sqlalchemy import Integer, String, Float, Enum, ForeignKey, Boolean, Date, Text
 from sqlalchemy.orm import mapped_column, Mapped, relationship, validates
 from starlette.requests import Request
 
-from app.core.config import apartments_storage
+from app.core.config import apartments_storage, JINJA_ENV
 from app.db.database import Base
 from app.core.enums import CountRooms
 
@@ -69,6 +70,12 @@ class Project(Base):
     apartments: Mapped[List["Apartment"]] = relationship(
         argument="Apartment", back_populates="project"
     )
+    images: Mapped[List["ProjectImage"]] = relationship(
+        "ProjectImage",
+        back_populates="project",
+        cascade="all, delete-orphan",
+        lazy="selectin"
+    )
 
     def __str__(self):
         return f'{self.name}'
@@ -108,6 +115,32 @@ class ApartmentImage(Base):
             "<strong>id: {{obj.id}}</strong>; {{obj.name}} <div>"
         )
         return Template(template_str, autoescape=True).render(obj=self, url=url)
+
+
+class ProjectImage(Base):
+    """Модель картинок проекта."""
+
+    id: Mapped[int] = mapped_column(autoincrement=True, primary_key=True)
+    name: Mapped[str] = mapped_column(String(200), nullable=False)
+    image: Mapped[str] = mapped_column(String(300), nullable=False)
+
+    project_id: Mapped[int] = mapped_column(
+        ForeignKey("projects.id", ondelete="CASCADE"),
+        nullable=True
+    )
+    project: Mapped["Project"] = relationship(
+        "Project",
+        back_populates="images"
+    )
+
+    async def __admin_repr__(self, request: Request):
+        return self.name
+
+    async def __admin_select2_repr__(self, request: Request) -> str:
+        url = apartments_storage.get_path(self.image)
+        template = JINJA_ENV.get_template("list_images.html")
+        html = template.render(obj=self, url=url)
+        return Markup(html)
 
 
 class AdminUser(Base):

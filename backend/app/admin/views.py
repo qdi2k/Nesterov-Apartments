@@ -1,14 +1,23 @@
 from starlette_admin.contrib.sqla import ModelView
 
 from app.admin.image_view import ImageView
-from app.core.config import apartments_storage
 
 FIRST_ELEM_TUPLE_IMAGE = 0
 
 
 class ApartmentImageView(ImageView):
     """Админка изображений квартир."""
-    storage = apartments_storage
+    pass
+
+
+class ProjectImageView(ImageView):
+    """Админка изображений проектов."""
+    fields = [
+        "id",
+        "name",
+        "image",
+        "project",
+    ]
 
 
 class ProjectView(ModelView):
@@ -20,6 +29,7 @@ class ProjectView(ModelView):
         "city",
         "address",
         "construction_date",
+        "images",
     ]
 
 

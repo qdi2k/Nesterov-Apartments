@@ -12,6 +12,7 @@ from starlette_admin.helpers import extract_fields
 from app.admin.functools import (
     process_image_upload, render_help_text_for_image,
 )
+from app.core.config import apartments_storage
 from app.db.database import sync_engine
 
 FIRST_ELEM_TUPLE_IMAGE = 0
@@ -19,10 +20,9 @@ FIRST_ELEM_TUPLE_IMAGE = 0
 
 class ImageView(ModelView, ABC):
     """
-    Обязательно указать используемый S3-storage
-    storage = apartments_storage
+    Глобальная модель картинок для админ-панели, связка с S3-хранилищем.
     """
-    storage: S3Storage
+    storage: S3Storage = apartments_storage
     fields = [
         "id",
         "name",
