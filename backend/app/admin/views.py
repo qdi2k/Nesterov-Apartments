@@ -59,10 +59,10 @@ class ApartmentView(ModelView):
 
     async def validate(self, request: Request, data: Dict[str, Any]) -> None:
         errors: Dict[str, str] = dict()
-        if not 10 <= len(data["name"]) <= 200:
+        if not 5 <= len(data["name"]) <= 200:
             errors["name"] = "Название должно быть от 10 до 200 символов."
-        if not 10 <= data["price"] <= 200:
-            errors["name"] = "Цена должна быть от 500 000 до 500 000 000."
+        if not 500000 <= data["price"] <= 500000000:
+            errors["price"] = "Цена должна быть от 500 000 до 500 000 000."
         if not 0 <= data["discount_percent"] <= 100:
             errors["discount_percent"] = "Скидка должна быть от 0 до 100 %."
         if not 0 <= data["floor"] <= 200:
