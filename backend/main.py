@@ -9,14 +9,19 @@ from starlette.middleware.trustedhost import TrustedHostMiddleware
 from starlette_admin.contrib.sqla import Admin
 
 from app.admin.auth import DBAuthProvider
-from app.admin.views import ApartmentImageView, ProjectView, ApartmentView, \
-    ProjectImageView
+from app.admin.views import (
+    ApartmentImageView,
+    ProjectView,
+    ApartmentView,
+    ProjectImageView,
+)
 from app.api.routes.apartments import apartment_router
+from app.api.routes.projects import project_router
 from app.core.config import settings, API_TITLE, API_VERSION, API_DESCRIPTION
 from app.core.log_config import init_loggers
-from app.core.middleware import ExceptionHandlerMiddleware
+from app.api.middleware import ExceptionHandlerMiddleware
 from app.db.database import async_engine
-from app.db.models import ApartmentImage, Project, Apartment, AdminUser, ProjectImage
+from app.db.models import ApartmentImage, Project, Apartment, ProjectImage
 
 
 class FastAPIApp:
@@ -65,7 +70,8 @@ class FastAPIApp:
         """
         ### Подключает роутеры к приложению `FastAPI`.
         """
-        self.app.include_router(router=apartment_router, prefix="/api")
+        # self.app.include_router(router=apartment_router, prefix="/api")
+        self.app.include_router(router=project_router, prefix="/api")
 
 
     def include_openapi(self) -> None:
