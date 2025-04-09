@@ -1,0 +1,13 @@
+<div class="d-flex align-items-center" style="padding-right: 1rem;">
+    <span class="avatar me-2" style="{% if url %}background-image: url({{url}}){% endif %}">
+        {% if not url %}{{ obj.name[:2]|upper }}{% endif %}
+    </span>
+    <div style="overflow: hidden;">
+        <strong>{{ obj.name }}</strong>
+        <div class="text-muted text-truncate small">
+            ID: {{ obj.id }} | <a href="{{ url }}" target="_blank" class="text-reset" title="Открыть изображение">
+                <i class="fas fa-external-link-alt me-1"></i>Изображение
+            </a>
+        </div>
+    </div>
+</div>

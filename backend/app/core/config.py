@@ -4,6 +4,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 from fastapi_mail import ConnectionConfig
 from fastapi_storages import S3Storage
+from jinja2 import Environment, FileSystemLoader
 from passlib.context import CryptContext
 from pydantic import Field, SecretStr, EmailStr
 from pydantic_settings import BaseSettings
@@ -12,6 +13,7 @@ load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
+JINJA_ENV = Environment(loader=FileSystemLoader(TEMPLATES_DIR))
 
 API_TITLE = """Nesterov Apartments"""
 API_VERSION = "0.0.1"
@@ -57,7 +59,6 @@ class Settings(BaseSettings):
     S3_ENDPOINT_URL: str
     S3_AWS_DEFAULT_ACL: str = Field(default="public-read")
     S3_AWS_USE_SSL: bool = Field(default=True)
-
     S3_BUCKET_APARTMENTS: str
     S3_CUSTOM_DOMAIN_APARTMENTS: str
 
@@ -107,19 +108,19 @@ class Settings(BaseSettings):
 settings = Settings()
 
 
-class GlobalSettingsS3Storage(S3Storage):
+class SettingsS3Storage(S3Storage):
+    """
+    Глобальные настройки S3-хранилища.
+    """
     AWS_ACCESS_KEY_ID = settings.S3_ACCESS_KEY
     AWS_SECRET_ACCESS_KEY = settings.S3_SECRET_KEY
     AWS_S3_ENDPOINT_URL = settings.S3_ENDPOINT_URL
     AWS_DEFAULT_ACL = settings.S3_AWS_DEFAULT_ACL
     AWS_S3_USE_SSL = settings.S3_AWS_USE_SSL
-
-
-class ApartmentsStorage(GlobalSettingsS3Storage):
     AWS_S3_BUCKET_NAME = settings.S3_BUCKET_APARTMENTS
     AWS_S3_CUSTOM_DOMAIN = settings.S3_CUSTOM_DOMAIN_APARTMENTS
 
 
-apartments_storage = ApartmentsStorage()
+apartments_storage = SettingsS3Storage()
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")

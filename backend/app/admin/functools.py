@@ -1,13 +1,11 @@
 from typing import Dict, Any
 
 from fastapi_storages import S3Storage
-from jinja2 import Environment, FileSystemLoader
 from markupsafe import Markup
 
-from app.core.config import apartments_storage, TEMPLATES_DIR
+from app.core.config import apartments_storage, JINJA_ENV
 from app.utils.functools import check_image_extension, generate_unique_filename
 
-JINJA_ENV = Environment(loader=FileSystemLoader(TEMPLATES_DIR))
 FIRST_ELEM_TUPLE_IMAGE = 0
 
 
