@@ -71,7 +71,7 @@ class FastAPIApp:
         """
         ### Подключает роутеры к приложению `FastAPI`.
         """
-        # self.app.include_router(router=apartment_router, prefix="/api")
+        self.app.include_router(router=apartment_router, prefix="/api")
         self.app.include_router(router=project_router, prefix="/api")
         self.app.include_router(router=city_router, prefix="/api")
 

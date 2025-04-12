@@ -18,7 +18,7 @@ class Apartment(Base):
     id: Mapped[int] = mapped_column(autoincrement=True, primary_key=True)
     name: Mapped[str] = mapped_column(String(200), nullable=False)
     on_sale: Mapped[bool] = mapped_column(Boolean, default=False)
-    price: Mapped[float] = mapped_column(Float, nullable=False)
+    price: Mapped[int] = mapped_column(Integer, nullable=False)
     discount_percent: Mapped[float] = mapped_column(
         Float, nullable=False, default=0.0,
     )
@@ -36,14 +36,14 @@ class Apartment(Base):
         ForeignKey("projects.id", ondelete="CASCADE"), nullable=False
     )
     project: Mapped["Project"] = relationship(
-        argument="Project", back_populates="apartments"
+        argument="Project", back_populates="apartments", lazy="selectin"
     )
 
     image_id: Mapped[int] = mapped_column(
         ForeignKey("apartment_images.id"), nullable=True
     )
     image: Mapped["ApartmentImage"] = relationship(
-        argument="ApartmentImage", back_populates="apartments", lazy="select"
+        argument="ApartmentImage", back_populates="apartments", lazy="selectin"
     )
 
     @validates('discount_percent')
@@ -85,7 +85,7 @@ class Project(Base):
         return f'{self.name}'
 
     async def __admin_repr__(self, request: Request):
-        return f"{self.name} - {self.city}"
+        return f"{self.name} - {self.city.name}"
 
     async def __admin_select2_repr__(self, request: Request) -> str:
         template_str = (

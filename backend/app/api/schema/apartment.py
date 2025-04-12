@@ -1,36 +1,55 @@
-from typing import Optional, List
+from datetime import date
+from typing import Optional, List, Dict, Any
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, model_validator
 
+from app.core.config import apartments_storage
 from app.core.enums import CountRooms
 
 
 class RequestSearchApartment(BaseModel):
-    # required fields
-    city: str = Field(default='Нижний Новгород', min_length=3, max_length=100)
-    district: str = Field(
-        default='Сормово', min_length=3, max_length=100
-    )
+    # Required fields
+    city: str = Field(default='Москва', min_length=3, max_length=100)
 
-    # optional fields
+    # Optional fields
+    on_sale: Optional[bool] = Field(default=None)
     rooms_count: Optional[List[CountRooms]] = Field(default=None)
-
     min_area: Optional[float] = Field(default=None, ge=5, le=1000)
     max_area: Optional[float] = Field(default=None, ge=5, le=1000)
-
-    min_floor: Optional[int] = Field(default=None, ge=1, le=150)
-    max_floor: Optional[int] = Field(default=None, ge=1, le=150)
-
-    min_price: Optional[float] = Field(default=None, ge=100000, le=300000000)
-    max_price: Optional[float] = Field(default=None, ge=100000, le=300000000)
+    min_floor: Optional[int] = Field(default=None, ge=1, le=200)
+    max_floor: Optional[int] = Field(default=None, ge=1, le=200)
+    min_price: Optional[int] = Field(default=None, ge=100000, le=500000000)
+    max_price: Optional[int] = Field(default=None, ge=100000, le=500000000)
 
 
-class ResponseSearchApartment(BaseModel):
+class ItemSearchApartment(BaseModel):
     id: int
     name: str
-    price: float
-    discounted_price: float
+    project_name: str
+    construction_date: date
+    price: int
+    discount_percent: float
+    floor: int
+    area: float
     image: str
 
     class Config:
         from_attributes = True
+
+    @model_validator(mode="before")
+    def laizy_projects_filed(cls, data: Any) -> Dict[str, Any]:
+        return dict(
+            id=data.id,
+            name=data.name,
+            project_name=data.project.name,
+            construction_date=data.project.construction_date,
+            price=data.price,
+            discount_percent=data.discount_percent,
+            floor=data.floor,
+            area=data.area,
+            image=apartments_storage.get_path(data.image.image),
+        )
+
+
+class ResponseSearchApartment(BaseModel):
+    apartments: List[ItemSearchApartment]
