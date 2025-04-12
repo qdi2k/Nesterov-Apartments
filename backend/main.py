@@ -13,7 +13,7 @@ from app.admin.views import (
     ApartmentImageView,
     ProjectView,
     ApartmentView,
-    ProjectImageView,
+    ProjectImageView, CityView,
 )
 from app.api.routes.apartments import apartment_router
 from app.api.routes.projects import project_router
@@ -21,7 +21,7 @@ from app.core.config import settings, API_TITLE, API_VERSION, API_DESCRIPTION
 from app.core.log_config import init_loggers
 from app.api.middleware import ExceptionHandlerMiddleware
 from app.db.database import async_engine
-from app.db.models import ApartmentImage, Project, Apartment, ProjectImage
+from app.db.models import ApartmentImage, Project, Apartment, ProjectImage, City
 
 
 class FastAPIApp:
@@ -98,10 +98,11 @@ class FastAPIApp:
             auth_provider=DBAuthProvider(),
             debug=settings.DEBUG,
         )
+        admin.add_view(ApartmentView(Apartment))
+        admin.add_view(ProjectView(Project))
+        admin.add_view(CityView(City, label="Cities"))
         admin.add_view(ApartmentImageView(ApartmentImage))
         admin.add_view(ProjectImageView(ProjectImage))
-        admin.add_view(ProjectView(Project))
-        admin.add_view(ApartmentView(Apartment))
         admin.mount_to(self.app)
 
 

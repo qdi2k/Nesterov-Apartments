@@ -33,7 +33,7 @@ class Apartment(Base):
     area: Mapped[float] = mapped_column(Float, nullable=False)
 
     project_id: Mapped[int] = mapped_column(
-        ForeignKey("projects.id"), nullable=False
+        ForeignKey("projects.id", ondelete="CASCADE"), nullable=False
     )
     project: Mapped["Project"] = relationship(
         argument="Project", back_populates="apartments"
@@ -63,12 +63,17 @@ class Project(Base):
     id: Mapped[int] = mapped_column(autoincrement=True, primary_key=True)
     name: Mapped[str] = mapped_column(String(200), nullable=False)
     description: Mapped[str] = mapped_column(Text, nullable=True)
-    city: Mapped[str] = mapped_column(String(100), nullable=False)
     address: Mapped[str] = mapped_column(String(300), nullable=False)
     construction_date: Mapped[date] = mapped_column(Date, nullable=True)
 
+    city_id: Mapped[int] = mapped_column(ForeignKey('cities.id'), nullable=True)
+
+    city: Mapped["City"] = relationship(back_populates="projects", lazy="select")
     apartments: Mapped[List["Apartment"]] = relationship(
-        argument="Apartment", back_populates="project"
+        argument="Apartment",
+        back_populates="project",
+        cascade="all, delete-orphan",
+        passive_deletes=True,
     )
     images: Mapped[List["ProjectImage"]] = relationship(
         "ProjectImage",
@@ -139,6 +144,18 @@ class ProjectImage(Base):
         template = JINJA_ENV.get_template("list_images.html")
         html = template.render(obj=self, url=url)
         return Markup(html)
+
+
+class City(Base):
+    """Модель городов."""
+
+    id: Mapped[int] = mapped_column(autoincrement=True, primary_key=True)
+    name: Mapped[str] = mapped_column(String(100), nullable=False, unique=True)
+
+    projects: Mapped[list["Project"]] = relationship(back_populates="city")
+
+    async def __admin_repr__(self, request: Request):
+        return self.name
 
 
 class AdminUser(Base):

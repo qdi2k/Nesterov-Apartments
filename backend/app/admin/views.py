@@ -6,8 +6,6 @@ from starlette_admin.exceptions import FormValidationError
 
 from app.admin.image_view import ImageView
 
-FIRST_ELEM_TUPLE_IMAGE = 0
-
 
 class ApartmentImageView(ImageView):
     """Админка изображений квартир."""
@@ -27,7 +25,7 @@ class ProjectImageView(ImageView):
 
 
 class ProjectView(ModelView):
-    """Админка проектов"""
+    """Админка проектов."""
 
     fields = [
         "id",
@@ -37,6 +35,16 @@ class ProjectView(ModelView):
         "address",
         "construction_date",
         "images",
+    ]
+
+
+class CityView(ModelView):
+    """Админка городов."""
+    name = "City"
+
+    fields = [
+        "id",
+        "name",
     ]
 
 
