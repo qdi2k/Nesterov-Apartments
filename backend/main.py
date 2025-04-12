@@ -16,6 +16,7 @@ from app.admin.views import (
     ProjectImageView, CityView,
 )
 from app.api.routes.apartments import apartment_router
+from app.api.routes.city import city_router
 from app.api.routes.projects import project_router
 from app.core.config import settings, API_TITLE, API_VERSION, API_DESCRIPTION
 from app.core.log_config import init_loggers
@@ -72,6 +73,7 @@ class FastAPIApp:
         """
         # self.app.include_router(router=apartment_router, prefix="/api")
         self.app.include_router(router=project_router, prefix="/api")
+        self.app.include_router(router=city_router, prefix="/api")
 
 
     def include_openapi(self) -> None:

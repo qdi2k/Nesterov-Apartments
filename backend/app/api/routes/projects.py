@@ -16,7 +16,7 @@ project_router = APIRouter(prefix="/projects", tags=["Project"])
     status_code=status.HTTP_200_OK,
     responses={**NotFountError().get_error()},
 )
-async def list_projects_by_city(
+async def get_list_projects_by_city(
         city: str, db: AsyncSession = Depends(get_async_session),
 ) -> ResponseListProjectsByCity:
     """
