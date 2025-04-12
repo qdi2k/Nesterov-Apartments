@@ -3,9 +3,12 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from starlette import status
 
 from app.api.schema.apartment import (
-    RequestSearchApartment, ResponseSearchApartment, ItemSearchApartment
+    RequestSearchApartment,
+    ResponseSearchApartment,
+    ItemSearchApartment,
+    ResponseGetApartment,
 )
-from app.crud.apartment import get_list_apartments_for_search
+from app.crud.apartment import get_list_apartments_for_search, get_apartment_by_id
 from app.services.project import get_projects_by_city_or_404
 
 
@@ -32,3 +35,16 @@ async def get_search_data_apartments(
         ]
     )
     return result
+
+
+async def get_apartment_by_id_or_404(
+        db: AsyncSession, apartment_id: int
+) -> ResponseGetApartment:
+    """Получить информацию о квартире по её id или вернуть 404."""
+    apartment = await get_apartment_by_id(db=db, apartment_id=apartment_id)
+    if not apartment:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Проект с project_id={apartment_id} не найден."
+        )
+    return ResponseGetApartment.model_validate(apartment)
