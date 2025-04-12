@@ -2,8 +2,8 @@ from fastapi import HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 from starlette import status
 
-from app.api.schema.project import ResponseListProjectsByCity, ProjectSchema, \
-    ResponseProject
+from app.api.schema.project import (ResponseListProjectsByCity, ProjectSchema,
+                                    ResponseProject)
 from app.crud.project import get_projects_by_city, get_projects_by_id
 
 
@@ -21,7 +21,6 @@ async def get_projects_by_city_or_404(
         projects=[ProjectSchema.model_validate(project) for project in projects]
     )
     return result
-
 
 
 async def get_project_by_id(db: AsyncSession, project_id: int) -> ResponseProject:

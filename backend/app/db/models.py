@@ -68,7 +68,7 @@ class Project(Base):
 
     city_id: Mapped[int] = mapped_column(ForeignKey('cities.id'), nullable=True)
 
-    city: Mapped["City"] = relationship(back_populates="projects", lazy="select")
+    city: Mapped["City"] = relationship(back_populates="projects", lazy="selectin")
     apartments: Mapped[List["Apartment"]] = relationship(
         argument="Apartment",
         back_populates="project",

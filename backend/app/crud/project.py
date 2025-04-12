@@ -3,7 +3,7 @@ from typing import Sequence, Optional
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.db.models import Project
+from app.db.models import Project, City
 
 
 async def get_projects_by_city(db: AsyncSession, city: str) -> Sequence[Project]:
@@ -11,7 +11,8 @@ async def get_projects_by_city(db: AsyncSession, city: str) -> Sequence[Project]
     async with db as session:
         result = await session.execute(
             select(Project)
-            .where(Project.city == city)
+            .join(Project.city)
+            .where(City.name == city)
             .order_by(Project.id)
         )
     return result.scalars().all()
