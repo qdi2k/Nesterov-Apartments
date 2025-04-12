@@ -1,7 +1,7 @@
 from datetime import datetime
-from typing import List
+from typing import List, Any, Dict
 
-from pydantic import BaseModel, field_validator
+from pydantic import BaseModel, field_validator, model_validator
 
 from app.core.config import apartments_storage
 
@@ -30,6 +30,18 @@ class ProjectSchema(BaseModel):
 
     class Config:
         from_attributes = True
+
+    @model_validator(mode="before")
+    def convert_city_name(cls, data: Any) -> Dict[str, Any]:
+        return dict(
+            id=data.id,
+            name=data.name,
+            city=data.city.name,
+            address=data.address,
+            construction_date=data.construction_date,
+            description=data.description,
+            images=data.images,
+        )
 
 
 class ResponseListProjectsByCity(BaseModel):
