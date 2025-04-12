@@ -5,7 +5,7 @@ from starlette import status
 from app.api.exeptions import NotFountError
 from app.api.schema.apartment import RequestSearchApartment, ResponseSearchApartment
 from app.db.database import get_async_session
-from app.services.apartment import search_apartments
+from app.services.apartment import get_search_data_apartments
 
 apartment_router = APIRouter(prefix="/apartment", tags=["Apartment"])
 
@@ -64,4 +64,4 @@ async def search(
 
     * `image` - ссылка на картинку квартиры.
     """
-    return await search_apartments(db=db, data=data)
+    return await get_search_data_apartments(db=db, data=data)

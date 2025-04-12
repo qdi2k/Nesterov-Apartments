@@ -18,7 +18,7 @@ async def get_projects_by_city(db: AsyncSession, city: str) -> Sequence[Project]
     return result.scalars().all()
 
 
-async def get_projects_by_id(db: AsyncSession, project_id: int) -> Optional[Project]:
+async def get_project_by_id(db: AsyncSession, project_id: int) -> Optional[Project]:
     """Получает проект по его id."""
     async with db as session:
         result = await session.execute(

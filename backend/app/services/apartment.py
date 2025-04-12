@@ -9,7 +9,7 @@ from app.crud.apartment import get_list_apartments_for_search
 from app.services.project import get_projects_by_city_or_404
 
 
-async def search_apartments(
+async def get_search_data_apartments(
         db: AsyncSession, data: RequestSearchApartment
 ) -> ResponseSearchApartment:
     """Поиск квартир."""
