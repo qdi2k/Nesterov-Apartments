@@ -4,7 +4,7 @@ from starlette import status
 
 from app.api.schema.project import (ResponseListProjectsByCity, ProjectSchema,
                                     ResponseProject)
-from app.crud.project import get_projects_by_city, get_projects_by_id
+from app.crud.project import get_projects_by_city, get_project_by_id
 
 
 async def get_projects_by_city_or_404(
@@ -23,9 +23,11 @@ async def get_projects_by_city_or_404(
     return result
 
 
-async def get_project_by_id(db: AsyncSession, project_id: int) -> ResponseProject:
+async def get_project_by_id_or_404(
+        db: AsyncSession, project_id: int
+) -> ResponseProject:
     """Получить список проектов по городу или вернуть 404."""
-    project = await get_projects_by_id(db=db, project_id=project_id)
+    project = await get_project_by_id(db=db, project_id=project_id)
     if not project:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,

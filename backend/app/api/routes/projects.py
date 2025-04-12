@@ -5,7 +5,9 @@ from starlette import status
 from app.api.exeptions import NotFountError
 from app.api.schema.project import ResponseListProjectsByCity, ResponseProject
 from app.db.database import get_async_session
-from app.services.project import get_projects_by_city_or_404, get_project_by_id
+from app.services.project import (
+    get_projects_by_city_or_404, get_project_by_id_or_404
+)
 
 project_router = APIRouter(prefix="/projects", tags=["Project"])
 
@@ -80,4 +82,4 @@ async def get_project(
 
     * `images` - список картинок проекта.
     """
-    return await get_project_by_id(db=db, project_id=project_id)
+    return await get_project_by_id_or_404(db=db, project_id=project_id)
