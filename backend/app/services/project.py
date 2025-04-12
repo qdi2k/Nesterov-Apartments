@@ -26,7 +26,7 @@ async def get_projects_by_city_or_404(
 async def get_project_by_id_or_404(
         db: AsyncSession, project_id: int
 ) -> ResponseProject:
-    """Получить список проектов по городу или вернуть 404."""
+    """Получить информацию о проекте по его id или вернуть 404."""
     project = await get_project_by_id(db=db, project_id=project_id)
     if not project:
         raise HTTPException(

@@ -20,6 +20,18 @@ async def get_list_apartments_for_search(
     return result.scalars().all()
 
 
+async def get_apartment_by_id(
+        db: AsyncSession, apartment_id: int
+) -> Optional[Apartment]:
+    """Получает квартиру по его id."""
+    async with db as session:
+        result = await session.execute(
+            select(Apartment)
+            .where(Apartment.id == apartment_id)
+        )
+    return result.scalars().first()
+
+
 def _get_filters_for_search(
         query: Select[Any], data: RequestSearchApartment
 ) -> Select[Any]:
