@@ -16,7 +16,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 JINJA_ENV = Environment(loader=FileSystemLoader(TEMPLATES_DIR))
 
 API_TITLE = """Nesterov Apartments"""
-API_VERSION = "0.0.1"
+API_VERSION = "1.0.0"
 API_DESCRIPTION = """
     API сайта для демонстрации новых жилищных комплексов от застройщика,
     с возможностью записаться на просмотр квартир

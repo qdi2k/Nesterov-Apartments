@@ -73,7 +73,7 @@ async def search(
     return await get_search_data_apartments(db=db, data=data)
 
 
-@apartment_router.post(
+@apartment_router.get(
     path="/{apartment_id}",
     response_model=ResponseGetApartment,
     status_code=status.HTTP_200_OK,

@@ -2,12 +2,15 @@ import re
 from typing import AsyncGenerator
 
 from sqlalchemy import create_engine
-from sqlalchemy.ext.asyncio import (async_sessionmaker, create_async_engine,
-                                    AsyncSession)
+from sqlalchemy.ext.asyncio import (
+    async_sessionmaker, create_async_engine, AsyncSession
+)
 from sqlalchemy.orm import (DeclarativeBase, declared_attr, sessionmaker, Session)
 
 from app.core.config import settings
+from app.core.log_config import init_loggers
 
+init_loggers()
 
 sync_engine = create_engine(settings.get_sync_database_url, echo=settings.DEBUG)
 sync_session_maker = sessionmaker(sync_engine, class_=Session)
@@ -19,14 +22,15 @@ async_session_maker = async_sessionmaker(async_engine, class_=AsyncSession)
 
 
 async def get_async_session() -> AsyncGenerator[AsyncSession, None]:
+    """Асинхронно предоставляет сессию SQLAlchemy для зависимостей."""
     async with async_session_maker() as session:
         yield session
 
 
 class Base(DeclarativeBase):
     """
-    Абстрактный базовый класс, предоставляющий общую функциональность,
-    для всех наследованных моделей.
+    ### Абстрактный базовый класс, предоставляющий общую функциональность,
+        для всех наследованных моделей.
     """
 
     __abstract__ = True
