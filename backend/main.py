@@ -1,31 +1,27 @@
-"""
-Основной стартующий файл.
-"""
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.openapi.utils import get_openapi
-from starlette.middleware.sessions import SessionMiddleware
 from starlette.middleware.trustedhost import TrustedHostMiddleware
-from starlette_admin.contrib.sqla import Admin
 
-from app.admin.auth import DBAuthProvider
-from app.admin.views import (
-    ApartmentImageView,
-    ProjectView,
-    ApartmentView,
-    ProjectImageView, CityView,
-)
-from app.api.routes.apartments import apartment_router
-from app.api.routes.city import city_router
-from app.api.routes.projects import project_router
+from app.admin import admin
+from app.api import api_router
 from app.core.config import settings, API_TITLE, API_VERSION, API_DESCRIPTION
 from app.core.log_config import init_loggers
 from app.api.middleware import ExceptionHandlerMiddleware
-from app.db.database import async_engine
-from app.db.models import ApartmentImage, Project, Apartment, ProjectImage, City
 
 
 class FastAPIApp:
+    """
+    ## Основной класс приложения FastAPI.
+
+    ### Отвечает за инициализацию и конфигурацию приложения FastAPI, включая:
+        - Настройку логирования проекта;
+        - Добавление middleware;
+        - Подключение API роутов;
+        - Конфигурацию документации OpenAPI;
+        - Подключение админ-панели.
+    """
+
     MAX_AGE_CORS: int = 10
 
     def __init__(self) -> None:
@@ -36,11 +32,12 @@ class FastAPIApp:
         """
         init_loggers()
 
-        self.app: FastAPI = FastAPI()
+        self.app: FastAPI = FastAPI(docs_url="/api/docs")
         self.include_middlewares()
-        self.include_routers()
-        self.setup_admin()
+        self.app.include_router(router=api_router, prefix="/api")
         self.include_openapi()
+
+        admin.mount_to(self.app)
 
     def include_middlewares(self) -> None:
         """
@@ -63,18 +60,6 @@ class FastAPIApp:
             middleware_class=TrustedHostMiddleware,
             allowed_hosts=settings.ALLOWED_HOSTS.split(),
         )
-        self.app.add_middleware(
-            SessionMiddleware, secret_key=settings.SECRET_KEY
-        )
-
-    def include_routers(self) -> None:
-        """
-        ### Подключает роутеры к приложению `FastAPI`.
-        """
-        self.app.include_router(router=apartment_router, prefix="/api")
-        self.app.include_router(router=project_router, prefix="/api")
-        self.app.include_router(router=city_router, prefix="/api")
-
 
     def include_openapi(self) -> None:
         """
@@ -89,23 +74,6 @@ class FastAPIApp:
                 description=API_DESCRIPTION,
                 routes=self.app.routes,
             )
-
-    def setup_admin(self) -> None:
-        """
-        ### Добавление представлений админ-панели.
-        """
-        admin = Admin(
-            async_engine,
-            title="Admin Panel",
-            auth_provider=DBAuthProvider(),
-            debug=settings.DEBUG,
-        )
-        admin.add_view(ApartmentView(Apartment))
-        admin.add_view(ProjectView(Project))
-        admin.add_view(CityView(City, label="Cities"))
-        admin.add_view(ApartmentImageView(ApartmentImage))
-        admin.add_view(ProjectImageView(ProjectImage))
-        admin.mount_to(self.app)
 
 
 def create_app() -> FastAPI:
