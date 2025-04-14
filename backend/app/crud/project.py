@@ -6,6 +6,13 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.db.models import Project, City
 
 
+async def get_projects(db: AsyncSession) -> Sequence[Project]:
+    """Получает список проектов."""
+    async with db as session:
+        result = await session.execute(select(Project))
+    return result.scalars().all()
+
+
 async def get_projects_by_city(db: AsyncSession, city: str) -> Sequence[Project]:
     """Получает список проектов по названию города."""
     async with db as session:
