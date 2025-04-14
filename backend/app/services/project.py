@@ -2,14 +2,29 @@ from fastapi import HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 from starlette import status
 
-from app.api.schema.project import (ResponseListProjectsByCity, ProjectSchema,
+from app.api.schema.project import (ResponseListProjects, ProjectSchema,
                                     ResponseProject)
-from app.crud.project import get_projects_by_city, get_project_by_id
+from app.crud.project import get_projects_by_city, get_project_by_id, get_projects
+
+
+async def get_projects_or_404(db: AsyncSession) -> ResponseListProjects:
+    """Получить список проектов или вернуть 404."""
+    projects = await get_projects(db=db)
+    if not projects:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"В текущей конфигурации нет проектов."
+        )
+    result = ResponseListProjects(
+        projects=[ProjectSchema.model_validate(project) for project in projects]
+    )
+    return result
+
 
 
 async def get_projects_by_city_or_404(
         db: AsyncSession, city: str
-) -> ResponseListProjectsByCity:
+) -> ResponseListProjects:
     """Получить список проектов по городу или вернуть 404."""
     projects = await get_projects_by_city(db=db, city=city)
     if not projects:
@@ -17,7 +32,7 @@ async def get_projects_by_city_or_404(
             status_code=status.HTTP_404_NOT_FOUND,
             detail=f"Текущий город {city} не найден."
         )
-    result = ResponseListProjectsByCity(
+    result = ResponseListProjects(
         projects=[ProjectSchema.model_validate(project) for project in projects]
     )
     return result

@@ -3,24 +3,58 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from starlette import status
 
 from app.api.exeptions import NotFountError
-from app.api.schema.project import ResponseListProjectsByCity, ResponseProject
+from app.api.schema.project import ResponseListProjects, ResponseProject
 from app.db.database import get_async_session
 from app.services.project import (
-    get_projects_by_city_or_404, get_project_by_id_or_404
+    get_projects_by_city_or_404, get_project_by_id_or_404, get_projects_or_404
 )
 
 project_router = APIRouter(prefix="/projects", tags=["Project"])
 
 
 @project_router.get(
-    path="/city/{city}",
-    response_model=ResponseListProjectsByCity,
+    path="",
+    response_model=ResponseListProjects,
+    status_code=status.HTTP_200_OK,
+    responses={**NotFountError().get_error()},
+)
+async def get_list_projects(
+        db: AsyncSession = Depends(get_async_session),
+) -> ResponseListProjects:
+    """
+    ## Получение списка проектов.
+
+    ---
+    #### Возвращает список проектов состоящих из следующих элементов:
+    * `id` - id проекта;
+
+    * `name` - название проекта;
+
+    * `city` - название города;
+
+    * `address` - адрес проекта;
+
+    * `construction_year` - год постройки;
+
+    * `construction_quarter` - квартал постройки;
+
+    * `description` - описание проекта;
+
+    * `images` - список картинок проекта.
+
+    """
+    return await get_projects_or_404(db=db)
+
+
+@project_router.get(
+    path="/city/{city_name}",
+    response_model=ResponseListProjects,
     status_code=status.HTTP_200_OK,
     responses={**NotFountError().get_error()},
 )
 async def get_list_projects_by_city(
-        city: str, db: AsyncSession = Depends(get_async_session),
-) -> ResponseListProjectsByCity:
+        city_name: str, db: AsyncSession = Depends(get_async_session),
+) -> ResponseListProjects:
     """
     ## Получение проектов.
 
@@ -28,7 +62,7 @@ async def get_list_projects_by_city(
 
     ---
     #### Принимает на вход следующий параметр:
-    * `city` - название города.
+    * `city_name` - название города.
 
     #### Возвращает список проектов состоящих из следующих элементов:
     * `id` - id проекта;
@@ -48,7 +82,7 @@ async def get_list_projects_by_city(
     * `images` - список картинок проекта.
 
     """
-    return await get_projects_by_city_or_404(db=db, city=city)
+    return await get_projects_by_city_or_404(db=db, city=city_name)
 
 
 @project_router.get(
