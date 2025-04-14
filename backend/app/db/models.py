@@ -162,7 +162,7 @@ class City(Base):
 
 
 class AdminUser(Base):
-    """Модель пользователей админки"""
+    """Модель пользователей админки."""
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     username: Mapped[str] = mapped_column(String(50), unique=True, nullable=False)

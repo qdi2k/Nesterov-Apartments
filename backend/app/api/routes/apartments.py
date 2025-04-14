@@ -20,7 +20,7 @@ apartment_router = APIRouter(prefix="/apartments", tags=["Apartment"])
     status_code=status.HTTP_200_OK,
     responses={**NotFountError().get_error()},
 )
-async def search(
+async def search_apartments(
         data: RequestSearchApartment,
         db: AsyncSession = Depends(get_async_session),
 ) -> ResponseSearchApartment:
