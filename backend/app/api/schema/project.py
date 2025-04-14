@@ -54,8 +54,13 @@ class ResponseProject(BaseModel):
     project: ProjectSchema
 
 
+class ItemUniqueDateProject(BaseModel):
+    quarter: QuarterEnum
+    year: int
+
+
 class ResponseUniqueDateProject(BaseModel):
-    dates: List[str]
+    dates: List[ItemUniqueDateProject]
 
 
 class ProjectFieldSearch(BaseModel):
