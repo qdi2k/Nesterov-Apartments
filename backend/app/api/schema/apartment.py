@@ -4,6 +4,7 @@ from pydantic import (
     BaseModel, Field, model_validator, field_validator, computed_field
 )
 
+from app.api.schema.project import ProjectFieldSearch
 from app.core.config import apartments_storage
 from app.core.enums import CountRooms
 from app.core.functools import get_total_price
@@ -85,9 +86,11 @@ class RequestSearchApartment(BaseModel):
     min_price: Optional[int] = Field(default=None, ge=100000, le=500000000)
     max_price: Optional[int] = Field(default=None, ge=100000, le=500000000)
     exclude_id: Optional[int] = Field(default=None)
+    project_ids: Optional[List[int]] = Field(default=None)
 
 
 class ResponseSearchApartment(BaseModel):
+    projects: List[ProjectFieldSearch]
     apartments: List[ItemSearchApartment]
 
 

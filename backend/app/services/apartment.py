@@ -8,16 +8,23 @@ from app.api.schema.apartment import (
     ItemSearchApartment,
     ResponseGetApartment,
 )
+from app.api.schema.project import ProjectFieldSearch
 from app.crud.apartment import get_list_apartments_for_search, get_apartment_by_id
-from app.services.project import get_projects_by_city_or_404
+from app.services.project import (
+    get_projects_by_city_and_ids_or_404, get_projects_id_by_city_or_404,
+)
 
 
 async def get_search_data_apartments(
         db: AsyncSession, data: RequestSearchApartment
 ) -> ResponseSearchApartment:
     """Поиск квартир."""
-    projects = await get_projects_by_city_or_404(db=db, city=data.city)
-    project_ids = [project.id for project in projects.projects]
+    if data.project_ids:
+        project_ids = await get_projects_by_city_and_ids_or_404(
+            db=db, city=data.city, project_ids=data.project_ids
+        )
+    else:
+        project_ids = await get_projects_id_by_city_or_404(db=db, city=data.city)
 
     apartments = await get_list_apartments_for_search(
         db=db, data=data, project_ids=project_ids
@@ -28,11 +35,18 @@ async def get_search_data_apartments(
             detail=f"Квартиры по вашему запросу не найдены!"
         )
 
+    unique_project = {
+        apartment.project_id: apartment.project.name for apartment in apartments
+    }
     result = ResponseSearchApartment(
+        projects=[
+            ProjectFieldSearch(project_id=proj, project_name=unique_project[proj])
+            for proj in unique_project
+        ],
         apartments=[
             ItemSearchApartment.model_validate(apartment)
             for apartment in apartments
-        ]
+        ],
     )
     return result
 
