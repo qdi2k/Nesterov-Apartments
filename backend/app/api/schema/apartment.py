@@ -1,9 +1,12 @@
 from typing import Optional, List, Dict, Any
 
-from pydantic import BaseModel, Field, model_validator, field_validator
+from pydantic import (
+    BaseModel, Field, model_validator, field_validator, computed_field
+)
 
 from app.core.config import apartments_storage
 from app.core.enums import CountRooms
+from app.core.functools import get_total_price
 
 
 class ItemSearchApartment(BaseModel):
@@ -11,12 +14,13 @@ class ItemSearchApartment(BaseModel):
     name: str
     project_name: str
     construction_date: str
-    price: int
-    discount_percent: float
     rooms_count: CountRooms
     floor: int
     area: float
     image: str
+    price: int
+    discount_percent: float
+    total_price: int
 
     class Config:
         from_attributes = True
@@ -33,6 +37,7 @@ class ItemSearchApartment(BaseModel):
             ),
             price=data.price,
             discount_percent=data.discount_percent,
+            total_price=get_total_price(data.price, data.discount_percent),
             rooms_count=data.rooms_count,
             floor=data.floor,
             area=data.area,
@@ -44,21 +49,26 @@ class ApartmentSchema(BaseModel):
     id: int
     name: str
     on_sale: bool
-    price: int
-    discount_percent: float
     rooms_count: CountRooms
     section: str
     floor: int
     area: float
     image: str
     project_id: int
+    price: int
+    discount_percent: float
 
     class Config:
         from_attributes = True
 
     @field_validator('image', mode='before')
-    def lowercase_email(cls, v):
+    def lowercase_email(cls, v) -> str:
         return apartments_storage.get_path(v.image)
+
+    @computed_field
+    @property
+    def total_price(self) -> int:
+        return get_total_price(self.price, self.discount_percent)
 
 
 class RequestSearchApartment(BaseModel):
