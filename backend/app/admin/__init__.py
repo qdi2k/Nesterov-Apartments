@@ -4,11 +4,18 @@ from starlette_admin.contrib.sqla import Admin
 
 from app.admin.auth import DBAuthProvider
 from app.admin.views import (
-    ApartmentView, ProjectView, CityView, ApartmentImageView, ProjectImageView
+    ApartmentView,
+    ProjectView,
+    CityView,
+    ApartmentImageView,
+    ProjectImageView,
+    QuestionView,
 )
 from app.core.config import settings
 from app.db.database import async_engine
-from app.db.models import Apartment, Project, City, ApartmentImage, ProjectImage
+from app.db.models import (
+    Apartment, Project, City, ApartmentImage, ProjectImage, Question
+)
 
 __all__ = ["admin"]
 
@@ -24,3 +31,4 @@ admin.add_view(ProjectView(Project))
 admin.add_view(CityView(City, label="Cities"))
 admin.add_view(ApartmentImageView(ApartmentImage))
 admin.add_view(ProjectImageView(ProjectImage))
+admin.add_view(QuestionView(Question))

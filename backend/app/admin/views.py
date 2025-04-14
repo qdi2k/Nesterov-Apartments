@@ -104,3 +104,16 @@ class ApartmentView(ModelView):
         if len(errors) > 0:
             raise FormValidationError(errors)
         return await super().validate(request, data)
+
+
+class QuestionView(ModelView):
+    """Админка для вопросов."""
+
+    fields = [
+        "id",
+        "add_site",
+        "owner",
+        "phone",
+        "question",
+        "answer",
+    ]
