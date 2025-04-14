@@ -1,15 +1,14 @@
-from datetime import date
 from typing import List
 
 from jinja2 import Template
 from markupsafe import Markup
-from sqlalchemy import Integer, String, Float, Enum, ForeignKey, Boolean, Date, Text
+from sqlalchemy import Integer, String, Float, Enum, ForeignKey, Boolean, Text
 from sqlalchemy.orm import mapped_column, Mapped, relationship, validates
 from starlette.requests import Request
 
 from app.core.config import apartments_storage, JINJA_ENV
 from app.db.database import Base
-from app.core.enums import CountRooms
+from app.core.enums import CountRooms, QuarterEnum
 
 
 class Apartment(Base):
@@ -64,7 +63,11 @@ class Project(Base):
     name: Mapped[str] = mapped_column(String(200), nullable=False)
     description: Mapped[str] = mapped_column(Text, nullable=True)
     address: Mapped[str] = mapped_column(String(300), nullable=False)
-    construction_date: Mapped[date] = mapped_column(Date, nullable=True)
+    construction_year: Mapped[int] = mapped_column(Integer, nullable=False)
+    construction_quarter: Mapped[QuarterEnum] = mapped_column(Enum(
+        QuarterEnum,
+        values_callable=lambda x: [e.value for e in QuarterEnum]
+    ))
 
     city_id: Mapped[int] = mapped_column(ForeignKey('cities.id'), nullable=True)
 
