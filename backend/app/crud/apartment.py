@@ -36,6 +36,9 @@ def _get_filters_for_search(
         query: Select[Any], data: RequestSearchApartment
 ) -> Select[Any]:
     """Получить фильтры для поиска квартир."""
+    if data.exclude_id:
+        query = query.where(Apartment.id != data.exclude_id)
+
     if data.rooms_count:
         query = query.where(Apartment.rooms_count.in_(data.rooms_count))
 

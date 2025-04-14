@@ -63,7 +63,7 @@ class ApartmentSchema(BaseModel):
 
 class RequestSearchApartment(BaseModel):
     # Required fields
-    city: str = Field(default='Москва', min_length=3, max_length=100)
+    city: str = Field(default='Нижний Новгород', min_length=3, max_length=100)
 
     # Optional fields
     on_sale: Optional[bool] = Field(default=None)
@@ -74,6 +74,7 @@ class RequestSearchApartment(BaseModel):
     max_floor: Optional[int] = Field(default=None, ge=1, le=200)
     min_price: Optional[int] = Field(default=None, ge=100000, le=500000000)
     max_price: Optional[int] = Field(default=None, ge=100000, le=500000000)
+    exclude_id: Optional[int] = Field(default=None)
 
 
 class ResponseSearchApartment(BaseModel):
