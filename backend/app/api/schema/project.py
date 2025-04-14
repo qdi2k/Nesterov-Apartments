@@ -66,3 +66,5 @@ class ResponseUniqueDateProject(BaseModel):
 class ProjectFieldSearch(BaseModel):
     project_id: int
     project_name: str
+    quarter: QuarterEnum
+    year: int

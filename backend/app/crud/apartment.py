@@ -1,21 +1,30 @@
+import logging
 from typing import Sequence, Any, List, Optional
 
-from sqlalchemy import select, and_, Select
+from sqlalchemy import select, and_, Select, or_
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.api.schema.apartment import RequestSearchApartment
-from app.db.models import Apartment
+from app.db.models import Apartment, Project
+
+
+logger = logging.getLogger()
 
 
 async def get_list_apartments_for_search(
     db: AsyncSession, data: RequestSearchApartment, project_ids: List[int],
 ) -> Sequence[Apartment]:
     """Поиск квартир по заданным параметрам."""
-    query = select(Apartment).where(
-        Apartment.project_id.in_(project_ids),
-        Apartment.on_sale == data.on_sale
+    query = (
+        select(Apartment)
+        .join(Project)
+        .where(
+            Apartment.project_id.in_(project_ids),
+            Apartment.on_sale == data.on_sale
+        )
     )
-    query = _get_filters_for_search(query, data)
+    query = _get_filters_for_search(query, data).order_by(Apartment.price)
+    logger.debug(f"Запрос на поиск квартир:\n{query}")
     result = await db.execute(query.order_by(Apartment.price))
     return result.scalars().all()
 
@@ -36,6 +45,17 @@ def _get_filters_for_search(
         query: Select[Any], data: RequestSearchApartment
 ) -> Select[Any]:
     """Получить фильтры для поиска квартир."""
+    if data.dates:
+        date_conditions = []
+        for date_item in data.dates:
+            date_conditions.append(
+                and_(
+                    Project.construction_quarter == date_item.quarter,
+                    Project.construction_year == date_item.year
+                )
+            )
+        query = query.where(or_(*date_conditions))
+
     if data.exclude_id:
         query = query.where(Apartment.id != data.exclude_id)
 
