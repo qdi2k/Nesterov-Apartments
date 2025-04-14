@@ -6,6 +6,7 @@ from starlette_admin import EnumField
 from starlette_admin.contrib.sqla import ModelView
 from starlette_admin.exceptions import FormValidationError
 
+from app.admin.functools import validate_phone
 from app.admin.image_view import ImageView
 
 
@@ -117,3 +118,20 @@ class QuestionView(ModelView):
         "question",
         "answer",
     ]
+
+    async def validate(self, request: Request, data: Dict[str, Any]) -> None:
+        errors: Dict[str, str] = dict()
+
+        if data.get("phone"):
+            if not validate_phone(data.get("phone")):
+                errors["phone"] = "Неверный формат номера"
+            else:
+                data["phone"] = data.get("phone")
+        if data.get("question") is not None:
+            data["question"] = data["question"].strip()
+        if data.get("answer") is not None:
+            data["answer"] = data["answer"].strip()
+
+        if len(errors) > 0:
+            raise FormValidationError(errors)
+        return await super().validate(request, data)
