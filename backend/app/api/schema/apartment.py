@@ -1,4 +1,3 @@
-from datetime import date
 from typing import Optional, List, Dict, Any
 
 from pydantic import BaseModel, Field, model_validator, field_validator
@@ -11,7 +10,7 @@ class ItemSearchApartment(BaseModel):
     id: int
     name: str
     project_name: str
-    construction_date: date
+    construction_date: str
     price: int
     discount_percent: float
     rooms_count: CountRooms
@@ -28,7 +27,10 @@ class ItemSearchApartment(BaseModel):
             id=data.id,
             name=data.name,
             project_name=data.project.name,
-            construction_date=data.project.construction_date,
+            construction_date=(
+                f"{data.project.construction_quarter.value}"
+                f" - {data.project.construction_year}"
+            ),
             price=data.price,
             discount_percent=data.discount_percent,
             rooms_count=data.rooms_count,

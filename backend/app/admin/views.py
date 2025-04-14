@@ -1,6 +1,8 @@
+import datetime
 from typing import Any, Dict
 
 from starlette.requests import Request
+from starlette_admin import EnumField
 from starlette_admin.contrib.sqla import ModelView
 from starlette_admin.exceptions import FormValidationError
 
@@ -33,9 +35,30 @@ class ProjectView(ModelView):
         "description",
         "city",
         "address",
-        "construction_date",
+        "construction_year",
+        EnumField(
+            "construction_quarter",
+            choices=[
+                ("I квартал", "I квартал"),
+                ("II квартал", "II квартал"),
+                ("III квартал", "III квартал"),
+                ("IV квартал", "IV квартал"),
+            ],
+        ),
         "images",
     ]
+
+    async def validate(self, request: Request, data: Dict[str, Any]) -> None:
+        errors: Dict[str, str] = dict()
+        construction_year = data.get("construction_year")
+        year_more = datetime.datetime.now().year + 100
+        if not 1950 <= construction_year <= year_more:
+            errors["construction_year"] = (
+                f"Год постройки должен быть от 1950 до {year_more}."
+            )
+        if len(errors) > 0:
+            raise FormValidationError(errors)
+        return await super().validate(request, data)
 
 
 class CityView(ModelView):

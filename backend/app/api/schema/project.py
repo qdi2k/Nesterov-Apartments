@@ -1,9 +1,9 @@
-from datetime import datetime
 from typing import List, Any, Dict
 
 from pydantic import BaseModel, field_validator, model_validator
 
 from app.core.config import apartments_storage
+from app.core.enums import QuarterEnum
 
 
 class ProjectImageSchema(BaseModel):
@@ -24,7 +24,8 @@ class ProjectSchema(BaseModel):
     name: str
     city: str
     address: str
-    construction_date: datetime
+    construction_year: int
+    construction_quarter: QuarterEnum
     description: str
     images: List[ProjectImageSchema]
 
@@ -38,7 +39,8 @@ class ProjectSchema(BaseModel):
             name=data.name,
             city=data.city.name,
             address=data.address,
-            construction_date=data.construction_date,
+            construction_year=data.construction_year,
+            construction_quarter=data.construction_quarter,
             description=data.description,
             images=data.images,
         )
