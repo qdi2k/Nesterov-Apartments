@@ -52,3 +52,8 @@ class ResponseListProjects(BaseModel):
 
 class ResponseProject(BaseModel):
     project: ProjectSchema
+
+
+class ProjectFieldSearch(BaseModel):
+    project_id: int
+    project_name: str
