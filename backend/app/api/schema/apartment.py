@@ -4,7 +4,7 @@ from pydantic import (
     BaseModel, Field, model_validator, field_validator, computed_field
 )
 
-from app.api.schema.project import ProjectFieldSearch
+from app.api.schema.project import ProjectFieldSearch, ItemUniqueDateProject
 from app.core.config import apartments_storage
 from app.core.enums import CountRooms
 from app.core.functools import get_total_price
@@ -18,7 +18,7 @@ class ItemSearchApartment(BaseModel):
     rooms_count: CountRooms
     floor: int
     area: float
-    image: str
+    image: Optional[str]
     price: int
     discount_percent: float
     total_price: int
@@ -42,7 +42,10 @@ class ItemSearchApartment(BaseModel):
             rooms_count=data.rooms_count,
             floor=data.floor,
             area=data.area,
-            image=apartments_storage.get_path(data.image.image),
+            image=(
+                apartments_storage.get_path(data.image.image)
+                if data.image else None
+            ),
         )
 
 
@@ -87,6 +90,7 @@ class RequestSearchApartment(BaseModel):
     max_price: Optional[int] = Field(default=None, ge=100000, le=500000000)
     exclude_id: Optional[int] = Field(default=None)
     project_ids: Optional[List[int]] = Field(default=None)
+    dates: Optional[List[ItemUniqueDateProject]] = Field(default=None)
 
 
 class ResponseSearchApartment(BaseModel):

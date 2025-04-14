@@ -35,18 +35,20 @@ async def get_search_data_apartments(
             detail=f"Квартиры по вашему запросу не найдены!"
         )
 
-    unique_project = {
-        apartment.project_id: apartment.project.name for apartment in apartments
-    }
+    unique_project = dict()
+    list_apartment = []
+    for apartment in apartments:
+        unique_project[apartment.project_id] = ProjectFieldSearch(
+            project_id=apartment.project_id,
+            project_name=apartment.project.name,
+            quarter=apartment.project.construction_quarter,
+            year=apartment.project.construction_year
+        )
+        list_apartment.append(ItemSearchApartment.model_validate(apartment))
+
     result = ResponseSearchApartment(
-        projects=[
-            ProjectFieldSearch(project_id=proj, project_name=unique_project[proj])
-            for proj in unique_project
-        ],
-        apartments=[
-            ItemSearchApartment.model_validate(apartment)
-            for apartment in apartments
-        ],
+        projects=[unique_project[proj] for proj in unique_project],
+        apartments=list_apartment,
     )
     return result
 
