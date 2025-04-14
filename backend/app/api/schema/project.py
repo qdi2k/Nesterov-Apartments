@@ -54,6 +54,10 @@ class ResponseProject(BaseModel):
     project: ProjectSchema
 
 
+class ResponseUniqueDateProject(BaseModel):
+    dates: List[str]
+
+
 class ProjectFieldSearch(BaseModel):
     project_id: int
     project_name: str

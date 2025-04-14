@@ -34,7 +34,7 @@ class ItemSearchApartment(BaseModel):
             project_name=data.project.name,
             construction_date=(
                 f"{data.project.construction_quarter.value}"
-                f" - {data.project.construction_year}"
+                f" {data.project.construction_year}"
             ),
             price=data.price,
             discount_percent=data.discount_percent,
