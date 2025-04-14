@@ -3,6 +3,8 @@ from typing import Sequence, Optional, List
 from sqlalchemy import select, and_
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.api.schema.project import ItemUniqueDateProject
+from app.core.enums import QuarterEnum
 from app.db.models import Project, City
 
 FIRST_FIELD_FROM_ROW = 0
@@ -70,8 +72,10 @@ async def get_project_ids_by_city_and_ids(
     return [row[FIRST_FIELD_FROM_ROW] for row in result.all()]
 
 
-async def get_unique_construction_dates(db: AsyncSession) -> List[str]:
-    """Получает список уникальных сроков сдачи проекта в формате `квартал год`."""
+async def get_unique_construction_dates(
+        db: AsyncSession
+) -> List[ItemUniqueDateProject]:
+    """Получает список уникальных сроков сдачи проекта."""
     async with db as session:
         result = await session.execute(
             select(
@@ -84,5 +88,8 @@ async def get_unique_construction_dates(db: AsyncSession) -> List[str]:
                 Project.construction_quarter
             )
         )
-    dates = [f"{quarter.value} {year}" for quarter, year in result.all()]
+    dates = [
+        ItemUniqueDateProject(quarter=QuarterEnum(quarter), year=year)
+        for quarter, year in result.all()
+    ]
     return dates
