@@ -3,12 +3,12 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from starlette import status
 
 from app.api.schema.city import ResponseListCity, CitySchema
-from app.crud.city import get_cities
+from app.crud.city import get_cities_with_projects
 
 
 async def get_cities_or_404(db: AsyncSession) -> ResponseListCity:
     """Получить список городов или вернуть 404."""
-    cities = await get_cities(db=db)
+    cities = await get_cities_with_projects(db=db)
     if not cities:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
