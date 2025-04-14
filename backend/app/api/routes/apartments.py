@@ -60,17 +60,19 @@ async def search_apartments(
 
     * `construction_date` - дата постройки проекта;
 
-    * `price` - цена квартиры;
-
-    * `discount_percent` - скидка в процентах;
-
     * `rooms_count` - количество комнат;
 
     * `floor` - этаж квартиры;
 
-    * `area` - площадь квартиры.
+    * `area` - площадь квартиры;
 
-    * `image` - ссылка на картинку квартиры.
+    * `image` - ссылка на картинку квартиры;
+
+    * `price` - цена квартиры;
+
+    * `discount_percent` - скидка в процентах;
+
+    * `total_price` - итоговая цена квартиры.
     """
     return await get_search_data_apartments(db=db, data=data)
 
@@ -97,20 +99,22 @@ async def get_apartment(
 
     * `on_sale` - статус в продаже ли квартира;
 
-    * `price` - цена квартиры;
-
-    * `discount_percent` - скидка в процентах;
-
     * `rooms_count` - количество комнат;
 
     * `section` - секция квартиры;
 
     * `floor` - этаж квартиры;
 
-    * `area` - площадь квартиры.
+    * `area` - площадь квартиры;
 
-    * `image` - ссылка на картинку квартиры.
+    * `image` - ссылка на картинку квартиры;
 
-    * `project_id` - id проекта.
+    * `project_id` - id проекта;
+
+    * `price` - цена квартиры;
+
+    * `discount_percent` - скидка в процентах;
+
+    * `total_price` - итоговая цена квартиры.
     """
     return await get_apartment_by_id_or_404(db=db, apartment_id=apartment_id)
