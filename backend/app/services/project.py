@@ -33,4 +33,4 @@ async def get_project_by_id_or_404(
             status_code=status.HTTP_404_NOT_FOUND,
             detail=f"Проект с project_id={project_id} не найден."
         )
-    return ResponseProject.model_validate(project)
+    return ResponseProject(project=ProjectSchema.model_validate(project))
