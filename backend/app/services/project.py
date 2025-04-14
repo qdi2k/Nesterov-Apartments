@@ -5,7 +5,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from starlette import status
 
 from app.api.schema.project import (
-    ResponseListProjects, ProjectSchema, ResponseProject
+    ResponseListProjects, ProjectSchema, ResponseProject, ResponseUniqueDateProject
 )
 from app.crud.project import (
     get_projects_by_city,
@@ -13,6 +13,7 @@ from app.crud.project import (
     get_projects,
     get_project_ids_by_city_and_ids,
     get_project_ids_by_city,
+    get_unique_construction_dates,
 )
 
 
@@ -85,3 +86,16 @@ async def get_projects_by_city_and_ids_or_404(
             detail=f"Проекты в городе {city} и с ids = {project_ids} не найдены."
         )
     return projects
+
+
+async def get_unique_construction_dates_or_404(
+        db: AsyncSession
+) -> ResponseUniqueDateProject:
+    """Получить уникальные даты постройки проекта."""
+    dates = await get_unique_construction_dates(db)
+    if not dates:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"В текущей конфигурации нет проектов."
+        )
+    return ResponseUniqueDateProject(dates=dates)
