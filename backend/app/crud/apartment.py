@@ -1,10 +1,11 @@
 import logging
 from typing import Sequence, Any, List, Optional
 
-from sqlalchemy import select, and_, Select, or_
+from sqlalchemy import select, and_, Select, or_, case
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.api.schema.apartment import RequestSearchApartment
+from app.core.enums import SortSearchFilter, CountRooms
 from app.db.models import Apartment, Project
 
 
@@ -23,9 +24,12 @@ async def get_list_apartments_for_search(
             Apartment.on_sale == data.on_sale
         )
     )
-    query = _get_filters_for_search(query, data).order_by(Apartment.price)
+    query = _get_filters_for_search(query, data=data)
+    if data.sort_filter:
+        query = _apply_sorting(query, sort_filter=data.sort_filter)
+
     logger.debug(f"Запрос на поиск квартир:\n{query}")
-    result = await db.execute(query.order_by(Apartment.price))
+    result = await db.execute(query)
     return result.scalars().all()
 
 
@@ -117,4 +121,52 @@ def _get_filter_by_price(
         )
     if price_filters:
         query = query.where(and_(*price_filters))
+    return query
+
+
+def _apply_sorting(query: Select[Any], sort_filter: SortSearchFilter) -> Select:
+    """Применяет сортировку в соответствии с выбранным фильтром."""
+    if sort_filter == SortSearchFilter.LOW_FLOOR:
+        return query.order_by(Apartment.floor.asc())
+    if sort_filter == SortSearchFilter.HIGH_FLOOR:
+        return query.order_by(Apartment.floor.desc())
+
+    if sort_filter == SortSearchFilter.SMALL_AREA:
+        return query.order_by(Apartment.area.asc())
+    if sort_filter == SortSearchFilter.LARGE_AREA:
+        return query.order_by(Apartment.area.desc())
+
+    if sort_filter == SortSearchFilter.LOW_PRICE:
+        total_price_expr = Apartment.price * (1 - Apartment.discount_percent / 100.0)
+        return query.order_by(total_price_expr.asc())
+    if sort_filter == SortSearchFilter.HIGH_PRICE:
+        total_price_expr = Apartment.price * (1 - Apartment.discount_percent / 100.0)
+        return query.order_by(total_price_expr.desc())
+
+    if sort_filter == SortSearchFilter.FEW_ROOMS:
+        room_order = case(
+            {
+                CountRooms.STUDIO: 0,
+                CountRooms.ONE: 1,
+                CountRooms.TWO: 2,
+                CountRooms.THREE: 3,
+                CountRooms.FOUR: 4,
+                CountRooms.FIVE: 5
+            },
+            value=Apartment.rooms_count
+        )
+        return query.order_by(room_order.asc())
+    if sort_filter == SortSearchFilter.MANY_ROOMS:
+        room_order = case(
+            {
+                CountRooms.STUDIO: 0,
+                CountRooms.ONE: 1,
+                CountRooms.TWO: 2,
+                CountRooms.THREE: 3,
+                CountRooms.FOUR: 4,
+                CountRooms.FIVE: 5
+            },
+            value=Apartment.rooms_count
+        )
+        return query.order_by(room_order.desc())
     return query

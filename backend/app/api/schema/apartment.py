@@ -6,7 +6,7 @@ from pydantic import (
 
 from app.api.schema.project import ProjectFieldSearch, ItemUniqueDateProject
 from app.core.config import apartments_storage
-from app.core.enums import CountRooms
+from app.core.enums import CountRooms, SortSearchFilter
 from app.core.functools import get_total_price
 
 
@@ -91,6 +91,7 @@ class RequestSearchApartment(BaseModel):
     exclude_id: Optional[int] = Field(default=None)
     project_ids: Optional[List[int]] = Field(default=None)
     dates: Optional[List[ItemUniqueDateProject]] = Field(default=None)
+    sort_filter: Optional[SortSearchFilter] = Field(default=None)
 
 
 class ResponseSearchApartment(BaseModel):
