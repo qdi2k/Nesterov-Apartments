@@ -39,7 +39,9 @@ async def get_list_projects_by_city(
 
     * `address` - адрес проекта;
 
-    * `construction_date` - дата постройки;
+    * `construction_year` - год постройки;
+
+    * `construction_quarter` - квартал постройки;
 
     * `description` - описание проекта;
 
@@ -76,7 +78,9 @@ async def get_project(
 
     * `address` - адрес проекта;
 
-    * `construction_date` - дата постройки;
+    * `construction_year` - год постройки;
+
+    * `construction_quarter` - квартал постройки;
 
     * `description` - описание проекта;
 

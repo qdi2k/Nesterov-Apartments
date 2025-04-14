@@ -50,5 +50,5 @@ class ResponseListProjectsByCity(BaseModel):
     projects: List[ProjectSchema]
 
 
-class ResponseProject(ProjectSchema):
-    pass
+class ResponseProject(BaseModel):
+    project: ProjectSchema
