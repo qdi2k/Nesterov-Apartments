@@ -1,4 +1,5 @@
 import os
+import re
 import uuid
 from typing import Dict, Any
 
@@ -53,3 +54,8 @@ def check_image_extension(filename: str) -> None:
                 f" Разрешённые расширения: {', '.join(IMAGE_EXTENSIONS)}"
             )
         )
+
+
+def validate_phone(phone: str) -> bool:
+    """Строгая валидация номера телефона."""
+    return bool(re.fullmatch(r'^(\+7|8)\d{10}$', phone))
