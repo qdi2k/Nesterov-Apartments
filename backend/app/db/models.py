@@ -173,3 +173,14 @@ class AdminUser(Base):
 
     def __str__(self):
         return self.username
+
+
+class Question(Base):
+    """Модель вопросов."""
+
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    add_site: Mapped[bool] = mapped_column(Boolean, default=False)
+    owner: Mapped[str] = mapped_column(String(100), nullable=False)
+    phone: Mapped[str] = mapped_column(String(12), nullable=False)
+    question: Mapped[str] = mapped_column(Text, nullable=False)
+    answer: Mapped[str] = mapped_column(Text, nullable=True)
