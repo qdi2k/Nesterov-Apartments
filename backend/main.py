@@ -5,7 +5,9 @@ from starlette.middleware.trustedhost import TrustedHostMiddleware
 
 from app.admin import admin
 from app.api import api_router
-from app.core.config import settings, API_TITLE, API_VERSION, API_DESCRIPTION
+from app.core.config import (
+    settings, API_TITLE, API_VERSION, API_DESCRIPTION, URL_API_VERSION
+)
 from app.core.log_config import init_loggers
 from app.api.middleware import ExceptionHandlerMiddleware
 
@@ -21,7 +23,9 @@ class FastAPIApp:
         - Конфигурацию документации OpenAPI;
         - Подключение админ-панели.
     """
-
+    PREFIX_API_URL = f"/api/{URL_API_VERSION}"
+    DOCS_URL = f"{PREFIX_API_URL}/docs"
+    REDOC_URL = f"{PREFIX_API_URL}/redoc"
     MAX_AGE_CORS: int = 10
 
     def __init__(self) -> None:
@@ -32,9 +36,12 @@ class FastAPIApp:
         """
         init_loggers()
 
-        self.app: FastAPI = FastAPI(docs_url="/api/docs")
+        self.app: FastAPI = FastAPI(
+            docs_url=self.DOCS_URL,
+            redoc_url=self.REDOC_URL,
+        )
         self.include_middlewares()
-        self.app.include_router(router=api_router, prefix="/api")
+        self.app.include_router(router=api_router, prefix=self.PREFIX_API_URL)
         self.include_openapi()
 
         admin.mount_to(self.app)
