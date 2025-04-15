@@ -113,11 +113,15 @@ class QuestionView(ModelView):
     fields = [
         "id",
         "add_site",
+        "created_at",
         "owner",
         "phone",
         "question",
         "answer",
     ]
+
+    exclude_fields_from_create = ["created_at"]
+    exclude_fields_from_edit = ["created_at"]
 
     async def validate(self, request: Request, data: Dict[str, Any]) -> None:
         errors: Dict[str, str] = dict()
