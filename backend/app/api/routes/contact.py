@@ -7,11 +7,14 @@ from app.api.schema.contact import (
     ResponseGetListQuestion,
     RequestCreateQuestion,
     ResponseCreateQuestion,
+    RequestCreateApartmentVisit,
+    ResponseCreateApartmentVisit,
 )
 from app.db.database import get_async_session
 from app.services.contact import (
     get_list_question_and_answer_or_404,
     create_question_and_get_response,
+    create_apartment_visit_and_get_response,
 )
 
 contact_router = APIRouter(prefix="/contact", tags=["Contact"])
@@ -65,7 +68,6 @@ async def create_question(
 
     * `question` - (опциональный) вопрос клиента.
 
-    ---
     #### Возвращает объект состоящий из следующих элементов:
     * `id` - id вопроса;
 
@@ -76,3 +78,43 @@ async def create_question(
     * `phone` - номер телефона клиента.
     """
     return await create_question_and_get_response(db=db, data=data)
+
+
+@contact_router.post(
+    path="/apartments/{apartment_id}",
+    response_model=ResponseCreateApartmentVisit,
+    status_code=status.HTTP_201_CREATED,
+    responses={**NotFountError().get_error(), **ForbiddenError().get_error()}
+)
+async def create_apartment_visit(
+        apartment_id: int,
+        data: RequestCreateApartmentVisit,
+        db: AsyncSession = Depends(get_async_session),
+) -> ResponseCreateApartmentVisit:
+    """
+    ## Записаться на просмотр квартиры.
+
+    ---
+    #### Принимает на вход следующие параметры:
+    * `name_owner` - имя клиента;
+
+    * `phone` - номер телефона клиента;
+
+    * `date_visit` - (опциональный) дата визита.
+
+    #### Возвращает объект состоящий из следующих элементов:
+    * `id` - id записи на посещение;
+
+    * `created_at` - дата создания записи на посещение;
+
+    * `owner` - имя клиента;
+
+    * `phone` - номер телефона клиента;
+
+    * `date_visit` - дата посещения;
+
+    * `apartment_id` - id квартиры.
+    """
+    return await create_apartment_visit_and_get_response(
+        db=db, apartment_id=apartment_id, data=data
+    )

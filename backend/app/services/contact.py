@@ -7,12 +7,18 @@ from app.api.schema.contact import (
     ItemFromGetQuestion,
     RequestCreateQuestion,
     ResponseCreateQuestion,
+    RequestCreateApartmentVisit,
+    ResponseCreateApartmentVisit,
 )
-from app.crud.contact import (
+from app.crud.apartment_visit import (
+    get_visit_with_phone_and_accept_false, create_visit_user
+)
+from app.crud.question import (
     get_list_questions_with_answer,
     create_question_user,
     get_question_with_phone_and_accept_false,
 )
+from app.services.apartment import get_apartment_by_id_or_404
 
 
 async def get_list_question_and_answer_or_404(
@@ -51,3 +57,18 @@ async def create_question_and_get_response(
         )
     new_question = await create_question_user(db=db, data=data)
     return ResponseCreateQuestion.model_validate(new_question)
+
+
+async def create_apartment_visit_and_get_response(
+        db: AsyncSession, apartment_id: int, data: RequestCreateApartmentVisit
+):
+    """Создание записи на просмотр квартиры."""
+    await get_apartment_by_id_or_404(db=db, apartment_id=apartment_id)
+    old_visit = await get_visit_with_phone_and_accept_false(db=db, phone=data.phone)
+    if old_visit:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail=f"У вас уже существует запись на просмотр квартиры."
+        )
+    new_visit = await create_visit_user(db=db, apartment_id=apartment_id, data=data)
+    return ResponseCreateApartmentVisit.model_validate(new_visit)

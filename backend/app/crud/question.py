@@ -1,6 +1,6 @@
 from typing import Sequence, Optional
 
-from sqlalchemy import select, func
+from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.api.schema.contact import RequestCreateQuestion
@@ -24,8 +24,10 @@ async def get_list_questions_with_answer(db: AsyncSession) -> Sequence[Question]
     return result.scalars().all()
 
 
-async def create_question_user(db: AsyncSession, data: RequestCreateQuestion):
-    """Создает запись с телефоном, и опционально вопросом пользователя"""
+async def create_question_user(
+        db: AsyncSession, data: RequestCreateQuestion
+) -> Question:
+    """Создает запись с телефоном, именем и опционально вопросом пользователя"""
     async with db as session:
         question = Question(
             owner=data.name_owner,
