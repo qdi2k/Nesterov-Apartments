@@ -112,6 +112,7 @@ class QuestionView(ModelView):
 
     fields = [
         "id",
+        "accept",
         "add_site",
         "created_at",
         "owner",
@@ -133,8 +134,12 @@ class QuestionView(ModelView):
                 data["phone"] = data.get("phone")
         if data.get("question") is not None:
             data["question"] = data["question"].strip()
+        if not data.get("question"):
+            data["question"] = None
         if data.get("answer") is not None:
             data["answer"] = data["answer"].strip()
+        if not data.get("answer"):
+            data["answer"] = None
 
         if len(errors) > 0:
             raise FormValidationError(errors)

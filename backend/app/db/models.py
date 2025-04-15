@@ -188,8 +188,9 @@ class Question(Base):
         onupdate=func.current_timestamp(),
         nullable=False
     )
+    accept: Mapped[bool] = mapped_column(Boolean, default=False)
     add_site: Mapped[bool] = mapped_column(Boolean, default=False)
     owner: Mapped[str] = mapped_column(String(100), nullable=False)
     phone: Mapped[str] = mapped_column(String(12), nullable=False)
-    question: Mapped[str] = mapped_column(Text, nullable=False)
+    question: Mapped[str] = mapped_column(Text, nullable=True)
     answer: Mapped[str] = mapped_column(Text, nullable=True)

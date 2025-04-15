@@ -21,4 +21,9 @@ class GlobalTypeError(BaseModel, ABC):
 
 class NotFountError(GlobalTypeError):
     _status_code: int = status.HTTP_404_NOT_FOUND
-    detail: str = "Запрашиваемый вами ресурс не найден"
+    detail: str = "Запрашиваемый вами ресурс не найден."
+
+
+class ForbiddenError(GlobalTypeError):
+    _status_code: int = status.HTTP_403_FORBIDDEN
+    detail: str = "Доступ к ресурсу запрещен."
