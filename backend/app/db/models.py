@@ -47,6 +47,10 @@ class Apartment(Base):
     image: Mapped["ApartmentImage"] = relationship(
         argument="ApartmentImage", back_populates="apartments", lazy="selectin"
     )
+    visits: Mapped[List["ApartmentVisit"]] = relationship(
+        back_populates="apartment",
+        cascade="all, delete-orphan"
+    )
 
     @validates('discount_percent')
     def validate_discount_percent(self, key, discount):
@@ -54,9 +58,21 @@ class Apartment(Base):
             raise ValueError("Скидка должна быть от 0 до 100 процентов.")
         return discount
 
-
-    def __str__(self):
+    def __str__(self) -> str:
         return f'id={self.id}, name={self.name}'
+
+    def __admin_repr__(self, request: Request) -> str:
+        return f'id: {self.id} - {self.project.name}'
+
+    async def __admin_select2_repr__(self, request: Request) -> str:
+        template_str = (
+            '<div class="d-flex align-items-center"> '
+            '<strong>Квартира id: {{obj.id}}</strong>, {{obj.name}}'
+            '<strong>; Проект id: {{obj.project_id}}</strong>, {{obj.project.name}}'
+            '<strong>.</strong>'
+            '<div>'
+        )
+        return Template(template_str, autoescape=True).render(obj=self)
 
 
 class Project(Base):
@@ -87,10 +103,10 @@ class Project(Base):
         lazy="selectin"
     )
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f'{self.name}'
 
-    async def __admin_repr__(self, request: Request):
+    async def __admin_repr__(self, request: Request) -> str:
         return f"{self.name} - {self.city.name}"
 
     async def __admin_select2_repr__(self, request: Request) -> str:
@@ -112,7 +128,7 @@ class ApartmentImage(Base):
         argument="Apartment", back_populates="image", lazy="select"
     )
 
-    async def __admin_repr__(self, request: Request):
+    async def __admin_repr__(self, request: Request) -> str:
         return self.name
 
     async def __admin_select2_repr__(self, request: Request) -> str:
@@ -142,7 +158,7 @@ class ProjectImage(Base):
         back_populates="images"
     )
 
-    async def __admin_repr__(self, request: Request):
+    async def __admin_repr__(self, request: Request) -> str:
         return self.name
 
     async def __admin_select2_repr__(self, request: Request) -> str:
@@ -160,7 +176,7 @@ class City(Base):
 
     projects: Mapped[list["Project"]] = relationship(back_populates="city")
 
-    async def __admin_repr__(self, request: Request):
+    async def __admin_repr__(self, request: Request) -> str:
         return self.name
 
 
@@ -174,8 +190,30 @@ class AdminUser(Base):
     is_active: Mapped[bool] = mapped_column(Boolean, default=True)
     is_superuser: Mapped[bool] = mapped_column(Boolean, default=False)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.username
+
+
+class ApartmentVisit(Base):
+    """Модель записи на просмотр квартиры."""
+
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    accept: Mapped[bool] = mapped_column(Boolean, default=False)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime,
+        default=func.current_timestamp(),
+        onupdate=func.current_timestamp(),
+        nullable=False
+    )
+    owner: Mapped[str] = mapped_column(String(100), nullable=False)
+    phone: Mapped[str] = mapped_column(String(12), nullable=False)
+    date_visit: Mapped[datetime] = mapped_column(DateTime, nullable=True)
+
+    apartment_id: Mapped[int] = mapped_column(
+        ForeignKey("apartments.id", ondelete="CASCADE"),
+        nullable=False
+    )
+    apartment: Mapped["Apartment"] = relationship(back_populates="visits")
 
 
 class Question(Base):
