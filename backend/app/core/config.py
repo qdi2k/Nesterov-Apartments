@@ -21,6 +21,7 @@ API_DESCRIPTION = """
     API сайта для демонстрации новых жилищных комплексов от застройщика,
     с возможностью записаться на просмотр квартир
 """.strip()
+URL_API_VERSION = "v" + API_VERSION[0]
 
 
 class Settings(BaseSettings):

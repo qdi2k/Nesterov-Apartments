@@ -7,7 +7,7 @@ from app.api.routes.projects import project_router
 
 __all__ = ['api_router']
 
-api_router = APIRouter(prefix="/v1")
+api_router = APIRouter()
 
 api_router.include_router(apartment_router)
 api_router.include_router(city_router)
