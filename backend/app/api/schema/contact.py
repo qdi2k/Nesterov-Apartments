@@ -38,3 +38,21 @@ class ResponseCreateQuestion(BaseModel):
 
     class Config:
         from_attributes = True
+
+
+class RequestCreateApartmentVisit(BaseModel):
+    name_owner: str
+    phone: RUNumberType
+    date_visit: Optional[datetime] = Field(default=None)
+
+
+class ResponseCreateApartmentVisit(BaseModel):
+    id: int
+    created_at: datetime
+    owner: str
+    phone: str
+    date_visit: Optional[datetime]
+    apartment_id: int
+
+    class Config:
+        from_attributes = True

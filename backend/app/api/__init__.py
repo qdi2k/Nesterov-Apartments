@@ -11,5 +11,5 @@ api_router = APIRouter()
 
 api_router.include_router(apartment_router)
 api_router.include_router(city_router)
-api_router.include_router(project_router)
 api_router.include_router(contact_router)
+api_router.include_router(project_router)
