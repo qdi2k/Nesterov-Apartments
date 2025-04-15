@@ -1,8 +1,11 @@
+from datetime import datetime
 from typing import List
 
 from jinja2 import Template
 from markupsafe import Markup
-from sqlalchemy import Integer, String, Float, Enum, ForeignKey, Boolean, Text
+from sqlalchemy import (
+    Integer, String, Float, Enum, ForeignKey, Boolean, Text, DateTime, func
+)
 from sqlalchemy.orm import mapped_column, Mapped, relationship, validates
 from starlette.requests import Request
 
@@ -179,6 +182,12 @@ class Question(Base):
     """Модель вопросов."""
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime,
+        default=func.current_timestamp(),
+        onupdate=func.current_timestamp(),
+        nullable=False
+    )
     add_site: Mapped[bool] = mapped_column(Boolean, default=False)
     owner: Mapped[str] = mapped_column(String(100), nullable=False)
     phone: Mapped[str] = mapped_column(String(12), nullable=False)
