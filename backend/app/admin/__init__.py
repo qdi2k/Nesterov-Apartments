@@ -9,12 +9,12 @@ from app.admin.views import (
     CityView,
     ApartmentImageView,
     ProjectImageView,
-    QuestionView,
+    QuestionView, ApartmentVisitView,
 )
 from app.core.config import settings
 from app.db.database import async_engine
 from app.db.models import (
-    Apartment, Project, City, ApartmentImage, ProjectImage, Question
+    Apartment, Project, City, ApartmentImage, ProjectImage, Question, ApartmentVisit
 )
 
 __all__ = ["admin"]
@@ -26,9 +26,11 @@ admin = Admin(
     debug=settings.DEBUG,
     middlewares=[Middleware(SessionMiddleware, secret_key=settings.SECRET_KEY)],
 )
+
 admin.add_view(ApartmentView(Apartment))
 admin.add_view(ProjectView(Project))
 admin.add_view(CityView(City, label="Cities"))
 admin.add_view(ApartmentImageView(ApartmentImage))
 admin.add_view(ProjectImageView(ProjectImage))
 admin.add_view(QuestionView(Question))
+admin.add_view(ApartmentVisitView(ApartmentVisit))

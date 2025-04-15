@@ -144,3 +144,20 @@ class QuestionView(ModelView):
         if len(errors) > 0:
             raise FormValidationError(errors)
         return await super().validate(request, data)
+
+
+class ApartmentVisitView(ModelView):
+    """Админка для записи на просмотр квартиры."""
+
+    fields = [
+        "id",
+        "accept",
+        "created_at",
+        "owner",
+        "phone",
+        "date_visit",
+        "apartment",
+    ]
+
+    exclude_fields_from_create = ["created_at"]
+    exclude_fields_from_edit = ["created_at"]
