@@ -1,20 +1,14 @@
 import os
 from pathlib import Path
 
-from dotenv import load_dotenv
 from fastapi_mail import ConnectionConfig
-from fastapi_storages import S3Storage
+from fastapi_storages import S3Storage, FileSystemStorage
 from jinja2 import Environment, FileSystemLoader
 from passlib.context import CryptContext
 from pydantic import Field, SecretStr, EmailStr
 from pydantic_settings import BaseSettings
 
-load_dotenv()
-
-BASE_DIR = Path(__file__).resolve().parent.parent
-TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
-JINJA_ENV = Environment(loader=FileSystemLoader(TEMPLATES_DIR))
-
+# Документация API
 API_TITLE = """Nesterov Apartments"""
 API_VERSION = "1.0.0"
 API_DESCRIPTION = """
@@ -22,6 +16,16 @@ API_DESCRIPTION = """
     с возможностью записаться на просмотр квартир
 """.strip()
 URL_API_VERSION = "v" + API_VERSION[0]
+
+# Базовые директории
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
+JINJA_ENV = Environment(loader=FileSystemLoader(TEMPLATES_DIR))
+
+MEDIA_DIR = os.path.join(BASE_DIR, 'media')
+DOCUMENT_DIR = os.path.join(MEDIA_DIR, 'docs')
+DOCUMENT_STORAGE = FileSystemStorage(path=DOCUMENT_DIR)
 
 
 class Settings(BaseSettings):
