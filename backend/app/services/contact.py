@@ -1,6 +1,11 @@
+import os
+
 from fastapi import HTTPException
+from fastapi.responses import FileResponse
+from pydantic import HttpUrl
 from sqlalchemy.ext.asyncio import AsyncSession
 from starlette import status
+from starlette.datastructures import URL
 
 from app.api.schema.contact import (
     ResponseGetListQuestion,
@@ -8,8 +13,9 @@ from app.api.schema.contact import (
     RequestCreateQuestion,
     ResponseCreateQuestion,
     RequestCreateApartmentVisit,
-    ResponseCreateApartmentVisit,
+    ResponseCreateApartmentVisit, ResponseGetListFiles, ItemFileLink,
 )
+from app.core.config import DOCUMENT_DIR, DOCUMENT_STORAGE
 from app.crud.apartment_visit import (
     get_visit_with_phone_and_accept_false, create_visit_user
 )
@@ -72,3 +78,37 @@ async def create_apartment_visit_and_get_response(
         )
     new_visit = await create_visit_user(db=db, apartment_id=apartment_id, data=data)
     return ResponseCreateApartmentVisit.model_validate(new_visit)
+
+
+async def get_list_file_or_404(url: URL) -> ResponseGetListFiles:
+    """Получить список всех доступных файлов с URL для скачивания или вернуть 404."""
+    files = [
+        file for file in os.listdir(DOCUMENT_DIR)
+        if os.path.isfile(os.path.join(DOCUMENT_DIR, file))
+    ]
+    if not files:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="В текущем хранилище нет файлов."
+        )
+    return ResponseGetListFiles(
+        files=[
+            ItemFileLink(
+                filename=file,
+                download_url=HttpUrl(f"{url}/{file}"),
+            )
+            for file in files
+        ],
+    )
+
+
+async def get_file_or_404(file_name: str) -> FileResponse:
+    """Получить файл для скачивания или вернуть 404."""
+    if not DOCUMENT_STORAGE.exists(file_name):
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Файл {file_name} не найден."
+        )
+    return FileResponse(
+        DOCUMENT_STORAGE.get_path(file_name), filename=file_name
+    )

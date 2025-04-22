@@ -2,7 +2,7 @@ from datetime import datetime
 from typing import List, Annotated, Union, Optional
 
 import phonenumbers
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, HttpUrl
 from pydantic_extra_types.phone_numbers import PhoneNumberValidator
 
 RUNumberType = Annotated[
@@ -56,3 +56,12 @@ class ResponseCreateApartmentVisit(BaseModel):
 
     class Config:
         from_attributes = True
+
+
+class ItemFileLink(BaseModel):
+    filename: str
+    download_url: HttpUrl
+
+
+class ResponseGetListFiles(BaseModel):
+    files: List[ItemFileLink]
