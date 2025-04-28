@@ -9,7 +9,8 @@ from app.admin.views import (
     CityView,
     ApartmentImageView,
     ProjectImageView,
-    QuestionView, ApartmentVisitView,
+    QuestionView,
+    ApartmentVisitView,
 )
 from app.core.config import settings
 from app.db.database import async_engine

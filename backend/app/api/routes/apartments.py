@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from starlette import status
 
-from app.api.exeptions import NotFountError
+from app.api.exceptions import NotFountError
 from app.api.schema.apartment import (
     RequestSearchApartment, ResponseSearchApartment, ResponseGetApartment
 )
