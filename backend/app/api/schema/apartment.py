@@ -7,7 +7,6 @@ from pydantic import (
 from app.api.schema.project import ProjectFieldSearch, ItemUniqueDateProject
 from app.core.config import apartments_storage
 from app.core.enums import CountRooms, SortSearchFilter
-from app.core.functools import get_total_price
 
 
 class ItemSearchApartment(BaseModel):
@@ -101,3 +100,8 @@ class ResponseSearchApartment(BaseModel):
 
 class ResponseGetApartment(ApartmentSchema):
     pass
+
+
+def get_total_price(price: int, discount_percent: float) -> int:
+    """Получить итоговую цену с учетом скидки."""
+    return int(price * (1 - discount_percent / 100))

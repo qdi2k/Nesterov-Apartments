@@ -1,4 +1,3 @@
-import datetime
 import logging
 import time
 
@@ -32,6 +31,7 @@ class ExceptionHandlerMiddleware(BaseHTTPMiddleware):
             )
         except Exception as exc:
             if not settings.DEBUG:
+                logger.exception(exc)
                 return JSONResponse(
                     status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
                     content={"detail": "Internal Server Error"},

@@ -5,7 +5,7 @@ from fastapi.responses import FileResponse
 from sqlalchemy.ext.asyncio import AsyncSession
 from starlette import status
 
-from app.api.exeptions import NotFountError, ForbiddenError
+from app.api.exceptions import NotFountError, ForbiddenError
 from app.api.schema.contact import (
     ResponseGetListQuestion,
     RequestCreateQuestion,
