@@ -46,7 +46,6 @@ async def get_list_projects(
     * `description` - описание проекта;
 
     * `images` - список картинок проекта.
-
     """
     return await get_projects_or_404(db=db)
 
@@ -61,9 +60,7 @@ async def get_list_projects_by_city(
         city_name: str, db: AsyncSession = Depends(get_async_session),
 ) -> ResponseListProjects:
     """
-    ## Получение проектов.
-
-    Получает список проектов, существующих в передаваемом городе.
+    ## Получение списка проектов, существующих в передаваемом городе.
 
     ---
     #### Принимает на вход следующий параметр:
@@ -85,7 +82,6 @@ async def get_list_projects_by_city(
     * `description` - описание проекта;
 
     * `images` - список картинок проекта.
-
     """
     return await get_projects_by_city_or_404(db=db, city=city_name)
 
@@ -115,9 +111,7 @@ async def get_project(
         project_id: int, db: AsyncSession = Depends(get_async_session),
 ) -> ResponseProject:
     """
-    ## Получение проектов.
-
-    Получает данные о проекте, соответствующему передаваемому id.
+    ## Получение данных о проекте, по id.
 
     ---
     #### Принимает на вход следующий параметр:
