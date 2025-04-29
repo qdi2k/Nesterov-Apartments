@@ -20,7 +20,7 @@ FIRST_ELEM_TUPLE_IMAGE = 0
 
 class ImageView(ModelView, ABC):
     """
-    Глобальная модель картинок для админ-панели, связка с S3-хранилищем.
+    Глобальная модель изображений для админ-панели, связка с S3-хранилищем.
     """
     storage: S3Storage = apartments_storage
     fields = [
@@ -34,7 +34,7 @@ class ImageView(ModelView, ABC):
             request: Request,
             action: RequestAction = RequestAction.LIST,
     ) -> Sequence[BaseField]:
-        """Переопределяем метод для замены поля image на FileField в формах"""
+        """Замена поля image на FileField в формах."""
         base_fields = super().get_fields_list(request, action)
         if action in (RequestAction.CREATE, RequestAction.EDIT):
             base_fields = self.prepare_image_field(base_fields, request, action)
@@ -43,20 +43,20 @@ class ImageView(ModelView, ABC):
     async def before_create(
             self, request: Request, data: Dict[str, Any], obj: Any
     ) -> None:
-        """Перед созданием записи сериализует изображение."""
+        """Перед созданием записи сериализирует изображение."""
         await process_image_upload(data, obj)
 
     async def before_edit(
             self, request: Request, data: Dict[str, Any], obj: Any
     ) -> None:
-        """Перед изменением записи сериализует изображение."""
+        """Перед изменением записи сериализирует изображение."""
         await process_image_upload(data, obj)
 
     async def serialize_field_value(
             self, value: Any, field: BaseField, action: RequestAction,
             request: Request
     ) -> Any:
-        """Форматируем значение поля image для html рендера."""
+        """Форматируем значение поля image для рендера HTML шаблона."""
         serialized_value = await super().serialize_field_value(
             value, field, action, request
         )
@@ -85,7 +85,7 @@ class ImageView(ModelView, ABC):
     def get_help_text_for_image(
             self, request: Request, action: RequestAction
     ) -> Optional[Markup]:
-        """Получить подсказку под изображение."""
+        """Получение подсказки под изображением."""
         if action == RequestAction.EDIT or action == RequestAction.DETAIL:
             obj_id = (
                 request.path_params.get('pk') or request.path_params.get('id')
@@ -97,7 +97,7 @@ class ImageView(ModelView, ABC):
         return None
 
     def _get_image_by_pk(self, pk: int) -> str:
-        """Получает изображение по ID."""
+        """Получение изображения по ID."""
         with sync_engine.connect() as conn:
             result = conn.execute(
                 select(self.model.image)

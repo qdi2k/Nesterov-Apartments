@@ -34,7 +34,7 @@ async def get_list_questions(
         db: AsyncSession = Depends(get_async_session),
 ) -> ResponseGetListQuestion:
     """
-    ## Получить список вопросов и ответов.
+    ## Получение списка вопросов и ответов.
 
     Возвращает только те вопросы, у которых стоит флаг add_site и есть ответ.
 
@@ -96,7 +96,7 @@ async def create_apartment_visit(
         db: AsyncSession = Depends(get_async_session),
 ) -> ResponseCreateApartmentVisit:
     """
-    ## Записаться на просмотр квартиры.
+    ## Эндпоинт позволяет записаться на просмотр квартиры.
 
     ---
     #### Принимает на вход следующие параметры:
@@ -132,7 +132,7 @@ async def create_apartment_visit(
 )
 async def get_list_files(request: Request) -> ResponseGetListFiles:
     """
-    ## Получить список всех доступных файлов с URL для скачивания.
+    ## Получение списка всех доступных файлов с URL для скачивания.
     """
     return await get_list_file_or_404(url=request.url)
 
@@ -148,6 +148,6 @@ async def get_file(
         ]
 ) -> FileResponse:
     """
-    ## Получить файл для скачивания из хранилища.
+    ## Получение файла для скачивания из локального хранилища.
     """
     return await get_file_or_404(file_name=file_name)

@@ -9,6 +9,9 @@ from starlette_admin.exceptions import FormValidationError
 from app.admin.functools import validate_phone
 from app.admin.image_view import ImageView
 
+APPLY_YEAR_NUM = 100
+MIN_CONSTRUCTION_YEAR = 1950
+
 
 class ApartmentImageView(ImageView):
     """Админка изображений квартир."""
@@ -52,10 +55,11 @@ class ProjectView(ModelView):
     async def validate(self, request: Request, data: Dict[str, Any]) -> None:
         errors: Dict[str, str] = dict()
         construction_year = data.get("construction_year")
-        year_more = datetime.datetime.now().year + 100
-        if not 1950 <= construction_year <= year_more:
+        year_more = datetime.datetime.now().year + APPLY_YEAR_NUM
+        if not MIN_CONSTRUCTION_YEAR <= construction_year <= year_more:
             errors["construction_year"] = (
-                f"Год постройки должен быть от 1950 до {year_more}."
+                f"Год постройки должен быть от {MIN_CONSTRUCTION_YEAR}"
+                f" до {year_more}."
             )
         if len(errors) > 0:
             raise FormValidationError(errors)
@@ -108,7 +112,7 @@ class ApartmentView(ModelView):
 
 
 class QuestionView(ModelView):
-    """Админка для вопросов."""
+    """Админка для вопросов клиентов."""
 
     fields = [
         "id",
@@ -147,7 +151,7 @@ class QuestionView(ModelView):
 
 
 class ApartmentVisitView(ModelView):
-    """Админка для записи на просмотр квартиры."""
+    """Админка для записей на просмотр квартир."""
 
     fields = [
         "id",

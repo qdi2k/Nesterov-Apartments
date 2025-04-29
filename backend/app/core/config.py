@@ -53,9 +53,13 @@ class Settings(BaseSettings):
     S3_BUCKET_APARTMENTS: str = Field()
     S3_CUSTOM_DOMAIN_APARTMENTS: str = Field()
 
+    class Config:
+        env_file = '.env'
+        env_file_encoding = 'utf-8'
+
     @property
     def get_async_database_url(self) -> str:
-        """Получение URL-адреса для асинхронного подключения к Postgres"""
+        """Получение URL-адреса для асинхронного подключения к Postgres."""
         return (
             f"postgresql+asyncpg://{self.DB_USER}:{self.DB_PASS}"
             + f"@{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}"
@@ -63,15 +67,11 @@ class Settings(BaseSettings):
 
     @property
     def get_sync_database_url(self) -> str:
-        """Получение URL-адреса для синхронного подключения к Postgres"""
+        """Получение URL-адреса для синхронного подключения к Postgres."""
         return (
             f"postgresql://{self.DB_USER}:{self.DB_PASS}"
             + f"@{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}"
         )
-
-    class Config:
-        env_file = '.env'
-        env_file_encoding = 'utf-8'
 
 
 settings = Settings()
