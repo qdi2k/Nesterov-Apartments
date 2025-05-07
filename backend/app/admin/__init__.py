@@ -28,10 +28,10 @@ admin = Admin(
     middlewares=[Middleware(SessionMiddleware, secret_key=settings.SECRET_KEY)],
 )
 
-admin.add_view(ApartmentView(Apartment))
-admin.add_view(ProjectView(Project))
-admin.add_view(CityView(City, label="Cities"))
-admin.add_view(ApartmentImageView(ApartmentImage))
-admin.add_view(ProjectImageView(ProjectImage))
-admin.add_view(QuestionView(Question))
-admin.add_view(ApartmentVisitView(ApartmentVisit))
+admin.add_view(ApartmentView(Apartment, icon="fa-solid fa-edit"))
+admin.add_view(ProjectView(Project, icon="fa-solid fa-edit"))
+admin.add_view(CityView(City, label="Cities", icon="fa-solid fa-edit"))
+admin.add_view(ApartmentImageView(ApartmentImage, icon="fa-solid fa-edit"))
+admin.add_view(ProjectImageView(ProjectImage, icon="fa-solid fa-edit"))
+admin.add_view(QuestionView(Question, icon="fa-solid fa-edit"))
+admin.add_view(ApartmentVisitView(ApartmentVisit, icon="fa-solid fa-edit"))
