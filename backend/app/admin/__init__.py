@@ -26,6 +26,8 @@ admin = Admin(
     auth_provider=DBAuthProvider(),
     debug=settings.DEBUG,
     middlewares=[Middleware(SessionMiddleware, secret_key=settings.SECRET_KEY)],
+    logo_url="https://preview.tabler.io/static/logo-white.svg",
+    login_logo_url="https://preview.tabler.io/static/logo.svg",
 )
 
 admin.add_view(ApartmentView(Apartment, icon="fa-solid fa-edit"))
