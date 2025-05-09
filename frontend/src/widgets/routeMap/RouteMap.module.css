@@ -1,14 +1,38 @@
 .container {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.contacts {
   display: flex;
   justify-content: space-between;
-  gap: 30px;
+  background-color: var(--greyLight);
+  width: 100%;
+  height: 140px;
+  padding: 24px 60px;
+  border-radius: 24px;
+  margin-bottom: 24px;
+}
+
+.contactIcon {
+  background-color: var(--white);
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
 }
 
 .containerRoute {
   display: flex;
   flex-direction: column;
-  gap: 46px;
+  gap: 24px;
   width: 100%;
+}
+
+.mapContainer {
+  display: flex;
+  position: relative;
   border-radius: 24px;
   overflow: hidden;
 }
@@ -21,25 +45,28 @@
 
 .routeContainer {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  max-width: 946px;
-  gap: 16px;
+  flex-direction: column;
+  width: max-content;
+  gap: 20px;
+  background-color: var(--greyLight);
+  border-radius: 24px;
+  padding: 24px;
 }
-.routeInput {
+
+.test {
   display: flex;
-  justify-content: space-between;
-  width: 62%;
-  gap: 30px;
-  white-space: nowrap;
+  align-items: center;
+  gap: 60px;
 }
 
 .input {
-  min-width: 270px;
+  min-width: 400px;
+  background-color: var(--white);
 }
 
-.contactsMapContainer {
-  margin-top: 90px;
+.button {
+  margin: 0 !important;
+  padding: 18px 20px;
 }
 
 .iconPhone {
@@ -47,18 +74,10 @@
   min-height: 24px;
 }
 
-.listContent {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
-  margin-top: 46px;
-  margin-bottom: 144px;
-}
-
 .listItem {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 8px;
 }
 
 .distance {
@@ -73,93 +92,63 @@
   box-shadow: -1px 0px 22px -5px rgba(34, 60, 80, 0.2);
 }
 
-@media (max-width: 1340px) {
-  .listContent {
-    margin-bottom: 100px;
-  }
-  .map {
-    width: 100%;
-    height: 680px;
-    position: relative;
-  }
-  .routeContainer {
-    flex-direction: column;
-  }
+.controlButtons {
+  z-index: 15;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translate3d(0, -50%, 0);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-@media (max-width: 1070px) {
-  .container {
-    flex-direction: column;
-  }
-  .listContent {
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-    margin-top: 36px;
-    margin-bottom: 36px;
-  }
-  .map {
-    height: 600px;
-  }
-  .routeContainer {
-    flex-direction: row;
-    max-width: 900px;
-  }
-
-  .routeInput {
-    width: 61%;
-  }
+.customZoomControls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: 20px;
+  width: 48px;
+  height: 112px;
+  flex-direction: column;
+  background: rgba(20, 20, 20, 0.4);
+  backdrop-filter: blur(16px);
+  border-radius: 8px;
 }
 
-@media (max-width: 860px) {
-  .routeContainer {
-    flex-direction: column;
-  }
-  .routeInput {
-    width: 70%;
-  }
+.divider {
+  height: 0.5px;
+  display: flex;
+  align-self: center;
+  width: calc(100% - 16px);
+  background-color: var(--white);
+  opacity: 0.4;
 }
 
-@media (max-width: 736px) {
-  .map {
-    height: 480px;
-  }
+.resetPositionButton {
+  z-index: 15;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  width: 100%;
+  background: rgba(20, 20, 20, 0.4);
+  backdrop-filter: blur(16px);
 }
 
-@media (max-width: 750px) {
-  .listContent {
-    grid-template-columns: 320px 270px;
-  }
+.zoomButton {
+  border-radius: 6px;
+  height: 50%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transition: all 0.4s;
 }
 
-@media (max-width: 660px) {
-  .listContent {
-    grid-template-columns: 320px 200px;
-  }
-}
-
-@media (max-width: 600px) {
-  .listContent {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 564px) {
-  .routeContainer {
-    max-width: 270px;
-  }
-  .button {
-    margin-left: auto;
-  }
-  .routeInput {
-    flex-direction: column;
-    width: 100%;
-  }
-}
-
-@media (max-width: 564px) {
-  .routeContainer {
-    max-width: 564px;
-  }
-  .input {
-    min-width: 564px;
-  }
+.zoomButton:hover {
+  opacity: 0.6;
 }

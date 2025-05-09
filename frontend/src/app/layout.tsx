@@ -18,11 +18,11 @@ export default function RootLayout({
   const [isOpenBurger, setIsOpenBurger] = useState(false)
 
   const openBurger = () => {
-    document.body.style.overflow = 'hidden'
+    // document.body.style.overflow = 'hidden'
     setIsOpenBurger(true)
   }
   const closeBurger = () => {
-    document.body.style.overflow = 'visible'
+    // document.body.style.overflow = 'visible'
     setIsOpenBurger(false)
   }
 

@@ -2,6 +2,38 @@ import {Text} from '@/shared/ui'
 import Link from 'next/link'
 import styles from './Footer.module.css'
 
+const MOCK_OBJECTS = [
+  {id: 1, object: 'Shagal', href: '/objects/object'},
+  {id: 2, object: 'Mariinn', href: '/objects/object'},
+  {id: 3, object: 'Rauta', href: '/objects/object'},
+  {id: 4, object: 'Voxhall', href: '/objects/object'},
+]
+
+const MOCK_PAYMENTS = [
+  {id: 1, payment: 'Полная оплата', href: '/payments/payment'},
+  {id: 2, payment: 'Материнский капитал', href: '/payments/payment'},
+  {id: 3, payment: 'Ипотека', href: '/payments/payment'},
+  {id: 4, payment: 'Рассрочка', href: '/payments/payment'},
+]
+
+const MOCK_EVENTS = [
+  {id: 1, event: 'Ипотека без первого взноса', href: '/events/event'},
+  {id: 2, event: 'Кладовая в рассрочку', href: '/events/event'},
+  {id: 3, event: 'Ипотека траншами', href: '/events/event'},
+  {id: 4, event: 'IT Ипотека от 4,7%', href: '/events/event'},
+  {id: 5, event: 'Семейная ипотека от 2,99%', href: '/events/event'},
+]
+
+const MOCK_SCREENS = [
+  {id: 1, screen: 'Объекты', href: '/objects/object'},
+  {id: 2, screen: 'Квартиры', href: '/apartments'},
+  {id: 3, screen: 'Способы оплаты', href: '/payments'},
+  {id: 4, screen: 'Акции', href: '/events'},
+  {id: 5, screen: 'Новости', href: '/news'},
+  {id: 6, screen: 'Контакты', href: '/contacts'},
+  {id: 7, screen: 'Документы', href: '/documents'},
+]
+
 export function FooterNav() {
   return (
     <div className={styles.footerNav}>
@@ -14,69 +46,47 @@ export function FooterNav() {
         >
           Объекты
         </Text>
-        <Text size='small' color='white'>
-          Shagal
-        </Text>
-        <Text size='small' color='white'>
-          Mariinn
-        </Text>
-        <Text size='small' color='white'>
-          Rauta
-        </Text>
-        <Text size='small' color='white'>
-          Voxhall
-        </Text>
+        {MOCK_OBJECTS.map((object) => (
+          <Link href={object.href} key={object.id}>
+            <Text size='small' color='white' isHover>
+              {object.object}
+            </Text>
+          </Link>
+        ))}
       </nav>
       <nav className={styles.nav}>
-        <Link href='/payments'>
-          <Text
-            color='white'
-            size='xSmall'
-            weight='semiBold'
-            className={styles.navTitle}
-          >
-            Способы оплаты
-          </Text>
-        </Link>
-        <Text size='small' color='white'>
-          Полная оплата
+        <Text
+          color='white'
+          size='xSmall'
+          weight='semiBold'
+          className={styles.navTitle}
+        >
+          Способы оплаты
         </Text>
-        <Text size='small' color='white'>
-          Материнский капитал
-        </Text>
-        <Text size='small' color='white'>
-          Ипотека
-        </Text>
-        <Text size='small' color='white'>
-          Рассрочка
-        </Text>
+        {MOCK_PAYMENTS.map((payment) => (
+          <Link href={payment.href} key={payment.id}>
+            <Text size='small' color='white' isHover>
+              {payment.payment}
+            </Text>
+          </Link>
+        ))}
       </nav>
       <nav className={styles.nav}>
-        <Link href='/events'>
-          <Text
-            color='white'
-            size='xSmall'
-            weight='semiBold'
-            className={styles.navTitle}
-          >
-            Акции
-          </Text>
-        </Link>
-        <Text size='small' color='white'>
-          Ипотека без первого взноса
+        <Text
+          color='white'
+          size='xSmall'
+          weight='semiBold'
+          className={styles.navTitle}
+        >
+          Акции
         </Text>
-        <Text size='small' color='white'>
-          Кладовая в рассрочку
-        </Text>
-        <Text size='small' color='white'>
-          Ипотека траншами
-        </Text>
-        <Text size='small' color='white'>
-          IT Ипотека от 4,7%
-        </Text>
-        <Text size='small' color='white'>
-          Семейная ипотека от 2,99%
-        </Text>
+        {MOCK_EVENTS.map((event) => (
+          <Link href={event.href} key={event.id}>
+            <Text size='small' color='white' isHover>
+              {event.event}
+            </Text>
+          </Link>
+        ))}
       </nav>
       <nav className={styles.nav}>
         <Text
@@ -87,31 +97,13 @@ export function FooterNav() {
         >
           О компании
         </Text>
-        <Link href='/rules'>
-          <Text size='small' color='white'>
-            Объекты
-          </Text>
-        </Link>
-        <Link href='/contacts'>
-          <Text size='small' color='white'>
-            Квартиры
-          </Text>
-        </Link>
-        <Link href='/about-builder'>
-          <Text size='small' color='white'>
-            Контакты
-          </Text>
-        </Link>
-        <Link href='/about-builder'>
-          <Text size='small' color='white'>
-            Новости
-          </Text>
-        </Link>
-        <Link href='/about-builder'>
-          <Text size='small' color='white'>
-            Документы
-          </Text>
-        </Link>
+        {MOCK_SCREENS.map((screen) => (
+          <Link href='/objects/object' key={screen.id}>
+            <Text size='small' color='white' isHover>
+              {screen.screen}
+            </Text>
+          </Link>
+        ))}
       </nav>
     </div>
   )

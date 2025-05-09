@@ -1,106 +1,127 @@
 'use client'
 
-import {Divider, InputRange, InputSelect, Text} from '@/shared/ui'
+import {InputRange, InputSelect, Text} from '@/shared/ui'
 import styles from './Filter.module.css'
 import {SelectRoom, ToggleSwitch} from './ui'
 import {useState} from 'react'
-import {InputRange2} from '@/shared/ui/input-range2/InputRange2'
 
-const minValue1 = 3906000
-const maxValue1 = 20000000
+const MOCK_PROJECT_SORT = [
+  {id: 1, title: 'Shagal'},
+  {id: 2, title: 'Mariinn'},
+  {id: 3, title: 'Rauta'},
+  {id: 4, title: 'Voxhall'},
+]
+
+const MOCK_DATE_SORT = [
+  {id: 1, title: 'Сдан'},
+  {id: 2, title: 'I квартал 2025'},
+  {id: 3, title: 'II квартал 2025'},
+  {id: 4, title: 'III квартал 2025'},
+  {id: 5, title: 'IV квартал 2025'},
+  {id: 6, title: 'I квартал 2026'},
+  {id: 7, title: 'II квартал 2026'},
+  {id: 8, title: 'III квартал 2026'},
+  {id: 9, title: 'IV квартал 2026'},
+]
+
+const MOCK_SORT = [
+  {id: 1, title: 'Сначала дешевле'},
+  {id: 2, title: 'Сначала дороже'},
+  {id: 3, title: 'Сначала меньше площадь'},
+  {id: 4, title: 'Сначала больше площадь'},
+]
 
 export function Filter() {
-  const [value1, setValue1] = useState(10000000)
-  const [value2, setValue2] = useState(40000000)
+  const [value1, setValue1] = useState({min: 10000000, max: 100000000})
+  const [value2, setValue2] = useState({min: 50, max: 200})
+  const [value3, setValue3] = useState({min: 10, max: 30})
 
-  const [value3, setValue3] = useState(10000000)
-  const [value4, setValue4] = useState(40000000)
-
-  const [value5, setValue5] = useState(10000000)
-  const [value6, setValue6] = useState(40000000)
-
-  const [value10, setValue10] = useState({min: minValue1, max: maxValue1})
   return (
     <div className={styles.container}>
       <div className={styles.filtersContainer}>
         <SelectRoom />
-        <div>
+        <div className={styles.test2}>
           <Text color='blueLight'>Проект</Text>
-          <InputSelect />
+          <InputSelect
+            sortItems={MOCK_PROJECT_SORT}
+            placeHolder='Выберите проект'
+            isCheck
+          />
         </div>
-        <div>
+        <div className={styles.test2}>
           <Text color='blueLight'>Срок сдачи</Text>
-          <InputSelect />
+          <InputSelect
+            sortItems={MOCK_DATE_SORT}
+            placeHolder='Выберите срок сдачи'
+            isCheck
+          />
         </div>
+      </div>
+      <div className={styles.test}>
         <div>
           <Text color='blueLight'>Стоимость</Text>
           <InputRange
             className={styles.range}
-            isSeveral
             value={value1}
-            secondValue={value2}
             changeValue={setValue1}
-            changeSecondValue={setValue2}
-            min={1000000}
+            min={0}
             max={100000000}
-            step={1000}
+            step={1000000}
+            isMultiRange
           />
         </div>
         <div>
           <Text color='blueLight'>Площадь</Text>
           <InputRange
             className={styles.range}
-            isSeveral
-            value={value3}
-            secondValue={value4}
-            changeValue={setValue3}
-            changeSecondValue={setValue4}
-            min={1000000}
-            max={100000000}
-            step={1000}
+            value={value2}
+            changeValue={setValue2}
+            min={0}
+            max={200}
+            step={1}
+            isMultiRange
           />
         </div>
-        <InputRange2
-          max={maxValue1}
-          min={1000000}
-          step={1000}
-          value={value1}
-          valueMark='%'
-          valueText='Годовых'
-          changeValue={setValue4}
-        />
-        {/* <div>
+        <div>
           <Text color='blueLight'>Этаж</Text>
           <InputRange
             className={styles.range}
-            isSeveral
-            value={value5}
-            secondValue={value6}
-            changeValue={setValue5}
-            changeSecondValue={setValue6}
-            min={1000000}
-            max={100000000}
-            step={1000}
+            value={value3}
+            changeValue={setValue3}
+            min={0}
+            max={30}
+            step={1}
+            isMultiRange
           />
-        </div> */}
+        </div>
       </div>
-      {/* <Divider /> */}
-      <div className={styles.sortsContainer}>
+      <div className={styles.sortContainer}>
         <Text color='blueLight' className={styles.sortTitle}>
           Сортировать
         </Text>
-        <div className={styles.sortContainer}>
-          <div className={styles.toogles}>
-            <div className={styles.toogle}>
-              <ToggleSwitch />
-              <Text color='grey'>Не показывать забронированные</Text>
+        <div className={styles.test5}>
+          <div className={styles.test4}>
+            <div className={styles.test3}>
+              <InputSelect sortItems={MOCK_SORT} />
             </div>
-            <div className={styles.toogle}>
-              <ToggleSwitch />
-              <Text color='grey'>Группировать по объектам</Text>
+            <div className={styles.toogles}>
+              <div className={styles.toogle}>
+                <ToggleSwitch />
+                <Text color='grey' className={styles.resetButton}>
+                  Не показывать забронированные
+                </Text>
+              </div>
+              <div className={styles.toogle}>
+                <ToggleSwitch />
+                <Text color='grey' className={styles.resetButton}>
+                  Группировать по объектам
+                </Text>
+              </div>
             </div>
           </div>
-          <Text weight='medium'>Сбросить фильтры</Text>
+          <Text weight='medium' className={styles.resetButton}>
+            Сбросить фильтры
+          </Text>
         </div>
       </div>
     </div>

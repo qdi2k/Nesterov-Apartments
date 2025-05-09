@@ -14,6 +14,10 @@ import {default as selectArrow} from '@/shared/assets/icons/select-arrow.svg'
 import {default as telegram} from '@/shared/assets/icons/telegram.svg'
 import {default as vkontakte} from '@/shared/assets/icons/vkontakte.svg'
 import {default as instagram} from '@/shared/assets/icons/instagram.svg'
+import {default as minus} from '@/shared/assets/icons/minus.svg'
+import {default as plus} from '@/shared/assets/icons/plus.svg'
+import {default as plane} from '@/shared/assets/icons/plane.svg'
+import {default as check} from '@/shared/assets/icons/check.svg'
 import {type IconColors, theme} from '@/shared/model'
 
 const Icons = {
@@ -33,6 +37,10 @@ const Icons = {
   telegram,
   vkontakte,
   instagram,
+  minus,
+  plus,
+  plane,
+  check,
 }
 
 export type IconName = keyof typeof Icons

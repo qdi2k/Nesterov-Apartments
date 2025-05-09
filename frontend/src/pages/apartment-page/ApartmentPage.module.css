@@ -89,6 +89,7 @@
 .button {
   width: 100% !important;
   padding: 16px !important;
+  margin: 0 !important;
   background-color: var(--greyWhite) !important;
   justify-content: center;
 }
@@ -96,7 +97,8 @@
 .buttonMain {
   width: 100% !important;
   padding: 16px !important;
-  margin-top: 16px;
+  margin: 0 !important;
+  margin-top: 16px !important;
   background-color: var(--greyDark) !important;
   justify-content: center;
 }

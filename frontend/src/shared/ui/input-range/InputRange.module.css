@@ -4,11 +4,44 @@
   width: 100%;
 }
 
-.inputs {
+.inputContainer {
+  position: relative;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-left: 6px;
+  margin-right: 6px;
+  width: calc(100% - 12px);
 }
 
-.test {
+.inputs {
+  display: flex;
+  margin-top: 8px;
+  border-radius: 10px;
+}
+
+.inputFiled {
+  background-color: var(--greyLight);
+  padding: 16px;
+  border-radius: 10px;
+  width: 100%;
+  border: 1px solid transparent;
+  font-size: var(--small);
+  transition: 0.4s;
+}
+
+.error {
+  border: 1px solid red;
+}
+
+.errorText {
+  color: red;
+  margin-top: 4px;
+  font-size: 14px;
+}
+
+.lineContainer {
   display: flex;
   align-items: center;
   background-color: var(--white);
@@ -20,23 +53,12 @@
   background-color: var(--grey);
 }
 
-.inputContainer {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 10px;
-  margin-left: 10px;
-  margin-right: 10px;
-  width: calc(100%-20px);
-}
-
 .controlContainer {
   width: 100%;
   position: absolute;
 }
 
-.inputRange {
+.input {
   position: absolute;
   width: 100%;
   pointer-events: none;
@@ -52,31 +74,25 @@
   width: 100%;
   top: 50%;
   height: 1px;
-  background: var(--greyLight);
-}
-
-.activeRail {
-  position: absolute;
-  width: 100%;
-  top: 50%;
-  height: 1px;
-  background: var(--greyDark);
+  background: var(--grey);
 }
 
 .innerRail {
   position: absolute;
   height: 100%;
-  background: var(--orange);
+  background: var(--orangeLight);
 }
 
-.inputFiled {
-  background-color: var(--greyLight);
-  padding: 16px;
-  border-radius: 10px;
-  width: 100%;
-  border: 1px solid transparent;
-  font-size: var(--small);
-  transition: 0.4s;
+.control {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  position: absolute;
+  background: var(--greyDark);
+  top: 50%;
+  margin-left: calc(12px / -2);
+  transform: translate3d(0, -50%, 0);
+  z-index: 2;
 }
 
 .firstInput {
@@ -88,46 +104,4 @@
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   text-align: end;
-}
-
-/* .inputFiled:focus {
-  border: 1px solid var(--greyDark);
-} */
-
-.control {
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  position: absolute;
-  background: var(--greyDark);
-  top: 50%;
-  margin-left: calc(14px / -2);
-  transform: translate3d(0, -50%, 0);
-  z-index: 2;
-}
-
-.inputVerticalLineLeft {
-  position: absolute;
-  left: 0px;
-  top: -5px;
-  width: 1px;
-  height: 11px;
-  background-color: var(--greyDark);
-}
-
-.inputVerticalLineRight {
-  position: absolute;
-  right: 0;
-  top: -5px;
-  width: 1px;
-  height: 11px;
-  background-color: var(--greyDark);
-}
-
-.textRange {
-  font-size: 14px;
-  font-weight: 300;
-  width: max-content;
-  position: absolute;
-  bottom: 14px;
 }

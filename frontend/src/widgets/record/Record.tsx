@@ -1,14 +1,17 @@
 'use client'
 
-import {Button, Input, Text, Title} from '@/shared/ui'
+import {Button, Checkbox, Input, Text, Title} from '@/shared/ui'
 import styles from './Record.module.css'
 import {motion} from 'framer-motion'
 import themeStyles from '@/shared/model/styles/theme.module.css'
 import Image from 'next/image'
 import recordImage from '@/shared/assets/images/record.png'
 import {theme} from '@/shared/model'
+import {useState} from 'react'
 
 export function Record() {
+  const [isCheck, setIsCheck] = useState(false)
+  const [isCheckSecond, setIsCheckSecond] = useState(false)
   return (
     <motion.section
       className={styles.container}
@@ -30,20 +33,21 @@ export function Record() {
           <div className={styles.form}>
             <Input placeholder='Ваше имя' />
             <Input placeholder='Ваш email / телефон' />
-            <label className={styles.customCheckbox}>
-              <input type='checkbox' />
+            <Checkbox isChecked={isCheck} onChange={() => setIsCheck(!isCheck)}>
               <Text>
                 Даю <span className={styles.approve}>согласие</span> на
                 обработку персональных данных.
               </Text>
-            </label>
-            <label className={styles.customCheckbox}>
-              <input type='checkbox' />
+            </Checkbox>
+            <Checkbox
+              isChecked={isCheckSecond}
+              onChange={() => setIsCheckSecond(!isCheckSecond)}
+            >
               <Text>
                 Даю <span className={styles.approve}>согласие</span> на
                 получение рекламных предложений.
               </Text>
-            </label>
+            </Checkbox>
             <Button className={styles.formButton}>Оставить заявку</Button>
           </div>
         </motion.div>

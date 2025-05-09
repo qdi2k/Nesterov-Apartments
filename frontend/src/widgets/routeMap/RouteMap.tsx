@@ -1,6 +1,6 @@
 'use client'
 
-import React, {ChangeEvent, useState} from 'react'
+import React, {ChangeEvent, useRef, useState} from 'react'
 import {
   YMaps,
   Map,
@@ -10,10 +10,9 @@ import {
   ZoomControl,
 } from '@pbe/react-yandex-maps'
 import styles from './RouteMap.module.css'
-import {Input, Text, TextButton} from '@/shared/ui'
+import {Button, Icon, Input, Text} from '@/shared/ui'
 
 type Coordinates = [number, number]
-
 type RouteCoordinates = Coordinates[]
 
 interface IMapContentProps {
@@ -34,9 +33,7 @@ export function RouteMap() {
   const [destination, setDestination] = useState('')
   const [destinationCoords, setDestinationCoords] =
     useState<Coordinates | null>(null)
-
   const [routeCoords, setRouteCoords] = useState<RouteCoordinates | null>(null)
-
   const [distance, setDistance] = useState<number | null>(null)
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -74,6 +71,7 @@ const MapContent = ({
   handleInputChange,
 }: IMapContentProps) => {
   const ymaps = useYMaps(['geocode', 'route'])
+  const mapRef = useRef(null)
 
   const handleRouteButtonClick = async () => {
     if (!ymaps) {
@@ -82,7 +80,7 @@ const MapContent = ({
     }
 
     try {
-      const res = await ymaps.geocode(destination)
+      const res = await ymaps.geocode('Арзамас' + destination)
       const firstGeoObject = res.geoObjects.get(0)
 
       if (!firstGeoObject || !firstGeoObject.geometry) {
@@ -121,52 +119,99 @@ const MapContent = ({
     }
   }
 
+  const handleZoomIn = () => {
+    if (mapRef.current) {
+      const map = mapRef.current
+      map.setZoom(map.getZoom() + 1, {duration: 300})
+    }
+  }
+
+  const handleZoomOut = () => {
+    if (mapRef.current) {
+      const map = mapRef.current
+      map.setZoom(map.getZoom() - 1, {duration: 300})
+    }
+  }
+
+  const handleResetPosition = () => {
+    if (mapRef.current) {
+      const map = mapRef.current
+      map.setCenter(initialPosition, 14, {duration: 300})
+    }
+  }
+
+  const customIcon = {
+    preset: 'islands#redIcon',
+    iconColor: 'rgba(255, 77, 0, 1)',
+  }
+
   return (
     <div className={styles.containerRoute}>
-      <Map
-        defaultState={{center: initialPosition, zoom: 14}}
-        modules={['multiRouter.MultiRoute']}
-        options={{suppressMapOpenBlock: true}}
-        className={styles.map}
-      >
-        <Placemark geometry={initialPosition} />
-        {destinationCoords && <Placemark geometry={destinationCoords} />}
-        {routeCoords && (
-          <Polyline
-            geometry={routeCoords}
-            options={{
-              strokeColor: '#1E98FF',
-              strokeWidth: 3,
-            }}
-          />
-        )}
-        <ZoomControl options={{position: {left: 20, top: 100}}} />
-        {distance && (
-          <div className={styles.distance}>
-            <Text>Расстояние: {(distance / 1000).toFixed(2)} км</Text>
+      <div className={styles.mapContainer}>
+        <Map
+          defaultState={{center: initialPosition, zoom: 14}}
+          modules={['multiRouter.MultiRoute']}
+          options={{suppressMapOpenBlock: true}}
+          className={styles.map}
+          instanceRef={mapRef}
+        >
+          <Placemark geometry={initialPosition} />
+          {destinationCoords && (
+            <Placemark geometry={destinationCoords} options={customIcon} />
+          )}
+          {routeCoords && (
+            <Polyline
+              geometry={routeCoords}
+              options={{
+                strokeColor: 'rgba(255, 96, 27, 1)',
+                strokeWidth: 3,
+              }}
+            />
+          )}
+          {distance && (
+            <div className={styles.distance}>
+              <Text>Расстояние: {(distance / 1000).toFixed(2)} км</Text>
+            </div>
+          )}
+        </Map>
+        <div className={styles.controlButtons}>
+          <button
+            onClick={handleResetPosition}
+            className={styles.resetPositionButton}
+          >
+            <Icon name='plane' size={18} color='white' />
+          </button>
+          <div className={styles.customZoomControls}>
+            <button onClick={handleZoomIn} className={styles.zoomButton}>
+              <Icon name='plus' size={14} color='white' />
+            </button>
+            <div className={styles.divider} />
+            <button onClick={handleZoomOut} className={styles.zoomButton}>
+              <Icon name='minus' size={14} color='white' />
+            </button>
           </div>
-        )}
-      </Map>
-      {/* <div className={styles.routeContainer}>
-        <Text size='sMedium' weight='light' isUppercase>
-          Проложить маршрут
+        </div>
+      </div>
+      <div className={styles.routeContainer}>
+        <Text size='sMedium' weight='semiBold'>
+          Как добраться?
         </Text>
-        <div className={styles.routeInput}>
+        <div className={styles.test}>
           <Input
             placeholder='Ваше местоположение'
             value={destination}
             onChange={handleInputChange}
-            className={styles.input}
+            classNameContainer={styles.input}
           />
-          <TextButton
-            onClick={handleRouteButtonClick}
-            color='black'
+          <Button
             className={styles.button}
+            isMore
+            onClick={handleRouteButtonClick}
           >
             Показать маршрут
-          </TextButton>
+          </Button>
         </div>
-      </div> */}
+      </div>
     </div>
   )
 }

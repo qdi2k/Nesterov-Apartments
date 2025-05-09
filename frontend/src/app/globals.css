@@ -4,6 +4,7 @@
   --grey: rgba(116, 119, 130, 1);
   --greyDark: rgba(39, 46, 68, 1);
   --greyLight: rgba(238, 241, 246, 1);
+  --greyLightSecond: rgba(209, 213, 225, 1);
   --greyWhite: rgba(225, 229, 240, 1);
   --orange: rgba(255, 77, 0, 1);
   --orangeLight: rgba(255, 96, 27, 1);
@@ -56,9 +57,9 @@ aside {
   width: 0;
 }
 
-::-webkit-scrollbar-thumb {
+/* ::-webkit-scrollbar-thumb {
   display: none;
-}
+} */
 
 body {
   margin: 0 auto;
