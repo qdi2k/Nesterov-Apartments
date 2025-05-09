@@ -1,6 +1,5 @@
 import {Icon} from '@/shared/ui'
 import styles from './GalleryFull.module.css'
-import {useRef} from 'react'
 import Image from 'next/image'
 
 export function GalleryFull({
@@ -10,63 +9,52 @@ export function GalleryFull({
   handleOpenGallery,
   handleChangeImage,
 }) {
-  const containerRef = useRef<HTMLDivElement>(null)
-
-  const goToPrevious = () => {
+  const goToPrevious = (e) => {
     handleChangeImage((prevIndex) =>
       prevIndex === 0 ? images.length - 1 : prevIndex - 1
     )
+    e.stopPropagation()
   }
 
-  const goToNext = () => {
+  const goToNext = (e) => {
     handleChangeImage((prevIndex) =>
       prevIndex === images.length - 1 ? 0 : prevIndex + 1
     )
+    e.stopPropagation()
   }
 
-  const handleClose = () => {
-    handleOpenGallery(false)
+  const closeGallery = (e) => {
     document.body.style.overflow = 'visible'
+    e.stopPropagation()
+    handleOpenGallery(false)
   }
-
-  // useEffect(() => {
-  //   if (!isOpen) return
-  //   const handleClick = (event: MouseEvent) => {
-  //     if (!containerRef.current) return
-  //     if (!containerRef.current.contains(event.target as HTMLElement)) {
-  //       handleOpenGallery(false)
-  //       return
-  //     }
-  //   }
-  //   document.addEventListener('mousedown', handleClick)
-
-  //   return () => {
-  //     document.removeEventListener('mousedown', handleClick)
-  //   }
-  // }, [isOpen])
 
   return (
-    <div className={`${styles.galleryOverlay} ${isOpen ? styles.open : ''}`}>
-      <div className={styles.galleryContent}>
-        <button className={styles.closeButton} onClick={() => handleClose()}>
+    <div
+      className={`${styles.galleryOverlay} ${!isOpen && styles.galleryOverlayClosed}`}
+      onClick={closeGallery}
+    >
+      <div
+        className={`${styles.galleryContent} ${!isOpen && styles.galleryContentClosed}`}
+      >
+        <button className={styles.closeButton} onClick={(e) => closeGallery(e)}>
           <Icon name='close' />
         </button>
         <Image
           src={images[selectedIndex]?.src}
           className={styles.galleryImage}
           alt='progress-image'
-          fill
-          sizes='100%'
+          onClick={(e) => e.stopPropagation()}
         />
         <button
           className={`${styles.navButton} ${styles.prev}`}
-          onClick={goToPrevious}
+          onClick={(e) => goToPrevious(e)}
         >
           <Icon name='arrow' size={16} />
         </button>
         <button
           className={`${styles.navButton} ${styles.next}`}
-          onClick={goToNext}
+          onClick={(e) => goToNext(e)}
         >
           <Icon name='arrow' size={16} />
         </button>

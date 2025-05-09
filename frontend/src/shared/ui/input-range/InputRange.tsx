@@ -1,181 +1,214 @@
 'use client'
-
 import {Open_Sans} from 'next/font/google'
 import styles from './InputRange.module.css'
+import {ChangeEvent, useEffect, useState} from 'react'
 import {Text} from '../text'
-import {useState} from 'react'
 
 const openSans = Open_Sans({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700'],
 })
 
+type Value = {
+  min: number
+  max: number
+}
+
 export interface IInputRangeProps {
-  title: string
+  title?: string
+  value: Value
+  error?: boolean
+  changeValue: (event: Value) => void
   max: number
   min: number
   step: number
-  value: number
-  formatedValue?: string
-  changeValue: (event: number) => void
+  isMultiRange?: boolean
+  className?: string
+}
+
+const formatNumber = (number: number | string): string => {
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
+}
+
+const parseNumber = (formattedValue: string): number => {
+  return parseInt(formattedValue.replace(/\s/g, ''), 10)
 }
 
 export function InputRange({
-  className,
-  isSeveral,
   title,
+  value,
+  error,
+  changeValue,
   step,
   max,
   min,
-  value,
-  secondValue,
-  changeValue,
-  changeSecondValue,
+  isMultiRange,
+  className,
 }: IInputRangeProps) {
   const [stringValue, setStringValue] = useState(
-    value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
+    value.min?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
   )
   const [secondStringValue, setSecondStringValue] = useState(
-    secondValue?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
+    value.max?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
   )
-  const controlPos = ((value - min) / (max - min)) * 100
-  const severalControlPos =
-    ((value - min) / (secondValue - 5000000 - min)) * 100
-  const maxPos = ((secondValue - min) / (max - min)) * 100
 
-  const formatNumber = (number: number) => {
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
-  }
+  const [minValue, setMinValue] = useState(value ? value.min : min)
+  const [maxValue, setMaxValue] = useState(value ? value.max : max)
 
-  const parseNumber = (formattedValue: any) => {
-    return formattedValue.replace(/\s/g, '')
-  }
+  const minPos = ((minValue - min) / (max - min)) * 100
+  const maxPos = ((maxValue - min) / (max - min)) * 100
 
-  const handleChangeRangeValue = (event: {
-    target: {value: string | number}
-  }) => {
-    const inputValue = event.target.value
-    const parsedValue = parseNumber(inputValue)
-    const formattedValue = formatNumber(parsedValue)
-    changeValue(event.target.value)
+  const handleChangeRangeMinValue = (event: ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault()
+    const newMinVal = Math.min(
+      +event.target.value,
+      maxValue - (isMultiRange ? step * 10 : 0)
+    )
+    const formattedValue = formatNumber(newMinVal.toString())
+    if (!value) setMinValue(newMinVal)
     setStringValue(formattedValue)
+    changeValue({min: newMinVal, max: maxValue})
   }
 
-  const handleChangeRangeValue2 = (event: {
-    target: {value: string | number}
-  }) => {
-    const inputValue = event.target.value
-    const parsedValue = parseNumber(inputValue)
-    const formattedValue = formatNumber(parsedValue)
-    changeSecondValue(event.target.value)
+  const handleChangeRangeMaxValue = (event: ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault()
+    const newMaxVal = Math.max(+event.target.value, minValue + step * 10)
+    const formattedValue = formatNumber(newMaxVal.toString())
+    if (!value) setMaxValue(newMaxVal)
     setSecondStringValue(formattedValue)
+    changeValue({min: minValue, max: newMaxVal})
   }
 
-  const handleChangeInputValue = (event: {
-    target: {value: string | number}
-  }) => {
+  const handleChangeInputMinValue = (event: ChangeEvent<HTMLInputElement>) => {
+    const inputValue = event.target.value.toString().replace(/\D/g, '')
+    const numberValue = parseNumber(inputValue)
+
+    const formattedValue = formatNumber(numberValue)
+
+    const current = !isNaN(numberValue) ? numberValue : 0
+    const currentString = !isNaN(numberValue) ? formattedValue : ''
+
+    if (numberValue < min) {
+      changeValue({min: min, max: maxValue})
+      setStringValue(formatNumber(min))
+      return
+    }
+
+    if (numberValue > max) {
+      changeValue({min: max, max: maxValue})
+      setStringValue(formatNumber(max))
+      return
+    }
+
+    changeValue({min: current, max: maxValue})
+    setStringValue(currentString)
+  }
+
+  const handleChangeInputMaxValue = (event: ChangeEvent<HTMLInputElement>) => {
     const inputValue = event.target.value.toString().replace(/\D/g, '')
     const numberValue = parseNumber(inputValue)
     const formattedValue = formatNumber(numberValue)
 
     if (numberValue < min) {
-      const formattedValue2 = formatNumber(min)
-      changeValue(min)
-      setStringValue(formattedValue2)
+      changeValue({min: min, max: maxValue})
+      setSecondStringValue(formatNumber(min))
       return
     }
 
     if (numberValue > max) {
-      const formattedValue2 = formatNumber(max)
-      changeValue(max)
-      setStringValue(formattedValue2)
+      changeValue({min: max, max: maxValue})
+      setSecondStringValue(formatNumber(max))
       return
     }
-    changeValue(numberValue)
-    setStringValue(formattedValue)
+    changeValue({min: minValue, max: numberValue})
+    setSecondStringValue(formattedValue)
   }
 
-  const handleChangeInputValue2 = (event: {
-    target: {value: string | number}
-  }) => {
-    const inputValue = event.target.value.toString().replace(/\D/g, '')
-    const numberValue = parseNumber(inputValue)
-    const formattedValue = formatNumber(numberValue)
+  useEffect(() => {
+    if (value) {
+      setMinValue(value.min)
+      setMaxValue(value.max)
+    }
+  }, [value])
 
-    if (numberValue < min) {
-      const formattedValue2 = formatNumber(min)
-      changeSecondValue(event.target.value)
-      setSecondStringValue(formattedValue2)
-      return
+  const getError = () => {
+    if (!minValue && !isMultiRange) {
+      return 'Заполните поле'
     }
 
-    if (numberValue > max) {
-      const formattedValue2 = formatNumber(max)
-      changeSecondValue(event.target.value)
-      setSecondStringValue(formattedValue2)
-      return
+    if (error) {
+      return 'Первоначальный взнос должен быть меньше стоимости недвижимости'
     }
-    changeSecondValue(numberValue)
-    setSecondStringValue(formattedValue)
+    return null
   }
 
   return (
     <div className={styles.container}>
       <Text color='blueLight'>{title}</Text>
-      <div className={styles.inputs}>
+      <div className={`${styles.inputs} ${getError() && styles.error}`}>
         <input
-          className={`${styles.inputFiled} ${isSeveral && styles.firstInput} ${openSans.className} ${className}`}
+          className={`${styles.inputFiled} ${isMultiRange && styles.firstInput} ${openSans.className} ${className}`}
           value={stringValue}
-          onChange={handleChangeInputValue}
+          onChange={handleChangeInputMinValue}
           min={min}
-          max={isSeveral ? secondValue - 1000000 : max}
+          max={max}
         />
-        {isSeveral && (
+        {isMultiRange && (
           <>
-            <div className={styles.test}>
+            <div className={styles.lineContainer}>
               <div className={styles.line} />
             </div>
             <input
               className={`${styles.inputFiled} ${styles.secondInput} ${openSans.className} ${className}`}
               value={secondStringValue}
-              onChange={handleChangeInputValue2}
+              onChange={handleChangeInputMaxValue}
               min={min}
               max={max}
             />
           </>
         )}
       </div>
+      <Text className={styles.errorText}>{getError()}</Text>
       <div className={styles.inputContainer}>
         <input
-          className={styles.inputRange}
-          style={{marginLeft: -8 - controlPos * -0.16}}
+          className={styles.input}
+          style={{marginLeft: -8 - minPos * -0.16}}
           type='range'
-          value={value}
+          value={minValue}
           min={min}
-          max={isSeveral ? secondValue - 5000000 : max}
+          max={max}
           step={step}
-          onChange={handleChangeRangeValue}
+          onChange={handleChangeRangeMinValue}
         />
-        {isSeveral && (
+        {isMultiRange && (
           <input
-            className={styles.inputRange}
+            className={styles.input}
             style={{marginLeft: -8 - maxPos * -0.16}}
             type='range'
-            value={secondValue}
+            value={maxValue}
             min={min}
             max={max}
             step={step}
-            onChange={handleChangeRangeValue2}
+            onChange={handleChangeRangeMaxValue}
           />
         )}
         <div className={styles.controlContainer}>
-          <div className={styles.control} style={{left: `${controlPos}%`}} />
-          <div
-            className={styles.activeRail}
-            style={{width: `${controlPos}%`}}
-          />
-          <div className={styles.rail} />
-          {isSeveral && (
+          <div className={styles.control} style={{left: `${minPos}%`}} />
+          <div className={styles.rail}>
+            {!isMultiRange && (
+              <div
+                className={styles.innerRail}
+                style={{left: `0`, right: `${100 - minPos}%`}}
+              />
+            )}
+            {isMultiRange && (
+              <div
+                className={styles.innerRail}
+                style={{left: `${minPos}%`, right: `${100 - maxPos}%`}}
+              />
+            )}
+          </div>
+          {isMultiRange && (
             <div className={styles.control} style={{left: `${maxPos}%`}} />
           )}
         </div>

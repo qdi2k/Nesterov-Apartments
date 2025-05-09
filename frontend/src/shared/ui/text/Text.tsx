@@ -22,6 +22,7 @@ interface ITextProps {
   size?: FontSizes
   weight?: FontWeights
   color?: FontColors
+  href?: string
   onClick?: () => void
   ref?: any
   isUppercase?: boolean
@@ -38,6 +39,7 @@ export function Text({
   size = 'small',
   weight = 'regular',
   color = 'greyDark',
+  href,
   onClick,
   ref,
   isUppercase,
@@ -47,7 +49,22 @@ export function Text({
   animate,
   exit,
 }: ITextProps) {
-  return (
+  return href ? (
+    <a
+      className={`
+      ${openSans.className}
+      ${isHover && themeStyles.textHover}
+      ${isUppercase && themeStyles.uppercase}
+      ${theme.font.size?.[size]}
+      ${theme.font.weight?.[weight]}
+      ${theme.font.colors?.[color]}
+      ${className}
+    `}
+      href={href}
+    >
+      {children}
+    </a>
+  ) : (
     <motion.p
       className={`
         ${openSans.className}

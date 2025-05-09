@@ -89,6 +89,11 @@
   height: 46px;
   cursor: pointer;
   border-radius: 50%;
+  transition: all 0.4s;
+}
+
+.contactLink:hover {
+  background-color: var(--orange);
 }
 
 .contactLinkTelegram {

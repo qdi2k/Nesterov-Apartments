@@ -1,25 +1,15 @@
 'use client'
 
-import {Button, Text, Title} from '@/shared/ui'
+import {Button, Title} from '@/shared/ui'
 import styles from './Apartments.module.css'
 import themeStyles from '@/shared/model/styles/theme.module.css'
 import {motion} from 'framer-motion'
-import Image from 'next/image'
 import {theme} from '@/shared/model'
 import Link from 'next/link'
 import useGetMoreItem from '@/shared/model/useGetMoreItem'
 import {Filter} from '@/entities/filter'
-
-interface ApartmentProps {
-  price: string
-  src: string
-  discountPrice?: string
-  discount?: string
-  rooms: string
-  square: string
-  floor: number
-  delay: number
-}
+import {GroupApartment} from '../groupApartment'
+import {ApartmentItem, type ApartmentProps} from './ApartmentItem'
 
 interface ApartmentsProps {
   apartments: ApartmentProps[]
@@ -27,74 +17,6 @@ interface ApartmentsProps {
   buttonTitle?: string
   isMore?: boolean
   isFilter?: boolean
-}
-
-const Apartment = ({
-  price,
-  src,
-  discountPrice,
-  discount,
-  rooms,
-  square,
-  floor,
-  delay,
-}: ApartmentProps) => {
-  return (
-    <motion.div
-      className={styles.apartmentContainer}
-      variants={{
-        hidden: {
-          x: -50,
-          opacity: 0,
-        },
-        visible: {
-          x: 0,
-          opacity: 1,
-          transition: {
-            duration: 0.4,
-            delay: delay,
-          },
-        },
-      }}
-    >
-      <div className={styles.image}>
-        <Image
-          src={src}
-          className={styles.image}
-          alt='apartment-image'
-          fill
-          sizes='100%'
-        />
-      </div>
-      <div className={styles.textContainer}>
-        <Text
-          className={`${styles.price} ${discountPrice && styles.priceVisible}`}
-        >
-          {price} ₽
-        </Text>
-        <div className={styles.priceContainer}>
-          <Text
-            size='xMedium'
-            weight='bold'
-            color={discount ? 'orange' : 'greyDark'}
-          >
-            {discountPrice ?? price} ₽
-          </Text>
-          {discount && (
-            <Text className={styles.discount} color='orange'>
-              -{discount}%
-            </Text>
-          )}
-        </div>
-        <Text size='xSmall' weight='bold' className={styles.room}>
-          {rooms}
-        </Text>
-        <Text>
-          {square} м² | {floor} этаж
-        </Text>
-      </div>
-    </motion.div>
-  )
 }
 
 export function Apartments({
@@ -106,10 +28,12 @@ export function Apartments({
 }: ApartmentsProps) {
   const {handleShowMoreDocuments, getDelay, postsToShow} = useGetMoreItem(
     apartments,
-    9
+    6
   )
 
   const currentData = isMore ? postsToShow : apartments
+  const isGroup = false
+
   const getButtonStatus = () => {
     if (!isMore) {
       return true
@@ -131,44 +55,59 @@ export function Apartments({
           {title ?? 'Наши квартиры'}
         </Title>
         {isFilter && <Filter />}
-        <div className={styles.apartmentsContainer}>
-          {currentData.map((item) => (
-            <Link href='/apartments/apartment' key={item.id}>
-              <Apartment
-                price={item.price}
-                src={item.src}
-                discountPrice={item.discountPrice}
-                discount={item.discount}
-                rooms={item.rooms}
-                square={item.square}
-                floor={item.floor}
-                delay={isMore ? getDelay(item.id) : item.id * 0.1}
-              />
-            </Link>
-          ))}
-        </div>
-        {getButtonStatus() && (
-          <Button
-            href={isMore ? '' : '/apartments'}
-            onClick={isMore ? handleShowMoreDocuments : () => {}}
-            isMore={isMore}
-            animation={{
-              hidden: {
-                y: 50,
-                opacity: 0,
-              },
-              visible: {
-                y: 0,
-                opacity: 1,
-                transition: {
-                  duration: 0.3,
-                  delay: isMore ? 0.6 : 1,
-                },
-              },
-            }}
-          >
-            {buttonTitle ?? 'Посмотреть все'}
-          </Button>
+        {isGroup ? (
+          <div className={styles.objectContainer}>
+            <GroupApartment
+              data={currentData}
+              isMore={apartments.length > postsToShow.length}
+              onClick={handleShowMoreDocuments}
+            />
+            <GroupApartment data={currentData} />
+            <GroupApartment data={currentData} />
+          </div>
+        ) : (
+          <>
+            <div className={styles.apartmentsContainer}>
+              {currentData.map((item) => (
+                <Link href='/apartments/apartment' key={item.id}>
+                  <ApartmentItem
+                    price={item.price}
+                    src={item.src}
+                    discountPrice={item.discountPrice}
+                    discount={item.discount}
+                    rooms={item.rooms}
+                    square={item.square}
+                    floor={item.floor}
+                    delay={isMore ? getDelay(item.id) : item.id * 0.1}
+                  />
+                </Link>
+              ))}
+            </div>
+            {getButtonStatus() && (
+              <Button
+                href={isMore ? '' : '/apartments'}
+                className={styles.moreButton}
+                onClick={isMore ? handleShowMoreDocuments : () => {}}
+                isMore={isMore}
+                animation={{
+                  hidden: {
+                    y: 50,
+                    opacity: 0,
+                  },
+                  visible: {
+                    y: 0,
+                    opacity: 1,
+                    transition: {
+                      duration: 0.3,
+                      delay: isMore ? 0.6 : 1,
+                    },
+                  },
+                }}
+              >
+                {buttonTitle ?? 'Посмотреть все'}
+              </Button>
+            )}
+          </>
         )}
       </div>
     </motion.section>

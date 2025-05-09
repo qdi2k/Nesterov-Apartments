@@ -1,5 +1,4 @@
 import {Main} from '@/widgets/main'
-import {Location} from '@/widgets/location'
 import {Record} from '@/widgets/record'
 import {Questions} from '@/widgets/questions'
 import {Objects} from '@/widgets/objects'
@@ -13,6 +12,7 @@ import apartmentImage4 from '@/shared/assets/images/apartments/fe0de264fc1403e14
 import apartmentImage5 from '@/shared/assets/images/apartments/i.webp'
 import apartmentImage6 from '@/shared/assets/images/apartments/large.webp'
 import {MortgageCalculator} from '@/widgets/mortgage-calculator'
+import {ContactsMap} from '@/widgets/routeMap'
 
 const MOCK_APARTMENTS = [
   {
@@ -105,7 +105,7 @@ export function HomePage() {
       <MortgageCalculator />
       <Questions />
       <Blogs />
-      <Location title='Офис продаж' />
+      <ContactsMap />
       <Record />
     </div>
   )

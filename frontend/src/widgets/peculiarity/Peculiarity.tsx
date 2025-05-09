@@ -13,6 +13,7 @@ import galleryImage5 from '@/shared/assets/images/historyItemImage.png'
 import galleryImage6 from '@/shared/assets/images/street.png'
 import {TitleCarousel} from '@/entities/title-carousel'
 import {Gallery} from '../gallery/Gallery'
+import {GalleryFull} from '../gallery-full'
 
 interface PeculiarityGalleryProps {
   title: string
@@ -135,6 +136,7 @@ const PeculiarityGallery = ({
   title,
   description,
   images,
+  openGallery,
 }: PeculiarityGalleryProps) => {
   return (
     <div className={styles.galleryContainer}>
@@ -149,6 +151,7 @@ const PeculiarityGallery = ({
           <Image
             src={images[0].src}
             className={styles.image}
+            onClick={() => openGallery(images[0].id - 1)}
             alt='gallery-image'
             fill
             sizes='100%'
@@ -161,6 +164,7 @@ const PeculiarityGallery = ({
           <Image
             src={images[1].src}
             className={styles.image}
+            onClick={() => openGallery(images[1].id - 1)}
             alt='gallery-image'
             fill
             sizes='100%'
@@ -170,6 +174,7 @@ const PeculiarityGallery = ({
           <Image
             src={images[2].src}
             className={styles.image}
+            onClick={() => openGallery(images[2].id - 1)}
             alt='gallery-image'
             fill
             sizes='100%'
@@ -182,8 +187,15 @@ const PeculiarityGallery = ({
 
 export function Peculiarity() {
   const [titleActive, setTitleActive] = useState(1)
+  const [isOpen, setIsOpen] = useState(false)
+  const [selectedIndex, setSelectedIndex] = useState(0)
   const itemDataFilter = MOCK_PECULIARITY[titleActive - 1]
 
+  const openGallery = (index) => {
+    setSelectedIndex(index)
+    document.body.style.overflow = 'hidden'
+    setIsOpen(true)
+  }
   return (
     <section className={styles.container}>
       <div className={themeStyles.container}>
@@ -197,6 +209,14 @@ export function Peculiarity() {
           title={itemDataFilter.infoTitle}
           description={itemDataFilter.infoDescription}
           images={itemDataFilter.images}
+          openGallery={openGallery}
+        />
+        <GalleryFull
+          images={itemDataFilter.images}
+          selectedIndex={selectedIndex}
+          isOpen={isOpen}
+          handleChangeImage={setSelectedIndex}
+          handleOpenGallery={setIsOpen}
         />
       </div>
     </section>

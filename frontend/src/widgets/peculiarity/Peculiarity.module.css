@@ -92,6 +92,7 @@
   position: relative;
   object-fit: cover;
   border-radius: 24px;
+  cursor: pointer;
 }
 
 .imagesContainer {
@@ -134,7 +135,7 @@
 }
 
 .gallery {
-  display: none;
+  display: none !important;
   height: 460px !important;
   border-radius: 24px;
 }
@@ -159,7 +160,7 @@
     display: flex;
   }
   .gallery {
-    display: block;
+    display: block !important;
   }
 }
 

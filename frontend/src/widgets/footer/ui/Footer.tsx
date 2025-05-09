@@ -22,7 +22,9 @@ export function Footer() {
           <div className={styles.bottomContentContainer}>
             <div className={styles.links}>
               <div className={styles.contact}>
-                <Text color='white'>+7 (495) 419-15-18</Text>
+                <Text href='tel:+74954191518' color='white'>
+                  +7 (495) 419-15-18
+                </Text>
                 <Text color='grey'>Контакт-центр в Москве</Text>
               </div>
               <ul className={styles.contactList}>

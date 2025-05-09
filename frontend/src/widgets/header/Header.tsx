@@ -52,9 +52,11 @@ export function Header({openBurger}: IHeaderProps) {
               </Link>
             </li>
             <li className={styles.navText}>
-              <Text size='small' color='white' isHover>
-                Контакты
-              </Text>
+              <Link href='/contacts'>
+                <Text size='small' color='white' isHover>
+                  Контакты
+                </Text>
+              </Link>
             </li>
           </ul>
         </div>
@@ -67,7 +69,12 @@ export function Header({openBurger}: IHeaderProps) {
             className={styles.dropdown}
           />
           <div className={styles.rightMenu}>
-            <Text size='small' color='white' className={styles.phone}>
+            <Text
+              size='small'
+              href='tel:+74954191518'
+              color='white'
+              className={styles.phone}
+            >
               +7 (495) 419-15-18
             </Text>
             <BurgerButton onPress={openBurger} />

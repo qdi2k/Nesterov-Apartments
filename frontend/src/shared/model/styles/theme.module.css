@@ -22,6 +22,9 @@
 .greyLight {
   color: var(--greyLight);
 }
+.greyLightSecond {
+  color: var(--greyLightSecond);
+}
 .blueLight {
   color: var(--blueLight);
 }

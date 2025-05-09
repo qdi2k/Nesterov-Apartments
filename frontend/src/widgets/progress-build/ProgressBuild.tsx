@@ -70,15 +70,13 @@ export function ProgressBuild() {
         ))}
       </div>
       <Gallery images={MOCK_IMAGES} className={styles.gallery} isPadding />
-      {isOpen && (
-        <GalleryFull
-          images={MOCK_IMAGES}
-          selectedIndex={selectedIndex}
-          isOpen={isOpen}
-          handleChangeImage={setSelectedIndex}
-          handleOpenGallery={setIsOpen}
-        />
-      )}
+      <GalleryFull
+        images={MOCK_IMAGES}
+        selectedIndex={selectedIndex}
+        isOpen={isOpen}
+        handleChangeImage={setSelectedIndex}
+        handleOpenGallery={setIsOpen}
+      />
     </section>
   )
 }

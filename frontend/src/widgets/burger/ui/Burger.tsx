@@ -13,10 +13,9 @@ const links = [
   {id: 3, text: 'Квартиры', href: '/apartments'},
   {id: 4, text: 'Способы оплаты', href: '/payments'},
   {id: 5, text: 'Акции', href: '/events'},
-  {id: 6, text: 'Новости', href: '/apartments'},
+  {id: 6, text: 'Новости', href: '/news'},
   {id: 7, text: 'Документы', href: '/documents'},
   {id: 8, text: 'Контакты', href: '/contacts'},
-  // {id: 9, text: 'О застройщике', href: '/about-builder'},
 ]
 
 const mockData = [
@@ -28,22 +27,16 @@ const mockData = [
 export function Burger({isOpen, onPress}: IBurgerProps) {
   return (
     <div
-      className={
-        isOpen ? `${styles.menu}` : `${styles.menu} ${styles.menuClosed}`
-      }
+      className={`${styles.menu} ${!isOpen && styles.menuClosed}`}
       onClick={() => onPress()}
     >
       <div
-        className={
-          isOpen
-            ? `${styles.menuContent}`
-            : `${styles.menuContent} ${styles.contentClosed}`
-        }
+        className={`${styles.menuContent} ${!isOpen && styles.contentClosed}`}
         onClick={(e) => e.stopPropagation()}
       >
         <div className={styles.topButton}>
           <div className={styles.textContainer}>
-            <Text size='small' color='white' className={styles.phone}>
+            <Text href='tel:+74954191518' size='small' color='white' isHover>
               +7 (495) 419-15-18
             </Text>
             <DropdownMenu title='Новосибирск' icon='address' data={mockData} />

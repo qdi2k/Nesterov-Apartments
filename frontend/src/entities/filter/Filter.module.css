@@ -1,29 +1,30 @@
 .container {
   padding-bottom: 24px;
+  gap: 24px;
   display: flex;
   flex-direction: column;
 }
 
 .filtersContainer {
   display: flex;
-  flex-wrap: wrap;
-  column-gap: 32px;
-  row-gap: 16px;
-}
-
-.sortTitle {
-  margin-bottom: 10px;
+  column-gap: 24px;
 }
 
 .sortsContainer {
-  margin-top: 24px;
+  display: flex;
+  width: 100%;
 }
 
 .sortContainer {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: space-between;
-  gap: 32px;
+  width: 100%;
+}
+
+.resetButton {
+  white-space: nowrap;
+  cursor: pointer;
 }
 
 .toogles {
@@ -39,4 +40,30 @@
 
 .range {
   background-color: var(--white);
+}
+
+.test {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  width: 100%;
+}
+
+.test2 {
+  width: 100%;
+}
+.test3 {
+  width: 100%;
+  max-width: 435px;
+}
+
+.test4 {
+  width: 100%;
+  display: flex;
+  gap: 32px;
+}
+
+.test5 {
+  display: flex;
+  align-items: center;
 }

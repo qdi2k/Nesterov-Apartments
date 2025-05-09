@@ -1,4 +1,4 @@
-import {Button, Icon, MainTitle, Text} from '@/shared/ui'
+import {Icon, Text, Title} from '@/shared/ui'
 import themeStyles from '@/shared/model/styles/theme.module.css'
 import styles from './RouteMap.module.css'
 import {RouteMap} from './RouteMap'
@@ -6,38 +6,45 @@ import {RouteMap} from './RouteMap'
 export function ContactsMap() {
   return (
     <section className={`${themeStyles.container} ${styles.container}`}>
-      <div>
-        <MainTitle>Контакты</MainTitle>
-        <div className={styles.contactsMapContainer}>
-          <Text size='sMedium' weight='light' color='brown' isUppercase>
-            Офис продаж
+      <Title>Офис продаж в Москве</Title>
+      <div className={styles.contacts}>
+        <li className={styles.listItem}>
+          <div className={styles.contactIcon}>
+            <Icon name='mapFill' color='greyDark' size={24} />
+          </div>
+          <Text>
+            Красноярск, <br /> ул. Кульнева, д. 3, стр. 1
           </Text>
-          <ul className={styles.listContent}>
-            <li className={styles.listItem}>
-              <Icon name='mapFill' color='orange' size={24} />
-              <Text weight='light'>Красноярск, ул. Кульнева, д. 3, стр. 1</Text>
-            </li>
-            <li className={styles.listItem}>
-              <Icon name='timeFill' color='orange' size={24} />
-              <Text weight='light'>пн-пт 9:00 - 18:00</Text>
-            </li>
-            <li className={styles.listItem}>
-              <Icon name='phoneFill' color='orange' size={24} className={styles.iconPhone}/>
-              <Text weight='light'>
-                +7 495 419-15-18 — Менеджер по продажам
-              </Text>
-            </li>
-            <li className={styles.listItem}>
-              <Icon name='phoneFill' color='orange' size={24} className={styles.iconPhone}/>
-              <Text weight='light'>+7 495 419-15-18 — Запись на экскурсию</Text>
-            </li>
-            <li className={styles.listItem}>
-              <Icon name='mailFill' color='orange' size={24} />
-              <Text weight='light'>info@nesterov.ru</Text>
-            </li>
-          </ul>
-          <Button>Задать вопрос</Button>
-        </div>
+        </li>
+        <li className={styles.listItem}>
+          <div className={styles.contactIcon}>
+            <Icon name='timeFill' color='greyDark' size={24} />
+          </div>
+          <Text>
+            Время работы <br /> пн-пт 9:00 - 18:00
+          </Text>
+        </li>
+        <li className={styles.listItem}>
+          <div className={styles.contactIcon}>
+            <Icon
+              name='phoneFill'
+              color='greyDark'
+              size={24}
+              className={styles.iconPhone}
+            />
+          </div>
+          <Text>
+            Менеджер по продажам <br /> +7 495 419-15-18
+          </Text>
+        </li>
+        <li className={styles.listItem}>
+          <div className={styles.contactIcon}>
+            <Icon name='mailFill' color='greyDark' size={24} />
+          </div>
+          <Text>
+            Почта <br /> info@nesterov.ru
+          </Text>
+        </li>
       </div>
       <RouteMap />
     </section>

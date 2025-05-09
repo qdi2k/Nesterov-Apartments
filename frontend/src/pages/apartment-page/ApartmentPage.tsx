@@ -1,7 +1,9 @@
+'use client'
+
 import {Apartments} from '@/widgets/apartments'
 import themeStyles from '@/shared/model/styles/theme.module.css'
 import styles from './ApartmentPage.module.css'
-import {Button, Text, Title} from '@/shared/ui'
+import {Button, Text} from '@/shared/ui'
 import {Record} from '@/widgets/record'
 import Image from 'next/image'
 import apartmentImage1 from '@/shared/assets/images/apartments/6cedd80b436f266361756f174388a854c1451d8f.jpg'
@@ -12,6 +14,8 @@ import apartmentImage5 from '@/shared/assets/images/apartments/i.webp'
 import apartmentImage6 from '@/shared/assets/images/apartments/large.webp'
 import {Peculiarity} from '@/widgets/peculiarity'
 import {MortgageCalculator} from '@/widgets/mortgage-calculator'
+import {useRef, useState} from 'react'
+import {RecordPopup} from '@/shared/ui/record-popup'
 
 const MOCK_APARTMENTS = [
   {
@@ -94,7 +98,7 @@ const MOCK_APARTMENTS = [
   },
 ]
 
-const ApartmentInfo = () => {
+const ApartmentInfo = ({scrollToTarget, openRecord}) => {
   return (
     <div className={styles.container}>
       <div className={`${themeStyles.container} ${styles.contentContainer}`}>
@@ -185,10 +189,16 @@ const ApartmentInfo = () => {
             </div>
           </div>
           <div>
-            <Button className={styles.button} textColor='greyDark'>
+            <Button
+              className={styles.button}
+              textColor='greyDark'
+              onClick={scrollToTarget}
+            >
               Рассчитать ипотеку
             </Button>
-            <Button className={styles.buttonMain}>Забронировать</Button>
+            <Button className={styles.buttonMain} onClick={openRecord}>
+              Забронировать
+            </Button>
           </div>
         </div>
       </div>
@@ -197,11 +207,25 @@ const ApartmentInfo = () => {
 }
 
 export function ApartmentPage() {
+  const [isOpen, setIsOpen] = useState(false)
+  const componentRef = useRef(null)
+
+  const scrollToTarget = () => {
+    componentRef.current.scrollIntoView({behavior: 'smooth'})
+  }
+  const openRecord = () => {
+    document.body.style.overflow = 'hidden'
+    setIsOpen(true)
+  }
+  const closeRecord = () => {
+    document.body.style.overflow = 'visible'
+    setIsOpen(false)
+  }
   return (
     <div>
-      <ApartmentInfo />
+      <ApartmentInfo scrollToTarget={scrollToTarget} openRecord={openRecord} />
       <Peculiarity />
-      <MortgageCalculator />
+      <MortgageCalculator ref={componentRef} />
       <Apartments
         apartments={MOCK_APARTMENTS}
         title='Похожие квартиры'
@@ -209,6 +233,11 @@ export function ApartmentPage() {
         isMore
       />
       <Record />
+      <RecordPopup
+        isOpen={isOpen}
+        closeRecord={closeRecord}
+        openRecord={openRecord}
+      />
     </div>
   )
 }
