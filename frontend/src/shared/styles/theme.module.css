@@ -1,0 +1,131 @@
+.container {
+  transition: all 0.4s;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.black {
+  color: var(--black);
+}
+.white {
+  color: var(--white);
+}
+.grey {
+  color: var(--grey);
+}
+.greyDark {
+  color: var(--greyDark);
+}
+.greyLight {
+  color: var(--greyLight);
+}
+.greyLightSecond {
+  color: var(--greyLightSecond);
+}
+.blueLight {
+  color: var(--blueLight);
+}
+.orange {
+  color: var(--orange);
+}
+.orangeLight {
+  color: var(--orangeLight);
+}
+.orangeWhite {
+  color: var(--orangeWhite);
+}
+
+.light {
+  font-weight: var(--light);
+}
+.regular {
+  font-weight: var(--regular);
+}
+.medium {
+  font-weight: var(--medium);
+}
+.semiBold {
+  font-weight: var(--semiBold);
+}
+.bold {
+  font-weight: var(--bold);
+}
+
+.xLarge {
+  font-size: var(--xLarge);
+  line-height: 64px;
+}
+.large {
+  font-size: var(--large);
+  line-height: 54px;
+}
+.sLarge {
+  font-size: var(--sLarge);
+  line-height: 38px;
+}
+.xMedium {
+  font-size: var(--xMedium);
+}
+.sMedium {
+  font-size: var(--sMedium);
+  line-height: 30px;
+}
+.xSmall {
+  font-size: var(--xSmall);
+  line-height: 22px;
+}
+.small {
+  font-size: var(--small);
+}
+
+.textHover {
+  transition: color 0.4s;
+}
+
+.textHover:hover {
+  color: var(--orangeLight);
+  transition: color 0.4s;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+@media (max-width: 1200px) {
+  .xLarge {
+    font-size: var(--large);
+    line-height: 54px;
+  }
+}
+
+@media (max-width: 720px) {
+  .xLarge {
+    font-size: var(--sLarge);
+    line-height: 38px;
+  }
+  .large {
+    font-size: var(--sLarge);
+    line-height: 38px;
+  }
+  .sLarge {
+    font-size: var(--xMedium);
+  }
+}
+
+@media (max-width: 500px) {
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .xLarge {
+    font-size: var(--sMedium);
+    line-height: 30px;
+  }
+  .sMedium {
+    font-size: var(--xSmall);
+    line-height: 22px;
+  }
+}
