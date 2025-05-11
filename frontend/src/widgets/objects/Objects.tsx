@@ -50,7 +50,7 @@ const MOCK_OBJECTS = [
   },
   {
     id: 4,
-    title: 'Shagal',
+    title: 'Nagatino',
     statuses: [{id: 1, status: 'III кв. 2026'}],
     src: objectImage4,
     minPrice: 40,
@@ -60,7 +60,7 @@ const MOCK_OBJECTS = [
   },
   {
     id: 5,
-    title: 'Marlinn',
+    title: 'Sokolinn',
     statuses: [{id: 1, status: 'Старт продаж', type: 'started'}],
     src: objectImage5,
     minPrice: 17,
@@ -70,7 +70,7 @@ const MOCK_OBJECTS = [
   },
   {
     id: 6,
-    title: 'Rauta',
+    title: 'Voxhall',
     statuses: [
       {id: 1, status: 'I кв. 2026'},
       {id: 2, status: '-15% скидка', type: 'share'},

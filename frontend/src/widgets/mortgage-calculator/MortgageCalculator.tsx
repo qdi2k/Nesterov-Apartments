@@ -39,7 +39,6 @@ export function MortgageCalculator({ref}) {
     .replace(/[^0-9]/g, '')
     .replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
 
-  console.log(formattedMonthlyPayment)
   return (
     <section
       className={`${styles.container} ${themeStyles.container}`}

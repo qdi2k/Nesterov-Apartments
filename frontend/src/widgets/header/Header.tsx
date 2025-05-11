@@ -12,9 +12,10 @@ interface IHeaderProps {
 }
 
 const mockData = [
-  {id: 1, city: 'Новосибирск'},
-  {id: 2, city: 'Нижний Новгород'},
-  {id: 3, city: 'Краснодар'},
+  {id: 1, city: 'Москва'},
+  {id: 2, city: 'Новосибирск'},
+  {id: 3, city: 'Нижний Новгород'},
+  {id: 4, city: 'Краснодар'},
 ]
 
 export function Header({openBurger}: IHeaderProps) {

@@ -68,17 +68,17 @@ export function Apartments({
         ) : (
           <>
             <div className={styles.apartmentsContainer}>
-              {currentData.map((item) => (
-                <Link href='/apartments/apartment' key={item.id}>
+              {currentData.map((apartment) => (
+                <Link href='/apartments/apartment' key={apartment.id}>
                   <ApartmentItem
-                    price={item.price}
-                    src={item.src}
-                    discountPrice={item.discountPrice}
-                    discount={item.discount}
-                    rooms={item.rooms}
-                    square={item.square}
-                    floor={item.floor}
-                    delay={isMore ? getDelay(item.id) : item.id * 0.1}
+                    price={apartment.price}
+                    src={apartment.src}
+                    discountPrice={apartment.discountPrice}
+                    discount={apartment.discount}
+                    rooms={apartment.rooms}
+                    square={apartment.square}
+                    floor={apartment.floor}
+                    delay={isMore ? getDelay(apartment.id) : apartment.id * 0.1}
                   />
                 </Link>
               ))}

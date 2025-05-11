@@ -131,7 +131,7 @@ export function InputRange({
     }
   }, [value])
 
-  const getError = () => {
+  const getFieldError = () => {
     if (!minValue && !isMultiRange) {
       return 'Заполните поле'
     }
@@ -145,7 +145,7 @@ export function InputRange({
   return (
     <div className={styles.container}>
       <Text color='blueLight'>{title}</Text>
-      <div className={`${styles.inputs} ${getError() && styles.error}`}>
+      <div className={`${styles.inputs} ${getFieldError() && styles.error}`}>
         <input
           className={`${styles.inputFiled} ${isMultiRange && styles.firstInput} ${openSans.className} ${className}`}
           value={stringValue}
@@ -168,7 +168,7 @@ export function InputRange({
           </>
         )}
       </div>
-      <Text className={styles.errorText}>{getError()}</Text>
+      <Text className={styles.errorText}>{getFieldError()}</Text>
       <div className={styles.inputContainer}>
         <input
           className={styles.input}
