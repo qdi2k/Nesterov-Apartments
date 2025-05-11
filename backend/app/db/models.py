@@ -176,6 +176,9 @@ class City(Base):
 
     projects: Mapped[list["Project"]] = relationship(back_populates="city")
 
+    def __str__(self) -> str:
+        return self.name
+
     async def __admin_repr__(self, request: Request) -> str:
         return self.name
 
@@ -207,7 +210,9 @@ class ApartmentVisit(Base):
     )
     owner: Mapped[str] = mapped_column(String(100), nullable=False)
     phone: Mapped[str] = mapped_column(String(12), nullable=False)
-    date_visit: Mapped[datetime] = mapped_column(DateTime, nullable=True)
+    date_visit: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), nullable=True
+    )
 
     apartment_id: Mapped[int] = mapped_column(
         ForeignKey("apartments.id", ondelete="CASCADE"),
