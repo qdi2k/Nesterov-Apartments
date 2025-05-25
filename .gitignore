@@ -164,6 +164,3 @@ cython_debug/
 backend/temp/
 backend/app/media/
 test_main.py
-
-# TODO: Временно добавил в игнор, при мердже разкомитить!
-frontend/
