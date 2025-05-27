@@ -1,0 +1,52 @@
+.container {
+  display: flex;
+  position: relative;
+  width: 100%;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--black);
+}
+.arrow {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  transition: all 0.4s;
+}
+
+.arrowClicked {
+  transform: rotate(180deg);
+  transition: all 0.4s;
+}
+
+.listContainer {
+  opacity: 0;
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  padding-left: 6px;
+  padding-right: 6px;
+  width: 100%;
+  max-width: 165px;
+  margin-top: 10px;
+  background-color: var(--white);
+  border-radius: 6px;
+
+  transition:
+    opacity 0.4s ease,
+    display 0.4s ease allow-discrete;
+
+  &.open {
+    opacity: 1;
+    display: flex;
+  }
+}
+
+@starting-style {
+  .listContainer.open {
+    opacity: 0;
+  }
+}
+
+.value {
+  display: flex;
+  padding-bottom: 6px;
+}

@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 80px;
+  padding-bottom: 80px;
+  min-height: 1000px;
+}
+
+.title {
+  align-self: flex-start;
+}
+
+.listContainer {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 20px;
+}

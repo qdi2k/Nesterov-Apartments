@@ -1,0 +1,107 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.inputContainer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-left: 6px;
+  margin-right: 6px;
+  width: calc(100% - 12px);
+}
+
+.inputs {
+  display: flex;
+  margin-top: 8px;
+  border-radius: 10px;
+}
+
+.inputFiled {
+  background-color: var(--greyLight);
+  padding: 16px;
+  border-radius: 10px;
+  width: 100%;
+  border: 1px solid transparent;
+  font-size: var(--small);
+  transition: 0.4s;
+}
+
+.error {
+  border: 1px solid red;
+}
+
+.errorText {
+  color: red;
+  margin-top: 4px;
+  font-size: 14px;
+}
+
+.lineContainer {
+  display: flex;
+  align-items: center;
+  background-color: var(--white);
+}
+
+.line {
+  width: 1px;
+  height: 40px;
+  background-color: var(--grey);
+}
+
+.controlContainer {
+  width: 100%;
+  position: absolute;
+}
+
+.input {
+  position: absolute;
+  width: 100%;
+  pointer-events: none;
+  appearance: none;
+  height: 100%;
+  opacity: 0;
+  z-index: 3;
+  padding: 0;
+}
+
+.rail {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  height: 1px;
+  background: var(--grey);
+}
+
+.innerRail {
+  position: absolute;
+  height: 100%;
+  background: var(--orangeLight);
+}
+
+.control {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  position: absolute;
+  background: var(--greyDark);
+  top: 50%;
+  margin-left: calc(12px / -2);
+  transform: translate3d(0, -50%, 0);
+  z-index: 2;
+}
+
+.firstInput {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.secondInput {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  text-align: end;
+}

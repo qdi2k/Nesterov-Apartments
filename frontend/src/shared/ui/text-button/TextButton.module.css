@@ -1,0 +1,11 @@
+.textButton {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.icon {
+  min-height: 17px;
+  min-width: 17px;
+}

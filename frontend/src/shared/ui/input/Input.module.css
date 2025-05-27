@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field {
+  transition: all 0.4s;
+  width: 100%;
+  gap: 6px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  background-color: var(--greyLight);
+}
+
+.input {
+  font-size: 16px;
+  background-color: transparent;
+}
+
+.input::placeholder {
+  color: var(--grey);
+}
+
+@media (max-width: 500px) {
+  .field {
+    background-color: var(--white);
+  }
+}

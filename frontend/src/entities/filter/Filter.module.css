@@ -1,0 +1,69 @@
+.container {
+  padding-bottom: 24px;
+  gap: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.filtersContainer {
+  display: flex;
+  column-gap: 24px;
+}
+
+.sortsContainer {
+  display: flex;
+  width: 100%;
+}
+
+.sortContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.resetButton {
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.toogles {
+  display: flex;
+  gap: 32px;
+}
+
+.toogle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.range {
+  background-color: var(--white);
+}
+
+.test {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  width: 100%;
+}
+
+.test2 {
+  width: 100%;
+}
+.test3 {
+  width: 100%;
+  max-width: 435px;
+}
+
+.test4 {
+  width: 100%;
+  display: flex;
+  gap: 32px;
+}
+
+.test5 {
+  display: flex;
+  align-items: center;
+}

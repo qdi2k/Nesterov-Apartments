@@ -1,0 +1,282 @@
+.footer {
+  position: relative;
+  background-color: rgba(44, 52, 76, 1);
+}
+
+.topContentContainer {
+  display: flex;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.logoContainer {
+  display: flex;
+  flex: 0.54;
+}
+
+.logo {
+  height: 100px;
+  width: 302px;
+}
+
+.links {
+  display: flex;
+  justify-content: space-between;
+}
+
+.contact {
+  display: flex;
+  gap: 4px;
+  flex-direction: column;
+}
+
+.footerNav {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex: 1;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  white-space: nowrap;
+}
+
+.navTitle {
+  margin-bottom: 8px;
+}
+
+.footerDivider {
+  border-bottom: 1px solid var(--greyLight) !important;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.bottomContainer {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  background-color: var(--greyDark);
+}
+
+.bottomContentContainer {
+  display: flex;
+  gap: 32px;
+  flex-direction: column;
+}
+
+.document {
+  display: flex;
+  justify-content: space-between;
+}
+
+.info {
+  font-size: 14px !important;
+}
+
+.contactList {
+  display: flex;
+  gap: 30px;
+}
+
+.contactLink {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(44, 52, 76, 1);
+  width: 46px;
+  height: 46px;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all 0.4s;
+}
+
+.contactLink:hover {
+  background-color: var(--orange);
+}
+
+.contactLinkTelegram {
+  padding-right: 2px;
+}
+
+.link {
+  cursor: pointer;
+}
+
+@media (max-width: 1120px) {
+  .topContentContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .document {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      'text text'
+      'document1 document2';
+    gap: 20px;
+  }
+  .document > p:nth-child(2) {
+    grid-area: text;
+  }
+  .document > p:nth-child(3) {
+    text-align: end;
+  }
+}
+
+@media (max-width: 740px) {
+  .footerNav {
+    display: grid;
+    gap: 40px;
+    grid-template-columns: 1fr 180px;
+  }
+  .logo {
+    width: 271px;
+    height: 90px;
+  }
+}
+
+@media (max-width: 620px) {
+  .document {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'document1'
+      'document2'
+      'text';
+    text-align: center;
+  }
+  .document > p:nth-child(3) {
+    text-align: center;
+  }
+}
+
+@media (max-width: 520px) {
+  .footerNav {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .logoContainer {
+    justify-content: center;
+  }
+  .nav {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .links {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 20px;
+  }
+  .contact {
+    text-align: center;
+  }
+}
+
+/* @media (max-width: 1200px) {
+  .logoContainer {
+    margin-right: 20px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .topContentContainer {
+    grid-template-columns: 2fr 0.6fr 0.6fr;
+    align-items: start;
+  }
+  .contact {
+    position: absolute;
+    top: 196px;
+  }
+  .logoContainer {
+    margin-right: 0;
+  }
+  .nav {
+    line-height: 50px;
+    align-items: end;
+  }
+}
+
+@media (max-width: 900px) {
+  .topContentContainer {
+    grid-template-columns: 2fr 0.6fr 0.6fr;
+    column-gap: 40px;
+  }
+  .bottomContentContainer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .contactList {
+    align-self: flex-end;
+    bottom: 62px;
+    position: absolute;
+  }
+}
+
+@media (max-width: 810px) {
+  .logo {
+    height: 58px;
+    width: 220px;
+  }
+}
+
+@media (max-width: 670px) {
+  .topContentContainer {
+    grid-template-columns: 1fr;
+    margin-bottom: 148px;
+    gap: 20px;
+  }
+  .nav {
+    grid-row: 2;
+  }
+  .contact {
+    top: 380px;
+  }
+}
+
+@media (max-width: 610px) {
+  .bottomContentContainer {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .contactList {
+    align-self: auto;
+    position: static;
+    margin-top: 20px;
+    order: 3;
+  }
+}
+
+@media (max-width: 440px) {
+  .topContentContainer {
+    grid-template-columns: 1fr;
+    margin-bottom: 0;
+    gap: 20px;
+  }
+
+  .nav:nth-child(2) {
+    grid-row: 2;
+    margin-top: 16px;
+  }
+
+  .nav:nth-child(3) {
+    grid-row: 3;
+    margin-bottom: 16px;
+  }
+  .contact {
+    justify-content: flex-start;
+    position: static;
+  }
+} */

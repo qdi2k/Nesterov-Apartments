@@ -1,0 +1,175 @@
+.selectDropdown {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-top: 8px;
+}
+
+.selectDropdownTitle {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background-color: var(--white);
+  border-radius: 24px;
+  cursor: pointer;
+  transition: all 0.3s;
+  user-select: none;
+}
+
+.selectDropdownTitle:hover {
+  background-color: var(--greyWhite);
+}
+
+.iconsContainer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.buttonDelete {
+  display: none;
+  opacity: 0;
+  transition: all 0.4s;
+
+  transition:
+    opacity 0.3s ease,
+    display 0.3s ease allow-discrete;
+
+  &.buttonDeleteActive {
+    opacity: 1;
+    display: flex;
+  }
+}
+
+.close {
+  display: flex;
+  color: var(--grey) !important;
+  transition: all 0.4s;
+}
+
+.close:hover {
+  color: var(--orangeLight) !important;
+  transition: all 0.4s;
+}
+
+.arrow {
+  width: 14px;
+  height: 14px;
+  transform: rotate(180deg);
+  transition: all 0.2s;
+}
+
+.arrowActive {
+  width: 12px;
+  height: 12px;
+  transform: rotate(0);
+}
+
+.sortItemCheck {
+  display: flex;
+  gap: 16px;
+}
+
+.scrollContainer {
+  display: none;
+  opacity: 0;
+  background-color: var(--white);
+  position: absolute;
+  border-radius: 24px;
+  overflow: hidden;
+  width: 100%;
+  -webkit-box-shadow: 0px 7px 12px 4px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 0px 7px 12px 4px rgba(34, 60, 80, 0.2);
+  box-shadow: 0px 7px 12px 4px rgba(34, 60, 80, 0.2);
+  max-height: 240px;
+  top: 54px;
+  z-index: 12;
+
+  transition:
+    opacity 0.3s ease,
+    display 0.3s ease allow-discrete;
+
+  &.open {
+    opacity: 1;
+    display: flex;
+  }
+}
+
+.scroll {
+  padding-right: 12px !important;
+}
+
+.textContainer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.count {
+  font-size: 14px !important;
+}
+
+.sortItems {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  z-index: 10;
+  background-color: var(--white);
+  max-height: 240px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+@starting-style {
+  .scrollContainer.open {
+    opacity: 0;
+  }
+  .buttonDelete.buttonDeleteActive {
+    opacity: 0;
+  }
+}
+
+.sortItem {
+  cursor: pointer;
+  padding: 10px 20px;
+  transition: all 0.4s;
+}
+
+.sortItemScroll {
+  margin-right: 12px;
+}
+
+.sortItemActive {
+  cursor: pointer;
+  padding: 10px 20px;
+  background-color: var(--greyLightSecond);
+  transition: all 0.4s;
+}
+
+.sortItem:hover {
+  transition: all 0.4s;
+  background-color: var(--greyLight);
+}
+
+.sortItems::-webkit-scrollbar {
+  width: 8px;
+}
+
+.sortItems::-webkit-scrollbar-track {
+  background: var(--greyLight);
+  border-radius: 4px;
+  margin-right: 12px;
+  margin: 20px 0;
+  clip-path: inset(20px 0 20px 0);
+}
+
+.sortItems::-webkit-scrollbar-thumb {
+  background: var(--grey);
+  border-radius: 4px;
+}
+
+.sortItems::-webkit-scrollbar-thumb:hover {
+  background: var(--greyDark) !important;
+}
