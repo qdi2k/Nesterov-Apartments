@@ -16,6 +16,21 @@ export interface ApartmentProps {
   delay: number
 }
 
+const getRoomTitle = (value: number) => {
+  switch (value) {
+    case 0:
+      return 'Студия'
+    case 1:
+      return 'Однокомнатная'
+    case 2:
+      return 'Двухкомнатная'
+    case 3:
+      return 'Трехкомнатная'
+    default:
+      return 'Студия'
+  }
+}
+
 export function ApartmentItem({
   price,
   src,
@@ -74,7 +89,7 @@ export function ApartmentItem({
           )}
         </div>
         <Text size='xSmall' weight='bold' className={styles.room}>
-          {rooms}
+          {getRoomTitle(rooms)}
         </Text>
         <Text>
           {square} м² | {floor} этаж

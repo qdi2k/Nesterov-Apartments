@@ -5,6 +5,7 @@ import styles from './Questions.module.css'
 import themeStyles from '@/shared/model/styles/theme.module.css'
 import {useState} from 'react'
 import {motion, AnimatePresence} from 'framer-motion'
+import questions from '@/shared/assets/mockData/questions/questions.json'
 import {theme} from '@/shared/model'
 
 interface QuestionProps {
@@ -12,57 +13,6 @@ interface QuestionProps {
   answer: string
   id: number
 }
-
-const MOCK_QUESTIONS = [
-  {
-    id: 1,
-    question: 'Какие варианты планировок доступны в ЖК?',
-    answer:
-      'В нашем ЖК представлены квартиры с одно-, двух- и трехкомнатными планировками. Все квартиры спроектированы с учетом современных стандартов комфорта и функциональности.',
-  },
-  {
-    id: 2,
-    question: 'Есть ли в ЖК подземный паркинг?',
-    answer:
-      'Да, в ЖК предусмотрен подземный паркинг с удобными въездами и выездами, системой видеонаблюдения и широкими парковочными местами.',
-  },
-  {
-    id: 3,
-    question: 'Есть ли в ЖК услуга управления имуществом?',
-    answer:
-      'Да, в ЖК работает профессиональная управляющая компания, которая занимается обслуживанием территории, уборкой, ремонтом и другими вопросами.',
-  },
-  {
-    id: 4,
-    question: 'Есть ли в ЖК зоны для отдыха и занятий спортом?',
-    answer:
-      'Да, на территории ЖК есть благоустроенный сквер, детские площадки, зоны для пикников и спортивные площадки для активного отдыха.',
-  },
-  {
-    id: 5,
-    question: 'Можно ли оформить ипотеку на покупку квартиры в ЖК?',
-    answer:
-      'Да, мы сотрудничаем с ведущими банками, что позволяет нашим клиентам оформить ипотеку на выгодных условиях.',
-  },
-  {
-    id: 6,
-    question: 'Можно ли посетить ЖК и посмотреть квартиры?',
-    answer:
-      'Да, мы организуем экскурсии по ЖК и показы квартир. Свяжитесь с нашим менеджером, чтобы записаться на удобное время.',
-  },
-  {
-    id: 7,
-    question: 'Какие варианты планировок доступны в ЖК?',
-    answer:
-      'В нашем ЖК представлены квартиры с одно-, двух- и трехкомнатными планировками. Все квартиры спроектированы с учетом современных стандартов комфорта и функциональности.',
-  },
-  {
-    id: 8,
-    question: 'Есть ли в ЖК подземный паркинг?',
-    answer:
-      'Да, в ЖК предусмотрен подземный паркинг с удобными въездами и выездами, системой видеонаблюдения и широкими парковочными местами.',
-  },
-]
 
 const Question = ({question, answer, id}: QuestionProps) => {
   const [status, setStatus] = useState(false)
@@ -139,7 +89,7 @@ export function Questions() {
         Часто задаваемые вопросы
       </Title>
       <div className={styles.questionsContainer}>
-        {MOCK_QUESTIONS.map((question) => (
+        {questions.questions.map((question) => (
           <Question
             key={question.id}
             question={question.question}

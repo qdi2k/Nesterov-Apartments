@@ -15,6 +15,8 @@ import apartmentImage3 from '@/shared/assets/images/apartments/app_large.webp'
 import apartmentImage4 from '@/shared/assets/images/apartments/fe0de264fc1403e149d5ee439a9bf335e4391cdc.jpg'
 import apartmentImage5 from '@/shared/assets/images/apartments/i.webp'
 import apartmentImage6 from '@/shared/assets/images/apartments/large.webp'
+import objects from '@/shared/assets/mockData/objects/objects.json'
+import apartments from '@/shared/assets/mockData/apartments/apartments.json'
 import {Peculiarity} from '@/widgets/peculiarity'
 import {ProgressBuild} from '@/widgets/progress-build'
 import {MortgageCalculator} from '@/widgets/mortgage-calculator'
@@ -170,29 +172,27 @@ const totalData = {
   ],
 }
 
-export function ObjectPage() {
+export function ObjectPage({title}) {
+  const objectData = objects.objects.find(
+    (obj) => obj.title.toLowerCase() === title.toLowerCase()
+  )
+
   return (
     <div>
-      <Gallery images={MOCK_IMAGES} isMax />
+      <Gallery title={objectData?.title} images={MOCK_IMAGES} isMax />
       <div className={`${themeStyles.container} ${styles.container1}`}>
         <Title>О проекте</Title>
         <div className={styles.about}>
           <Text weight='bold' size='sMedium'>
-            Shagal
+            {objectData?.title}
           </Text>
-          <Text>
-            Расположен в престижном Даниловском районе и уже сейчас претендует
-            на звание одной из ярчайших точек притяжения. Масштабный проект
-            выходит за рамки существующих стандартов. Предвосхищает ожидания,
-            предлагая все возможности для комфортной жизни. Здесь свои правила и
-            ежедневные сценарии.
-          </Text>
+          <Text>{objectData?.description}</Text>
         </div>
       </div>
       <Peculiarity />
       <Apartments
-        apartments={MOCK_APARTMENTS}
-        title='Квартиры в Shagal'
+        apartments={apartments.apartments}
+        title={`Квартиры в ${objectData?.title}`}
         buttonTitle='Показать ещё'
         isMore
       />

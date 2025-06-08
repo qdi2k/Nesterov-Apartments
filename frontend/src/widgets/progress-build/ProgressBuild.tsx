@@ -3,21 +3,129 @@
 import {Title} from '@/shared/ui'
 import styles from './ProgressBuild.module.css'
 import themeStyles from '@/shared/model/styles/theme.module.css'
-import image1 from '@/shared/assets/images/objects/9bfc46453fa2661e9489550ebef3c5472e643e20.jpeg'
-import image2 from '@/shared/assets/images/objects/dvor01_01_fin_1080__1jfuy9e.jpg'
-import image3 from '@/shared/assets/images/objects/i.webp'
-import image4 from '@/shared/assets/images/objects/optimize.webp'
+import image1 from '@/shared/assets/images/buildProgress/1.jpg'
+import image2 from '@/shared/assets/images/buildProgress/2.jpg'
+import image3 from '@/shared/assets/images/buildProgress/3.jpg'
+import image4 from '@/shared/assets/images/buildProgress/4.png'
+import image5 from '@/shared/assets/images/buildProgress/5.png'
+import image6 from '@/shared/assets/images/buildProgress/6.jpg'
+import image7 from '@/shared/assets/images/buildProgress/7.png'
+import image8 from '@/shared/assets/images/buildProgress/9.png'
 import Image from 'next/image'
 import {TitleCarousel} from '@/entities/title-carousel'
 import {useState} from 'react'
 import {Gallery} from '../gallery/Gallery'
 import {GalleryFull} from '../gallery-full'
 
-const MOCK_IMAGES = [
-  {id: 1, src: image1},
-  {id: 2, src: image2},
-  {id: 3, src: image3},
-  {id: 4, src: image4},
+const MOCK_IMAGES1 = [
+  {
+    id: 1,
+    images: [
+      {id: 1, src: image1},
+      {id: 2, src: image2},
+      {id: 3, src: image3},
+      {id: 4, src: image4},
+    ],
+  },
+  {
+    id: 2,
+    images: [
+      {id: 1, src: image5},
+      {id: 2, src: image6},
+      {id: 3, src: image7},
+      {id: 4, src: image8},
+    ],
+  },
+  {
+    id: 3,
+    images: [
+      {id: 1, src: image5},
+      {id: 2, src: image6},
+      {id: 3, src: image7},
+      {id: 4, src: image8},
+    ],
+  },
+  {
+    id: 4,
+    images: [
+      {id: 1, src: image5},
+      {id: 2, src: image6},
+      {id: 3, src: image7},
+      {id: 4, src: image8},
+    ],
+  },
+  {
+    id: 5,
+    images: [
+      {id: 1, src: image5},
+      {id: 2, src: image6},
+      {id: 3, src: image7},
+      {id: 4, src: image8},
+    ],
+  },
+  {
+    id: 6,
+    images: [
+      {id: 1, src: image5},
+      {id: 2, src: image6},
+      {id: 3, src: image7},
+      {id: 4, src: image8},
+    ],
+  },
+  {
+    id: 7,
+    images: [
+      {id: 1, src: image5},
+      {id: 2, src: image6},
+      {id: 3, src: image7},
+      {id: 4, src: image8},
+    ],
+  },
+  {
+    id: 8,
+    images: [
+      {id: 1, src: image5},
+      {id: 2, src: image6},
+      {id: 3, src: image7},
+      {id: 4, src: image8},
+    ],
+  },
+  {
+    id: 9,
+    images: [
+      {id: 1, src: image5},
+      {id: 2, src: image6},
+      {id: 3, src: image7},
+      {id: 4, src: image8},
+    ],
+  },
+  {
+    id: 10,
+    images: [
+      {id: 1, src: image5},
+      {id: 2, src: image6},
+      {id: 3, src: image7},
+      {id: 4, src: image8},
+    ],
+  },
+  {
+    id: 11,
+    images: [
+      {id: 1, src: image5},
+      {id: 2, src: image6},
+      {id: 3, src: image7},
+      {id: 4, src: image8},
+    ],
+  },
+  {
+    id: 12,
+    images: [
+      {id: 1, src: image5},
+      {id: 2, src: image6},
+      {id: 3, src: image7},
+      {id: 4, src: image8},
+    ],
+  },
 ]
 
 const MOCK_PROGRESS = [
@@ -42,7 +150,7 @@ export function ProgressBuild() {
 
   const openGallery = (index) => {
     setSelectedIndex(index)
-    document.body.style.overflow = 'hidden'
+    // document.body.style.overflow = 'hidden'
     setIsOpen(true)
   }
 
@@ -56,7 +164,7 @@ export function ProgressBuild() {
         isGrey
       />
       <div className={styles.imageContainer}>
-        {MOCK_IMAGES.map((image, index) => (
+        {MOCK_IMAGES1[titleActive - 1].images.map((image, index) => (
           <div className={styles.image} key={image.id}>
             <Image
               src={image.src}
@@ -69,9 +177,13 @@ export function ProgressBuild() {
           </div>
         ))}
       </div>
-      <Gallery images={MOCK_IMAGES} className={styles.gallery} isPadding />
+      <Gallery
+        images={MOCK_IMAGES1[titleActive - 1].images}
+        className={styles.gallery}
+        isPadding
+      />
       <GalleryFull
-        images={MOCK_IMAGES}
+        images={MOCK_IMAGES1[titleActive - 1].images}
         selectedIndex={selectedIndex}
         isOpen={isOpen}
         handleChangeImage={setSelectedIndex}

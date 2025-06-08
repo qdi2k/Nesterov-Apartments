@@ -3,7 +3,7 @@
 import {useEffect, useRef, useState} from 'react'
 import Image from 'next/image'
 import {motion} from 'framer-motion'
-import {Text, Icon} from '@/shared/ui'
+import {Text, Icon, Loader} from '@/shared/ui'
 import styles from './Gallery.module.css'
 import themeStyles from '@/shared/model/styles/theme.module.css'
 import {theme} from '@/shared/model'
@@ -17,18 +17,19 @@ const opacityAnimation = {
   },
 }
 
-export function Gallery({images, isMax, className, isPadding}) {
+export function Gallery({title, images, isMax, className, isPadding}) {
   const previewContainer = useRef<HTMLUListElement>(null)
+  const [isLoading, setIsLoading] = useState(isMax ? true : false)
   const [activeId, setActiveId] = useState(1)
 
   const paddingCount = isPadding ? (innerWidth >= 500 ? 40 : 32) : 0
 
   const MAX_WIDTH = () => {
     if (isMax) {
-      return innerWidth
+      return innerWidth - 14.57
     }
     if (innerWidth > 940) {
-      return (innerWidth * 56) / 100
+      return (innerWidth * 55.57) / 100
     }
     return innerWidth
   }
@@ -44,13 +45,20 @@ export function Gallery({images, isMax, className, isPadding}) {
   }
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (activeId !== images.length) setActiveId((prev) => prev + 1)
-      if (activeId === images.length) setActiveId(1)
-    }, 4000)
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 1500)
+  }, [])
 
-    return () => clearInterval(interval)
-  }, [activeId, images.length])
+  useEffect(() => {
+    if (!isLoading) {
+      const interval = setInterval(() => {
+        if (activeId !== images.length) setActiveId((prev) => prev + 1)
+        if (activeId === images.length) setActiveId(1)
+      }, 4000)
+      return () => clearInterval(interval)
+    }
+  }, [activeId, images.length, isLoading])
 
   useEffect(() => {
     if (!previewContainer.current) {
@@ -71,6 +79,11 @@ export function Gallery({images, isMax, className, isPadding}) {
   return (
     <div className={`${styles.galleryContainer} ${className}`}>
       <ul className={styles.listContent} ref={previewContainer}>
+        {isLoading && (
+          <div className={styles.imageLoaderContainer}>
+            <Loader className={styles.imageLoader} />
+          </div>
+        )}
         {images.map((item) => (
           <div className={styles.image} key={item.id}>
             <Image
@@ -100,7 +113,9 @@ export function Gallery({images, isMax, className, isPadding}) {
                 </Text>
               </div>
             )}
-            <div className={styles.background} />
+            <div
+              className={`${styles.background} ${!isLoading && styles.loaded}`}
+            />
           </div>
         ))}
       </ul>
@@ -124,16 +139,16 @@ export function Gallery({images, isMax, className, isPadding}) {
             color='white'
             className={styles.listTitle}
           >
-            Shagal
+            {title}
           </Text>
         )}
         <motion.ul
           className={isMax ? styles.listLeftMax : styles.listLeft}
-          variants={theme.animations.opacity}
+          // variants={theme.animations.opacity}
         >
           {images.map((item) => (
             <li
-              className={`${item.id === activeId ? styles.listItemActive : styles.listItem}`}
+              className={`${!isLoading ? (item.id === activeId ? styles.listItemActive : styles.listItem) : styles.listItem}`}
               onClick={() => setActiveId(item.id)}
               key={item.id}
             />

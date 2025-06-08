@@ -7,16 +7,19 @@ import {useEffect, useRef, useState} from 'react'
 interface InputSelectProps {
   placeHolder?: string
   sortItems: any
+  sortActive?: any
+  setSortActive?: any
   isCheck?: boolean
 }
 
 export function InputSelect({
   placeHolder = 'Выберите сортировку',
   sortItems,
+  setSortActive,
+  sortActive = [],
   isCheck,
 }: InputSelectProps) {
   const [isOpen, setIsOpen] = useState(false)
-  const [sortActive, setSortActive] = useState([])
   const containerRef = useRef<HTMLDivElement>(null)
 
   const handleClickItem = (title: string) => {

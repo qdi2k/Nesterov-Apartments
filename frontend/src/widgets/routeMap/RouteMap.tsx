@@ -27,7 +27,7 @@ interface IMapContentProps {
   handleInputChange: (value: ChangeEvent<HTMLInputElement>) => void
 }
 
-const initialPosition: Coordinates = [55.403793, 43.843715]
+const initialPosition: Coordinates = [56.32226, 43.998944]
 
 export function RouteMap() {
   const [destination, setDestination] = useState('')
@@ -80,7 +80,7 @@ const MapContent = ({
     }
 
     try {
-      const res = await ymaps.geocode('Арзамас' + destination)
+      const res = await ymaps.geocode('Нижний Новгород' + destination)
       const firstGeoObject = res.geoObjects.get(0)
 
       if (!firstGeoObject || !firstGeoObject.geometry) {

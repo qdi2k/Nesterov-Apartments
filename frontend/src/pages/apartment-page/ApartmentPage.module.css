@@ -107,6 +107,53 @@
   background-color: rgba(58, 68, 101, 1) !important;
 }
 
+.apartmentContainerSkeleton {
+  border-radius: 24px;
+  background-color: var(--white);
+  border-radius: 24px;
+  width: 100%;
+  padding: 32px;
+}
+
+.apartmentInfoContainerSkeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  border-radius: 24px;
+  background-color: var(--white);
+  padding: 32px;
+}
+
+.skeleton {
+  border-radius: 16px;
+}
+
+.skeletonHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.skeletonContent {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.skeletonTitle {
+  margin-top: 16px;
+}
+
+.skeletonRow {
+  display: flex;
+  justify-content: space-between;
+}
+
+.skeletonStatus {
+  display: flex;
+  gap: 8px;
+}
+
 @media (max-width: 1200px) {
   .contentContainer {
     grid-template-columns: 1fr 0.8fr;

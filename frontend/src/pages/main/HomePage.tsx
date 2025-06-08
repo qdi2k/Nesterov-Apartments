@@ -13,6 +13,7 @@ import apartmentImage5 from '@/shared/assets/images/apartments/i.webp'
 import apartmentImage6 from '@/shared/assets/images/apartments/large.webp'
 import {MortgageCalculator} from '@/widgets/mortgage-calculator'
 import {ContactsMap} from '@/widgets/routeMap'
+import apartments from '@/shared/assets/mockData/apartments/apartments.json'
 
 const MOCK_APARTMENTS = [
   {
@@ -101,7 +102,7 @@ export function HomePage() {
       <Main />
       <AboutUs />
       <Objects />
-      <Apartments apartments={MOCK_APARTMENTS} />
+      <Apartments apartments={apartments.apartments} />
       <MortgageCalculator />
       <Questions />
       <Blogs />

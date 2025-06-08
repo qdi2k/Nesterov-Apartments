@@ -3,10 +3,12 @@ import Link from 'next/link'
 import styles from './Footer.module.css'
 
 const MOCK_OBJECTS = [
-  {id: 1, object: 'Shagal', href: '/objects/object'},
-  {id: 2, object: 'Mariinn', href: '/objects/object'},
-  {id: 3, object: 'Rauta', href: '/objects/object'},
-  {id: 4, object: 'Voxhall', href: '/objects/object'},
+  {id: 1, object: 'Marlinn', href: '/objects/marlinn'},
+  {id: 2, object: 'Shagal', href: '/objects/shagal'},
+  {id: 3, object: 'Rauta', href: '/objects/rauta'},
+  {id: 4, object: 'Shagal Residence', href: '/objects/shagal-residence'},
+  {id: 5, object: 'Voxhall', href: '/objects/voxhall'},
+  {id: 6, object: 'Sokolinn', href: '/objects/sokolinn'},
 ]
 
 const MOCK_PAYMENTS = [

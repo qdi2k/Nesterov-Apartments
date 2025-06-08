@@ -21,6 +21,19 @@
   border-radius: 24px;
 }
 
+.apartmentContainerSkeleton {
+  padding-top: 24px;
+  background-color: var(--white);
+  border-radius: 24px;
+}
+
+.skeletonContent {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px 32px;
+}
+
 .image {
   position: relative;
   object-fit: contain;

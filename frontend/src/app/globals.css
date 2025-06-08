@@ -53,9 +53,9 @@ aside {
   display: block;
 }
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   width: 0;
-}
+} */
 
 /* ::-webkit-scrollbar-thumb {
   display: none;

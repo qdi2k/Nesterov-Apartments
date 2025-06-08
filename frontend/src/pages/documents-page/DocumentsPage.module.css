@@ -17,3 +17,28 @@
   flex-direction: column;
   gap: 20px;
 }
+
+.skelenonContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 16px;
+}
+
+.documentsContainerSkeleton {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 20px;
+  background-color: var(--white);
+  border-radius: 24px;
+}
+
+.skeletonContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  padding: 24px;
+}

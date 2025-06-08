@@ -31,8 +31,11 @@ export default function useGetMoreItem(mockData, size) {
   }
 
   useEffect(() => {
-    loopWithSlice(0, size)
-  }, [])
+    setPostsToShow([])
+    setDocumentsCount(size)
+    const initialPosts = mockData.slice(0, size)
+    setPostsToShow(initialPosts)
+  }, [mockData, size])
 
   return {
     postsToShow,

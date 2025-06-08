@@ -19,9 +19,11 @@ const links = [
 ]
 
 const mockData = [
-  {id: 1, city: 'Новосибирск'},
-  {id: 2, city: 'Нижний Новгород'},
-  {id: 3, city: 'Краснодар'},
+  {id: 1, city: 'Нижний Новгород'},
+  {id: 2, city: 'Санкт-Петербург'},
+  {id: 3, city: 'Москва'},
+  {id: 4, city: 'Казань'},
+  {id: 5, city: 'Краснодар'},
 ]
 
 export function Burger({isOpen, onPress}: IBurgerProps) {

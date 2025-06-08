@@ -6,10 +6,11 @@ export interface IDocumentProps {
   file: 'wordFile' | 'pdfFile'
   title: string
   date: string
+  href: string
   delay: number
 }
 
-export function Document({file, title, date, delay}: IDocumentProps) {
+export function Document({file, title, date, href, delay}: IDocumentProps) {
   return (
     <motion.li
       className={styles.container}
@@ -38,7 +39,9 @@ export function Document({file, title, date, delay}: IDocumentProps) {
         <Text size='xSmall' className={styles.date}>
           {date}
         </Text>
-        <Button className={styles.downloadButton}>Скачать</Button>
+        <Button className={styles.downloadButton} isDownload href={href}>
+          Скачать
+        </Button>
       </div>
     </motion.li>
   )

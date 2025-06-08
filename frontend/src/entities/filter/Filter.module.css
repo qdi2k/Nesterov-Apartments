@@ -67,3 +67,27 @@
   display: flex;
   align-items: center;
 }
+
+.skeletonContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--white);
+  border-radius: 24px;
+  width: 100%;
+}
+
+.filtersContainerSkeleton {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+  background-color: var(--white);
+  border-radius: 24px;
+}
+
+.skeletonContent {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  padding: 16px;
+}

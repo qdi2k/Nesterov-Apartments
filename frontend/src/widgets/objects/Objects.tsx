@@ -5,83 +5,15 @@ import styles from './Objects.module.css'
 import themeStyles from '@/shared/model/styles/theme.module.css'
 import Image, {type StaticImageData} from 'next/image'
 import {motion} from 'framer-motion'
-import objectImage from '@/shared/assets/images/objects/9bfc46453fa2661e9489550ebef3c5472e643e20.jpeg'
-import objectImage2 from '@/shared/assets/images/objects/dvor01_01_fin_1080__1jfuy9e.jpg'
-import objectImage3 from '@/shared/assets/images/objects/i.webp'
-import objectImage4 from '@/shared/assets/images/objects/optimize.webp'
-import objectImage5 from '@/shared/assets/images/ourProject5.png'
-import objectImage6 from '@/shared/assets/images/ourProject3.png'
+import marlinnImage from '@/shared/assets/images/objects/9bfc46453fa2661e9489550ebef3c5472e643e20.jpeg'
+import shagalImage from '@/shared/assets/images/objects/dvor01_01_fin_1080__1jfuy9e.jpg'
+import rautaImage from '@/shared/assets/images/objects/i.webp'
+import shagalResidenceImage from '@/shared/assets/images/objects/optimize.webp'
+import voxhallImage from '@/shared/assets/images/ourProject5.png'
+import sokolinnImage from '@/shared/assets/images/ourProject3.png'
+import objects from '@/shared/assets/mockData/objects/objects.json'
 import {theme} from '@/shared/model'
 import Link from 'next/link'
-
-const MOCK_OBJECTS = [
-  {
-    id: 1,
-    title: 'Marlinn',
-    statuses: [{id: 1, status: 'IV кв. 2025'}],
-    src: objectImage,
-    minPrice: 32,
-    maxPrice: 78,
-    totalApartments: 176,
-    apartmentsLeft: 47,
-  },
-  {
-    id: 2,
-    title: 'Shagal',
-    statuses: [
-      {id: 1, status: 'II кв. 2027'},
-      {id: 2, status: '-20% скидка', type: 'share'},
-    ],
-    src: objectImage2,
-    minPrice: 24,
-    maxPrice: 62,
-    totalApartments: 121,
-    apartmentsLeft: 89,
-  },
-  {
-    id: 3,
-    title: 'Rauta',
-    statuses: [{id: 1, status: 'Старт продаж', type: 'started'}],
-    src: objectImage3,
-    minPrice: 29,
-    maxPrice: 70,
-    totalApartments: 138,
-    apartmentsLeft: 104,
-  },
-  {
-    id: 4,
-    title: 'Shagal',
-    statuses: [{id: 1, status: 'III кв. 2026'}],
-    src: objectImage4,
-    minPrice: 40,
-    maxPrice: 84,
-    totalApartments: 100,
-    apartmentsLeft: 56,
-  },
-  {
-    id: 5,
-    title: 'Marlinn',
-    statuses: [{id: 1, status: 'Старт продаж', type: 'started'}],
-    src: objectImage5,
-    minPrice: 17,
-    maxPrice: 51,
-    totalApartments: 154,
-    apartmentsLeft: 69,
-  },
-  {
-    id: 6,
-    title: 'Rauta',
-    statuses: [
-      {id: 1, status: 'I кв. 2026'},
-      {id: 2, status: '-15% скидка', type: 'share'},
-    ],
-    src: objectImage6,
-    minPrice: 25,
-    maxPrice: 68,
-    totalApartments: 112,
-    apartmentsLeft: 77,
-  },
-]
 
 interface ObjectItemProps {
   title: string
@@ -107,6 +39,24 @@ const ObjectItem = ({
   totalApartments,
   apartmentsLeft,
 }: ObjectItemProps) => {
+  const getObjectImage = (value: string) => {
+    switch (value) {
+      case 'Marlinn':
+        return marlinnImage
+      case 'Shagal':
+        return shagalImage
+      case 'Rauta':
+        return rautaImage
+      case 'Shagal Residence':
+        return shagalResidenceImage
+      case 'Voxhall':
+        return voxhallImage
+      case 'Sokolinn':
+        return sokolinnImage
+      default:
+        return marlinnImage
+    }
+  }
   return (
     <motion.div
       className={styles.objectItemContainer}
@@ -150,7 +100,7 @@ const ObjectItem = ({
         </div>
         <Image
           className={styles.image}
-          src={src}
+          src={getObjectImage(title)}
           alt='object-image'
           fill
           sizes='100%'
@@ -194,8 +144,11 @@ export function Objects({title}: ObjectProps) {
         {title ?? 'Наши объекты'}
       </Title>
       <div className={styles.objectsContainer}>
-        {MOCK_OBJECTS.map((objectItem) => (
-          <Link href='/objects/object' key={objectItem.id}>
+        {objects.objects.map((objectItem) => (
+          <Link
+            href={`/objects/${objectItem.title.toLowerCase()}`}
+            key={objectItem.id}
+          >
             <ObjectItem
               title={objectItem.title}
               statuses={objectItem.statuses}
@@ -209,25 +162,6 @@ export function Objects({title}: ObjectProps) {
           </Link>
         ))}
       </div>
-      {/* <Button
-        className={styles.button}
-        animation={{
-          hidden: {
-            y: 50,
-            opacity: 0,
-          },
-          visible: {
-            y: 0,
-            opacity: 1,
-            transition: {
-              duration: 0.3,
-              delay: MOCK_OBJECTS.length * 0.1 + 0.1,
-            },
-          },
-        }}
-      >
-        Посмотреть все
-      </Button> */}
     </motion.section>
   )
 }

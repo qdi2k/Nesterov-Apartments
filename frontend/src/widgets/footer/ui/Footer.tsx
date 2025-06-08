@@ -25,7 +25,7 @@ export function Footer() {
                 <Text href='tel:+74954191518' color='white'>
                   +7 (495) 419-15-18
                 </Text>
-                <Text color='grey'>Контакт-центр в Москве</Text>
+                <Text color='grey'>Контакт-центр в Нижнем Новгороде</Text>
               </div>
               <ul className={styles.contactList}>
                 <li className={styles.contactLink}>

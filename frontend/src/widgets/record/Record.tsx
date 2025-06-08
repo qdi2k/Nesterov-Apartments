@@ -15,9 +15,9 @@ export function Record() {
   return (
     <motion.section
       className={styles.container}
-      initial='hidden'
-      whileInView='visible'
-      viewport={{amount: 0.6, once: true}}
+      // initial='hidden'
+      // whileInView='visible'
+      // viewport={{amount: 0.6, once: true}}
     >
       <div className={`${themeStyles.container} ${styles.recordContainer}`}>
         <motion.div

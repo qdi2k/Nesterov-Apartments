@@ -1,9 +1,12 @@
+'use client'
+
 import themeStyles from '@/shared/model/styles/theme.module.css'
 import styles from './NewsItem.module.css'
-import {Text, Title} from '@/shared/ui'
+import {Button, Skeleton, Text, Title} from '@/shared/ui'
 import Image from 'next/image'
-import newsImage from '@/shared/assets/images/ourProject3.png'
+import newsImage from '@/shared/assets/images/ourProject2.png'
 import {News} from '@/widgets/news'
+import {useEffect, useState} from 'react'
 
 const MOCK_NEWS = [
   {
@@ -39,34 +42,96 @@ const MOCK_NEWS = [
   },
 ]
 
+const NewsSkeleton = () => {
+  return (
+    <div className={styles.newsContainerSkeleton}>
+      <div className={styles.skeletonContent}>
+        <Skeleton width='12%' height='30px' />
+        <Skeleton width='100%' height='30px' />
+        <Skeleton width='100%' height='400px' />
+        <Skeleton width='100%' height='30px' />
+        <Skeleton width='100%' height='30px' />
+        <Skeleton width='100%' height='30px' />
+        <Skeleton width='100%' height='30px' />
+      </div>
+    </div>
+  )
+}
+
 export default function NewsItem() {
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 1000)
+  }, [])
   return (
     <div>
       <div className={`${themeStyles.container} ${styles.container}`}>
-        <Text color='grey'>11 февраля 2025 г.</Text>
-        <Title className={styles.title}>
-          Жилой квартал Shagal стал лидером продаж среди объектов бизнес-класса
-          в Москве по результатам 2024 года
-        </Title>
-        <div className={styles.image}>
-          <Image
-            className={styles.image}
-            src={newsImage}
-            alt='news-image'
-            fill
-            sizes='100%'
-          />
-        </div>
-        <Text>
-          Вокруг комплекса есть все, что нужно для комфортной жизни в
-          современном городе: детские сады, школы, супермаркеты, аптеки,
-          банковские отделения, барбершопы, салоны красоты и спа-центры. Район
-          отличает сформированная спортивная инфраструктура: здесь представлены
-          лыжный спорт, футбол, теннис, баскетбол и ледовые виды спорта, есть
-          также скейтпарк, детская площадка с интерактивными зонами. В шаговой
-          доступности расположен знаменитый парк Сокольники площадью более 500
-          гектаров.
-        </Text>
+        {isLoading ? (
+          <NewsSkeleton />
+        ) : (
+          <>
+            <Text color='grey'>11 февраля 2025 г.</Text>
+            <Title className={styles.title}>
+              Жилой квартал Shagal стал лидером продаж среди объектов
+              бизнес-класса в Москве по результатам 2024 года
+            </Title>
+            <div className={styles.image}>
+              <Image
+                className={styles.image}
+                src={newsImage}
+                alt='news-image'
+                fill
+                sizes='100%'
+              />
+            </div>
+            <Text>
+              2024 год стал знаковым для московского рынка элитной недвижимости
+              — жилой комплекс Shagal не просто возглавил рейтинги продаж, а
+              перевернул представление о современном бизнес-классе. Этот проект
+              сумел сделать то, что годами не удавалось другим застройщикам —
+              создать по-настоящему гармоничное пространство для жизни, где
+              каждая деталь продумана до мелочей. Успех Shagal — не случайность,
+              а результат кропотливой работы команды архитекторов и девелоперов.
+              В отличие от типичных "бизнес-коробок", этот квартал воплощает
+              философию осознанного проживания. Здесь нет показной роскоши —
+              вместо этого создана среда, где удобство и эстетика идут рука об
+              руку.
+            </Text>
+            <Text>
+              Особое внимание уделено приватности и комфорту резидентов. В
+              отличие от стандартных решений, здесь каждая квартира получает
+              эксклюзивный сервис, сравнимый с лучшими отелями мира. При этом
+              сохраняется главное преимущество Shagal — ощущение уютного
+              квартала, где люди знают друг друга в лицо.
+            </Text>
+            <Text>
+              Сейчас, когда первая очередь комплекса практически распродана, у
+              новых клиентов есть уникальная возможность — стать первыми
+              жителями Shagal Residence. Это шанс не просто купить квартиру, а
+              приобрести билет в особый мир, где каждая деталь создана для того,
+              чтобы жизнь становилась немного совершеннее.
+            </Text>
+            <Text>
+              *«Shagal перевернул представление о жилье бизнес-класса, —
+              отмечает Мария Соколова, руководитель аналитического центра
+              "Недвижимость Москвы". — Здесь нет "коробок", только
+              индивидуальный подход. Именно поэтому 45% покупателей приобрели
+              квартиры ещё на этапе котлована»*.
+            </Text>
+            <Text>
+              Совсем скоро жилой комплекс Shagal ждёт масштабное обновление — в
+              2025 году стартует продажа второй очереди проекта, которая обещает
+              стать ещё более комфортной и технологичной. Вдвое больше зелёных
+              зон с продуманным ландшафтным дизайном. Новый детский сад и школа
+              с современным оснащением.Дополнительные складские помещения и
+              гардеробные в каждой секции. Старт продаж запланирован на II
+              квартал 2026 года, но бронь лотов открыта уже сейчас.
+            </Text>
+          </>
+        )}
       </div>
       <div className={styles.moreNewsContainer}>
         <div className={`${themeStyles.container}`}>
@@ -81,6 +146,9 @@ export default function NewsItem() {
                 description={item.description}
               />
             ))}
+            <Button isMore className={styles.moreButton}>
+              Показать ещё
+            </Button>
           </div>
         </div>
       </div>

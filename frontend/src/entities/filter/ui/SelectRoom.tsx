@@ -13,14 +13,24 @@ interface SelectItemProps {
   onClick: () => void
 }
 
-const MOCK_ROOMS = [
-  {id: 1, title: 'Студия'},
-  {id: 2, title: '1'},
-  {id: 3, title: '2'},
-  {id: 4, title: '3'},
-  {id: 5, title: '4'},
-  {id: 6, title: '5'},
-]
+const getRoomTitle = (value: number) => {
+  switch (value) {
+    case 0:
+      return 'Студия'
+    case 1:
+      return '1'
+    case 2:
+      return '2'
+    case 3:
+      return '3'
+    case 4:
+      return '4'
+    case 5:
+      return '5'
+    default:
+      return 'Студия'
+  }
+}
 
 const SelectItem = ({title, isSelect, onClick}: SelectItemProps) => {
   return (
@@ -33,9 +43,7 @@ const SelectItem = ({title, isSelect, onClick}: SelectItemProps) => {
   )
 }
 
-export function SelectRoom() {
-  const [selectedItems, setSelectedItems] = useState<RoomData[]>([])
-
+export function SelectRoom({rooms, selectedItems, setSelectedItems}) {
   const selectItem = (item: RoomData) => {
     setSelectedItems((prevItems) =>
       prevItems.includes(item)
@@ -48,9 +56,9 @@ export function SelectRoom() {
     <div className={styles.selectRoomContainer}>
       <Text color='blueLight'>Кол-во комнат</Text>
       <div className={styles.selectList}>
-        {MOCK_ROOMS.map((room) => (
+        {rooms.map((room) => (
           <SelectItem
-            title={room.title}
+            title={getRoomTitle(room.title)}
             key={room.id}
             isSelect={selectedItems.includes(room)}
             onClick={() => selectItem(room)}

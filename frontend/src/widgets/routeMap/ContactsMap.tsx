@@ -6,14 +6,14 @@ import {RouteMap} from './RouteMap'
 export function ContactsMap() {
   return (
     <section className={`${themeStyles.container} ${styles.container}`}>
-      <Title>Офис продаж в Москве</Title>
+      <Title>Офис продаж в Нижнем Новгороде</Title>
       <div className={styles.contacts}>
         <li className={styles.listItem}>
           <div className={styles.contactIcon}>
             <Icon name='mapFill' color='greyDark' size={24} />
           </div>
           <Text>
-            Красноярск, <br /> ул. Кульнева, д. 3, стр. 1
+            Нижний Новгород, <br /> ул. Октябрьская, д. 4, стр. 1
           </Text>
         </li>
         <li className={styles.listItem}>

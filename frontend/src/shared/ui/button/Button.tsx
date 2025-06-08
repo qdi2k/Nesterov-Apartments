@@ -14,9 +14,38 @@ interface IButtonProps {
   textColor?: FontColors
   textStyle?: string
   className?: string
+  isDownload?: boolean
   isMore?: boolean
-  href?: Url
+  href: Url | string
   animation?: Variants
+}
+
+interface ICustomLinkProps {
+  isDownload?: boolean
+  children: ReactNode
+  href: Url | string
+}
+
+const CustomLink = ({isDownload, href, children}: ICustomLinkProps) => {
+  if (isDownload) {
+    return (
+      <a
+        href={href}
+        download
+        className={styles.link}
+        target='_blank'
+        rel='noopener noreferrer'
+      >
+        {children}
+      </a>
+    )
+  }
+
+  return (
+    <Link href={href} className={styles.link}>
+      {children}
+    </Link>
+  )
 }
 
 export function Button({
@@ -25,12 +54,13 @@ export function Button({
   className,
   textStyle,
   href = '',
+  isDownload,
   textColor = 'white',
   isMore,
   animation,
 }: IButtonProps) {
   return href ? (
-    <Link href={href} className={styles.link}>
+    <CustomLink href={href} isDownload={isDownload}>
       <motion.button
         className={`${styles.button} ${className}`}
         onClick={onClick}
@@ -45,7 +75,7 @@ export function Button({
           {children}
         </Text>
       </motion.button>
-    </Link>
+    </CustomLink>
   ) : (
     <motion.button
       className={`${isMore ? styles.moreButton : styles.button} ${className}`}

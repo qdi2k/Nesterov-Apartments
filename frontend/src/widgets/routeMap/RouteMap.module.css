@@ -67,6 +67,7 @@
 .button {
   margin: 0 !important;
   padding: 18px 20px;
+  white-space: nowrap;
 }
 
 .iconPhone {
@@ -151,4 +152,31 @@
 
 .zoomButton:hover {
   opacity: 0.6;
+}
+
+@media (max-width: 780px) {
+  .routeContainer {
+    width: auto;
+    padding: 20px;
+  }
+  .test {
+    justify-content: space-between;
+    flex-direction: row;
+    gap: 20px;
+  }
+  .input {
+    width: 100% !important;
+    min-width: auto !important;
+  }
+}
+
+@media (max-width: 580px) {
+  .test {
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .button {
+    width: 100%;
+  }
 }
