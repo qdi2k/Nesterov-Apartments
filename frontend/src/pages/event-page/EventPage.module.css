@@ -31,6 +31,10 @@
   padding: 20px 32px;
 }
 
+.moreButton {
+  margin: 30px auto;
+}
+
 .moreEvents {
   padding-top: 80px;
   padding-bottom: 80px;

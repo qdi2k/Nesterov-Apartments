@@ -150,7 +150,7 @@ export function ProgressBuild() {
 
   const openGallery = (index) => {
     setSelectedIndex(index)
-    // document.body.style.overflow = 'hidden'
+    document.body.style.overflow = 'hidden'
     setIsOpen(true)
   }
 

@@ -12,10 +12,21 @@ import apartmentImage3 from '@/shared/assets/images/apartments/app_large.webp'
 import apartmentImage4 from '@/shared/assets/images/apartments/fe0de264fc1403e149d5ee439a9bf335e4391cdc.jpg'
 import apartmentImage5 from '@/shared/assets/images/apartments/i.webp'
 import apartmentImage6 from '@/shared/assets/images/apartments/large.webp'
+import apartmentImage7 from '@/shared/assets/images/apartments/0.webp'
+import apartmentImage8 from '@/shared/assets/images/apartments/1.jpg'
+import apartmentImage9 from '@/shared/assets/images/apartments/31.jpg'
+import apartmentImage10 from '@/shared/assets/images/apartments/4.jpg'
+import apartmentImage11 from '@/shared/assets/images/apartments/5.webp'
+import apartmentImage12 from '@/shared/assets/images/apartments/6.jpeg'
+import apartments from '@/shared/assets/mockData/apartments/apartments.json'
 import {Peculiarity} from '@/widgets/peculiarity'
 import {MortgageCalculator} from '@/widgets/mortgage-calculator'
 import {useEffect, useRef, useState} from 'react'
 import {RecordPopup} from '@/shared/ui/record-popup'
+
+interface IApartmentPageProps {
+  id: number
+}
 
 const MOCK_APARTMENTS = [
   {
@@ -98,6 +109,70 @@ const MOCK_APARTMENTS = [
   },
 ]
 
+const getApartmentImage = (value) => {
+  switch (value) {
+    case 1:
+      return apartmentImage4
+    case 2:
+      return apartmentImage8
+    case 3:
+      return apartmentImage7
+    case 4:
+      return apartmentImage3
+    case 5:
+      return apartmentImage1
+    case 6:
+      return apartmentImage9
+    case 7:
+      return apartmentImage2
+    case 8:
+      return apartmentImage5
+    case 9:
+      return apartmentImage6
+    case 10:
+      return apartmentImage10
+    case 11:
+      return apartmentImage11
+    case 12:
+      return apartmentImage12
+    case 13:
+      return apartmentImage8
+    case 14:
+      return apartmentImage7
+    case 15:
+      return apartmentImage3
+    case 16:
+      return apartmentImage1
+    case 17:
+      return apartmentImage6
+    case 18:
+      return apartmentImage2
+    case 19:
+      return apartmentImage11
+    case 20:
+      return apartmentImage1
+    case 11:
+      return apartmentImage6
+    default:
+      return apartmentImage1
+  }
+}
+
+const getRoomTitle = (value: number) => {
+  switch (value) {
+    case 0:
+      return 'Студия'
+    case 1:
+      return 'Однокомнатная'
+    case 2:
+      return 'Двухкомнатная'
+    case 3:
+      return 'Трехкомнатная'
+    default:
+      return 'Студия'
+  }
+}
+
 const ApartmentImageSkeleton = () => {
   return (
     <div className={styles.apartmentContainerSkeleton}>
@@ -158,8 +233,10 @@ const ApartmentInfoSkeleton = () => {
   )
 }
 
-const ApartmentInfo = ({scrollToTarget, openRecord}) => {
+const ApartmentInfo = ({scrollToTarget, openRecord, id}) => {
   const [isLoading, setIsLoading] = useState(true)
+
+  const data = apartments.apartments[id - 1]
 
   useEffect(() => {
     setTimeout(() => {
@@ -175,7 +252,7 @@ const ApartmentInfo = ({scrollToTarget, openRecord}) => {
         ) : (
           <div className={styles.image}>
             <Image
-              src={apartmentImage1}
+              src={getApartmentImage(data.id)}
               className={styles.image}
               alt='apartment-image'
               fill
@@ -189,23 +266,43 @@ const ApartmentInfo = ({scrollToTarget, openRecord}) => {
           <div className={styles.content}>
             <div className={styles.topContainer}>
               <Text size='sMedium' weight='bold'>
-                Трехкомнатная, 34.2 м²
+                {`${getRoomTitle(data.rooms)}, ${data.square} м²`}
               </Text>
               <div>
                 <div className={styles.priceContainer}>
-                  <Text size='sMedium' weight='bold' color='orange'>
-                    20 187 000 ₽
+                  {data.discountPrice && (
+                    <Text size='sMedium' weight='bold' color='orange'>
+                      {data.discountPrice} ₽
+                    </Text>
+                  )}
+                  <Text
+                    size={!data.discountPrice ? 'sMedium' : 'small'}
+                    weight={!data.discountPrice ? 'bold' : 'regular'}
+                    color={!data.discountPrice ? 'orange' : 'greyDark'}
+                    className={data.discountPrice ? styles.totalPrice : ''}
+                  >
+                    {data.price.toLocaleString('ru-RU')} ₽
                   </Text>
-                  <Text className={styles.totalPrice}>22 430 000 ₽</Text>
                 </div>
-                <Text>590 263 ₽/м²</Text>
-              </div>
-              <div className={styles.statusContainer}>
-                <Text className={styles.status} color='orange'>
-                  -10%
+                <Text>
+                  {Math.floor(
+                    (data.discountPrice ?? data.price) / data.square
+                  ).toLocaleString('ru-RU')}{' '}
+                  ₽/м²
                 </Text>
-                <Text className={styles.statusGrey}>II квартал 2026</Text>
               </div>
+              {(data.discount || data.date) && (
+                <div className={styles.statusContainer}>
+                  {data.discount && (
+                    <Text className={styles.status} color='orange'>
+                      -{data.discount}%
+                    </Text>
+                  )}
+                  {data.date && (
+                    <Text className={styles.statusGrey}>{data.date}</Text>
+                  )}
+                </div>
+              )}
             </div>
             <div>
               <Text size='xSmall' weight='bold'>
@@ -282,7 +379,7 @@ const ApartmentInfo = ({scrollToTarget, openRecord}) => {
   )
 }
 
-export function ApartmentPage() {
+export function ApartmentPage({id}: IApartmentPageProps) {
   const [isOpen, setIsOpen] = useState(false)
   const componentRef = useRef(null)
 
@@ -290,16 +387,20 @@ export function ApartmentPage() {
     componentRef.current.scrollIntoView({behavior: 'smooth'})
   }
   const openRecord = () => {
-    // document.body.style.overflow = 'hidden'
+    document.body.style.overflow = 'hidden'
     setIsOpen(true)
   }
   const closeRecord = () => {
-    // document.body.style.overflow = 'visible'
+    document.body.style.overflow = 'visible'
     setIsOpen(false)
   }
   return (
     <div>
-      <ApartmentInfo scrollToTarget={scrollToTarget} openRecord={openRecord} />
+      <ApartmentInfo
+        scrollToTarget={scrollToTarget}
+        openRecord={openRecord}
+        id={id}
+      />
       <Peculiarity />
       <MortgageCalculator ref={componentRef} />
       <Apartments

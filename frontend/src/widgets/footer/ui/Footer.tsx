@@ -22,7 +22,7 @@ export function Footer() {
           <div className={styles.bottomContentContainer}>
             <div className={styles.links}>
               <div className={styles.contact}>
-                <Text href='tel:+74954191518' color='white'>
+                <Text href='tel:+74954191518' color='white' isHover>
                   +7 (495) 419-15-18
                 </Text>
                 <Text color='grey'>Контакт-центр в Нижнем Новгороде</Text>
@@ -50,9 +50,9 @@ export function Footer() {
               светильники и предметы интерьера не входят в пакет отделки.
             </Text>
             <div className={styles.document}>
-              <Text color='white'>Обработка персональных данных</Text>
+              <Text color='white' href='/documents/oferta.pdf' isDownload isHover>Обработка персональных данных</Text>
               <Text color='grey'>© 2025 «Nesterov». Все права защищены</Text>
-              <Text color='white'>Пользовательское соглашение</Text>
+              <Text color='white' href='/documents/polzovatelskoe-soglashenie.pdf' isDownload isHover>Пользовательское соглашение</Text>
             </div>
           </div>
         </div>

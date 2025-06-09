@@ -24,6 +24,10 @@
   justify-content: space-between;
 }
 
+.linkItem {
+  width: max-content;
+}
+
 .contact {
   display: flex;
   gap: 4px;
@@ -166,6 +170,9 @@
   }
   .nav {
     gap: 12px;
+  }
+  .linkItem {
+    width: auto;
   }
 }
 

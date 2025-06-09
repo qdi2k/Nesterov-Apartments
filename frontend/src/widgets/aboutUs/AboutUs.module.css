@@ -105,9 +105,9 @@
   }
   .listContainer {
     grid-template-areas:
-      'item1 item1 item3 item3'
-      'item4 item4 item3 item3'
-      'item2 item2 item2 item5';
+      'item1 item1 item2 item2'
+      'item3 item3 item3 item3'
+      'item4 item4 item5 item5';
     grid-template-columns: 1fr 1fr 1fr 35%;
     grid-template-rows: auto auto auto;
   }
@@ -127,9 +127,9 @@
 @media (max-width: 720px) {
   .listContainer {
     grid-template-areas:
-      'item1 item1 item3 item3'
-      'item4 item4 item3 item3'
-      'item2 item2 item2 item5';
+      'item1 item1 item2 item2'
+      'item3 item3 item3 item3'
+      'item4 item4 item5 item5';
     grid-template-columns: 35% 1fr 1fr 40%;
     grid-template-rows: auto auto auto;
   }

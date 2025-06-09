@@ -1,6 +1,6 @@
 'use client'
 
-import {Button, Text, Title} from '@/shared/ui'
+import {Text, Title} from '@/shared/ui'
 import styles from './Objects.module.css'
 import themeStyles from '@/shared/model/styles/theme.module.css'
 import Image, {type StaticImageData} from 'next/image'
@@ -145,10 +145,7 @@ export function Objects({title}: ObjectProps) {
       </Title>
       <div className={styles.objectsContainer}>
         {objects.objects.map((objectItem) => (
-          <Link
-            href={`/objects/${objectItem.title.toLowerCase()}`}
-            key={objectItem.id}
-          >
+          <Link href={objectItem?.href} key={objectItem.id}>
             <ObjectItem
               title={objectItem.title}
               statuses={objectItem.statuses}

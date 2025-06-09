@@ -89,7 +89,7 @@ export function InputSelect({
         </div>
       </div>
       <div
-        className={`${styles.scrollContainer} ${isCheck && styles.scroll} ${isOpen && styles.open}`}
+        className={`${styles.scrollContainer} ${(isCheck && sortItems.length > 5) && styles.scroll} ${isOpen && styles.open}`}
       >
         <div className={`${styles.sortItems} `}>
           {sortItems.map((item) =>
@@ -104,7 +104,7 @@ export function InputSelect({
                     sortActive.includes(item.title)
                       ? styles.sortItemActive
                       : styles.sortItem
-                  } ${styles.sortItemScroll}
+                  } ${sortItems.length > 5 && styles.sortItemScroll}
                 `}
               />
             ) : (

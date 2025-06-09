@@ -31,10 +31,19 @@
   padding: 20px 32px;
 }
 
+.button:hover {
+  background-color: rgba(58, 68, 101, 1) !important;
+}
+
+.moreButton {
+  margin: 30px auto;
+}
+
 .moreEvents {
   padding-top: 80px;
   padding-bottom: 80px;
   background-color: var(--greyLight);
+  align-items: center;
 }
 
 .eventsContainer {

@@ -1,6 +1,9 @@
+'use client'
+
 import {Icon, Divider, Text, DropdownMenu} from '@/shared/ui'
 import {BurgerList} from './BurgerList'
 import styles from './Burger.module.css'
+import { useState } from 'react'
 
 interface IBurgerProps {
   isOpen: boolean
@@ -9,7 +12,7 @@ interface IBurgerProps {
 
 const links = [
   {id: 1, text: 'Главная', href: '/'},
-  {id: 2, text: 'Объекты', href: '/objects/object'},
+  {id: 2, text: 'Объекты', href: '/'},
   {id: 3, text: 'Квартиры', href: '/apartments'},
   {id: 4, text: 'Способы оплаты', href: '/payments'},
   {id: 5, text: 'Акции', href: '/events'},
@@ -27,6 +30,7 @@ const mockData = [
 ]
 
 export function Burger({isOpen, onPress}: IBurgerProps) {
+  const [city, setCity] = useState(mockData[0].city)
   return (
     <div
       className={`${styles.menu} ${!isOpen && styles.menuClosed}`}
@@ -41,7 +45,7 @@ export function Burger({isOpen, onPress}: IBurgerProps) {
             <Text href='tel:+74954191518' size='small' color='white' isHover>
               +7 (495) 419-15-18
             </Text>
-            <DropdownMenu title='Новосибирск' icon='address' data={mockData} />
+            <DropdownMenu title={city} changeTitle={setCity} icon='address' data={mockData} />
           </div>
           <button onClick={() => onPress()}>
             <Icon name='close' size={24} color='white' />

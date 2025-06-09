@@ -4,6 +4,7 @@
       "id": 1,
       "title": "Marlinn",
       "statuses": [{"id": 1, "status": "IV кв. 2025"}],
+      "href": "/objects/marlinn",
       "minPrice": 32,
       "maxPrice": 78,
       "totalApartments": 176,
@@ -13,6 +14,7 @@
     {
       "id": 2,
       "title": "Shagal",
+      "href": "/objects/shagal",
       "totalApartments": 121,
       "apartmentsLeft": 89,
       "minPrice": 24,
@@ -26,6 +28,7 @@
     {
       "id": 3,
       "title": "Rauta",
+      "href": "/objects/rauta",
       "statuses": [{"id": 1, "status": "Старт продаж", "type": "started"}],
       "minPrice": 29,
       "maxPrice": 70,
@@ -35,7 +38,8 @@
     },
     {
       "id": 4,
-      "title": "Shagal Residence",
+      "title": "Residence",
+      "href": "/objects/residence",
       "statuses": [{"id": 1, "status": "III кв. 2026"}],
       "minPrice": 40,
       "maxPrice": 84,
@@ -46,6 +50,7 @@
     {
       "id": 5,
       "title": "Voxhall",
+      "href": "/objects/voxhall",
       "statuses": [{"id": 1, "status": "Старт продаж", "type": "started"}],
       "minPrice": 17,
       "maxPrice": 51,
@@ -56,6 +61,7 @@
     {
       "id": 6,
       "title": "Sokolinn",
+      "href": "/objects/sokolinn",
       "statuses": [
         {"id": 1, "status": "I кв. 2026"},
         {"id": 2, "status": "-15% скидка", "type": "share"}

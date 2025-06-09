@@ -52,7 +52,7 @@ const MOCK_EVENTS = [
 ]
 
 export function PaymentsPage() {
-  const {handleShowMoreDocuments, getDelay, postsToShow} = useGetMoreItem(
+  const {handleShowMoreItems, getDelay, dataToShow} = useGetMoreItem(
     MOCK_EVENTS,
     6
   )
@@ -66,19 +66,20 @@ export function PaymentsPage() {
       <div className={themeStyles.container}>
         <Title>Все способы оплаты</Title>
         <div className={styles.eventsContainer}>
-          {postsToShow.map((event) => (
+          {dataToShow.map((event, index) => (
             <Payment
               key={event.id}
               title={event.title}
               description={event.description}
-              delay={getDelay(event.id)}
+              delay={getDelay(index)}
             />
           ))}
         </div>
-        {MOCK_EVENTS.length > postsToShow.length && (
+        {MOCK_EVENTS.length > dataToShow.length && (
           <Button
-            onClick={handleShowMoreDocuments}
+            onClick={handleShowMoreItems}
             isMore
+            className={styles.button}
             animation={{
               hidden: {
                 y: 50,

@@ -57,6 +57,8 @@ export function Filter({
 
   const [selectedRooms, setSelectedRooms] = useState<RoomData[]>([])
   const [sortRooms, setSortRooms] = useState([])
+  const [sortProject, setSortProject] = useState([])
+  const [sortDate, setSortDate] = useState([])
 
   const [filterTimeout, setFilterTimeout] = useState(null)
 
@@ -77,13 +79,6 @@ export function Filter({
       )
     })
   }, [priceValue, squareValue, floorValue, selectedRooms])
-
-  const resetFilters = () => {
-    setPriceValue({min: 10000000, max: 100000000})
-    setSquareValue({min: 20, max: 200})
-    setFloorValue({min: 2, max: 30})
-    setIsLoading(true)
-  }
 
   useEffect(() => {
     const fetchApartments = async () => {
@@ -128,6 +123,8 @@ export function Filter({
           <Text color='blueLight'>Проект</Text>
           <InputSelect
             sortItems={MOCK_PROJECT_SORT}
+            sortActive={sortProject}
+            setSortActive={setSortProject}
             placeHolder='Выберите проект'
             isCheck
           />
@@ -136,6 +133,8 @@ export function Filter({
           <Text color='blueLight'>Срок сдачи</Text>
           <InputSelect
             sortItems={MOCK_DATE_SORT}
+            sortActive={sortDate}
+            setSortActive={setSortDate}
             placeHolder='Выберите срок сдачи'
             isCheck
           />
@@ -210,7 +209,6 @@ export function Filter({
           <Text
             weight='medium'
             className={styles.resetButton}
-            onClick={() => resetFilters()}
           >
             Сбросить фильтры
           </Text>

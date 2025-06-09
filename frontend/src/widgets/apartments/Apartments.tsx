@@ -45,19 +45,19 @@ export function Apartments({
     isFilter ? [] : apartments
   )
   const [isLoading, setIsLoading] = useState(isLoad || false)
-  const {handleShowMoreDocuments, getDelay, postsToShow} = useGetMoreItem(
+  const {handleShowMoreItems, getDelay, dataToShow} = useGetMoreItem(
     apartmentsData,
     6
   )
 
-  const currentData = isMore ? postsToShow : apartmentsData
+  const currentData = isMore ? dataToShow : apartmentsData
   const isGroup = false
 
   const getButtonStatus = () => {
     if (!isMore) {
       return true
     }
-    if (isMore && apartmentsData.length > postsToShow.length) {
+    if (isMore && apartmentsData.length > dataToShow.length) {
       return true
     }
     return false
@@ -135,8 +135,8 @@ export function Apartments({
           <div className={styles.objectContainer}>
             <GroupApartment
               data={currentData}
-              isMore={apartments.length > postsToShow.length}
-              onClick={handleShowMoreDocuments}
+              isMore={apartments.length > dataToShow.length}
+              onClick={handleShowMoreItems}
             />
             <GroupApartment data={currentData} />
             <GroupApartment data={currentData} />
@@ -155,7 +155,7 @@ export function Apartments({
                 </>
               ) : (
                 <>
-                  {postsToShow.map((item) => (
+                  {dataToShow.map((item, index) => (
                     <Link href={`/apartments/${item.id}`} key={item.id}>
                       <ApartmentItem
                         price={item.price.toLocaleString('ru-RU')}
@@ -165,7 +165,7 @@ export function Apartments({
                         rooms={item.rooms}
                         square={item.square}
                         floor={item.floor}
-                        delay={isMore ? getDelay(item.id) : item.id * 0.1}
+                        delay={isMore ? getDelay(index) : index * 0.1}
                       />
                     </Link>
                   ))}
@@ -176,7 +176,7 @@ export function Apartments({
               <Button
                 href={isMore ? '' : '/apartments'}
                 className={styles.moreButton}
-                onClick={isMore ? handleShowMoreDocuments : () => {}}
+                onClick={isMore ? handleShowMoreItems : () => {}}
                 isMore={isMore}
                 animation={{
                   hidden: {

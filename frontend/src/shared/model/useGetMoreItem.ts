@@ -1,45 +1,33 @@
 'use client'
 
 import {useEffect, useState} from 'react'
+import { IDataItemProps } from './types'
 
-export default function useGetMoreItem(mockData, size) {
-  const [postsToShow, setPostsToShow] = useState([])
-  const [documentsCount, setDocumentsCount] = useState(size)
+export default function useGetMoreItem(data: IDataItemProps[], size: number) {
+  const [dataToShow, setDataToShow] = useState<IDataItemProps[]>([])
+  const [currentGroup, setCurrentGroup] = useState(0);
 
-  const loopWithSlice = (start: number, end: number) => {
-    const slicedPosts = mockData.slice(start, end)
-    const arrayForHoldingPosts = [...postsToShow, ...slicedPosts]
-    setPostsToShow(arrayForHoldingPosts)
+  const getDelay = (index: number) => {
+    const inGroupIndex = index % size
+    return inGroupIndex * 0.1
   }
 
-  const getDelay = (id: number) => {
-    const round = id / (size === 5 ? 5 : 9)
-    if (Number.isInteger(round)) {
-      return 0.5
-    }
-    const result = Number((round % 1).toFixed(1)) / 2
-    return result
-  }
-
-  const handleShowMoreDocuments = () => {
-    const remainingDocuments =
-      mockData.length - postsToShow.length >= size
-        ? size
-        : mockData.length - postsToShow.length
-    loopWithSlice(documentsCount, documentsCount + remainingDocuments)
-    setDocumentsCount((prev) => prev + remainingDocuments)
+  const handleShowMoreItems = () => {
+    const start = currentGroup * size
+    const end = start + size
+    const newItems = data.slice(start, end)
+    setDataToShow(prev => [...prev, ...newItems])
+    setCurrentGroup(prev => prev + 1)
   }
 
   useEffect(() => {
-    setPostsToShow([])
-    setDocumentsCount(size)
-    const initialPosts = mockData.slice(0, size)
-    setPostsToShow(initialPosts)
-  }, [mockData, size])
+    setDataToShow(data.slice(0, size))
+    setCurrentGroup(1)
+  }, [data, size])
 
   return {
-    postsToShow,
-    handleShowMoreDocuments,
+    dataToShow,
+    handleShowMoreItems,
     getDelay,
   }
 }

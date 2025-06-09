@@ -6,7 +6,7 @@ const MOCK_OBJECTS = [
   {id: 1, object: 'Marlinn', href: '/objects/marlinn'},
   {id: 2, object: 'Shagal', href: '/objects/shagal'},
   {id: 3, object: 'Rauta', href: '/objects/rauta'},
-  {id: 4, object: 'Shagal Residence', href: '/objects/shagal-residence'},
+  {id: 4, object: 'Residence', href: '/objects/residence'},
   {id: 5, object: 'Voxhall', href: '/objects/voxhall'},
   {id: 6, object: 'Sokolinn', href: '/objects/sokolinn'},
 ]
@@ -27,7 +27,7 @@ const MOCK_EVENTS = [
 ]
 
 const MOCK_SCREENS = [
-  {id: 1, screen: 'Объекты', href: '/objects/object'},
+  {id: 1, screen: 'Объекты', href: '/'},
   {id: 2, screen: 'Квартиры', href: '/apartments'},
   {id: 3, screen: 'Способы оплаты', href: '/payments'},
   {id: 4, screen: 'Акции', href: '/events'},
@@ -49,7 +49,7 @@ export function FooterNav() {
           Объекты
         </Text>
         {MOCK_OBJECTS.map((object) => (
-          <Link href={object.href} key={object.id}>
+          <Link href={object.href} key={object.id} className={styles.linkItem}>
             <Text size='small' color='white' isHover>
               {object.object}
             </Text>
@@ -66,7 +66,7 @@ export function FooterNav() {
           Способы оплаты
         </Text>
         {MOCK_PAYMENTS.map((payment) => (
-          <Link href={payment.href} key={payment.id}>
+          <Link href={payment.href} key={payment.id} className={styles.linkItem}>
             <Text size='small' color='white' isHover>
               {payment.payment}
             </Text>
@@ -83,7 +83,7 @@ export function FooterNav() {
           Акции
         </Text>
         {MOCK_EVENTS.map((event) => (
-          <Link href={event.href} key={event.id}>
+          <Link href={event.href} key={event.id} className={styles.linkItem}>
             <Text size='small' color='white' isHover>
               {event.event}
             </Text>
@@ -100,7 +100,7 @@ export function FooterNav() {
           О компании
         </Text>
         {MOCK_SCREENS.map((screen) => (
-          <Link href='/objects/object' key={screen.id}>
+          <Link href={screen.href} key={screen.id} className={styles.linkItem}>
             <Text size='small' color='white' isHover>
               {screen.screen}
             </Text>

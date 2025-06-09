@@ -31,6 +31,7 @@ interface ITextProps {
   initialAnimation?: any
   animate?: any
   exit?: any
+  isDownload?: boolean
 }
 
 export function Text({
@@ -40,6 +41,7 @@ export function Text({
   weight = 'regular',
   color = 'greyDark',
   href,
+  isDownload,
   onClick,
   ref,
   isUppercase,
@@ -61,6 +63,7 @@ export function Text({
       ${className}
     `}
       href={href}
+      download={isDownload}
     >
       {children}
     </a>

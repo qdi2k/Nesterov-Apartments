@@ -60,7 +60,7 @@ const MOCK_EVENTS = [
 ]
 
 export function EventsPage() {
-  const {handleShowMoreDocuments, getDelay, postsToShow} = useGetMoreItem(
+  const {handleShowMoreItems, getDelay, dataToShow} = useGetMoreItem(
     MOCK_EVENTS,
     6
   )
@@ -74,20 +74,21 @@ export function EventsPage() {
       <div className={themeStyles.container}>
         <Title>Все акции и скидки</Title>
         <div className={styles.eventsContainer}>
-          {postsToShow.map((event) => (
+          {dataToShow.map((event, index) => (
             <Event
               key={event.id}
               title={event.title}
               description={event.description}
               period={event.period}
-              delay={getDelay(event.id)}
+              delay={getDelay(index)}
             />
           ))}
         </div>
-        {MOCK_EVENTS.length > postsToShow.length && (
+        {MOCK_EVENTS.length > dataToShow.length && (
           <Button
-            onClick={handleShowMoreDocuments}
+            onClick={handleShowMoreItems}
             isMore
+            className={styles.button}
             animation={{
               hidden: {
                 y: 50,

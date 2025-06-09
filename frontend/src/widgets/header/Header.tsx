@@ -33,7 +33,7 @@ export function Header({openBurger}: IHeaderProps) {
           </Link>
           <ul className={styles.navList}>
             <li className={styles.navText}>
-              <Link href='/objects/object'>
+              <Link href='/'>
                 <Text size='small' color='white' isHover>
                   Объекты
                 </Text>
@@ -75,6 +75,7 @@ export function Header({openBurger}: IHeaderProps) {
               size='small'
               href='tel:+74954191518'
               color='white'
+              isHover
               className={styles.phone}
             >
               +7 (495) 419-15-18
